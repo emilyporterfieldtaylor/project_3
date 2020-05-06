@@ -14,22 +14,17 @@ const useStyles = makeStyles((theme) => ({
     },
 }));
 
-function BoardGameList() {
+function BoardGameDetail() {
     const classes = useStyles();
 
     return (
         <div className={classes.root} style={{marginTop: '20px'}}>
             <Paper className={classes.paper}>
-                My Board Game List:
-                <ul>
-                    <li>Game 1</li>
-                    <li>Game 2</li>
-                    <li>Game 3</li>
-                    <li>Game 4</li>
-                </ul>    
+                Board Game Detail:
+                
             </Paper>
         </div>
     )
 }
 
-export default BoardGameList;
+export default BoardGameDetail;
