@@ -15,7 +15,7 @@ const useStyles = makeStyles((theme) => ({
     },
 }));
 
-function BoardGameList() {
+function FriendsList() {
     const classes = useStyles();
 
     return (
@@ -23,12 +23,12 @@ function BoardGameList() {
             <Grid container spacing={3}>
                 <Grid item xs={3}>
                     <Paper className={classes.paper}>
-                        My Board Game List:
+                        Friend List:
                         <ul>
-                            <li>Game 1</li>
-                            <li>Game 2</li>
-                            <li>Game 3</li>
-                            <li>Game 4</li>
+                            <li>Friend 1</li>
+                            <li>Friend 2</li>
+                            <li>Friend 3</li>
+                            <li>Friend 4</li>
                         </ul>    
                     </Paper>
                 </Grid>
@@ -37,4 +37,4 @@ function BoardGameList() {
     )
 }
 
-export default BoardGameList;
+export default FriendsList;
