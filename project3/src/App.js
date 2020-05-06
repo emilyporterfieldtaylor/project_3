@@ -5,7 +5,9 @@ import Header from './components/Header/index';
 import SearchBar from './components/SearchBar/index';
 import BoardGameList from './components/BoardGameList/index';
 import FriendsList from './components/FriendsList/index';
-import BoardGameDetail from './components/BoardGameDetail/index';
+import BoardGamePreview from './components/BoardGamePreview/index';
+import BoardGameDescription from './components/BoardGameDescription/index';
+import Links from './components/ExternalLinks/index';
 
 function App() {
   return (
@@ -18,11 +20,13 @@ function App() {
         </Grid>
 
         <Grid item xs={6} >
-          <BoardGameDetail />
+          <BoardGamePreview />
+          <BoardGameDescription />
         </Grid>
 
         <Grid item xs={3} >
           <FriendsList />
+          <Links />
         </Grid>
       </Grid>
  

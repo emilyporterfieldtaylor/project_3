@@ -14,17 +14,19 @@ const useStyles = makeStyles((theme) => ({
     },
 }));
 
-function BoardGameDetail() {
+function BoardGamePreview() {
     const classes = useStyles();
 
     return (
         <div className={classes.root} style={{marginTop: '20px'}}>
             <Paper className={classes.paper}>
-                Board Game Detail:
-                
+                Board Game Preview:
+                <Paper>
+                    * board game here *
+                </Paper>
             </Paper>
         </div>
     )
 }
 
-export default BoardGameDetail;
+export default BoardGamePreview;
