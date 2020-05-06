@@ -26,6 +26,10 @@ function FriendsList() {
                     <li>Friend 2</li>
                     <li>Friend 3</li>
                     <li>Friend 4</li>
+                    <li>Friend 5</li>
+                    <li>Friend 6</li>
+                    <li>Friend 7</li>
+                    <li>Friend 8</li>
                 </ul>    
             </Paper>
         </div>
