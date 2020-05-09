@@ -21,7 +21,7 @@ function LoginBox() {
                     <button
                         type='sumbit'
                     >
-                        Submit
+                        Log In
                     </button>    
                 </Grid>
             </div>
