@@ -41,3 +41,7 @@
 Header {
   margin-bottom: 20px;
 }
+
+body {
+  background-color: darkcyan;
+}
