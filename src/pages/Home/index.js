@@ -6,10 +6,12 @@ import FriendsList from '../../components/FriendsList/index';
 import BoardGamePreview from '../../components/BoardGamePreview/index';
 import BoardGameDescription from '../../components/BoardGameDescription/index';
 import Links from '../../components/ExternalLinks/index';
+import Header from '../../components/Header';
 
 function App() {
   return (
     <div className="App">
+      <Header />
       <SearchBar />
       <Grid container spacing={2}>
         <Grid item xs={3} >
