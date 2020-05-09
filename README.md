@@ -1,68 +1,64 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+# Project 3 Template
 
-## Available Scripts
+## INTRODUCTION
 
-In the project directory, you can run:
+AS a person throwing a board game party, I want to be able to narrow down my board games by categories so I can pick the perfect board game to play with any party group.
 
-### `npm start`
+<br>
 
-Runs the app in the development mode.<br />
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+## TABLE OF CONTENTS
 
-The page will reload if you make edits.<br />
-You will also see any lint errors in the console.
+1. [FEATURES](#features)
+2. [INSTALLATION](#installation)
+3. [CONTRIBUTIONS](#contributions)
+4. [PREVIEW](#preview)
+4. [RESOURCES](#resources)
+5. [BADGES](#badges)
 
-### `npm test`
+<br>
 
-Launches the test runner in the interactive watch mode.<br />
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## FEATURES
 
-### `npm run build`
 
-Builds the app for production to the `build` folder.<br />
-It correctly bundles React in production mode and optimizes the build for the best performance.
 
-The build is minified and the filenames include the hashes.<br />
-Your app is ready to be deployed!
+<br>
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+## INSTALLATION
 
-### `npm run eject`
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+<br>
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+## CONTRIBUTORS
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+Caitlin Huber
 
-## Learn More
+Emily Taylor
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+Eric Garcia
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+Kendra Kwoka
 
-### Code Splitting
+Leandra Turner
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/code-splitting
 
-### Analyzing the Bundle Size
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size
 
-### Making a Progressive Web App
+### PREVIEW
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app
+![project 3 preview](image or gif pathway)
 
-### Advanced Configuration
+<br>
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/advanced-configuration
+## RESOURCES
 
-### Deployment
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/deployment
 
-### `npm run build` fails to minify
+### BADGES
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
+
+[![forthebadge](https://forthebadge.com/images/badges/check-it-out.svg)](https://mysterious-sierra-72763.herokuapp.com/)
+
+[![Open Source Love svg1](https://badges.frapsoft.com/os/v1/open-source.svg?v=103)](https://github.com/emilyporterfieldtaylor/project_3)
+[![made-for-VSCode](https://img.shields.io/badge/Made%20for-VSCode-1f425f.svg)](https://code.visualstudio.com/)
+
