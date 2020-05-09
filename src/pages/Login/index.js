@@ -12,7 +12,7 @@ function Login() {
         <Paper >
             <LoginBox />
             <div>
-                <Link to='/home' style={{textDecoration: 'none'}} className="nav-link homepageLink">To Homepage</Link>
+                <Link to='/home' style={{textDecoration: 'none'}} className="nav-link homepageLink">To Homepage (Remove once 'login' button works!)</Link>
             </div>
         </Paper>
     </div>
