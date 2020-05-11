@@ -29,7 +29,6 @@ function SearchBar() {
         // const fetchData = async () => {
             const result = axios.get(site + `search?search=${search}`)
             .then(res => {
-                res.header('Access-Control-Allow-Origin', '*');
                 console.log("converted: ",convert.xml2json(res.data, {compact: true, spaces: 4}));
                 // this.setState({ person: res.data });
             })
