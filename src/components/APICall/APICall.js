@@ -1,7 +1,7 @@
 import React from 'react';
 import axios from "axios";
 var convert = require('xml-js');
-const site = "https://www.boardgamegeek.com/xmlapi2/";
+const site = "https://www.boardgamegeek.com/xmlapi/";
 
 
 export default class APICall extends React.Component {
@@ -10,7 +10,7 @@ export default class APICall extends React.Component {
   }
 
   componentDidMount () {
-    axios.get( site + 'thing?id=1')
+    axios.get( site + 'search?search=Crossbows%20and%20Catapults')
     .then(res => {
       console.log(convert.xml2json(res.data, {compact: true, spaces: 4}));
       this.setState({ person: res.data });
