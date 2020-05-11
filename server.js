@@ -5,7 +5,7 @@
 // *** Dependencies
 // =============================================================
 var express = require("express");
-// var cors = require('cors')
+var cors = require('cors')
 
 // Sets up the Express App
 // =============================================================
@@ -13,9 +13,11 @@ var app = express();
 var PORT = process.env.PORT || 8080;
 
 // app.use((req, res, next) => {
-//   res.header('Access-Control-Allow-Origin', '*');
+//   res.header('Access-Control-Allow-Origin', 'https://www.boardgamegeek.com/xmlapi/');
 //   next();
 // });
+
+app.use(cors());
 
 // // Setting up CORS for gaining access to XML
 // let corsOptions = {

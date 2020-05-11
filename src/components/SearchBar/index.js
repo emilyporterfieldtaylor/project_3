@@ -26,18 +26,19 @@ function SearchBar() {
     const [search, setSearch] = useState('');
 
     useEffect(() => {
-        // const fetchData = async () => {
-            const result = axios.get(site + `search?search=${search}`)
+        const fetchData = async () => {
+            const result = await axios.get(site + `search?search=${search}`)
             .then(res => {
                 console.log("converted: ",convert.xml2json(res.data, {compact: true, spaces: 4}));
                 // this.setState({ person: res.data });
+                console.log("res: ",res)
             })
             
             // console.log(result);
-            console.log("result: ",result.data);
+            console.log("result: ",result);
             // setGames(result.data.items);
-        // };
-        // fetchData();
+        };
+        fetchData();
 
     }, [search]);
 
