@@ -4,6 +4,8 @@ import { makeStyles } from '@material-ui/core/styles';
 import Paper from '@material-ui/core/Paper';
 import Grid from '@material-ui/core/Grid';
 import axios from 'axios'; 
+import convert from 'xml-js';
+const site = "https://www.boardgamegeek.com/xmlapi/";
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -24,16 +26,19 @@ function SearchBar() {
     const [search, setSearch] = useState('');
 
     useEffect(() => {
-        const fetchData = async () => {
-            const result = await axios (
-                ` http://www.boardgamegeek.com/xmlapi/search?search=${search}`
-            )
+        // const fetchData = async () => {
+            const result = axios.get(site + `search?search=${search}`)
+            .then(res => {
+                res.header('Access-Control-Allow-Origin', '*');
+                console.log("converted: ",convert.xml2json(res.data, {compact: true, spaces: 4}));
+                // this.setState({ person: res.data });
+            })
             
             // console.log(result);
             console.log("result: ",result.data);
             // setGames(result.data.items);
-        };
-        fetchData();
+        // };
+        // fetchData();
 
     }, [search]);
 

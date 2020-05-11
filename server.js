@@ -5,18 +5,23 @@
 // *** Dependencies
 // =============================================================
 var express = require("express");
-var cors = require('cors')
+// var cors = require('cors')
 
 // Sets up the Express App
 // =============================================================
 var app = express();
 var PORT = process.env.PORT || 8080;
 
-// Setting up CORS for gaining access to XML
-let corsOptions = {
-  origin: ' http://www.boardgamegeek.com/xmlapi/search?search=',
-  optionsSuccessStatus: 200 
-}
+// app.use((req, res, next) => {
+//   res.header('Access-Control-Allow-Origin', '*');
+//   next();
+// });
+
+// // Setting up CORS for gaining access to XML
+// let corsOptions = {
+//   origin: ' http://www.boardgamegeek.com/xmlapi/search?search=',
+//   optionsSuccessStatus: 200 
+// }
 
 // Requiring models for syncing
 var db = require("./models");
