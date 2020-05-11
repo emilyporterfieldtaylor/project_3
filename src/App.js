@@ -8,6 +8,7 @@ import FriendsList from './components/FriendsList/index';
 import BoardGamePreview from './components/BoardGamePreview/index';
 import BoardGameDescription from './components/BoardGameDescription/index';
 import Links from './components/ExternalLinks/index';
+import APICall from './components/APICall/APICall';
 
 function App() {
   return (
@@ -29,7 +30,7 @@ function App() {
           <Links />
         </Grid>
       </Grid>
- 
+      <APICall />
     </div>
   );
 }
