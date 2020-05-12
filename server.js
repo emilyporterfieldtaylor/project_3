@@ -1,23 +1,16 @@
-// *****************************************************************************
-// Server.js - This file is the initial starting point for the Node/Express server.
-//
-// ******************************************************************************
-// *** Dependencies
-// =============================================================
 var express = require("express");
-var cors = require('cors')
+// var cors = require('cors')
 
-// Sets up the Express App
-// =============================================================
 var app = express();
 var PORT = process.env.PORT || 8080;
+// const api = require('./src/utils')
 
 // app.use((req, res, next) => {
 //   res.header('Access-Control-Allow-Origin', 'https://www.boardgamegeek.com/xmlapi/');
 //   next();
 // });
 
-app.use(cors());
+// app.use(cors());
 
 // // Setting up CORS for gaining access to XML
 // let corsOptions = {
@@ -42,6 +35,8 @@ app.use(express.static("public"));
 require("./routes/.js")(app);
 require("./routes/.js")(app);
 require("./routes/.js")(app);
+// app.use(api);
+
 
 
 // Syncing our sequelize models and then starting our Express app

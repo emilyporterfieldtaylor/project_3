@@ -3,8 +3,13 @@ import './style.css';
 import { makeStyles } from '@material-ui/core/styles';
 import Paper from '@material-ui/core/Paper';
 import Grid from '@material-ui/core/Grid';
-import axios from 'axios'; 
-import APICall from '../APICall/APICall';
+// import APICall from '../APICall/APICall';
+// import API from '../../utils/index';
+
+const axios = require("axios");
+// const express = require("express");
+// var convert = require('xml-js');
+// let app = express();
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -17,6 +22,16 @@ const useStyles = makeStyles((theme) => ({
     },
 }));
 
+function getBoardGame (query) {
+    // app.get("/", function(req, res) {
+    //     axios.get(`https://www.boardgamegeek.com/xmlapi/search?search=${query}`)
+    //     .then(response => {
+    //         res.set('Content-Type', 'text/xml');
+    //         res.send(response.data);
+    //     });
+    // });
+  }
+
 function SearchBar() {
     const classes = useStyles();
 
@@ -25,6 +40,16 @@ function SearchBar() {
     const [search, setSearch] = useState('');
 
     useEffect(() => {
+        // const fetchData = async () => {
+        //     API.getBoardGame(query)
+        //         .then(res => 
+        //             setGames(res.data)
+        //         )
+        //         .catch(err => console.log(err));
+        //     };
+        //     fetchData();
+
+
         const fetchData = async () => {
             const result = await axios (
                 `http://www.boardgamegeek.com/xmlapi2/search?query=${search}`
@@ -55,10 +80,14 @@ function SearchBar() {
                     />  
                     <button 
                         type="button"
-                        onClick={() => setSearch(query)}
+                        onClick={() =>  {
+                            setSearch(query);
+                            // getBoardGame(query)
+                         }
+                        }
                     >
                         Search
-                        <APICall/>
+                        {/* <APICall/> */}
                     
                     </button> 
 
