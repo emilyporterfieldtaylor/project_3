@@ -1,4 +1,0 @@
-
-DROP DATABASE IF EXISTS boardgames;
-
-CREATE DATABASE boardgames;
