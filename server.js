@@ -44,11 +44,14 @@ app.use(passport.session());
 
 // Routes
 // =============================================================
-require("./routes")(app);
+require("./routes")(app);//keep this
+
+//temporary: demonstrating passport
 require("./routes/html-routes")(app);
  
 
 // Syncing our sequelize models and then starting our Express app
+//set "force" to false to prevent it from emptying db each time
 // =============================================================
 db.sequelize.sync({ force: false}).then(function() {
   app.listen(PORT, function() {
