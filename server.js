@@ -1,16 +1,14 @@
-// *****************************************************************************
-// Server.js - This file is the initial starting point for the Node/Express server.
-//
-// ******************************************************************************
-// *** Dependencies
-// =============================================================
+// Requiring necessary npm packages
 var express = require("express");
+var session = require("express-session");
+// Requiring passport as we've configured it
+var passport = require("./config/passport");
 var cors = require('cors')
 
 // Sets up the Express App
 // =============================================================
 var app = express();
-var PORT = process.env.PORT || 8080;
+var PORT = process.env.PORT || 3001;
 
 // app.use((req, res, next) => {
 //   res.header('Access-Control-Allow-Origin', 'https://www.boardgamegeek.com/xmlapi/');
@@ -37,16 +35,22 @@ app.use(express.json());
 // Static directory
 app.use(express.static("public"));
 
+
+// We need to use sessions to keep track of our user's login status
+app.use(session({ secret: "keyboard cat", resave: true, saveUninitialized: true }));
+app.use(passport.initialize());
+app.use(passport.session());
+
+
 // Routes
 // =============================================================
-require("./routes/.js")(app);
-require("./routes/.js")(app);
-require("./routes/.js")(app);
-
+require("./routes")(app);
+require("./routes/html-routes")(app);
+ 
 
 // Syncing our sequelize models and then starting our Express app
 // =============================================================
-db.sequelize.sync({ force: true }).then(function() {
+db.sequelize.sync({ force: false}).then(function() {
   app.listen(PORT, function() {
     console.log("App listening on PORT " + PORT);
   });
