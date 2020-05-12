@@ -10,7 +10,7 @@ export default class APICall extends React.Component {
   }
 
   componentDidMount () {
-    axios.get( site + 'search?search=Crossbows%20and%20Catapults')
+    axios.get( site + 'search?query=')
     .then(res => {
       console.log(convert.xml2json(res.data, {compact: true, spaces: 4}));
       this.setState({ person: res.data });

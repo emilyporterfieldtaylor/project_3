@@ -20,7 +20,7 @@ function Links() {
     return (
         <div className={classes.root} style={{marginTop: '20px'}}>
             <Paper className={classes.paper}>
-                External Links:
+                Want to buy it?
                 <ul>
                     <li>Link 1</li>
                     <li>Link 2</li>

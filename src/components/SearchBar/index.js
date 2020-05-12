@@ -27,7 +27,7 @@ function SearchBar() {
     useEffect(() => {
         const fetchData = async () => {
             const result = await axios (
-                ` http://www.boardgamegeek.com/xmlapi/search?search=${search}`
+                `http://www.boardgamegeek.com/xmlapi2/search?query=${search}`
             )
             
             // console.log(result);
@@ -55,8 +55,11 @@ function SearchBar() {
                     />  
                     <button 
                         type="button"
-                        onClick={() => setSearch(query)}>
+                        onClick={() => setSearch(query)}
+                    >
                         Search
+                        <APICall/>
+                    
                     </button> 
 
                     
