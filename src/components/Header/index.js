@@ -26,8 +26,6 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 function Header() {
-    // const classes = useStyles();
-
     const classes = useStyles();
     const [auth, setAuth] = React.useState(true);
     const [anchorEl, setAnchorEl] = React.useState(null);

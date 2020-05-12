@@ -41,3 +41,7 @@
 Header {
   margin-bottom: 20px;
 }
+
+body {
+  background-image: url("./Assets/Images/diplomacy-illustration.jpg");
+}
