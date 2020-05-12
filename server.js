@@ -1,22 +1,12 @@
-<<<<<<< HEAD
-var express = require("express");
-// var cors = require('cors')
-=======
 // Requiring necessary npm packages
 var express = require("express");
 var session = require("express-session");
 // Requiring passport as we've configured it
 var passport = require("./config/passport");
 var cors = require('cors')
->>>>>>> 9a44f0c0c73c08f86fed80505f0722afaf842598
 
 var app = express();
-<<<<<<< HEAD
-var PORT = process.env.PORT || 8080;
-// const api = require('./src/utils')
-=======
 var PORT = process.env.PORT || 3001;
->>>>>>> 9a44f0c0c73c08f86fed80505f0722afaf842598
 
 // app.use((req, res, next) => {
 //   res.header('Access-Control-Allow-Origin', 'https://www.boardgamegeek.com/xmlapi/');
@@ -52,15 +42,7 @@ app.use(passport.session());
 
 // Routes
 // =============================================================
-<<<<<<< HEAD
-require("./routes/.js")(app);
-require("./routes/.js")(app);
-require("./routes/.js")(app);
-// app.use(api);
-
-=======
 require("./routes")(app);//keep this
->>>>>>> 9a44f0c0c73c08f86fed80505f0722afaf842598
 
 //temporary: demonstrating passport
 require("./routes/html-routes")(app);
