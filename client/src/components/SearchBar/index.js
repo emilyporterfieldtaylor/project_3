@@ -18,6 +18,7 @@ const useStyles = makeStyles((theme) => ({
     },
 }));
 
+
 function SearchBar() {
     const classes = useStyles();
 
@@ -33,17 +34,8 @@ function SearchBar() {
                 name: response.data.elements[0].elements[0].elements[0].elements[0].text,
                 yearPublished: response.data.elements[0].elements[0].elements[1].elements[0].text
             }
-            // console.log('resp: ',response.data.elements[0].elements[0].attributes.objectid)
-
-            // console.log('resp: ',response.data.elements[0].elements[0])
-       
-            // setGames({
-            //     gameId: response.data.elements[0].elements[0].attributes.objectid,
-            //     name: response.data.elements[0].elements[0].elements[0].elements[0].text,
-            //     yearPublished: response.data.elements[0].elements[0].elements[1].elements[0].text
-            // });
         
-            setGames([...games, game ]);
+            setGames(games => [...games, game ]);
         };
 
         fetchData();    
@@ -86,7 +78,7 @@ function SearchBar() {
                 <ul>
                     {games.map(game => (
                     <li key={game.gameId}>
-                        <Link to={"/books/" + game.gameId}>
+                        <Link to={"/games/" + game.gameId} value={game.gameId}>
                             <strong>
                                 {game.name}
                             </strong>

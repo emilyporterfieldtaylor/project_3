@@ -30,5 +30,22 @@ module.exports = {
         } else {
             res.json(json);
         }
-    }
+    },
+    findById:  async (req, res) => {
+        const { id } = req.params;
+        const root = 'https://www.boardgamegeek.com/xmlapi2/thing?id=';
+        const output = await fetchXML(root, id);
+        const json = JSON.parse(output);
+        // console.log("json: ",json);
+        // console.log("output: ", output);
+        if (json.errors) {
+            res.status(500);
+            res.json({
+            content: 'Unable to get the data from boardgamegeek.com',
+            ... json
+            })
+        } else {
+            res.json(json);
+        }
+    },
 };

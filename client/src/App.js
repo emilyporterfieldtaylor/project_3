@@ -4,6 +4,7 @@ import './App.css';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import Login from './pages/Login';
 import Home from './pages/Home';
+import GameDescription from './pages/GameDescription';
 // import APICall from './components/APICall/APICall';
 
 function App() {
@@ -13,8 +14,8 @@ function App() {
         <Route exact path="/" component={Login} />
         <Route exact path="/login" component={Login} />
         <Route exact path="/home" component={Home} />
+        <Route path='/games' component={GameDescription} />
       </Switch>
-      {/* <APICall /> */}
     </Router>
   );
 }
