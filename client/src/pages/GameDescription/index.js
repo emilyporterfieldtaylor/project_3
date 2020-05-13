@@ -1,22 +1,19 @@
 import React, { useEffect, useState } from "react";
 // import './style.css';
 import Paper from '@material-ui/core/Paper';
-// import Grid from '@material-ui/core/Grid';
+import Grid from '@material-ui/core/Grid';
 import { Link } from "react-router-dom";
-// import Find from '../../../../controllers/gameAPIController';
 
 const axios = require("axios");
 
 
 function GameDescription() {
     const [game, setGame] = useState([]);
-    let params;
-    let url = `/api/games/:${params}`;
-    console.log("url: ", url)
+    let id = 1234;
 
     useEffect(()  => {      
         const fetchData = async() => {
-            const response = await axios.get(url);
+            const response = await axios.get(`/api/games/${id}`);
             let item = {
                 gameId: response.data.elements[0].elements[0].attributes.objectid,
                 name: response.data.elements[0].elements[0].elements[0].elements[0].text,
@@ -27,7 +24,7 @@ function GameDescription() {
         };
 
         fetchData();    
-    }, [url]);
+    }, [id]);
 
     return (
         <div>
