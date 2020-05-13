@@ -4,14 +4,16 @@ var app = express();
 
 
 export default {
-  getBoardGame: function(query) {
-    app.get("/", function(req, res) {
-      axios.get(`https://www.boardgamegeek.com/xmlapi/search?search=${query}`)
-      .then(response => {
-          res.set('Content-Type', 'text/xml');
-          res.send(response.data);
-      });
-    });
+  getBoardGame: async function(query) {
+    // app.get("/", function(req, res) {
+      return (
+        await axios.get(`https://www.boardgamegeek.com/xmlapi/search?search=${query}`)
+        // .then(response => {
+            // res.set('Content-Type', 'text/xml');
+            // res.send(response.data);
+        // });
+      // });
+      )
   },
   // Gets the book with the given id
   // getBook: function(id) {

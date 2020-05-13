@@ -3,13 +3,11 @@ import './style.css';
 import { makeStyles } from '@material-ui/core/styles';
 import Paper from '@material-ui/core/Paper';
 import Grid from '@material-ui/core/Grid';
+import APICall from "../APICall/APICall";
 // import APICall from '../APICall/APICall';
-// import API from '../../utils/index';
 
 const axios = require("axios");
-// const express = require("express");
-// var convert = require('xml-js');
-// let app = express();
+
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -90,7 +88,7 @@ function SearchBar() {
                         {/* <APICall/> */}
                     
                     </button> 
-
+                    <APICall query={query} />
                     
                 </Paper>
             </Grid>

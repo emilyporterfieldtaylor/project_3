@@ -4,6 +4,7 @@ var session = require("express-session");
 // Requiring passport as we've configured it
 var passport = require("./config/passport");
 var cors = require('cors')
+const parser = require('xml2json');
 
 var app = express();
 var PORT = process.env.PORT || 3001;
@@ -43,6 +44,37 @@ app.use(passport.session());
 // Routes
 // =============================================================
 require("./routes")(app);//keep this
+
+
+// API Calls
+// =============================================================
+const fetchXML = async (root, game) => {
+  try {
+    const response = await axios.get(`${root}${game}`);
+    return parser.toJson(response.data);
+  } catch (err) {
+    return {
+      error: err.message
+    }
+  }
+}
+
+app.get('/api/game/:game', async (req, res) => {
+  const { game } = req.params;
+  const root = 'https://www.boardgamegeek.com/xmlapi/collection';
+  const output = await fetchXML(root, game);
+  const json = JSON.parse(output);
+  if (json.errors) {
+    res.status(500);
+    res.json({
+      content: 'Unable to get the data from boardgamegeek.com',
+      ... json
+    })
+  } else {
+    res.json(json);
+  }
+})
+
 
 //temporary: demonstrating passport
 require("./routes/html-routes")(app);
