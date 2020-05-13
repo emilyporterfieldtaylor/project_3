@@ -4,23 +4,13 @@ var session = require("express-session");
 // Requiring passport as we've configured it
 var passport = require("./config/passport");
 var cors = require('cors')
-const parser = require('xml2json');
+var convert = require('xml-js');
+let axios = require('axios');
+
 
 var app = express();
 var PORT = process.env.PORT || 3001;
 
-// app.use((req, res, next) => {
-//   res.header('Access-Control-Allow-Origin', 'https://www.boardgamegeek.com/xmlapi/');
-//   next();
-// });
-
-// app.use(cors());
-
-// // Setting up CORS for gaining access to XML
-// let corsOptions = {
-//   origin: ' http://www.boardgamegeek.com/xmlapi/search?search=',
-//   optionsSuccessStatus: 200 
-// }
 
 // Requiring models for syncing
 var db = require("./models");
@@ -51,7 +41,7 @@ require("./routes")(app);//keep this
 const fetchXML = async (root, game) => {
   try {
     const response = await axios.get(`${root}${game}`);
-    return parser.toJson(response.data);
+    return convert.xml2json(response.data);
   } catch (err) {
     return {
       error: err.message
@@ -59,11 +49,13 @@ const fetchXML = async (root, game) => {
   }
 }
 
-app.get('/api/game/:game', async (req, res) => {
+app.get('/api/games/:game', async (req, res) => {
   const { game } = req.params;
-  const root = 'https://www.boardgamegeek.com/xmlapi/collection';
+  const root = 'https://www.boardgamegeek.com/xmlapi2/search?query=';
   const output = await fetchXML(root, game);
   const json = JSON.parse(output);
+  console.log("json: ",json);
+  console.log("output: ", output);
   if (json.errors) {
     res.status(500);
     res.json({
