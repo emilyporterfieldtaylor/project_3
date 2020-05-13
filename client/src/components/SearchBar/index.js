@@ -3,11 +3,8 @@ import './style.css';
 import { makeStyles } from '@material-ui/core/styles';
 import Paper from '@material-ui/core/Paper';
 import Grid from '@material-ui/core/Grid';
-import APICall from "../APICall/APICall";
-// import APICall from '../APICall/APICall';
 
 const axios = require("axios");
-
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -20,46 +17,21 @@ const useStyles = makeStyles((theme) => ({
     },
 }));
 
-function getBoardGame (query) {
-    // app.get("/", function(req, res) {
-    //     axios.get(`https://www.boardgamegeek.com/xmlapi/search?search=${query}`)
-    //     .then(response => {
-    //         res.set('Content-Type', 'text/xml');
-    //         res.send(response.data);
-    //     });
-    // });
-  }
-
 function SearchBar() {
     const classes = useStyles();
 
     const [games, setGames] = useState([]);
-    const [query, setQuery] = useState([]);
+    const [query, setQuery] = useState('catan');
     const [search, setSearch] = useState('');
 
-    useEffect(() => {
-        // const fetchData = async () => {
-        //     API.getBoardGame(query)
-        //         .then(res => 
-        //             setGames(res.data)
-        //         )
-        //         .catch(err => console.log(err));
-        //     };
-        //     fetchData();
-
-
-        const fetchData = async () => {
-            const result = await axios (
-                `http://www.boardgamegeek.com/xmlapi2/search?query=${search}`
-            )
-            
-            // console.log(result);
-            console.log("result: ",result.data);
-            // setGames(result.data.items);
-        };
-        fetchData();
-
+    useEffect(()  => {
+        async function fetchData() {
+            const response = await axios.get(`/api/games/${search}`);
+            console.log(response.data)
+        }
+        fetchData();    
     }, [search]);
+
 
     return (
         <div className={classes.root}>
@@ -80,15 +52,12 @@ function SearchBar() {
                         type="button"
                         onClick={() =>  {
                             setSearch(query);
-                            // getBoardGame(query)
                          }
                         }
                     >
                         Search
-                        {/* <APICall/> */}
                     
                     </button> 
-                    <APICall query={query} />
                     
                 </Paper>
             </Grid>
