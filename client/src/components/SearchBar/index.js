@@ -83,10 +83,10 @@ function SearchBar() {
                 console.log('games; ', games),
                 <ul>
                     {games.map(game => (
-                    <li key={game.gameId}>
-                        <Link to={"/books/" + game.gameId}>
+                    <li key={game.elements[0].elements[0].attributes.objectid}>
+                        <Link to={"/books/" + game.elements[0].elements[0].attributes.objectid}>
                             <strong>
-                                {game.name}
+                                {game.elements[0].elements[0].elements[0].elements[0].text}
                             </strong>
                         </Link>
                     </li>
