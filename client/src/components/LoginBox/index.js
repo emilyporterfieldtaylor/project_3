@@ -4,8 +4,8 @@ import './style.css';
 
 function LoginBox() {
     return (
-        <div class="outer-wrapper">
-            <div class="frame">
+        <div className="outer-wrapper">
+            <div className="frame">
                 <Grid item xs={12}>
                     <input 
                         type='text' 

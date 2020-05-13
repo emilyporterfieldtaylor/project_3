@@ -3,8 +3,9 @@ import './style.css';
 import { makeStyles } from '@material-ui/core/styles';
 import Paper from '@material-ui/core/Paper';
 import Grid from '@material-ui/core/Grid';
-import axios from 'axios'; 
-import APICall from '../APICall/APICall';
+import { Link } from "react-router-dom";
+
+const axios = require("axios");
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -17,26 +18,29 @@ const useStyles = makeStyles((theme) => ({
     },
 }));
 
+
 function SearchBar() {
     const classes = useStyles();
 
     const [games, setGames] = useState([]);
-    const [query, setQuery] = useState([]);
+    const [query, setQuery] = useState('catan');
     const [search, setSearch] = useState('');
 
-    useEffect(() => {
-        const fetchData = async () => {
-            const result = await axios (
-                `http://www.boardgamegeek.com/xmlapi2/search?query=${search}`
-            )
-            
-            // console.log(result);
-            console.log("result: ",result.data);
-            // setGames(result.data.items);
+    useEffect(()  => {      
+        const fetchData = async() => {
+            const response = await axios.get(`/api/games/${search}`);
+            let game = {
+                gameId: response.data.elements[0].elements[0].attributes.objectid,
+                name: response.data.elements[0].elements[0].elements[0].elements[0].text,
+                yearPublished: response.data.elements[0].elements[0].elements[1].elements[0].text
+            }
+        
+            setGames(games => [...games, game ]);
         };
-        fetchData();
 
+        fetchData();    
     }, [search]);
+
 
     return (
         <div className={classes.root}>
@@ -55,14 +59,13 @@ function SearchBar() {
                     />  
                     <button 
                         type="button"
-                        onClick={() => setSearch(query)}
+                        onClick={() =>  {
+                            setSearch(query);
+                         }
+                        }
                     >
                         Search
-                        <APICall/>
-                    
                     </button> 
-
-                    
                 </Paper>
             </Grid>
 
@@ -70,6 +73,23 @@ function SearchBar() {
                 <Paper className={classes.paper}>Search Friends List</Paper>
             </Grid>
         </Grid>
+        <Paper>
+            {games.length ? (
+                <ul>
+                    {games.map(game => (
+                    <li key={game.gameId}>
+                        <Link to={"/games/" + game.gameId} value={game.gameId}>
+                            <strong>
+                                {game.name}
+                            </strong>
+                        </Link>
+                    </li>
+                    ))}
+                </ul>
+                ) : (
+                <h3>No Results to Display</h3>
+            )}
+        </Paper>
         </div>
     )
 }
