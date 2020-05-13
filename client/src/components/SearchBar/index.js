@@ -3,6 +3,7 @@ import './style.css';
 import { makeStyles } from '@material-ui/core/styles';
 import Paper from '@material-ui/core/Paper';
 import Grid from '@material-ui/core/Grid';
+import { Link } from "react-router-dom";
 
 const axios = require("axios");
 
@@ -24,11 +25,24 @@ function SearchBar() {
     const [query, setQuery] = useState('catan');
     const [search, setSearch] = useState('');
 
-    useEffect(()  => {
-        async function fetchData() {
+    useEffect(()  => {      
+        const fetchData = async() => {
             const response = await axios.get(`/api/games/${search}`);
-            console.log(response.data)
-        }
+            // let game = {
+            //     gameId: response.data.elements[0].elements[0].attributes.objectid,
+            //     name: response.data.elements[0].elements[0].elements[0].elements[0].text,
+            //     yearPublished: response.data.elements[0].elements[0].elements[1].elements[0].text
+            // }
+            // console.log('resp: ',response.data.elements[0].elements[0].attributes.objectid)
+
+            // console.log('resp: ',response.data.elements[0].elements[0])
+            setGames({
+                gameId: response.data.elements[0].elements[0].attributes.objectid,
+                name: response.data.elements[0].elements[0].elements[0].elements[0].text,
+                yearPublished: response.data.elements[0].elements[0].elements[1].elements[0].text
+            });
+        };
+
         fetchData();    
     }, [search]);
 
@@ -56,9 +70,7 @@ function SearchBar() {
                         }
                     >
                         Search
-                    
                     </button> 
-                    
                 </Paper>
             </Grid>
 
@@ -66,6 +78,24 @@ function SearchBar() {
                 <Paper className={classes.paper}>Search Friends List</Paper>
             </Grid>
         </Grid>
+        <Paper>
+            {games.length ? (
+                console.log('games; ', games),
+                <ul>
+                    {games.map(game => (
+                    <li key={game.gameId}>
+                        <Link to={"/books/" + game.gameId}>
+                            <strong>
+                                {game.name}
+                            </strong>
+                        </Link>
+                    </li>
+                    ))}
+                </ul>
+                ) : (
+                <h3>No Results to Display</h3>
+                )}
+        </Paper>
         </div>
     )
 }

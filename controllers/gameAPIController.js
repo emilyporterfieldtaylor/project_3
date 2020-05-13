@@ -16,11 +16,11 @@ const fetchXML = async (root, game) => {
 module.exports = {
     gameController: async (req, res) => {
         const { game } = req.params;
-        const root = 'https://www.boardgamegeek.com/xmlapi2/search?query=';
+        const root = 'https://www.boardgamegeek.com/xmlapi/search?search=';
         const output = await fetchXML(root, game);
         const json = JSON.parse(output);
-        console.log("json: ",json);
-        console.log("output: ", output);
+        // console.log("json: ",json);
+        // console.log("output: ", output);
         if (json.errors) {
             res.status(500);
             res.json({

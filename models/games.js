@@ -1,6 +1,7 @@
 module.exports = function(sequelize, DataTypes){
     var Game = sequelize.define("Game", {
       gameId:DataTypes.INTEGER,
+      name: DataTypes.INTEGER,
       value:DataTypes.STRING,
       yearPublished:DataTypes.STRING 
     })

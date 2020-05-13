@@ -2,6 +2,7 @@ import React from 'react';
 // import './style.css';
 import { makeStyles } from '@material-ui/core/styles';
 import Paper from '@material-ui/core/Paper';
+// import SearchBar from '../SearchBar';
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -22,7 +23,7 @@ function BoardGamePreview() {
             <Paper className={classes.paper}>
                 Board Game Preview:
                 <Paper>
-                    * board game here *
+                    
                 </Paper>
             </Paper>
         </div>
