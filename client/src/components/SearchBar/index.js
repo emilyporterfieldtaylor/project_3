@@ -28,19 +28,22 @@ function SearchBar() {
     useEffect(()  => {      
         const fetchData = async() => {
             const response = await axios.get(`/api/games/${search}`);
-            // let game = {
-            //     gameId: response.data.elements[0].elements[0].attributes.objectid,
-            //     name: response.data.elements[0].elements[0].elements[0].elements[0].text,
-            //     yearPublished: response.data.elements[0].elements[0].elements[1].elements[0].text
-            // }
-            // console.log('resp: ',response.data.elements[0].elements[0].attributes.objectid)
-
-            // console.log('resp: ',response.data.elements[0].elements[0])
-            setGames({
+            let game = {
                 gameId: response.data.elements[0].elements[0].attributes.objectid,
                 name: response.data.elements[0].elements[0].elements[0].elements[0].text,
                 yearPublished: response.data.elements[0].elements[0].elements[1].elements[0].text
-            });
+            }
+            // console.log('resp: ',response.data.elements[0].elements[0].attributes.objectid)
+
+            // console.log('resp: ',response.data.elements[0].elements[0])
+       
+            // setGames({
+            //     gameId: response.data.elements[0].elements[0].attributes.objectid,
+            //     name: response.data.elements[0].elements[0].elements[0].elements[0].text,
+            //     yearPublished: response.data.elements[0].elements[0].elements[1].elements[0].text
+            // });
+        
+            setGames([...games, game ]);
         };
 
         fetchData();    
@@ -80,13 +83,12 @@ function SearchBar() {
         </Grid>
         <Paper>
             {games.length ? (
-                console.log('games; ', games),
                 <ul>
                     {games.map(game => (
-                    <li key={game.elements[0].elements[0].attributes.objectid}>
-                        <Link to={"/books/" + game.elements[0].elements[0].attributes.objectid}>
+                    <li key={game.gameId}>
+                        <Link to={"/books/" + game.gameId}>
                             <strong>
-                                {game.elements[0].elements[0].elements[0].elements[0].text}
+                                {game.name}
                             </strong>
                         </Link>
                     </li>
@@ -94,7 +96,7 @@ function SearchBar() {
                 </ul>
                 ) : (
                 <h3>No Results to Display</h3>
-                )}
+            )}
         </Paper>
         </div>
     )
