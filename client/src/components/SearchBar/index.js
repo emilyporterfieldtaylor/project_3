@@ -4,6 +4,8 @@ import { makeStyles } from '@material-ui/core/styles';
 import Paper from '@material-ui/core/Paper';
 import Grid from '@material-ui/core/Grid';
 import { Link } from "react-router-dom";
+import TextField from '@material-ui/core/TextField';
+import Autocomplete from '@material-ui/lab/Autocomplete';
 
 const axios = require("axios");
 
@@ -21,6 +23,16 @@ const useStyles = makeStyles((theme) => ({
 
 function SearchBar() {
     const classes = useStyles();
+
+    const topGames = [
+        { title: 'Settlers of Catan', year: 1995 },
+        { title: 'Crossbows and Catapults', year: 1983 },
+        { title: 'Cards Against Humanity', year: 2009 },
+        { title: 'Exploding Kittens', year: 2015 },
+        { title: 'Scattergories', year: 1988 },
+        { title: "Magic: The Gathering", year: 1993 },
+        { title: 'Photosynthesis', year: 2017 },
+      ];
 
     const [games, setGames] = useState([]);
     const [query, setQuery] = useState('catan');
@@ -51,12 +63,30 @@ function SearchBar() {
 
             <Grid item xs={4}>
                 <Paper className={classes.paper}>
-                    <input
+                    <Autocomplete
+                        freeSolo
+                        id="free-solo-2-demo"
+                        disableClearable
+                        options={topGames.map((option) => option.title)}
+                        renderInput={(params) => (
+                        <TextField
+                            {...params}
+                            label="Search for Board Game"
+                            // margin="normal"
+                            variant="outlined"
+                            value={query}
+                            onChange={event => setQuery(event.target.value)}
+                            InputProps={{ ...params.InputProps, type: 'search' }}
+                        />
+                        )}
+                    />
+
+                    {/* <input
                         type='text'
                         value={query}
                         placeholder='Search BoardGameGeeks'
                         onChange={event => setQuery(event.target.value)}
-                    />  
+                    />   */}
                     <button 
                         type="button"
                         onClick={() =>  {
