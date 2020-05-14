@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 // import './style.css';
+import { Link } from "react-router-dom";
 import { makeStyles } from '@material-ui/core/styles';
 import Paper from '@material-ui/core/Paper';
 import TextField from '@material-ui/core/TextField';
@@ -88,7 +89,7 @@ function SearchBGG() {
                     Search
                 </button> 
             </Paper>
-            {/* <Paper>
+            <Paper>
                 {games.length ? (
                     <ul>
                         {games.map(game => (
@@ -104,7 +105,7 @@ function SearchBGG() {
                     ) : (
                     <h3>No Results to Display</h3>
                 )}
-            </Paper> */}
+            </Paper>
         </div>
     )
 }
