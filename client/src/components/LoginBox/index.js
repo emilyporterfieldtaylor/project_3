@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import Grid from '@material-ui/core/Grid';
 import './style.css';
 
@@ -17,12 +18,10 @@ function LoginBox() {
                         value='password'
                         placeholder='password'
                     />
-                    <br></br>
-                    <button
-                        type='sumbit'
-                    >
-                        Log In
-                    </button>    
+                    <br/>
+                    <button className="btn" type='submit'>Log In</button> 
+               
+                    <Link className="nav" to="/signup">Signup</Link>
                 </Grid>
             </div>
         </div>

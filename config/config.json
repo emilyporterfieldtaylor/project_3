@@ -1,7 +1,7 @@
 {
   "development": {
     "username": "root",
-    "password": "ClimbUSA007",
+    "password": "ClimbUSA007!",
     "database": "boardgameappdb",
     "host": "127.0.0.1",
     "port": 3306,
