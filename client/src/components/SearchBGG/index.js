@@ -34,6 +34,7 @@ function SearchBGG() {
         { title: 'Photosynthesis', year: 2017 },
       ];
 
+    const [searchedFor, setSearchedFor] = useState([]);
     const [games, setGames] = useState([]);
     const [query, setQuery] = useState('catan');
     const [search, setSearch] = useState('');
@@ -69,7 +70,12 @@ function SearchBGG() {
                         // margin="normal"
                         variant="outlined"
                         value={query}
-                        onChange={event => setQuery(event.target.value)}
+                        onChange = { 
+                            event => {
+                                setQuery(event.target.value);
+                                setSearchedFor(event.target.value)
+                            }
+                        }
                         InputProps={{ ...params.InputProps, type: 'search' }}
                     />
                     )}
