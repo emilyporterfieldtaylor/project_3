@@ -71,7 +71,7 @@ function Header() {
                         <AccountCircle />
                     </IconButton>
                     <Typography variant="subtitle2" className={classes.title}>
-                        Hello, * user *!
+                        Logged in as * user *!
                     </Typography>
                     <Menu
                         id="menu-appbar"

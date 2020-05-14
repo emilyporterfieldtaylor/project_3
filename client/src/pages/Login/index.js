@@ -100,9 +100,9 @@ const handleMouseDownPassword = (event) => {
                       </div>
                   </div>
 
-                  <button type="submit" class="btn btn-default"><Link to="/login">Log In</Link></button>
+                  <button type="submit" class="btn btn-default"><Link to='/home'>Log In</Link></button>
                   <br />
-                  <Link to='/home' style={{textDecoration: 'none'}} className="nav-link homepageLink">To Homepage (Remove once 'login' button works!)</Link>
+                  <p>Heads up Back-end: Login button will auto-direct to '/home' without putting anything in.</p>
               </Grid>
           </div>
         </div>
