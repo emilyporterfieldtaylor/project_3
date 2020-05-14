@@ -1,13 +1,9 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 // import './style.css';
 import { makeStyles } from '@material-ui/core/styles';
 import Paper from '@material-ui/core/Paper';
-// import Grid from '@material-ui/core/Grid';
-import { Link } from "react-router-dom";
 import TextField from '@material-ui/core/TextField';
 import Autocomplete from '@material-ui/lab/Autocomplete';
-
-const axios = require("axios");
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -24,8 +20,6 @@ const useStyles = makeStyles((theme) => ({
 function SearchFriendList() {
     const classes = useStyles();
 
-    const [searchedFor, setSearchedFor] = useState([]);
-
     const friendsList = [
         { title: 'Kendra Kwoka'},
         { title: 'Eric Garcia'},
@@ -34,29 +28,10 @@ function SearchFriendList() {
         { title: 'Emily Taylor'},
       ];
 
+    const [searchedFor, setSearchedFor] = useState([]);
     const [games, setGames] = useState([]);
     const [query, setQuery] = useState('catan');
     const [search, setSearch] = useState('');
-
-    useEffect(()  => {      
-        const fetchData = async() => {
-            const response = await axios.get(`/api/games/${search}`);
-            let game = {
-                gameId: response.data.elements[0].elements[0].attributes.objectid,
-                name: response.data.elements[0].elements[0].elements[0].elements[0].text,
-                yearPublished: response.data.elements[0].elements[0].elements[1].elements[0].text
-            }
-        
-            setGames(games => [...games, game ]);
-        };
-
-        fetchData();    
-    }, [search]);
-
-//    const searchFriends = event => {
-//         setSearchedFor( event.target.value );
-//       }
-
 
     return (
         <div className={classes.root}>
@@ -92,23 +67,6 @@ function SearchFriendList() {
                 >
                     Search
                 </button> 
-            </Paper>
-            <Paper>
-                {games.length ? (
-                    <ul>
-                        {games.map(game => (
-                        <li key={game.gameId}>
-                            <Link to={"/games/" + game.gameId} value={game.gameId}>
-                                <strong>
-                                    {game.name}
-                                </strong>
-                            </Link>
-                        </li>
-                        ))}
-                    </ul>
-                    ) : (
-                    <h3>No Results to Display</h3>
-                )}
             </Paper>
         </div>
     )
