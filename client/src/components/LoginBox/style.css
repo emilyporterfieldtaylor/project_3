@@ -1,0 +1,31 @@
+
+/* container */
+.outer-wrapper{
+    display: inline-block; 
+    margin: 20px;
+}
+
+/* div holding form inputs */
+.frame{  
+    width: 250px;
+    height: 200px;
+    border: 1px solid black;
+    vertical-align: middle;
+    text-align: center;
+    display: table-cell;
+} 
+
+/* Login button */
+.btn{
+    display: inline-block;
+    margin-top: 10px;
+}
+
+/* Signup link */
+.nav {
+    display: block;
+    text-decoration: none;
+    color: #b1673a;
+    font-weight: bold;
+    margin-top: 40px;
+}
