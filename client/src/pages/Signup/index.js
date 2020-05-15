@@ -54,7 +54,7 @@ export default function Signup() {
     };
 
     return (
-        <div class="frame-two">
+        <div className="frame-two">
             <Grid item xs={12}>
                 <h2>Sign Up</h2>
                 <div className={classes.root}>
@@ -97,9 +97,9 @@ export default function Signup() {
                 {/* remove this p tag once button is working with database */}
                 <p>for right now this button goes back to login page with out sending info to database</p>
 
-                <button type="submit" class="btn btn-default"><Link class="login-link" to="/login">Sign Up</Link></button>
+                <button type="submit" className="btn btn-default"><Link className="login-link" to="/login">Sign Up</Link></button>
                 <br />
-                <p>Login<Link class="login-link" to="/login"> Here </Link></p>
+                <p>Already have an account?<Link className="login-link" to="/login"> Login </Link></p>
             </Grid>
         </div>
     )
