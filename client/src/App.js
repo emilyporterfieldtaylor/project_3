@@ -7,7 +7,7 @@ import Home from './pages/Home';
 import GameDescription from './pages/GameDescription';
 // import APICall from './components/APICall/APICall';
 import Signup from './pages/Signup';
-import APICall from './components/APICall/APICall';
+
 
 
 function App() {
