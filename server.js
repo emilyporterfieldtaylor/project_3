@@ -6,9 +6,7 @@ var session = require("express-session");
 
 // Requiring passport as we've configured it
 var passport = require("./config/passport");
-// var cors = require('cors')
-// var convert = require('xml-js');
-// let axios = require('axios');
+
 
 var app = express();
 var PORT = process.env.PORT || 3001;
@@ -37,7 +35,7 @@ require("./routes")(app);//keep this
 // API Calls
 // =============================================================
 app.get('/api/games/:game', gameController.gameController)
-app.get('/api/games/:id', gameController.findById)
+app.get('/api/ids/:id', gameController.findById)
 
 
 

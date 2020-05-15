@@ -15,16 +15,16 @@ const useStyles = makeStyles((theme) => ({
     },
 }));
 
-function BoardGamePreview() {
+function BoardGamePreview(props) {
     const classes = useStyles();
 
     return (
         <div className={classes.root} style={{marginTop: '20px'}}>
             <Paper className={classes.paper}>
                 Board Game Preview:
-                <Paper>
-                    
-                </Paper>
+            <Paper>
+                <img src={props.image}></img>
+            </Paper>
             </Paper>
         </div>
     )

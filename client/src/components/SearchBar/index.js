@@ -5,7 +5,7 @@ import SearchFriendList from '../SearchFriendList';
 import SearchGameList from '../SearchGameList';
 import SearchBGG from '../SearchBGG';
 
-function SearchBar() {
+function SearchBar(props) {
     return (
         <div>
             <Grid container spacing={3}>
@@ -14,7 +14,7 @@ function SearchBar() {
                 </Grid>
 
                 <Grid item xs={4}>
-                    <SearchBGG />
+                    <SearchBGG setAppState={props.stateChange}/>
                 </Grid>
 
                 <Grid item xs={4}>

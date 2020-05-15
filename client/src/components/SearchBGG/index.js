@@ -5,6 +5,8 @@ import { makeStyles } from '@material-ui/core/styles';
 import Paper from '@material-ui/core/Paper';
 import TextField from '@material-ui/core/TextField';
 import Autocomplete from '@material-ui/lab/Autocomplete';
+import BoardGamePreview from '../BoardGamePreview';
+import BoardGameDescription from "../BoardGameDescription";
 const axios = require("axios");
 
 const useStyles = makeStyles((theme) => ({
@@ -18,8 +20,7 @@ const useStyles = makeStyles((theme) => ({
     },
 }));
 
-
-function SearchBGG() {
+function SearchBGG(props) {
     const classes = useStyles();
 
     const topGames = [
@@ -33,10 +34,12 @@ function SearchBGG() {
         { title: 'Photosynthesis', year: 2017 },
       ];
 
+    const [gamePrev, setGamePrev] = useState({});
     const [searchedFor, setSearchedFor] = useState([]);
     const [games, setGames] = useState([]);
     const [query, setQuery] = useState('catan');
     const [search, setSearch] = useState('');
+    // const [gamePreview, setPreview] = useState([]);
 
     useEffect(()  => {      
         const fetchData = async() => {
@@ -53,6 +56,28 @@ function SearchBGG() {
         fetchData();    
     }, [search]);
 
+function getPreview(id) {
+    const fetchPreview = async() => {
+        const response = await axios.get(`/api/ids/${id}`);
+        console.log('response: ',response.data.elements[0].elements[0].elements[6].attributes.value)
+        const gamePrevObj = {
+            gameId: response.data.elements[0].elements[0].attributes.id,
+            image: response.data.elements[0].elements[0].elements[0].elements[0].text,
+            description: response.data.elements[0].elements[0].elements[3].elements[0].text,
+            minPlayers: response.data.elements[0].elements[0].elements[5].attributes.value,
+            maxPlayers: response.data.elements[0].elements[0].elements[6].attributes.value,
+            minPlayTime: response.data.elements[0].elements[0].elements[9].attributes.value,
+            maxPlayTime: response.data.elements[0].elements[0].elements[10].attributes.value,
+            name: response.data.elements[0].elements[0].elements[2].attributes.value,
+
+            // yearPublished: response.data.elements[0].elements[0].elements[1].elements[0].text
+        }
+        setGamePrev(gamePrevObj);
+        props.setAppState(gamePrevObj);
+
+    }   
+    fetchPreview(); 
+};
 
     return (
         <div className={classes.root}>
@@ -93,19 +118,36 @@ function SearchBGG() {
                 {games.length ? (
                     <ul>
                         {games.map(game => (
-                        <li key={game.gameId}>
-                            <Link to={"/games/" + game.gameId} value={game.gameId}>
-                                <strong>
-                                    {game.name}
-                                </strong>
-                            </Link>
-                        </li>
+                        <button 
+                            key={game.gameId} 
+                            value={game.gameId} 
+                            onClick={() => {
+                                getPreview(game.gameId)
+                              }
+                            }
+                        >
+                            <strong> {game.name} </strong>
+                        </button>
+                        
                         ))}
                     </ul>
                     ) : (
-                    <h3>No Results to Display</h3>
+                    <div>
+                        <h3>No Results to Display</h3>
+                    </div>
                 )}
             </Paper>
+  
+            {/* <BoardGamePreview name={gamePrev.name} image={gamePrev.image} />
+            <BoardGameDescription 
+                name={gamePrev.name} 
+                description={gamePrev.description}
+                minPlayers={gamePrev.minPlayers}
+                maxPlayers={gamePrev.maxPlayers}
+                minPlayTime={gamePrev.minPlayTime}
+                maxPlayTime={gamePrev.maxPlayTime}
+            /> */}
+
         </div>
     )
 }
