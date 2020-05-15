@@ -26,7 +26,7 @@ function FriendsList() {
         { name: 'Eric Garcia'},
         { name: 'Caitlin Huber'},
         { name: 'Leander Turner'},
-        { name: 'Emily Taylor'},
+        { name: 'Emily Taylor'}
       ];
 
     return (
