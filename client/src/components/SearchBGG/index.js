@@ -133,21 +133,10 @@ function getPreview(id) {
                     </ul>
                     ) : (
                     <div>
-                        <h3>No Results to Display</h3>
+                        <h3>No Search Results to Display</h3>
                     </div>
                 )}
             </Paper>
-  
-            {/* <BoardGamePreview name={gamePrev.name} image={gamePrev.image} />
-            <BoardGameDescription 
-                name={gamePrev.name} 
-                description={gamePrev.description}
-                minPlayers={gamePrev.minPlayers}
-                maxPlayers={gamePrev.maxPlayers}
-                minPlayTime={gamePrev.minPlayTime}
-                maxPlayTime={gamePrev.maxPlayTime}
-            /> */}
-
         </div>
     )
 }
