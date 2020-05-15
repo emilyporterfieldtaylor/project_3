@@ -54,7 +54,7 @@ function LoginBox() {
     };
   
     return (
-        <div class="frame-two">
+        <div className="frame-two">
             <Grid item xs={12}>
                 <h2>Log In</h2>
                 <div className={classes.root}>
@@ -65,7 +65,6 @@ function LoginBox() {
                             className={clsx(classes.margin, classes.textField)}
                             variant="filled"
                         />
-
                         <FormControl className={clsx(classes.margin, classes.textField)} variant="filled">
                             <InputLabel htmlFor="filled-adornment-password">Password</InputLabel>
                             <FilledInput
@@ -90,8 +89,10 @@ function LoginBox() {
                     </div>
                 </div>
 
-                <button type="submit" class="btn btn-default"><Link to='/home'>Log In</Link></button>
+                <button type="submit" className="btn btn-default"><Link className="login-link" to='/home'>Log In</Link></button>
+             
                 <br />
+                <Link className="nav" to="/signup">SIGN UP</Link>
                 <p>Heads up Back-end: Login button will auto-direct to '/home' without putting anything in.</p>
             </Grid>
         </div>
