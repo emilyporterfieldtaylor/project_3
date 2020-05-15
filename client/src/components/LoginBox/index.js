@@ -60,7 +60,7 @@ function LoginBox() {
                 <div className={classes.root}>
                     <div>
                         <TextField
-                            label="username"
+                            label="email"
                             id="filled-start-adornment"
                             className={clsx(classes.margin, classes.textField)}
                             variant="filled"
