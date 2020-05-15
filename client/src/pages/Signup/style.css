@@ -1,7 +1,7 @@
 
 /* div containing textfields */
 .frame-two {
-    background-color: #f9f1e6;
+    background-color: #fefff1;
     text-align: center;
     width: 300px;
     height: 100%;
@@ -22,5 +22,7 @@ p,
     text-decoration: none;  
 }
 
-
+.login-link {
+    font-weight: bold;
+}
 
