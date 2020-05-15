@@ -94,8 +94,10 @@ export default function Signup() {
                         </FormControl>
                     </div>
                 </div>
-                <p>for right now this button goes back to login page with out sending to database</p>
-                <button type="submit" class="btn btn-default"><Link to="/login">Sign Up</Link></button>
+                {/* remove this p tag once button is working with database */}
+                <p>for right now this button goes back to login page with out sending info to database</p>
+
+                <button type="submit" class="btn btn-default"><Link class="login-link" to="/login">Sign Up</Link></button>
                 <br />
                 <p>Login<Link class="login-link" to="/login"> Here </Link></p>
             </Grid>
