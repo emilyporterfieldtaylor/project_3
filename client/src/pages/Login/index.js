@@ -1,7 +1,7 @@
 import React from 'react';
 import LoginBox from '../../components/LoginBox';
-import './style.css';
 import LoginBanner from '../../components/LoginBanner';
+import './style.css';
 
 function Login() {
   return (
