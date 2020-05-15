@@ -9,20 +9,18 @@
     margin: 10% auto;
 }
 
+/* signup header */
 h2 {
     color: #fd5e49;
 }
 
-h2, p, .login-link {
+/*.login-link directs user to login page*/
+h2, 
+p, 
+.login-link { 
     font-family: Arial, Helvetica, sans-serif; 
     text-decoration: none;  
 }
 
-/* signup button */
-.btn {
-    background-color: #fd5e49;
-    color: #fff4f0;
-    font-weight: bold;
-    text-decoration: none;
-}
+
 
