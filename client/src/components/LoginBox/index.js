@@ -92,7 +92,7 @@ function LoginBox() {
                 <button type="submit" className="btn btn-default"><Link className="login-link" to='/home'>Log In</Link></button>
              
                 <br />
-                <Link className="nav" to="/signup">SIGN UP</Link>
+                <p>Don't have an account?<Link className="nav" to="/signup">Create one</Link></p>
                 <p>Heads up Back-end: Login button will auto-direct to '/home' without putting anything in.</p>
             </Grid>
         </div>
