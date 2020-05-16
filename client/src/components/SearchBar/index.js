@@ -1,95 +1,26 @@
-import React, { useEffect, useState } from "react";
 import './style.css';
-import { makeStyles } from '@material-ui/core/styles';
-import Paper from '@material-ui/core/Paper';
+import React from 'react';
 import Grid from '@material-ui/core/Grid';
-import { Link } from "react-router-dom";
+import SearchFriendList from '../SearchFriendList';
+import SearchGameList from '../SearchGameList';
+import SearchBGG from '../SearchBGG';
 
-const axios = require("axios");
-
-const useStyles = makeStyles((theme) => ({
-    root: {
-      flexGrow: 1,
-    },
-    paper: {
-      padding: theme.spacing(2),
-      textAlign: 'center',
-      color: theme.palette.text.secondary,
-    },
-}));
-
-
-function SearchBar() {
-    const classes = useStyles();
-
-    const [games, setGames] = useState([]);
-    const [query, setQuery] = useState('catan');
-    const [search, setSearch] = useState('');
-
-    useEffect(()  => {      
-        const fetchData = async() => {
-            const response = await axios.get(`/api/games/${search}`);
-            let game = {
-                gameId: response.data.elements[0].elements[0].attributes.objectid,
-                name: response.data.elements[0].elements[0].elements[0].elements[0].text,
-                yearPublished: response.data.elements[0].elements[0].elements[1].elements[0].text
-            }
-        
-            setGames(games => [...games, game ]);
-        };
-
-        fetchData();    
-    }, [search]);
-
-
+function SearchBar(props) {
     return (
-        <div className={classes.root}>
-        <Grid container spacing={3}>
-            <Grid item xs={4}>
-                <Paper className={classes.paper}>Search My List</Paper>
-            </Grid>
+        <div>
+            <Grid container spacing={3}>
+                <Grid item xs={4}>
+                    <SearchGameList />
+                </Grid>
 
-            <Grid item xs={4}>
-                <Paper className={classes.paper}>
-                    <input
-                        type='text'
-                        value={query}
-                        placeholder='Search BoardGameGeeks'
-                        onChange={event => setQuery(event.target.value)}
-                    />  
-                    <button 
-                        type="button"
-                        onClick={() =>  {
-                            setSearch(query);
-                         }
-                        }
-                    >
-                        Search
-                    </button> 
-                </Paper>
-            </Grid>
+                <Grid item xs={4}>
+                    <SearchBGG setAppState={props.stateChange}/>
+                </Grid>
 
-            <Grid item xs={4}>
-                <Paper className={classes.paper}>Search Friends List</Paper>
+                <Grid item xs={4}>
+                    <SearchFriendList />
+                </Grid>
             </Grid>
-        </Grid>
-        <Paper>
-            {games.length ? (
-                <ul>
-                    {games.map(game => (
-                    <li key={game.gameId}>
-                        <Link to={"/games/" + game.gameId} value={game.gameId}>
-                            <strong>
-                                {game.name}
-                            </strong>
-                        </Link>
-                    </li>
-                    ))}
-                </ul>
-                ) : (
-                <h3>No Results to Display</h3>
-            )}
-        </Paper>
         </div>
     )
 }

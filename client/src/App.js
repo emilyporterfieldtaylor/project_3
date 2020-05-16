@@ -6,6 +6,9 @@ import Login from './pages/Login';
 import Home from './pages/Home';
 import GameDescription from './pages/GameDescription';
 // import APICall from './components/APICall/APICall';
+import Signup from './pages/Signup';
+
+
 
 function App() {
   return (
@@ -15,6 +18,7 @@ function App() {
         <Route exact path="/login" component={Login} />
         <Route exact path="/home" component={Home} />
         <Route path='/games' component={GameDescription} />
+        <Route exact path="/signup" component={Signup}/>
       </Switch>
     </Router>
   );

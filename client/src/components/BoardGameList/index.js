@@ -9,7 +9,7 @@ const useStyles = makeStyles((theme) => ({
     },
     paper: {
       padding: theme.spacing(2),
-      textAlign: 'center',
+      textAlign: 'left',
       color: theme.palette.text.secondary,
     },
 }));
@@ -17,29 +17,27 @@ const useStyles = makeStyles((theme) => ({
 function BoardGameList() {
     const classes = useStyles();
 
+    const userSavedGames = [
+        // this will eventually be deleted
+        // info should be pulled from database of a user's saved games 
+        { title: 'Settlers of Catan', year: 1995 },
+        { title: 'Crossbows and Catapults', year: 1983 },
+        { title: 'Cards Against Humanity', year: 2009 },
+        { title: 'Exploding Kittens', year: 2015 },
+        { title: 'Scattergories', year: 1988 },
+        { title: "Magic: The Gathering", year: 1993 },
+        { title: 'Photosynthesis', year: 2017 },
+      ];
+
     return (
-        <div className={classes.root} style={{marginTop: '20px'}}>
+        <div className={classes.root}>
             <Paper className={classes.paper}>
-                My Board Game List:
+                Board Game List:
                 <ul>
-                    <li>Game 1</li>
-                    <li>Game 2</li>
-                    <li>Game 3</li>
-                    <li>Game 4</li>
-                    <li>Game 5</li>
-                    <li>Game 6</li>
-                    <li>Game 7</li>
-                    <li>Game 8</li>
-                    <li>Game 9</li>
-                    <li>Game 10</li>
-                    <li>Game 11</li>
-                    <li>Game 12</li>
-                    <li>Game 13</li>
-                    <li>Game 14</li>
-                    <li>Game 15</li>
-                    <li>Game 16</li>
-                    <li>Game 17</li>
-                </ul>    
+                    {userSavedGames.map(game => (
+                        <li>{game.title} ({game.year})</li>
+                    ))}
+                </ul>
             </Paper>
         </div>
     )
