@@ -30,7 +30,7 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 
-export default function SignUpForm() {
+export default function SignupForm() {
 
     const classes = useStyles();
     const [values, setValues] = React.useState({
