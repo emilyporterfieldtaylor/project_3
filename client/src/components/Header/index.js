@@ -4,7 +4,7 @@ import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
 import IconButton from '@material-ui/core/IconButton';
-import MenuIcon from '@material-ui/icons/Menu';
+import { Link } from 'react-router-dom';
 import AccountCircle from '@material-ui/icons/AccountCircle';
 import Switch from '@material-ui/core/Switch';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
@@ -27,6 +27,10 @@ const useStyles = makeStyles((theme) => ({
     },
     loggedIn: {
         flexGrow: 1,
+    },
+    logout: {
+        color: 'white',
+        textAlign: 'left'
     }
 }));
 
@@ -55,6 +59,12 @@ function Header() {
                     control={<Switch checked={auth} onChange={handleChange} aria-label="login switch" />}
                     label={auth ? 'Logout' : 'Login'}
                 />
+                {!auth && (
+                    <Typography className={classes.logout}>Log In</Typography>
+                )}
+                {auth && (
+                    <Typography className={classes.logout}>Log Out</Typography>
+                )}
             </FormGroup>
             <AppBar position="static">
                 <Toolbar>
