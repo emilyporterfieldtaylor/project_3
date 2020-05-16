@@ -2,6 +2,7 @@ import React from 'react';
 import Header from '../../components/Header';
 import BoardGameList from '../../components/BoardGameList';
 import { Link } from 'react-router-dom';
+import Paper from '@material-ui/core/Paper';
 import './style.css';
 
 function userProfile() {
@@ -19,10 +20,13 @@ function userProfile() {
                <h1> Get User's games from database here!</h1>
             </BoardGameList>
 
-            Maybe we want a calender of event's?
-            Maybe we want a friend's list here?
-            Maybe we want to show a picture of the user?
-            Maybe we want to 
+                <br></br>
+
+            <Paper>
+               <li> Maybe we want a calender of events? </li>
+               <li>Maybe we want a friend's list here? </li>
+               <li>Maybe we want to ........  ?</li>
+            </Paper> 
         </div>
     )
 }
