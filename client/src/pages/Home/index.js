@@ -11,7 +11,7 @@ import Header from '../../components/Header';
 function App() {
 
   const [appState, setAppState] = useState(null);
-  const [friendID, setFriendID] = useState('');
+  // const [friendID, setFriendID] = useState('');
 
   return (
     <div className="App">
