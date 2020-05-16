@@ -52,56 +52,55 @@ function Header() {
         <div className={classes.root}>
             <FormGroup>
                 <FormControlLabel
-                control={<Switch checked={auth} onChange={handleChange} aria-label="login switch" />}
-                label={auth ? 'Logout' : 'Login'}
+                    control={<Switch checked={auth} onChange={handleChange} aria-label="login switch" />}
+                    label={auth ? 'Logout' : 'Login'}
                 />
             </FormGroup>
             <AppBar position="static">
                 <Toolbar>
-                <IconButton edge="start" className={classes.menuButton} color="inherit" aria-label="menu">
-                    <MenuIcon />
-                </IconButton>
-                <Typography variant="h6" className={classes.title}>
-                    À La Board
-                </Typography>
-                {auth && (
-                    <div>
-                    <IconButton
-                        aria-label="account of current user"
-                        aria-controls="menu-appbar"
-                        aria-haspopup="true"
-                        onClick={handleMenu}
-                        color="inherit"
-                    >
-                        <AccountCircle />
-                    </IconButton>
-                    <Typography variant="subtitle2" className={classes.loggedIn}>
-                        Logged in as * user *!
+                    <Typography variant="h6" className={classes.title}>
+                        À La Board
                     </Typography>
-                    <Menu
-                        id="menu-appbar"
-                        anchorEl={anchorEl}
-                        anchorOrigin={{
-                        vertical: 'top',
-                        horizontal: 'right',
-                        }}
-                        keepMounted
-                        transformOrigin={{
-                        vertical: 'top',
-                        horizontal: 'right',
-                        }}
-                        open={open}
-                        onClose={handleClose}
-                    >
 
-                        <MenuItem onClick={handleClose}>Profile</MenuItem>
-                        <MenuItem onClick={handleClose}>My account</MenuItem>
-                    </Menu>
-                    </div>
-                )}
+                    {auth && (
+                        <div>
+                            <IconButton
+                                aria-label="account of current user"
+                                aria-controls="menu-appbar"
+                                aria-haspopup="true"
+                                onClick={handleMenu}
+                                color="inherit"
+                            >
+                                <AccountCircle />
+                            </IconButton>
+
+                            <Typography variant="subtitle2" className={classes.loggedIn}>
+                                Logged in as * user *!
+                            </Typography>
+                            
+                            <Menu
+                                id="menu-appbar"
+                                anchorEl={anchorEl}
+                                anchorOrigin={{
+                                vertical: 'top',
+                                horizontal: 'right',
+                                }}
+                                keepMounted
+                                transformOrigin={{
+                                vertical: 'top',
+                                horizontal: 'right',
+                                }}
+                                open={open}
+                                onClose={handleClose}
+                            >
+                                <MenuItem onClick={handleClose}>Profile</MenuItem>
+                                <MenuItem onClick={handleClose}>My account</MenuItem>
+                            </Menu>
+                        </div>
+                    )}
                 </Toolbar>
             </AppBar>
-    </div>
+        </div>
     )
 }
 

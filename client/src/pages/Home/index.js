@@ -11,6 +11,7 @@ import Header from '../../components/Header';
 function App() {
 
   const [appState, setAppState] = useState(null);
+  const [friendID, setFriendID] = useState('');
 
   return (
     <div className="App">
@@ -37,7 +38,9 @@ function App() {
         </Grid>
 
         <Grid item xs={3} >
-          <FriendsList />
+          <FriendsList 
+            // friendID={friendID.id}
+          />
           <Links />
         </Grid>
       </Grid>

@@ -2,6 +2,8 @@ import React from 'react';
 // import './style.css';
 import { makeStyles } from '@material-ui/core/styles';
 import Paper from '@material-ui/core/Paper';
+import { Link } from 'react-router-dom';
+
 
 
 const useStyles = makeStyles((theme) => ({
@@ -22,11 +24,11 @@ function FriendsList() {
         
     const friendsList = [
         // this will eventually get removed and call from the database to show each user's friends to the dom
-        { name: 'Kendra Kwoka'},
-        { name: 'Eric Garcia'},
-        { name: 'Caitlin Huber'},
-        { name: 'Leander Turner'},
-        { name: 'Emily Taylor'}
+        { name: 'Kendra Kwoka', id: 1},
+        { name: 'Eric Garcia', id: 2},
+        { name: 'Caitlin Huber', id: 3},
+        { name: 'Leander Turner', id: 4},
+        { name: 'Emily Taylor', id: 5}
       ];
 
     return (
@@ -35,7 +37,11 @@ function FriendsList() {
                 Friend List:
                 <ul>
                     {friendsList.map(friend => (
-                        <li key={friend.name}>{friend.name}</li>
+                        <li key={friend.name}>
+                            <Link to={`/users/${friend.id}`}>
+                            {friend.name}
+                            </Link>
+                        </li>
                     ))}
                 </ul>
             </Paper>
