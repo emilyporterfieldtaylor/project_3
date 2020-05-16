@@ -25,9 +25,9 @@ function BoardGameDescription(props) {
                 <Paper>
                     <strong>Name: {props.name}</strong>
                     <li style={{ listStyle: 'none' }}><strong>Description:</strong> {props.description} </li>
-                    <li style={{ listStyle: 'none' }}><strong>Players:</strong> {props.minPlayers} - {props.maxPlayers} </li>
-                    <li style={{ listStyle: 'none' }}><strong>PlayTime:</strong> {props.minPlayTime} - {props.maxPlayTime} </li>
-
+                    <li style={{ listStyle: 'none' }}><strong>Players:</strong> {props.minPlayers} - {props.maxPlayers} people</li>
+                    <li style={{ listStyle: 'none' }}><strong>PlayTime:</strong> {props.minPlayTime} - {props.maxPlayTime} minutes</li>
+                    <li style={{ listStyle: 'none' }}><strong>Year Published:</strong> {props.yearPublished} </li>
                 </Paper>
             </Paper>
         </div>

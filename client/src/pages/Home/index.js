@@ -22,7 +22,6 @@ function App() {
         </Grid>
 
         <Grid item xs={6} >
-
           {appState && <React.Fragment>
             <BoardGamePreview name={appState.name} image={appState.image} />
             <BoardGameDescription 
@@ -32,6 +31,7 @@ function App() {
               maxPlayers={appState.maxPlayers}
               minPlayTime={appState.minPlayTime}
               maxPlayTime={appState.maxPlayTime}
+              yearPublished={appState.yearPublished}
             />
           </React.Fragment>}
         </Grid>
@@ -41,7 +41,6 @@ function App() {
           <Links />
         </Grid>
       </Grid>
- 
     </div>
   );
 }

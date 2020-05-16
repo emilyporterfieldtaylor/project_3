@@ -22,7 +22,12 @@ const useStyles = makeStyles((theme) => ({
     },
     title: {
       flexGrow: 1,
+      fontFamily: 'Pangolin',
+      fontSize: '30px'
     },
+    loggedIn: {
+        flexGrow: 1,
+    }
 }));
 
 function Header() {
@@ -57,7 +62,7 @@ function Header() {
                     <MenuIcon />
                 </IconButton>
                 <Typography variant="h6" className={classes.title}>
-                    * Insert Project Name Here *
+                    À La Board
                 </Typography>
                 {auth && (
                     <div>
@@ -70,7 +75,7 @@ function Header() {
                     >
                         <AccountCircle />
                     </IconButton>
-                    <Typography variant="subtitle2" className={classes.title}>
+                    <Typography variant="subtitle2" className={classes.loggedIn}>
                         Logged in as * user *!
                     </Typography>
                     <Menu

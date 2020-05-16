@@ -1,12 +1,8 @@
 import React, { useEffect, useState } from "react";
-// import './style.css';
-import { Link } from "react-router-dom";
 import { makeStyles } from '@material-ui/core/styles';
 import Paper from '@material-ui/core/Paper';
 import TextField from '@material-ui/core/TextField';
 import Autocomplete from '@material-ui/lab/Autocomplete';
-import BoardGamePreview from '../BoardGamePreview';
-import BoardGameDescription from "../BoardGameDescription";
 const axios = require("axios");
 
 const useStyles = makeStyles((theme) => ({
@@ -18,6 +14,14 @@ const useStyles = makeStyles((theme) => ({
       textAlign: 'center',
       color: theme.palette.text.secondary,
     },
+    button: {
+        padding: '5px',
+        marginTop: '10px',
+        marginBottom: '10px'
+    },
+    div: {
+        marginTop: '5px'
+    }
 }));
 
 function SearchBGG(props) {
@@ -35,46 +39,82 @@ function SearchBGG(props) {
       ];
 
     const [gamePrev, setGamePrev] = useState({});
-    const [searchedFor, setSearchedFor] = useState([]);
     const [games, setGames] = useState([]);
     const [query, setQuery] = useState('catan');
     const [search, setSearch] = useState('');
-    // const [gamePreview, setPreview] = useState([]);
+    const [value, setValue] = useState({});
+    const [inputValue, setInputValue] = useState('');    
 
     useEffect(()  => {      
         const fetchData = async() => {
-            const response = await axios.get(`/api/games/${search}`);
+            const response = await axios.get(`/api/games/${inputValue}`);
+            console.log('response: ', response)
             let game = {
                 gameId: response.data.elements[0].elements[0].attributes.objectid,
                 name: response.data.elements[0].elements[0].elements[0].elements[0].text,
-                yearPublished: response.data.elements[0].elements[0].elements[1].elements[0].text
+                // yearPublished: response.data.elements[0].elements[0].elements[1].elements[0].text
             }
-        
             setGames(games => [...games, game ]);
         };
 
         fetchData();    
-    }, [search]);
+    }, [inputValue]);
 
 function getPreview(id) {
     const fetchPreview = async() => {
         const response = await axios.get(`/api/ids/${id}`);
-        console.log('response: ',response.data.elements[0].elements[0].elements[6].attributes.value)
-        const gamePrevObj = {
-            gameId: response.data.elements[0].elements[0].attributes.id,
-            image: response.data.elements[0].elements[0].elements[0].elements[0].text,
-            description: response.data.elements[0].elements[0].elements[3].elements[0].text,
-            minPlayers: response.data.elements[0].elements[0].elements[5].attributes.value,
-            maxPlayers: response.data.elements[0].elements[0].elements[6].attributes.value,
-            minPlayTime: response.data.elements[0].elements[0].elements[9].attributes.value,
-            maxPlayTime: response.data.elements[0].elements[0].elements[10].attributes.value,
-            name: response.data.elements[0].elements[0].elements[2].attributes.value,
+        console.log('response: ',response.data);
+        let gameId = response.data.elements[0].elements[0].attributes.id;
+        let name;
+        let image;
+        let description;
+        let minPlayers;
+        let maxPlayers;
+        let minPlayTime;
+        let maxPlayTime;
+        let yearPublished;
 
-            // yearPublished: response.data.elements[0].elements[0].elements[1].elements[0].text
+        for (let i = 0; i < response.data.elements[0].elements[0].elements.length; i++) {
+            if (response.data.elements[0].elements[0].elements[i].name === "thumbnail") {
+                image = response.data.elements[0].elements[0].elements[0].elements[0].text
+            }
+            if (response.data.elements[0].elements[0].elements[i].name === "name") {
+                name = response.data.elements[0].elements[0].elements[2].attributes.value
+            }
+            if (response.data.elements[0].elements[0].elements[i].name === "minplayers") {
+                minPlayers = response.data.elements[0].elements[0].elements[i].attributes.value
+            }
+            if (response.data.elements[0].elements[0].elements[i].name === 'maxplayers') {
+                maxPlayers = response.data.elements[0].elements[0].elements[i].attributes.value
+            }
+            if (response.data.elements[0].elements[0].elements[i].name === 'description') {
+                description = response.data.elements[0].elements[0].elements[i].elements[0].text
+            }
+            if (response.data.elements[0].elements[0].elements[i].name === 'minplaytime') {
+                minPlayTime = response.data.elements[0].elements[0].elements[i].attributes.value
+            }
+            if (response.data.elements[0].elements[0].elements[i].name === 'maxplaytime') {
+                maxPlayTime = response.data.elements[0].elements[0].elements[i].attributes.value
+            }
+            if (response.data.elements[0].elements[0].elements[i].name === 'yearpublished') {
+                yearPublished = response.data.elements[0].elements[0].elements[i].attributes.value
+            }
         }
+
+        const gamePrevObj = {
+            gameId: gameId,
+            name: name,
+            image: image,
+            description: description,
+            minPlayers: minPlayers,
+            maxPlayers: maxPlayers,
+            minPlayTime: minPlayTime,
+            maxPlayTime: maxPlayTime,
+            yearPublished: yearPublished,
+        }
+        console.log(gamePrevObj);
         setGamePrev(gamePrevObj);
         props.setAppState(gamePrevObj);
-
     }   
     fetchPreview(); 
 };
@@ -82,10 +122,21 @@ function getPreview(id) {
     return (
         <div className={classes.root}>
             <Paper className={classes.paper}>
+            {/* <div>{`value: ${value !== null ? `'${value}'` : 'null'}`}</div> */}
+            {/* <div>{`inputValue: '${inputValue}'`}</div> */}
                 <Autocomplete
-                    freeSolo
-                    id="free-solo-2-demo"
-                    disableClearable
+                    value={value}
+                    onChange={(event, newValue) => {
+                        setValue(newValue);
+                        setInputValue(newValue);
+                    }}
+                    inputValue={inputValue}
+                    onInputChange={(event, newInputValue) => {
+                        setInputValue(newInputValue);
+                    }}
+                    id="topGamesDropdown"
+
+                    // disableClearable
                     options={topGames.map((option) => option.title)}
                     renderInput={(params) => (
                     <TextField
@@ -93,32 +144,38 @@ function getPreview(id) {
                         label="Search for Board Game"
                         // margin="normal"
                         variant="outlined"
-                        value={query}
-                        onChange = { 
-                            event => {
-                                setQuery(event.target.value);
-                                setSearchedFor(event.target.value)
-                            }
-                        }
-                        InputProps={{ ...params.InputProps, type: 'search' }}
+                        // value={query}
+                        // onChange = { 
+                        //     event => {
+                        //         setQuery(event.target.value);
+                        //         setSearchedFor(event.target.value);
+                        //     }
+                        // }
+                        // InputProps={{ ...params.InputProps, type: 'search' }}
                     />
                     )}
                 />
-                <button 
+                <p>
+                {inputValue && <React.Fragment>    
+                    <button 
                     type="button"
+                    value={inputValue}
+                    // value={search}
                     onClick={() =>  {
-                        setSearch(query);
+                        setQuery(inputValue);
+                        setSearch(inputValue);
                         }
                     }
                 >
                     Search
                 </button> 
+                </React.Fragment>}</p>
             </Paper>
             <Paper>
                 {games.length ? (
-                    <ul>
+                    <div className={classes.div}>
                         {games.map(game => (
-                        <button 
+                        <button className={classes.button}
                             key={game.gameId} 
                             value={game.gameId} 
                             onClick={() => {
@@ -130,7 +187,7 @@ function getPreview(id) {
                         </button>
                         
                         ))}
-                    </ul>
+                    </div>
                     ) : (
                     <div>
                         <h3>No Search Results to Display</h3>
