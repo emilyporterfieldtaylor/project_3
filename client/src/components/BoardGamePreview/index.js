@@ -23,7 +23,7 @@ function BoardGamePreview(props) {
             <Paper className={classes.paper}>
                 Board Game Preview:
             <Paper>
-                <img alt={props.name} src={props.image}></img>
+                {props.image ? <img alt={props.name} src={props.image}></img> : <h5>Sorry, No Image Available</h5>}
             </Paper>
             </Paper>
         </div>

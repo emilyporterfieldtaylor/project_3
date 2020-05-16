@@ -66,7 +66,7 @@ function SearchBGG(props) {
 function getPreview(id) {
     const fetchPreview = async() => {
         const response = await axios.get(`/api/ids/${id}`);
-        console.log('response: ',response.data.elements[0].elements[0].attributes.id);
+        console.log('response: ',response.data);
         let gameId = response.data.elements[0].elements[0].attributes.id;
         let name;
         let image;
