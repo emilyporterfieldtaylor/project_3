@@ -22,7 +22,6 @@ function App() {
         </Grid>
 
         <Grid item xs={6} >
-
           {appState && <React.Fragment>
             <BoardGamePreview name={appState.name} image={appState.image} />
             <BoardGameDescription 
@@ -42,7 +41,6 @@ function App() {
           <Links />
         </Grid>
       </Grid>
- 
     </div>
   );
 }

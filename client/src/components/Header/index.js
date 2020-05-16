@@ -57,7 +57,7 @@ function Header() {
                     <MenuIcon />
                 </IconButton>
                 <Typography variant="h6" className={classes.title}>
-                    * Insert Project Name Here *
+                    À La Board
                 </Typography>
                 {auth && (
                     <div>
