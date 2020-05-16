@@ -1,6 +1,4 @@
 import React, { useEffect, useState } from "react";
-// import './style.css';
-// import { Link } from "react-router-dom";
 import { makeStyles } from '@material-ui/core/styles';
 import Paper from '@material-ui/core/Paper';
 import TextField from '@material-ui/core/TextField';
@@ -41,20 +39,20 @@ function SearchBGG(props) {
       ];
 
     const [gamePrev, setGamePrev] = useState({});
-    // const [searchedFor, setSearchedFor] = useState([]);
     const [games, setGames] = useState([]);
     const [query, setQuery] = useState('catan');
     const [search, setSearch] = useState('');
-    const [value, setValue] = useState(topGames[0].title);
-    const [inputValue, setInputValue] = useState('');    // const [gamePreview, setPreview] = useState([]);
+    const [value, setValue] = useState({});
+    const [inputValue, setInputValue] = useState('');    
 
     useEffect(()  => {      
         const fetchData = async() => {
             const response = await axios.get(`/api/games/${inputValue}`);
+            console.log('response: ', response)
             let game = {
                 gameId: response.data.elements[0].elements[0].attributes.objectid,
                 name: response.data.elements[0].elements[0].elements[0].elements[0].text,
-                yearPublished: response.data.elements[0].elements[0].elements[1].elements[0].text
+                // yearPublished: response.data.elements[0].elements[0].elements[1].elements[0].text
             }
             setGames(games => [...games, game ]);
         };
@@ -157,7 +155,9 @@ function getPreview(id) {
                     />
                     )}
                 />
-                <button 
+                <p>
+                {inputValue && <React.Fragment>    
+                    <button 
                     type="button"
                     value={inputValue}
                     // value={search}
@@ -169,6 +169,7 @@ function getPreview(id) {
                 >
                     Search
                 </button> 
+                </React.Fragment>}</p>
             </Paper>
             <Paper>
                 {games.length ? (
