@@ -9,6 +9,7 @@ function userProfile() {
     return(
         <div>
             <Link to='/home' style={{color:'white'}}>Home</Link>
+
             <Header/>
             <div id="userInfoDiv">
                 <img alt="userProfilePic" src="http://place-puppy.com/200x200"></img>
@@ -16,6 +17,7 @@ function userProfile() {
                 <li className='userInfo'>Username: *user's username*</li>
                 <li className='userInfo'>Email???: *user's name*</li>
             </div>
+            
             <BoardGameList>
                <h1> Get User's games from database here!</h1>
             </BoardGameList>
