@@ -35,7 +35,7 @@ function BoardGameList() {
                 Board Game List:
                 <ul>
                     {userSavedGames.map(game => (
-                        <li>{game.title} ({game.year})</li>
+                        <li key={game.title}>{game.title} ({game.year})</li>
                     ))}
                 </ul>
             </Paper>

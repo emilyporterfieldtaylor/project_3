@@ -1,9 +1,7 @@
-import React, { useState } from 'react';
+import React from 'react';
 // import './style.css';
 import { makeStyles } from '@material-ui/core/styles';
 import Paper from '@material-ui/core/Paper';
-import TextField from '@material-ui/core/TextField';
-import Autocomplete from '@material-ui/lab/Autocomplete';
 
 
 const useStyles = makeStyles((theme) => ({
@@ -35,7 +33,7 @@ function FriendsList() {
                 Friend List:
                 <ul>
                     {friendsList.map(friend => (
-                        <li>{friend.name}</li>
+                        <li key={friend.name}>{friend.name}</li>
                     ))}
                 </ul>
             </Paper>

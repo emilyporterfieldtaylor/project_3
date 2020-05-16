@@ -5,7 +5,6 @@ import Paper from '@material-ui/core/Paper';
 import TextField from '@material-ui/core/TextField';
 import Autocomplete from '@material-ui/lab/Autocomplete';
 
-
 const useStyles = makeStyles((theme) => ({
     root: {
       flexGrow: 1,
@@ -32,7 +31,7 @@ function SearchGameList() {
       ];
 
     const [searchedFor, setSearchedFor] = useState([]);
-    const [games, setGames] = useState([]);
+    // const [games, setGames] = useState([]);
     const [query, setQuery] = useState('catan');
     const [search, setSearch] = useState('');
 
