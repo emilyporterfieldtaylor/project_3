@@ -33,7 +33,7 @@ function FriendsList() {
                 Friend List:
                 <ul>
                     {friendsList.map(friend => (
-                        <li>{friend.name}</li>
+                        <li key={friend.name}>{friend.name}</li>
                     ))}
                 </ul>
             </Paper>

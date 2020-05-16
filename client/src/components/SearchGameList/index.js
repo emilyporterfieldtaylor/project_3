@@ -31,7 +31,7 @@ function SearchGameList() {
       ];
 
     const [searchedFor, setSearchedFor] = useState([]);
-    const [games, setGames] = useState([]);
+    // const [games, setGames] = useState([]);
     const [query, setQuery] = useState('catan');
     const [search, setSearch] = useState('');
 

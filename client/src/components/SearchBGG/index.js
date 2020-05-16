@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 // import './style.css';
-import { Link } from "react-router-dom";
+// import { Link } from "react-router-dom";
 import { makeStyles } from '@material-ui/core/styles';
 import Paper from '@material-ui/core/Paper';
 import TextField from '@material-ui/core/TextField';
@@ -41,7 +41,7 @@ function SearchBGG(props) {
       ];
 
     const [gamePrev, setGamePrev] = useState({});
-    const [searchedFor, setSearchedFor] = useState([]);
+    // const [searchedFor, setSearchedFor] = useState([]);
     const [games, setGames] = useState([]);
     const [query, setQuery] = useState('catan');
     const [search, setSearch] = useState('');
@@ -56,7 +56,6 @@ function SearchBGG(props) {
                 name: response.data.elements[0].elements[0].elements[0].elements[0].text,
                 yearPublished: response.data.elements[0].elements[0].elements[1].elements[0].text
             }
-        
             setGames(games => [...games, game ]);
         };
 
@@ -80,35 +79,27 @@ function getPreview(id) {
         for (let i = 0; i < response.data.elements[0].elements[0].elements.length; i++) {
             if (response.data.elements[0].elements[0].elements[i].name === "thumbnail") {
                 image = response.data.elements[0].elements[0].elements[0].elements[0].text
-                console.log(image)
             }
             if (response.data.elements[0].elements[0].elements[i].name === "name") {
                 name = response.data.elements[0].elements[0].elements[2].attributes.value
-                console.log(name)
             }
             if (response.data.elements[0].elements[0].elements[i].name === "minplayers") {
                 minPlayers = response.data.elements[0].elements[0].elements[i].attributes.value
-                console.log('minplayers: ', minPlayers)
             }
             if (response.data.elements[0].elements[0].elements[i].name === 'maxplayers') {
                 maxPlayers = response.data.elements[0].elements[0].elements[i].attributes.value
-                console.log('maxplayers: ', maxPlayers)
             }
             if (response.data.elements[0].elements[0].elements[i].name === 'description') {
                 description = response.data.elements[0].elements[0].elements[i].elements[0].text
-                console.log('description: ', description)
             }
             if (response.data.elements[0].elements[0].elements[i].name === 'minplaytime') {
                 minPlayTime = response.data.elements[0].elements[0].elements[i].attributes.value
-                console.log('minPlayTime: ', minPlayTime)
             }
             if (response.data.elements[0].elements[0].elements[i].name === 'maxplaytime') {
                 maxPlayTime = response.data.elements[0].elements[0].elements[i].attributes.value
-                console.log('maxPlayTime: ', maxPlayTime)
             }
             if (response.data.elements[0].elements[0].elements[i].name === 'yearpublished') {
                 yearPublished = response.data.elements[0].elements[0].elements[i].attributes.value
-                console.log('yearPublished: ', yearPublished)
             }
         }
 
@@ -126,7 +117,6 @@ function getPreview(id) {
         console.log(gamePrevObj);
         setGamePrev(gamePrevObj);
         props.setAppState(gamePrevObj);
-
     }   
     fetchPreview(); 
 };
