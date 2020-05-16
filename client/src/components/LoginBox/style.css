@@ -1,25 +1,23 @@
 
-/* container */
-.outer-wrapper{
-    display: inline-block; 
-    margin: 20px;
-}
+/* For all hyperlinks */
+a:link, a:visited { /* Unvisited link, visited link  */
+    color:#cf7c48; 
+    text-decoration: none;
+    font-weight: bold;
+}  
 
-/* div holding form inputs */
-.frame{  
-    width: 250px;
-    height: 200px;
-    border: 1px solid black;
-    vertical-align: middle;
-    text-align: center;
-    display: table-cell;
-} 
+/* Mouse over link, Mouse over link  */
+a:hover, a:active {
+    /* color:#485868; */
+    text-decoration: none;
+}   
 
 /* login and signup button */
 .btn {
     font-weight: bold;
     text-decoration: none !important;
 }
+
 
 /* For all hyperlinks */
 a:link {color:#cf7c48 ;}   /* Unvisited link  */
