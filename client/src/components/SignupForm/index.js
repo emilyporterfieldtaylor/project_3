@@ -35,6 +35,8 @@ export default function SignUpForm() {
     const classes = useStyles();
     const [values, setValues] = React.useState({
         amount: '',
+        name: '',
+        email: '',
         password: '',
         weight: '',
         weightRange: '',
@@ -54,7 +56,7 @@ export default function SignUpForm() {
     };
 
     return (
-        <div className="frame">
+        <div className="frame-two">
             <Grid item xs={12}>
                 <h2>Sign Up</h2>
                 <div className={classes.root}>
@@ -64,12 +66,14 @@ export default function SignUpForm() {
                             id="filled-start-adornment"
                             className={clsx(classes.margin, classes.textField)}
                             variant="filled"
+                            onChange={handleChange('name')}
                         />
                         <TextField
                             label="Email"
                             id="filled-start-adornment"
                             className={clsx(classes.margin, classes.textField)}
                             variant="filled"
+                            onChange={handleChange('email')}
                         />
                         <FormControl className={clsx(classes.margin, classes.textField)} variant="filled">
                             <InputLabel htmlFor="filled-adornment-password">Password</InputLabel>
