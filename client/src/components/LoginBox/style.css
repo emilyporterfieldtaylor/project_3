@@ -12,6 +12,20 @@ a:hover, a:active {
     text-decoration: none;
 }   
 
+/* login and signup button */
+.btn {
+    font-weight: bold;
+    text-decoration: none !important;
+}
+
+
+
+/* For all hyperlinks */
+a:link {color:#cf7c48 ;}   /* Unvisited link  */
+a:visited {color: #cf7c48 ;} /* Visited link    */
+a:hover {color:#485868;}   /* Mouse over link */
+a:active {color:#485868;}  /* Selected link   */
+
 
 /* Signup link */
 .nav {
