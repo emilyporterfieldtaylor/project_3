@@ -5,6 +5,7 @@ require("dotenv").config();
 // var keys = require("./keys");  //  THIS IS A VARIABLE HIDDEN FROM VIEW LIKE A .env FILE.  USE WHICHEVER WORKS BEST.
 // var User = require("../models/user");
 var db = require("../models");
+var routes = require("../routes");
 
 passport.use(
   new GoogleStrategy({
@@ -16,7 +17,7 @@ passport.use(
   //passport callback function
   console.log("passport callback function fired");
 
-  db.apiRoutes.post("/api/signup", {          //  IDK IF THIS WILL WORK
+  routes.apiRoutes.post("/api/signup", {          //  IDK IF THIS WILL WORK
     email: profile.id,
     password: profile.id
   })
