@@ -32,6 +32,7 @@ function App() {
               maxPlayers={appState.maxPlayers}
               minPlayTime={appState.minPlayTime}
               maxPlayTime={appState.maxPlayTime}
+              yearPublished={appState.yearPublished}
             />
           </React.Fragment>}
         </Grid>

@@ -5,8 +5,6 @@ import { makeStyles } from '@material-ui/core/styles';
 import Paper from '@material-ui/core/Paper';
 import TextField from '@material-ui/core/TextField';
 import Autocomplete from '@material-ui/lab/Autocomplete';
-import BoardGamePreview from '../BoardGamePreview';
-import BoardGameDescription from "../BoardGameDescription";
 const axios = require("axios");
 
 const useStyles = makeStyles((theme) => ({
@@ -18,6 +16,14 @@ const useStyles = makeStyles((theme) => ({
       textAlign: 'center',
       color: theme.palette.text.secondary,
     },
+    button: {
+        padding: '5px',
+        marginTop: '10px',
+        marginBottom: '10px'
+    },
+    div: {
+        marginTop: '5px'
+    }
 }));
 
 function SearchBGG(props) {
@@ -39,7 +45,8 @@ function SearchBGG(props) {
     const [games, setGames] = useState([]);
     const [query, setQuery] = useState('catan');
     const [search, setSearch] = useState('');
-    // const [gamePreview, setPreview] = useState([]);
+    const [value, setValue] = useState(topGames[0].title);
+    const [inputValue, setInputValue] = useState('');    // const [gamePreview, setPreview] = useState([]);
 
     useEffect(()  => {      
         const fetchData = async() => {
@@ -59,7 +66,7 @@ function SearchBGG(props) {
 function getPreview(id) {
     const fetchPreview = async() => {
         const response = await axios.get(`/api/ids/${id}`);
-        console.log('response: ',response.data.elements[0].elements[0].elements[6].attributes.value)
+        console.log('response: ',response.data.elements)
         const gamePrevObj = {
             gameId: response.data.elements[0].elements[0].attributes.id,
             image: response.data.elements[0].elements[0].elements[0].elements[0].text,
@@ -69,8 +76,7 @@ function getPreview(id) {
             minPlayTime: response.data.elements[0].elements[0].elements[9].attributes.value,
             maxPlayTime: response.data.elements[0].elements[0].elements[10].attributes.value,
             name: response.data.elements[0].elements[0].elements[2].attributes.value,
-
-            // yearPublished: response.data.elements[0].elements[0].elements[1].elements[0].text
+            yearPublished: response.data.elements[0].elements[0].elements[4].attributes.value,
         }
         setGamePrev(gamePrevObj);
         props.setAppState(gamePrevObj);
@@ -82,10 +88,20 @@ function getPreview(id) {
     return (
         <div className={classes.root}>
             <Paper className={classes.paper}>
+            <div>{`value: ${value !== null ? `'${value}'` : 'null'}`}</div>
+            <div>{`inputValue: '${inputValue}'`}</div>
                 <Autocomplete
-                    freeSolo
-                    id="free-solo-2-demo"
-                    disableClearable
+                    value={value}
+                    onchange={(event, newValue) => {
+                        setValue(newValue);
+                    }}
+                    inputValue={inputValue}
+                    onInputChange={(event, newInputValue) => {
+                        setInputValue(newInputValue);
+                    }}
+                    id="topGamesDropdown"
+
+                    // disableClearable
                     options={topGames.map((option) => option.title)}
                     renderInput={(params) => (
                     <TextField
@@ -93,21 +109,24 @@ function getPreview(id) {
                         label="Search for Board Game"
                         // margin="normal"
                         variant="outlined"
-                        value={query}
-                        onChange = { 
-                            event => {
-                                setQuery(event.target.value);
-                                setSearchedFor(event.target.value)
-                            }
-                        }
-                        InputProps={{ ...params.InputProps, type: 'search' }}
+                        // value={query}
+                        // onChange = { 
+                        //     event => {
+                        //         setQuery(event.target.value);
+                        //         setSearchedFor(event.target.value);
+                        //     }
+                        // }
+                        // InputProps={{ ...params.InputProps, type: 'search' }}
                     />
                     )}
                 />
                 <button 
                     type="button"
+                    value={inputValue}
+                    // value={search}
                     onClick={() =>  {
-                        setSearch(query);
+                        setQuery(inputValue);
+                        setSearch(inputValue);
                         }
                     }
                 >
@@ -116,9 +135,9 @@ function getPreview(id) {
             </Paper>
             <Paper>
                 {games.length ? (
-                    <ul>
+                    <div className={classes.div}>
                         {games.map(game => (
-                        <button 
+                        <button className={classes.button}
                             key={game.gameId} 
                             value={game.gameId} 
                             onClick={() => {
@@ -130,7 +149,7 @@ function getPreview(id) {
                         </button>
                         
                         ))}
-                    </ul>
+                    </div>
                     ) : (
                     <div>
                         <h3>No Search Results to Display</h3>
