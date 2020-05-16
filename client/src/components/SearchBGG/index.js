@@ -134,8 +134,8 @@ function getPreview(id) {
     return (
         <div className={classes.root}>
             <Paper className={classes.paper}>
-            <div>{`value: ${value !== null ? `'${value}'` : 'null'}`}</div>
-            <div>{`inputValue: '${inputValue}'`}</div>
+            {/* <div>{`value: ${value !== null ? `'${value}'` : 'null'}`}</div> */}
+            {/* <div>{`inputValue: '${inputValue}'`}</div> */}
                 <Autocomplete
                     value={value}
                     onChange={(event, newValue) => {
