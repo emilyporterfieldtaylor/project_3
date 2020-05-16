@@ -16,6 +16,8 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 function FriendsList() {
+
+    
     const classes = useStyles();
         
     const friendsList = [
@@ -24,7 +26,7 @@ function FriendsList() {
         { name: 'Eric Garcia'},
         { name: 'Caitlin Huber'},
         { name: 'Leander Turner'},
-        { name: 'Emily Taylor'},
+        { name: 'Emily Taylor'}
       ];
 
     return (
