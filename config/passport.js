@@ -1,15 +1,16 @@
 var passport = require("passport");
 var LocalStrategy = require("passport-local").Strategy;
 var GoogleStrategy = require("passport-google-oauth20");
-var keys = require("./keys");  //  THIS IS A VARIABLE HIDDEN FROM VIEW LIKE A .env FILE.  USE WHICHEVER WORKS BEST.
+require("dotenv").config();
+// var keys = require("./keys");  //  THIS IS A VARIABLE HIDDEN FROM VIEW LIKE A .env FILE.  USE WHICHEVER WORKS BEST.
 // var User = require("../models/user");
 var db = require("../models");
 
 passport.use(
   new GoogleStrategy({
   //options for the google strategy
-  clientID: keys.google.clientID,
-  clientSecret: keys.google.clientSecret,
+  clientID: process.env.clientID,
+  clientSecret: process.env.clientSecret,
   callbackURL: "/auth/google/redirect"
 },(accessToken, refreshToken, profile, done) => {
   //passport callback function
