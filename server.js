@@ -36,6 +36,8 @@ require("./routes")(app);//keep this
 // =============================================================
 app.get('/api/games/:game', gameController.gameController)
 app.get('/api/ids/:id', gameController.findById)
+app.post('/api/gameData/', gameController.create)
+
 
 
 

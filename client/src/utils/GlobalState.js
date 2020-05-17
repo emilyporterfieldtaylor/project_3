@@ -13,38 +13,12 @@ const StoreContext = React.createContext();
 // Don't forget to import all of your actions!
 const reducer = (state, action) => {
   switch (action.type) {
-    // case "GET_ALL_SEARCHED":
-    //     console.log("INSIDE GET ALL SEARCHED CASE"); //FOR DEBUG
-    //     console.log(action.searchedGames); //FOR DEBUG
-    //     return {
-    //         ...state,
-    //         searchedGames: action.searchedGames
-    //     }
-
-    // case "GET_ALL_SAVED":
-    //     console.log("INSIDE GET ALL SAVED CASE"); //FOR DEBUG
-    //     console.log(action.savedGames); //FOR DEBUG
-    //     return {
-    //         ...state,
-    //         savedGames: action.savedGames
-    //     }
-
     case "ADD_GAME":
         console.log("INSIDE ADD GAME CASE"); //FOR DEBUG
         return {
             ...state,
             savedGames: [action.game, ...state.savedGames]
         }
-
-    // case "REMOVE_BOOK":
-    //     console.log("INSIDE REMOVE BOOK CASE"); //FOR DEBUG
-    //     console.log(action._id); //FOR DEBUG
-    //     return {
-    //         ...state,
-    //         savedGames: state.savedGames.filter((book) => {
-    //         return book._id !== action._id
-    //         })
-    //     }
 
     default:
         return state;

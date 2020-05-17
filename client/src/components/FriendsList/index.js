@@ -18,8 +18,6 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 function FriendsList() {
-
-    
     const classes = useStyles();
         
     const friendsList = [

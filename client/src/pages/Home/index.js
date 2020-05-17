@@ -9,7 +9,6 @@ import Links from '../../components/ExternalLinks/index';
 import Header from '../../components/Header';
 
 function App() {
-
   const [appState, setAppState] = useState(null);
   // const [friendID, setFriendID] = useState('');
 
@@ -26,12 +25,16 @@ function App() {
           {appState && <React.Fragment>
             <BoardGamePreview name={appState.name} image={appState.image} />
             <BoardGameDescription 
+              gameId={appState.gameId}
               name={appState.name} 
               description={appState.description}
               minPlayers={appState.minPlayers}
               maxPlayers={appState.maxPlayers}
               minPlayTime={appState.minPlayTime}
               maxPlayTime={appState.maxPlayTime}
+              yearPublished={appState.yearPublished}
+              saveButton={<button>Save to My Games</button>}
+              image={appState.image}
               yearPublished={appState.yearPublished}
             />
           </React.Fragment>}

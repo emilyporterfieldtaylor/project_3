@@ -4,8 +4,6 @@ import Paper from '@material-ui/core/Paper';
 import TextField from '@material-ui/core/TextField';
 import Autocomplete from '@material-ui/lab/Autocomplete';
 import Chip from '@material-ui/core/Chip';
-import API from '../../utils/index.js';
-import { useStoreContext } from "../../utils/GlobalState";
 const axios = require("axios");
 
 const useStyles = makeStyles((theme) => ({
@@ -45,9 +43,8 @@ function SearchBGG(props) {
     const [games, setGames] = useState([]);
     // const [query, setQuery] = useState('catan');
     // const [search, setSearch] = useState('');
-    const [value, setValue] = useState({});
-    const [inputValue, setInputValue] = useState(''); 
-    const [state, dispatch] = useStoreContext();   
+    const [value, setValue] = useState(topGames[0].title);
+    const [inputValue, setInputValue] = useState('');    
 
     useEffect(()  => {      
         const fetchData = async() => {
@@ -62,64 +59,56 @@ function SearchBGG(props) {
         fetchData();    
     }, [inputValue]);
 
-
-    function getPreview(id) {
-        const fetchPreview = async() => {
-            const response = await axios.get(`/api/ids/${id}`);
-            let gameId = response.data.elements[0].elements[0].attributes.id;
-            let name, image, description, minPlayers, maxPlayers, minPlayTime, maxPlayTime, yearPublished;
-    
-            for (let i = 0; i < response.data.elements[0].elements[0].elements.length; i++) {
-                if (response.data.elements[0].elements[0].elements[i].name === "thumbnail") {
-                    image = response.data.elements[0].elements[0].elements[0].elements[0].text
-                }
-                if (response.data.elements[0].elements[0].elements[i].name === "name") {
-                    name = response.data.elements[0].elements[0].elements[2].attributes.value
-                }
-                if (response.data.elements[0].elements[0].elements[i].name === "minplayers") {
-                    minPlayers = response.data.elements[0].elements[0].elements[i].attributes.value
-                }
-                if (response.data.elements[0].elements[0].elements[i].name === 'maxplayers') {
-                    maxPlayers = response.data.elements[0].elements[0].elements[i].attributes.value
-                }
-                if (response.data.elements[0].elements[0].elements[i].name === 'description') {
-                    description = response.data.elements[0].elements[0].elements[i].elements[0].text
-                }
-                if (response.data.elements[0].elements[0].elements[i].name === 'minplaytime') {
-                    minPlayTime = response.data.elements[0].elements[0].elements[i].attributes.value
-                }
-                if (response.data.elements[0].elements[0].elements[i].name === 'maxplaytime') {
-                    maxPlayTime = response.data.elements[0].elements[0].elements[i].attributes.value
-                }
-                if (response.data.elements[0].elements[0].elements[i].name === 'yearpublished') {
-                    yearPublished = response.data.elements[0].elements[0].elements[i].attributes.value
-                }
+function getPreview(id) {
+    const fetchPreview = async() => {
+        const response = await axios.get(`/api/ids/${id}`);
+        let gameId = response.data.elements[0].elements[0].attributes.id;
+        let name, image, description, minPlayers, maxPlayers, minPlayTime, maxPlayTime, yearPublished;
+ 
+        for (let i = 0; i < response.data.elements[0].elements[0].elements.length; i++) {
+            if (response.data.elements[0].elements[0].elements[i].name === "thumbnail") {
+                image = response.data.elements[0].elements[0].elements[0].elements[0].text
             }
-
-            const gamePrevObj = {
-                gameId: gameId,
-                name: name,
-                image: image,
-                description: description,
-                minPlayers: minPlayers,
-                maxPlayers: maxPlayers,
-                minPlayTime: minPlayTime,
-                maxPlayTime: maxPlayTime,
-                yearPublished: yearPublished,
+            if (response.data.elements[0].elements[0].elements[i].name === "name") {
+                name = response.data.elements[0].elements[0].elements[2].attributes.value
             }
-            // console.log(gamePrevObj);
-            setGamePrev(gamePrevObj);
-            props.setAppState(gamePrevObj);
-            saveGameFunction(gamePrevObj);            
-        }   
-        fetchPreview(); 
-    };
+            if (response.data.elements[0].elements[0].elements[i].name === "minplayers") {
+                minPlayers = response.data.elements[0].elements[0].elements[i].attributes.value
+            }
+            if (response.data.elements[0].elements[0].elements[i].name === 'maxplayers') {
+                maxPlayers = response.data.elements[0].elements[0].elements[i].attributes.value
+            }
+            if (response.data.elements[0].elements[0].elements[i].name === 'description') {
+                description = response.data.elements[0].elements[0].elements[i].elements[0].text
+            }
+            if (response.data.elements[0].elements[0].elements[i].name === 'minplaytime') {
+                minPlayTime = response.data.elements[0].elements[0].elements[i].attributes.value
+            }
+            if (response.data.elements[0].elements[0].elements[i].name === 'maxplaytime') {
+                maxPlayTime = response.data.elements[0].elements[0].elements[i].attributes.value
+            }
+            if (response.data.elements[0].elements[0].elements[i].name === 'yearpublished') {
+                yearPublished = response.data.elements[0].elements[0].elements[i].attributes.value
+            }
+        }
 
-    function saveGameFunction(gameInfo) {
-        API.saveGame(gameInfo);
-        console.log('saveBook result: ', gameInfo);
-        dispatch({type: "ADD_BOOK", "game": gameInfo});
-    }
+        const gamePrevObj = {
+            gameId: gameId,
+            name: name,
+            image: image,
+            description: description,
+            minPlayers: minPlayers,
+            maxPlayers: maxPlayers,
+            minPlayTime: minPlayTime,
+            maxPlayTime: maxPlayTime,
+            yearPublished: yearPublished,
+        }
+        // console.log(gamePrevObj);
+        setGamePrev(gamePrevObj);
+        props.setAppState(gamePrevObj);
+    }   
+    fetchPreview(); 
+};
 
     return (
         <div className={classes.root}>
@@ -177,7 +166,6 @@ function SearchBGG(props) {
                 {games.length ? (
                     <div className={classes.div}>
                         {games.map(game => (
-                            <div>
                             <Chip className={classes.button}
                                 label={game.name} 
                                 clickable 
@@ -189,8 +177,6 @@ function SearchBGG(props) {
                                   }
                                 }
                             />
-                            <button onClick={e => saveGameFunction()}>Save</button>
-                            </div>
                         ))}
                     </div>
                     )
