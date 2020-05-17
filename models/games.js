@@ -2,8 +2,15 @@ module.exports = function(sequelize, DataTypes){
     var Game = sequelize.define("Game", {
       gameId:DataTypes.INTEGER,
       name: DataTypes.INTEGER,
-      value:DataTypes.STRING,
-      yearPublished:DataTypes.STRING 
+      // value:DataTypes.STRING,
+      yearPublished:DataTypes.STRING,
+      image: DataTypes.Longblob,
+      description: DataTypes.STRING,
+      minPlayers: DataTypes.INTEGER,
+      maxPlayers: DataTypes.INTEGER,
+      minPlayTime: DataTypes.INTEGER,
+      maxPlayTime: DataTypes.INTEGER,
+      yearPublished: DataTypes.INTEGER,
     })
 
     Game.associate = function(models) {

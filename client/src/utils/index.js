@@ -23,10 +23,11 @@ export default {
   // deleteBook: function(id) {
   //   return axios.delete("/api/books/" + id);
   // },
-  // // Saves a book to the database
-  // saveBook: function(bookData) {
-  //   return axios.post("/api/books", bookData);
-  // }
+  // Saves a book to the database
+  saveGame: function(gameData) {
+    console.log('running saveGame function!!!');
+    return axios.post("/api/games", gameData);
+  }
 };
 
 
