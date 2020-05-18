@@ -18,6 +18,7 @@ const useStyles = makeStyles((theme) => ({
 
 function BoardGameDescription(props) {
     const [state, dispatch] = useStoreContext();
+    // console.log(state);
 
     const saveGameFunction = async () => {
         const gameData = {
@@ -33,7 +34,7 @@ function BoardGameDescription(props) {
         }
         const result = await API.saveGame(gameData);
         console.log('saveBook result: ', result.data);
-        dispatch({type: "ADD_BOOK", "game": result.data});
+        dispatch({type: "ADD_BOOK", savedGames: result.data});
     }
 
     const classes = useStyles();

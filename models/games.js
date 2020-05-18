@@ -4,7 +4,7 @@ module.exports = function(sequelize, DataTypes){
       name: DataTypes.INTEGER,
       // value:DataTypes.STRING,
       yearPublished:DataTypes.STRING,
-      image: DataTypes.Longblob,
+      // image: DataTypes.Longblob,
       description: DataTypes.STRING,
       minPlayers: DataTypes.INTEGER,
       maxPlayers: DataTypes.INTEGER,

@@ -35,7 +35,6 @@ function App() {
               yearPublished={appState.yearPublished}
               saveButton={<button>Save to My Games</button>}
               image={appState.image}
-              yearPublished={appState.yearPublished}
             />
           </React.Fragment>}
         </Grid>
