@@ -116,14 +116,9 @@ export default function SignupForm() {
                         </FormControl>
                     </div>
                 </div>
-                {/* remove this p tag once button is working with database */}
-                <p>for right now this button goes back to login page with out sending info to database</p>
-
                 <button type="submit" className="btn btn-default" onClick={handleFormSubmit}>Sign Up</button>
                 <br />
-                <a class="google-btn" href="/auth/google">Sign up with Google</a> 
-                <br />
-                <p>Already have an account?<Link className="login-link" to="/login"> Login </Link></p>
+                <p>Already have an account?<Link className="login-link" to="/login"> LOGIN </Link></p>
             </Grid>
         </div>
     )
