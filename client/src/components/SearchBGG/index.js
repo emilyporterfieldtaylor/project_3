@@ -3,6 +3,7 @@ import { makeStyles } from '@material-ui/core/styles';
 import Paper from '@material-ui/core/Paper';
 import TextField from '@material-ui/core/TextField';
 import Autocomplete from '@material-ui/lab/Autocomplete';
+import Chip from '@material-ui/core/Chip';
 const axios = require("axios");
 
 const useStyles = makeStyles((theme) => ({
@@ -40,19 +41,17 @@ function SearchBGG(props) {
 
     const [gamePrev, setGamePrev] = useState({});
     const [games, setGames] = useState([]);
-    const [query, setQuery] = useState('catan');
-    const [search, setSearch] = useState('');
-    const [value, setValue] = useState({});
+    // const [query, setQuery] = useState('catan');
+    // const [search, setSearch] = useState('');
+    const [value, setValue] = useState(topGames[0].title);
     const [inputValue, setInputValue] = useState('');    
 
     useEffect(()  => {      
         const fetchData = async() => {
             const response = await axios.get(`/api/games/${inputValue}`);
-            console.log('response: ', response)
             let game = {
                 gameId: response.data.elements[0].elements[0].attributes.objectid,
                 name: response.data.elements[0].elements[0].elements[0].elements[0].text,
-                // yearPublished: response.data.elements[0].elements[0].elements[1].elements[0].text
             }
             setGames(games => [...games, game ]);
         };
@@ -63,17 +62,9 @@ function SearchBGG(props) {
 function getPreview(id) {
     const fetchPreview = async() => {
         const response = await axios.get(`/api/ids/${id}`);
-        console.log('response: ',response.data);
         let gameId = response.data.elements[0].elements[0].attributes.id;
-        let name;
-        let image;
-        let description;
-        let minPlayers;
-        let maxPlayers;
-        let minPlayTime;
-        let maxPlayTime;
-        let yearPublished;
-
+        let name, image, description, minPlayers, maxPlayers, minPlayTime, maxPlayTime, yearPublished;
+ 
         for (let i = 0; i < response.data.elements[0].elements[0].elements.length; i++) {
             if (response.data.elements[0].elements[0].elements[i].name === "thumbnail") {
                 image = response.data.elements[0].elements[0].elements[0].elements[0].text
@@ -112,7 +103,7 @@ function getPreview(id) {
             maxPlayTime: maxPlayTime,
             yearPublished: yearPublished,
         }
-        console.log(gamePrevObj);
+        // console.log(gamePrevObj);
         setGamePrev(gamePrevObj);
         props.setAppState(gamePrevObj);
     }   
@@ -136,7 +127,7 @@ function getPreview(id) {
                     }}
                     id="topGamesDropdown"
 
-                    // disableClearable
+                    disableClearable
                     options={topGames.map((option) => option.title)}
                     renderInput={(params) => (
                     <TextField
@@ -155,7 +146,7 @@ function getPreview(id) {
                     />
                     )}
                 />
-                <p>
+                {/* <p>
                 {inputValue && <React.Fragment>    
                     <button 
                     type="button"
@@ -169,30 +160,31 @@ function getPreview(id) {
                 >
                     Search
                 </button> 
-                </React.Fragment>}</p>
+                </React.Fragment>}</p> */}
             </Paper>
             <Paper>
                 {games.length ? (
                     <div className={classes.div}>
                         {games.map(game => (
-                        <button className={classes.button}
-                            key={game.gameId} 
-                            value={game.gameId} 
-                            onClick={() => {
-                                getPreview(game.gameId)
-                              }
-                            }
-                        >
-                            <strong> {game.name} </strong>
-                        </button>
-                        
+                            <Chip className={classes.button}
+                                label={game.name} 
+                                clickable 
+                                color="primary"
+                                key={game.gameId} 
+                                value={game.gameId} 
+                                onClick={() => {
+                                    getPreview(game.gameId)
+                                  }
+                                }
+                            />
                         ))}
                     </div>
-                    ) : (
+                    )
+                     : (
                     <div>
-                        <h3>No Search Results to Display</h3>
                     </div>
-                )}
+                )
+                }
             </Paper>
         </div>
     )

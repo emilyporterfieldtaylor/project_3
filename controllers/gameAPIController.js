@@ -1,5 +1,6 @@
 let axios = require('axios');
 var convert = require('xml-js');
+const db = require('../models');
 
 const fetchXML = async (root, game) => {
     try {
@@ -47,5 +48,12 @@ module.exports = {
         } else {
             res.json(json);
         }
+    },
+    create: function(req, res) {
+      db.Game
+      // call db to connect with database, then exported variable from model file
+        .create(req.body)
+        .then(dbModel => res.json(dbModel))
+        .catch(err => res.status(422).json(err));
     },
 };

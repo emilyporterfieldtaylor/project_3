@@ -9,8 +9,8 @@ import Links from '../../components/ExternalLinks/index';
 import Header from '../../components/Header';
 
 function App() {
-
   const [appState, setAppState] = useState(null);
+  // const [friendID, setFriendID] = useState('');
 
   return (
     <div className="App">
@@ -25,6 +25,7 @@ function App() {
           {appState && <React.Fragment>
             <BoardGamePreview name={appState.name} image={appState.image} />
             <BoardGameDescription 
+              gameId={appState.gameId}
               name={appState.name} 
               description={appState.description}
               minPlayers={appState.minPlayers}
@@ -32,12 +33,16 @@ function App() {
               minPlayTime={appState.minPlayTime}
               maxPlayTime={appState.maxPlayTime}
               yearPublished={appState.yearPublished}
+              saveButton={<button>Save to My Games</button>}
+              image={appState.image}
             />
           </React.Fragment>}
         </Grid>
 
         <Grid item xs={3} >
-          <FriendsList />
+          <FriendsList 
+            // friendID={friendID.id}
+          />
           <Links />
         </Grid>
       </Grid>
