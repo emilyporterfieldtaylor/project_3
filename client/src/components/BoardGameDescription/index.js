@@ -21,7 +21,7 @@ function BoardGameDescription(props) {
     // console.log(state);
 
     const saveGameFunction = async () => {
-        const gameData = {
+        API.saveGame({
             gameId: props.gameId,
             name: props.name,
             image: props.image,
@@ -31,10 +31,9 @@ function BoardGameDescription(props) {
             minPlayTime: props.minPlayTime,
             maxPlayTime: props.maxPlayTime,
             yearPublished: props.yearPublished,
-        }
-        await API.saveGame(gameData);
-        console.log('saveBook result: ', gameData);
-        dispatch({type: "ADD_BOOK", savedGames: gameData});
+        })
+        .then(res => dispatch({type: "ADD_BOOK", savedGames: res.data}))
+        .catch(err => console.log(err));
     }
 
     const classes = useStyles();
@@ -51,7 +50,7 @@ function BoardGameDescription(props) {
                     <li style={{ listStyle: 'none' }}><strong>PlayTime:</strong> {props.minPlayTime} - {props.maxPlayTime} minutes</li>
                     <li style={{ listStyle: 'none' }}><strong>Year Published:</strong> {props.yearPublished} </li>
                 </Paper>
-                <button onClick={e => saveGameFunction()}>Save to My Games!</button>
+                <button onClick={saveGameFunction}>Save to My Games!</button>
             </Paper>
         </div>
     )

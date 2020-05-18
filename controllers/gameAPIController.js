@@ -50,6 +50,7 @@ module.exports = {
         }
     },
     create: function(req, res) {
+      console.log('in the controller');
       db.Game
       // call db to connect with database, then exported variable from model file
         .create(req.body)
