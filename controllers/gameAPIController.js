@@ -48,4 +48,21 @@ module.exports = {
             res.json(json);
         }
     },
+    hotItems: async (res) => {
+      const root = 'https://api.geekdo.com/xmlapi2/hot?boardgame';
+      const output = await fetchXML(root);
+      const json = JSON.parse(output);
+      console.log("json: ",json);
+      console.log("output: ", output);
+      if (json.errors) {
+        res.status(500);
+        res.json({
+        content: 'Unable to get the data from boardgamegeek.com',
+        ... json
+        })
+    } else {
+        res.json(json);
+    }
+    }
 };
+
