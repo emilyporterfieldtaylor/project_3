@@ -15,6 +15,8 @@ function apiRoutes(app) {
   }); */
 
 
+ 
+
   app.get("/api/games", (req,res) =>{
     axios.get('https://www.boardgamegeek.com/xmlapi',{
    
@@ -45,7 +47,7 @@ function apiRoutes(app) {
   // otherwise send back an error
   app.post("/api/signup", function (req, res) {
     db.User.create({
-      name: "Leandra",
+      name: req.body.name,
       email: req.body.email,
       password: req.body.password
     })
@@ -73,7 +75,8 @@ function apiRoutes(app) {
       // Sending back a password, even a hashed password, isn't a good idea
       res.json({
         email: req.user.email,
-        id: req.user.id
+        id: req.user.id,
+        name: req.user.name
       });
     }
   });

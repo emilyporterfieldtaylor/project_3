@@ -5,7 +5,7 @@ require("dotenv").config();
 // var keys = require("./keys");  //  THIS IS A VARIABLE HIDDEN FROM VIEW LIKE A .env FILE.  USE WHICHEVER WORKS BEST.
 // var User = require("../models/user");
 var db = require("../models");
-var routes = require("../routes");
+ 
 
 passport.use(
   new GoogleStrategy({
