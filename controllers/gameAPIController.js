@@ -64,6 +64,7 @@ module.exports = {
       })
       // call db to connect with database, then exported variable from model file
         // .create(req.body)
+        console.log(req.body.description)
         .then(dbModel => res.json(dbModel))
         .catch(err => res.status(422).json(err));
     },

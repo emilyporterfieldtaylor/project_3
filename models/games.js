@@ -3,7 +3,7 @@ module.exports = function(sequelize, DataTypes){
       gameId:DataTypes.INTEGER,
       name: DataTypes.STRING,
       // value:DataTypes.STRING,
-      yearPublished:DataTypes.STRING,
+      // yearPublished:DataTypes.STRING,
       // image: DataTypes.Longblob,
       description: DataTypes.STRING,
       minPlayers: DataTypes.INTEGER,
@@ -13,15 +13,15 @@ module.exports = function(sequelize, DataTypes){
       yearPublished: DataTypes.INTEGER,
     })
 
-    Game.associate = function(models) {
+    // Game.associate = function(models) {
       // We're saying that a Post should belong to an Author
       // A Post can't be created without an Author due to the foreign key constraint
-      Game.belongsTo(models.User, {
-        foreignKey: {
-          allowNull: false
-        }
-      });
+    //   Game.belongsTo(models.User, {
+    //     foreignKey: {
+    //       allowNull: false
+    //     }
+    //   });
 
-    } 
+    // } 
     return Game;
 }

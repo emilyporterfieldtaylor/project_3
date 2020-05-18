@@ -20,8 +20,9 @@ function BoardGameDescription(props) {
     const [state, dispatch] = useStoreContext();
     // console.log(state);
 
-    const saveGameFunction = async () => {
-        API.saveGame({
+    const saveGameFunction = async (e) => {
+        e.preventDefault();
+        let gameData = {
             gameId: props.gameId,
             name: props.name,
             image: props.image,
@@ -31,8 +32,10 @@ function BoardGameDescription(props) {
             minPlayTime: props.minPlayTime,
             maxPlayTime: props.maxPlayTime,
             yearPublished: props.yearPublished,
-        })
-        .then(res => dispatch({type: "ADD_BOOK", savedGames: res.data}))
+        }
+        API.saveGame(gameData)
+        .then(res => {console.log(res)})
+        // .then(res => dispatch({type: "ADD_BOOK", savedGames: res.data}))
         .catch(err => console.log(err));
     }
 

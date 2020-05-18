@@ -57,6 +57,26 @@ function apiRoutes(app) {
       });
   });
 
+  app.post('/api/gameData/', function (req, res) {
+    db.Game.create({
+      gameId: req.body.gameId,
+      name: req.body.name,
+      yearPublished: req.body.yearPublished,
+      description: req.body.description,
+      minPlayers: req.body.minPlayers,
+      maxPlayers: req.body.maxPlayers,
+      minPlayTime: req.body.minPlayTime,
+      maxPlayTime: req.body.maxPlayTime,
+      yearPublished: req.body.yearPublished,
+    })
+    .then(function () {
+      res.redirect(307, "/api/login");
+    })
+    // .then(dbModel => res.json(dbModel))
+    .catch(err => res.status(422).json(err));  
+  });
+
+
   // Route for logging user out
   app.get("/logout", function (req, res) {
     req.logout();
