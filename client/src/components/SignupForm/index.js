@@ -1,6 +1,8 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import Grid from '@material-ui/core/Grid';
+import clsx from 'clsx';
+import { makeStyles } from '@material-ui/core/styles';
 import IconButton from '@material-ui/core/IconButton';
 import FilledInput from '@material-ui/core/FilledInput';
 import InputLabel from '@material-ui/core/InputLabel';
@@ -9,61 +11,69 @@ import FormControl from '@material-ui/core/FormControl';
 import TextField from '@material-ui/core/TextField';
 import Visibility from '@material-ui/icons/Visibility';
 import VisibilityOff from '@material-ui/icons/VisibilityOff'
-import clsx from 'clsx';
-import { makeStyles } from '@material-ui/core/styles';
 import './style.css';
 
-
 const useStyles = makeStyles((theme) => ({
-  root: {
-      display: 'flex',
-      flexWrap: 'wrap',
-  },
-  margin: {
-      margin: theme.spacing(1),
-  },
-  withoutLabel: {
-      marginTop: theme.spacing(3),
-  },
-  textField: {
-      width: '25ch',
-  },
+    root: {
+        display: 'flex',
+        flexWrap: 'wrap',
+    },
+    margin: {
+        margin: theme.spacing(1),
+    },
+    withoutLabel: {
+        marginTop: theme.spacing(3),
+    },
+    textField: {
+        width: '25ch',
+    },
 }));
 
-function LoginBox() {
-    const classes = useStyles();
 
+export default function SignupForm() {
+
+    const classes = useStyles();
     const [values, setValues] = React.useState({
-      amount: '',
-      password: '',
-      weight: '',
-      weightRange: '',
-      showPassword: false,
+        amount: '',
+        name: '',
+        email: '',
+        password: '',
+        weight: '',
+        weightRange: '',
+        showPassword: false,
     });
-    
+
     const handleChange = (prop) => (event) => {
         setValues({ ...values, [prop]: event.target.value });
     };
-    
+
     const handleClickShowPassword = () => {
         setValues({ ...values, showPassword: !values.showPassword });
     };
-    
+
     const handleMouseDownPassword = (event) => {
         event.preventDefault();
     };
-  
+
     return (
-        <div className="frame">
+        <div className="frame-two">
             <Grid item xs={12}>
-                <h2>Log In</h2>
+                <h2>Sign Up</h2>
                 <div className={classes.root}>
                     <div>
+                        <TextField
+                            label="Full Name"
+                            id="filled-start-adornment"
+                            className={clsx(classes.margin, classes.textField)}
+                            variant="filled"
+                            onChange={handleChange('name')}
+                        />
                         <TextField
                             label="Email"
                             id="filled-start-adornment"
                             className={clsx(classes.margin, classes.textField)}
                             variant="filled"
+                            onChange={handleChange('email')}
                         />
                         <FormControl className={clsx(classes.margin, classes.textField)} variant="filled">
                             <InputLabel htmlFor="filled-adornment-password">Password</InputLabel>
@@ -88,17 +98,16 @@ function LoginBox() {
                         </FormControl>
                     </div>
                 </div>
+                {/* remove this p tag once button is working with database */}
+                <p>for right now this button goes back to login page with out sending info to database</p>
 
-                <button type="submit" className="btn btn-default"><Link className="login-link" to='/home'>Log In</Link></button>
-             
+                <button type="submit" className="btn btn-default"><Link className="login-link" to="/login">Sign Up</Link></button>
                 <br />
-                <p>Don't have an account?<Link className="nav" to="/signup">Create one</Link></p>
-
-
-                <p>Heads up Back-end: Login button will auto-direct to '/home' without putting anything in.</p>
+                <p>Already have an account?<Link className="login-link" to="/login"> Login </Link></p>
             </Grid>
         </div>
-    );
-}
+    )
+};
 
-export default LoginBox;
+
+

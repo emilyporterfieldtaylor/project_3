@@ -8,20 +8,25 @@ import HotItems from './pages/HotItems';
 import GameDescription from './pages/GameDescription';
 // import APICall from './components/APICall/APICall';
 import Signup from './pages/Signup';
-
+import userProfile from './pages/UserProfile';
+import { StoreProvider } from './utils/GlobalState';
 
 
 function App() {
   return (
     <Router>
-      <Switch>
-        <Route exact path="/" component={Login} />
-        <Route exact path="/login" component={Login} />
-        <Route exact path="/home" component={Home} />
-        <Route path='/games' component={GameDescription} />
-        <Route exact path="/signup" component={Signup}/>
-        <Route exact path="/hotitems" component={HotItems}/>
-      </Switch>
+      <StoreProvider>
+        <Switch>
+          <Route exact path="/" component={Login} />
+          <Route exact path="/login" component={Login} />
+          <Route exact path="/home" component={Home} />
+          <Route path='/games' component={GameDescription} />
+          <Route exact path="/signup" component={Signup}/>
+          <Route exact path="/hotitems" component={HotItems}/>
+          <Route path="/users" component={userProfile}/>
+
+        </Switch>
+      </StoreProvider>
     </Router>
   );
 }

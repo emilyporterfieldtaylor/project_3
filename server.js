@@ -34,9 +34,11 @@ require("./routes")(app);//keep this
 
 // API Calls
 // =============================================================
-app.get('/api/games/:game', gameController.gameController)
-app.get('/api/ids/:id', gameController.findById)
+app.get('/api/games/:game', gameController.gameController);
+app.get('/api/ids/:id', gameController.findById);
 app.get('/api/games/hotitems', gameController.hotItems)
+app.post('/api/gameData/', gameController.create);
+
 
 
 

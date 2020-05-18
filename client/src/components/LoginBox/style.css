@@ -1,34 +1,37 @@
 
-/* container */
-.outer-wrapper{
-    display: inline-block; 
-    margin: 20px;
-}
+/* For all hyperlinks */
+a:link, a:visited { /* Unvisited link, visited link  */
+    color:#cf7c48; 
+    text-decoration: none;
+    font-weight: bold;
+}  
 
-/* div holding form inputs */
-.frame{  
-    width: 250px;
-    height: 200px;
-    border: 1px solid black;
-    vertical-align: middle;
-    text-align: center;
-    display: table-cell;
-} 
+/* Mouse over link, Mouse over link  */
+a:hover, a:active {
+    /* color:#485868; */
+    text-decoration: none;
+}   
 
 /* login and signup button */
 .btn {
-    background-color: #fd5e49;
-    color: #fff4f0;
     font-weight: bold;
     text-decoration: none !important;
 }
+
+
+
+/* For all hyperlinks */
+a:link {color:#cf7c48 ;}   /* Unvisited link  */
+a:visited {color: #cf7c48 ;} /* Visited link    */
+a:hover {color:#485868;}   /* Mouse over link */
+a:active {color:#485868;}  /* Selected link   */
+
 
 /* Signup link */
 .nav {
     display: block;
     text-decoration: none;
     font-family: Arial, Helvetica, sans-serif;
-    color: #b1673a;
     font-weight: bold;
-    margin-top: 20px;
+    font-size: 14px;
 }

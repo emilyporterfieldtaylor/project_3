@@ -2,6 +2,8 @@ import React from 'react';
 // import './style.css';
 import { makeStyles } from '@material-ui/core/styles';
 import Paper from '@material-ui/core/Paper';
+import API from '../../utils/index.js';
+import { useStoreContext } from '../../utils/GlobalState';
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -15,6 +17,26 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 function BoardGameDescription(props) {
+    const [state, dispatch] = useStoreContext();
+    // console.log(state);
+
+    const saveGameFunction = async () => {
+        const gameData = {
+            gameId: props.gameId,
+            name: props.name,
+            image: props.image,
+            description: props.description,
+            minPlayers: props.minPlayers,
+            maxPlayers: props.maxPlayers,
+            minPlayTime: props.minPlayTime,
+            maxPlayTime: props.maxPlayTime,
+            yearPublished: props.yearPublished,
+        }
+        await API.saveGame(gameData);
+        console.log('saveBook result: ', gameData);
+        dispatch({type: "ADD_BOOK", savedGames: gameData});
+    }
+
     const classes = useStyles();
 
     return (
@@ -29,6 +51,7 @@ function BoardGameDescription(props) {
                     <li style={{ listStyle: 'none' }}><strong>PlayTime:</strong> {props.minPlayTime} - {props.maxPlayTime} minutes</li>
                     <li style={{ listStyle: 'none' }}><strong>Year Published:</strong> {props.yearPublished} </li>
                 </Paper>
+                <button onClick={e => saveGameFunction()}>Save to My Games!</button>
             </Paper>
         </div>
     )
