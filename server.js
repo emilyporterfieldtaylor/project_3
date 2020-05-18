@@ -36,7 +36,7 @@ require("./routes")(app);//keep this
 // =============================================================
 app.get('/api/games/:game', gameController.gameController);
 app.get('/api/ids/:id', gameController.findById);
-// app.post('/api/gameData/', gameController.create);
+app.post('/api/gameData/', gameController.create);
 
 
 
@@ -48,7 +48,7 @@ require("./routes/html-routes")(app);
 // Syncing our sequelize models and then starting our Express app
 //set "force" to false to prevent it from emptying db each time
 // =============================================================
-db.sequelize.sync({ force: true}).then(function() {
+db.sequelize.sync({ force: false}).then(function() {
   app.listen(PORT, function() {
     console.log("App listening on PORT " + PORT);
   });
