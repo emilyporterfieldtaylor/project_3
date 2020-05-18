@@ -32,9 +32,9 @@ function BoardGameDescription(props) {
             maxPlayTime: props.maxPlayTime,
             yearPublished: props.yearPublished,
         }
-        const result = await API.saveGame(gameData);
-        console.log('saveBook result: ', result.data);
-        dispatch({type: "ADD_BOOK", savedGames: result.data});
+        await API.saveGame(gameData);
+        console.log('saveBook result: ', gameData);
+        dispatch({type: "ADD_BOOK", savedGames: gameData});
     }
 
     const classes = useStyles();
