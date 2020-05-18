@@ -121,6 +121,8 @@ export default function SignupForm() {
 
                 <button type="submit" className="btn btn-default" onClick={handleFormSubmit}>Sign Up</button>
                 <br />
+                <a class="google-btn" href="/auth/google">Sign up with Google</a> 
+                <br />
                 <p>Already have an account?<Link className="login-link" to="/login"> Login </Link></p>
             </Grid>
         </div>
