@@ -50,9 +50,20 @@ module.exports = {
         }
     },
     create: function(req, res) {
-      db.Game
+      console.log('in the controller');
+      db.Game.create({
+        gameId: req.body.gameId,
+        name: req.body.name,
+        yearPublished: req.body.yearPublished,
+        description: req.body.description,
+        minPlayers: req.body.minPlayers,
+        maxPlayers: req.body.maxPlayers,
+        minPlayTime: req.body.minPlayTime,
+        maxPlayTime: req.body.maxPlayTime,
+        yearPublished: req.body.yearPublished,
+      })
       // call db to connect with database, then exported variable from model file
-        .create(req.body)
+        // .create(req.body)
         .then(dbModel => res.json(dbModel))
         .catch(err => res.status(422).json(err));
     },
