@@ -12,6 +12,7 @@ import TextField from '@material-ui/core/TextField';
 import Visibility from '@material-ui/icons/Visibility';
 import VisibilityOff from '@material-ui/icons/VisibilityOff'
 import './style.css';
+import API from '../../utils/index';
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -39,8 +40,8 @@ export default function SignupForm() {
         email: '',
         password: '',
         weight: '',
-        weightRange: '',
         showPassword: false,
+        weightRange: '',
     });
 
     const handleChange = (prop) => (event) => {
@@ -55,8 +56,25 @@ export default function SignupForm() {
         event.preventDefault();
     };
 
+    const handleFormSubmit= (e)=> {
+        e.preventDefault();
+        console.log(values);
+        const userData={
+            name: values.name,
+            email: values.email,
+            password: values.password
+        }
+        
+        API.signup(userData).then(results => {
+            console.log(results)
+        })
+        
+      
+        
+    }
+
     return (
-        <div className="frame-two">
+        <div className="frame">
             <Grid item xs={12}>
                 <h2>Sign Up</h2>
                 <div className={classes.root}>
@@ -101,7 +119,7 @@ export default function SignupForm() {
                 {/* remove this p tag once button is working with database */}
                 <p>for right now this button goes back to login page with out sending info to database</p>
 
-                <button type="submit" className="btn btn-default"><Link className="login-link" to="/login">Sign Up</Link></button>
+                <button type="submit" className="btn btn-default" onClick={handleFormSubmit}>Sign Up</button>
                 <br />
                 <p>Already have an account?<Link className="login-link" to="/login"> Login </Link></p>
             </Grid>

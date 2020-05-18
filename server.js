@@ -30,9 +30,7 @@ app.use(passport.session());
 // Routes
 // =============================================================
 require("./routes")(app);//keep this
-
-
-// API Calls
+ 
 // =============================================================
 app.get('/api/games/:game', gameController.gameController);
 app.get('/api/ids/:id', gameController.findById);
