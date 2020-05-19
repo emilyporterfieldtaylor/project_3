@@ -13,7 +13,11 @@ import Visibility from '@material-ui/icons/Visibility';
 import VisibilityOff from '@material-ui/icons/VisibilityOff'
 import './style.css';
 import API from '../../utils/index';
+import { useHistory } from "react-router-dom"
 
+
+
+//material ui code for input boxes
 const useStyles = makeStyles((theme) => ({
     root: {
         display: 'flex',
@@ -32,6 +36,9 @@ const useStyles = makeStyles((theme) => ({
 
 
 export default function SignupForm() {
+
+    let history = useHistory();
+
 
     const classes = useStyles();
     const [values, setValues] = React.useState({
@@ -56,6 +63,8 @@ export default function SignupForm() {
         event.preventDefault();
     };
 
+
+    //when signup button is clicked, post request made to input user into database
     const handleFormSubmit = (e) => {
         e.preventDefault();
         console.log(values);
@@ -67,9 +76,11 @@ export default function SignupForm() {
 
         API.signup(userData).then(results => {
             console.log(results)
+            history.push("/login");
         }).catch(loginError)
     }
 
+    //validation to allow user to know they have already made an account
     function loginError(){
         const userData = {
             name: values.name,
