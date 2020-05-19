@@ -1,4 +1,5 @@
 
+
 /* For all hyperlinks */
 a:link, a:visited { /* Unvisited link, visited link  */
     color:#cf7c48; 
@@ -15,7 +16,6 @@ a:hover, a:active {
 /* login and signup button */
 .btn {
     font-weight: bold;
-    text-decoration: none !important;
 }
 
 
@@ -34,4 +34,9 @@ a:active {color:#485868;}  /* Selected link   */
     font-family: Arial, Helvetica, sans-serif;
     font-weight: bold;
     font-size: 14px;
+}
+
+.google {
+    width: 50%;
+    margin-top: 20px;
 }

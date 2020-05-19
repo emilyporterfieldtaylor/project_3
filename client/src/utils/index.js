@@ -15,5 +15,18 @@ export default {
     return  (
       await axios.post("/api/gameData", gameData)
     )
+  },
+  signup: function(userData){
+    return axios.post("/api/signup", userData)
+  },
+  login: function(userData){
+    return axios.post("/api/login", userData)
+  },
+  logout: function(){
+    return axios.get("/logout")
+  },
+  userData:function(){
+    return axios.get("/api/user_data")
   }
+
 };

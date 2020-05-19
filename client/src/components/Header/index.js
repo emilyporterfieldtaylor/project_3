@@ -15,15 +15,15 @@ import './style.css';
 
 const useStyles = makeStyles((theme) => ({
     root: {
-      flexGrow: 1,
+        flexGrow: 1,
     },
     menuButton: {
-      marginRight: theme.spacing(2),
+        marginRight: theme.spacing(2),
     },
     title: {
-      flexGrow: 1,
-      fontFamily: 'Pangolin',
-      fontSize: '30px'
+        flexGrow: 1,
+        fontFamily: 'Pangolin',
+        fontSize: '30px'
     },
     loggedIn: {
         flexGrow: 1,
@@ -39,17 +39,17 @@ function Header() {
     const [auth, setAuth] = React.useState(true);
     const [anchorEl, setAnchorEl] = React.useState(null);
     const open = Boolean(anchorEl);
-  
+
     const handleChange = (event) => {
-      setAuth(event.target.checked);
+        setAuth(event.target.checked);
     };
-  
+
     const handleMenu = (event) => {
-      setAnchorEl(event.currentTarget);
+        setAnchorEl(event.currentTarget);
     };
-  
+
     const handleClose = () => {
-      setAnchorEl(null);
+        setAnchorEl(null);
     };
 
     return (
@@ -87,18 +87,18 @@ function Header() {
                             <Typography variant="subtitle2" className={classes.loggedIn}>
                                 Logged in as * user *!
                             </Typography>
-                            
+
                             <Menu
                                 id="menu-appbar"
                                 anchorEl={anchorEl}
                                 anchorOrigin={{
-                                vertical: 'top',
-                                horizontal: 'right',
+                                    vertical: 'top',
+                                    horizontal: 'right',
                                 }}
                                 keepMounted
                                 transformOrigin={{
-                                vertical: 'top',
-                                horizontal: 'right',
+                                    vertical: 'top',
+                                    horizontal: 'right',
                                 }}
                                 open={open}
                                 onClose={handleClose}
