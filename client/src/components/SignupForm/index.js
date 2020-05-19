@@ -56,21 +56,18 @@ export default function SignupForm() {
         event.preventDefault();
     };
 
-    const handleFormSubmit= (e)=> {
+    const handleFormSubmit = (e) => {
         e.preventDefault();
         console.log(values);
-        const userData={
+        const userData = {
             name: values.name,
             email: values.email,
             password: values.password
         }
-        
+
         API.signup(userData).then(results => {
             console.log(results)
-        })
-        
-      
-        
+        }).catch('User already exists')
     }
 
     return (
