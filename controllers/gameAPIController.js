@@ -5,6 +5,7 @@ const db = require('../models');
 const fetchXML = async (root, game) => {
     try {
       const response = await axios.get(`${root}${game}`);
+      return response;
       return convert.xml2json(response.data);
     } catch (err) {
       return {
@@ -20,8 +21,8 @@ module.exports = {
         const root = 'https://www.boardgamegeek.com/xmlapi/search?search=';
         const output = await fetchXML(root, game);
         const json = JSON.parse(output);
-        // console.log("json: ",json);
-        // console.log("output: ", output);
+        console.log("json: ",json);
+        console.log("output: ", output);
         if (json.errors) {
             res.status(500);
             res.json({
@@ -57,7 +58,7 @@ module.exports = {
         .catch(err => res.status(422).json(err));
     },
     hotItems: async (res) => {
-      const root = 'https://api.geekdo.com/xmlapi2/hot?boardgame';
+      const root = 'https://boardgamegeek.com/xmlapi2/hot?boardgame';
       const output = await fetchXML(root);
       const json = JSON.parse(output);
       console.log("json: ",json);
