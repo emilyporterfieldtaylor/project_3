@@ -22,7 +22,7 @@ module.exports = function(sequelize, DataTypes) {
             type: DataTypes.STRING,
             allowNull: false
         },
-        favGame: DataTypes.ARRAY
+        // favGame: DataTypes.ARRAY
     });
 
 

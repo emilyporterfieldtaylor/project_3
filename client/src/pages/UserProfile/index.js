@@ -6,18 +6,18 @@ import Paper from '@material-ui/core/Paper';
 import './style.css';
 
 function userProfile() {
-    const id = req.params.id;
-    const [user, setUser] = useState([]);
+    // const id = req.params.id;
+    // const [user, setUser] = useState([]);
 
-    useEffect(()  => {      
-        const fetchData = async() => {
-            const response = await axios.get(`/users/${id}`);
-            console.log('user response: ',response)
-            setGames(games => [...games, game ]);
-        };
+    // useEffect(()  => {      
+    //     const fetchData = async() => {
+    //         const response = await axios.get(`/users/${id}`);
+    //         console.log('user response: ',response)
+    //         setGames(games => [...games, game ]);
+    //     };
 
-        fetchData();    
-    }, [id]);
+    //     fetchData();    
+    // }, [id]);
 
     return(
         <div>
