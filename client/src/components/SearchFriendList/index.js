@@ -14,6 +14,9 @@ const useStyles = makeStyles((theme) => ({
       textAlign: 'center',
       color: theme.palette.text.secondary,
     },
+    searchFriendList: {
+        fontSize: '10px'
+    }
 }));
 
 
@@ -43,6 +46,7 @@ function SearchFriendList() {
                     options={friendsList.map((option) => option.title)}
                     renderInput={(params) => (
                     <TextField
+                        className={classes.searchFriendList}
                         {...params}
                         label="Search Friend List"
                         // margin="normal"

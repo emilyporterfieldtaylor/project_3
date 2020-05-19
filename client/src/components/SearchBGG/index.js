@@ -18,7 +18,8 @@ const useStyles = makeStyles((theme) => ({
     button: {
         padding: '5px',
         marginTop: '10px',
-        marginBottom: '10px'
+        marginBottom: '10px',
+        width: '95%'
     },
     div: {
         marginTop: '5px',

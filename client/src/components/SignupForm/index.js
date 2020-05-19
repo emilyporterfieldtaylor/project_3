@@ -81,7 +81,7 @@ export default function SignUpForm() {
         
     }
     return (
-        <div className="frame-two">
+        <div className="frame">
             <Grid item xs={12}>
                 <h2>Sign Up</h2>
                 <div className={classes.root}>

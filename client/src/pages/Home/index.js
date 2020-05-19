@@ -7,6 +7,7 @@ import BoardGamePreview from '../../components/BoardGamePreview/index';
 import BoardGameDescription from '../../components/BoardGameDescription/index';
 import Links from '../../components/ExternalLinks/index';
 import Header from '../../components/Header';
+import { Link } from 'react-router-dom';
 
 function App() {
   const [appState, setAppState] = useState(null);
@@ -14,6 +15,8 @@ function App() {
 
   return (
     <div className="App">
+      <Link to='/home' style={{color:'white'}}>Home</Link>
+
       <Header />
       <SearchBar stateChange={setAppState}/>
       <Grid container spacing={2}>

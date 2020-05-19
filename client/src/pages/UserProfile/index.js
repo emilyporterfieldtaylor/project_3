@@ -3,6 +3,7 @@ import Header from '../../components/Header';
 import BoardGameList from '../../components/BoardGameList';
 import { Link } from 'react-router-dom';
 import Paper from '@material-ui/core/Paper';
+import FriendsList from '../../components/FriendsList';
 import './style.css';
 
 function userProfile() {
@@ -41,6 +42,10 @@ function userProfile() {
                <li> Maybe we want a calender of events? </li>
                <li>Maybe we want a friend's list here? </li>
                <li>Maybe we want to ........  ?</li>
+            </Paper> 
+
+            <Paper>
+              <FriendsList />
             </Paper> 
         </div>
     )

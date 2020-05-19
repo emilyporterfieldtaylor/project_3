@@ -17,6 +17,9 @@ const useStyles = makeStyles((theme) => ({
       textAlign: 'left',
       color: theme.palette.text.secondary,
     },
+    friendlistUL: {
+        padding: '5px'
+    }
 }));
 
 function deleteFriends(id) {
@@ -42,13 +45,13 @@ function FriendsList() {
         <div className={classes.root}>
             <Paper className={classes.paper}>
                 Friend List:
-                <ul>
+                <ul className={classes.friendlistUL}>
                     {friendsList.map(friend => (
                         <li key={friend.name}>
                             <Link to={`/users/${friend.id}`}>
                             {friend.name}
                             </Link>
-                            {/* <DeleteBtn onClick={() => deleteFriends(friend._id)}/>  */}
+                            <DeleteBtn onClick={() => deleteFriends(friend._id)}/> 
                         </li>
                     ))}
                 </ul>

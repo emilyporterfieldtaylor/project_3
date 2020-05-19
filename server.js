@@ -38,8 +38,6 @@ app.get('/users/:id', gameController.findUserById);
 app.post('/api/gameData/', gameController.create);
 
 
-
-
 //temporary: demonstrating passport
 require("./routes/html-routes")(app);
  
