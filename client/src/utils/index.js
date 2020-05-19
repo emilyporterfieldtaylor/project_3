@@ -1,7 +1,4 @@
 import axios from "axios";
-// const express = require("express");
-// var app = express();
-
 
 export default {
   getBoardGame: async function(query) {
@@ -10,7 +7,6 @@ export default {
       )
   },
   saveGame: async function(gameData) {
-    console.log('gameData: ', gameData)
     console.log('running saveGame function!!!');
     return  (
       await axios.post("/api/gameData", gameData)

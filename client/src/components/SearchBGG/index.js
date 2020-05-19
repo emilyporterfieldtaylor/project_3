@@ -21,7 +21,8 @@ const useStyles = makeStyles((theme) => ({
         marginBottom: '10px'
     },
     div: {
-        marginTop: '5px'
+        marginTop: '5px',
+        textAlign: 'center'
     }
 }));
 
@@ -103,7 +104,6 @@ function SearchBGG(props) {
                 maxPlayTime: maxPlayTime,
                 yearPublished: yearPublished,
             }
-            // console.log(gamePrevObj);
             setGamePrev(gamePrevObj);
             props.setAppState(gamePrevObj);
         }   
@@ -120,47 +120,22 @@ function SearchBGG(props) {
                     onChange={(event, newValue) => {
                         setValue(newValue);
                         setInputValue(newValue);
-                    }}
+                      }}
                     inputValue={inputValue}
                     onInputChange={(event, newInputValue) => {
                         setInputValue(newInputValue);
-                    }}
+                      }}
                     id="topGamesDropdown"
-
                     disableClearable
                     options={topGames.map((option) => option.title)}
                     renderInput={(params) => (
                     <TextField
                         {...params}
                         label="Search for Board Game"
-                        // margin="normal"
                         variant="outlined"
-                        // value={query}
-                        // onChange = { 
-                        //     event => {
-                        //         setQuery(event.target.value);
-                        //         setSearchedFor(event.target.value);
-                        //     }
-                        // }
-                        // InputProps={{ ...params.InputProps, type: 'search' }}
                     />
                     )}
                 />
-                {/* <p>
-                {inputValue && <React.Fragment>    
-                    <button 
-                    type="button"
-                    value={inputValue}
-                    // value={search}
-                    onClick={() =>  {
-                        setQuery(inputValue);
-                        setSearch(inputValue);
-                        }
-                    }
-                >
-                    Search
-                </button> 
-                </React.Fragment>}</p> */}
             </Paper>
             <Paper>
                 {games.length ? (
@@ -183,8 +158,7 @@ function SearchBGG(props) {
                      : (
                     <div>
                     </div>
-                )
-                }
+                )}
             </Paper>
         </div>
     )

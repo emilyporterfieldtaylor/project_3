@@ -6,12 +6,9 @@ var passport = require("../config/passport");
 const Game = require('../models/games');
 
 function apiRoutes(app) {
-  
   app.get("/api/games", (req,res) =>{
     axios.get('https://www.boardgamegeek.com/xmlapi',{
-   
       "Access-Control-Allow-Headers": "Origin, X-Requested-With, Content-Type, Accept"
-  
     })
       .then(function (response) {
         res.json(response.data)
@@ -21,9 +18,7 @@ function apiRoutes(app) {
       }).finally(function () {
   
       });
-  
   })
-
  
   // Using the passport.authenticate middleware with our local strategy.
   // If the user has valid login credentials, send them to the members page.
@@ -49,26 +44,6 @@ function apiRoutes(app) {
       });
   });
 
-  // app.post('/api/gameData/', (req, res)  => {
-
-  //   Game.create({
-  //     gameId: req.body.gameId,
-  //     name: req.body.name,
-  //     yearPublished: req.body.yearPublished,
-  //     description: req.body.description,
-  //     minPlayers: req.body.minPlayers,
-  //     maxPlayers: req.body.maxPlayers,
-  //     minPlayTime: req.body.minPlayTime,
-  //     maxPlayTime: req.body.maxPlayTime,
-  //     yearPublished: req.body.yearPublished,
-  //   })
-  //   // .then(game => 
-  //   // })
-  //   .then(dbModel => res.json(dbModel))
-  //   .catch(err => res.status(422).json(err));  
-  // });
-
-
   // Route for logging user out
   app.get("/logout", function (req, res) {
     req.logout();
@@ -90,7 +65,6 @@ function apiRoutes(app) {
       });
     }
   });
-
 }
 
 module.exports = apiRoutes;

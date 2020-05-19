@@ -48,7 +48,7 @@ function FriendsList() {
                             <Link to={`/users/${friend.id}`}>
                             {friend.name}
                             </Link>
-                            <DeleteBtn onClick={() => deleteFriends(friend._id)}/> 
+                            {/* <DeleteBtn onClick={() => deleteFriends(friend._id)}/>  */}
                         </li>
                     ))}
                 </ul>

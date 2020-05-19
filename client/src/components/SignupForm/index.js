@@ -31,8 +31,7 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 
-export default function SignupForm() {
-
+export default function SignUpForm() {
     const classes = useStyles();
     const [values, setValues] = React.useState({
         amount: '',
