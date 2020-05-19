@@ -10,9 +10,10 @@ export default {
       )
   },
   saveGame: async function(gameData) {
+    console.log('gameData: ', gameData)
     console.log('running saveGame function!!!');
     return  (
-      await axios.post("/api/gameData/", gameData)
+      await axios.post("/api/gameData", gameData)
     )
   },
   signup: function(userData){
