@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import Header from '../../components/Header';
 import BoardGameList from '../../components/BoardGameList';
 import { Link } from 'react-router-dom';
@@ -6,6 +6,19 @@ import Paper from '@material-ui/core/Paper';
 import './style.css';
 
 function userProfile() {
+    const id = req.params.id;
+    const [user, setUser] = useState([]);
+
+    useEffect(()  => {      
+        const fetchData = async() => {
+            const response = await axios.get(`/users/${id}`);
+            console.log('user response: ',response)
+            setGames(games => [...games, game ]);
+        };
+
+        fetchData();    
+    }, [id]);
+
     return(
         <div>
             <Link to='/home' style={{color:'white'}}>Home</Link>

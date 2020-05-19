@@ -50,8 +50,13 @@ module.exports = {
             res.json(json);
         }
     },
+    findUserById: async (req, res) => {
+      db.KKUser
+        .findById(req.params.id)
+        .then(user => res.json(user))
+        .catch(err => console.log(err))
+    },
     create: function(req, res) {
-      // console.log('in the controller');
       let gameData = {
         gameId: req.body.gameId,
         name: req.body.name,
@@ -63,18 +68,12 @@ module.exports = {
         maxPlayTime: req.body.maxPlayTime,
         yearPublished: req.body.yearPublished,
       }
-      // console.log("controller data: ", gameData)
       db.Game.create(gameData)
-      // call db to connect with database, then exported variable from model file
-        // .create(req.body)
-        // console.log(gameData)
         .then(game => {
           res.json({status: game.name + ' successfully entered into database!'});
         })
         .catch(err => {
           res.send('controller error: ' + err)
         })
-          // console.log(err)); 
-          // res.status(422).json(err));
     },
 };

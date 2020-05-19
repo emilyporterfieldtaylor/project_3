@@ -59,56 +59,56 @@ function SearchBGG(props) {
         fetchData();    
     }, [inputValue]);
 
-function getPreview(id) {
-    const fetchPreview = async() => {
-        const response = await axios.get(`/api/ids/${id}`);
-        let gameId = response.data.elements[0].elements[0].attributes.id;
-        let name, image, description, minPlayers, maxPlayers, minPlayTime, maxPlayTime, yearPublished;
- 
-        for (let i = 0; i < response.data.elements[0].elements[0].elements.length; i++) {
-            if (response.data.elements[0].elements[0].elements[i].name === "thumbnail") {
-                image = response.data.elements[0].elements[0].elements[0].elements[0].text
+    function getPreview(id) {
+        const fetchPreview = async() => {
+            const response = await axios.get(`/api/ids/${id}`);
+            let gameId = response.data.elements[0].elements[0].attributes.id;
+            let name, image, description, minPlayers, maxPlayers, minPlayTime, maxPlayTime, yearPublished;
+    
+            for (let i = 0; i < response.data.elements[0].elements[0].elements.length; i++) {
+                if (response.data.elements[0].elements[0].elements[i].name === "thumbnail") {
+                    image = response.data.elements[0].elements[0].elements[0].elements[0].text
+                }
+                if (response.data.elements[0].elements[0].elements[i].name === "name") {
+                    name = response.data.elements[0].elements[0].elements[2].attributes.value
+                }
+                if (response.data.elements[0].elements[0].elements[i].name === "minplayers") {
+                    minPlayers = response.data.elements[0].elements[0].elements[i].attributes.value
+                }
+                if (response.data.elements[0].elements[0].elements[i].name === 'maxplayers') {
+                    maxPlayers = response.data.elements[0].elements[0].elements[i].attributes.value
+                }
+                if (response.data.elements[0].elements[0].elements[i].name === 'description') {
+                    description = response.data.elements[0].elements[0].elements[i].elements[0].text
+                }
+                if (response.data.elements[0].elements[0].elements[i].name === 'minplaytime') {
+                    minPlayTime = response.data.elements[0].elements[0].elements[i].attributes.value
+                }
+                if (response.data.elements[0].elements[0].elements[i].name === 'maxplaytime') {
+                    maxPlayTime = response.data.elements[0].elements[0].elements[i].attributes.value
+                }
+                if (response.data.elements[0].elements[0].elements[i].name === 'yearpublished') {
+                    yearPublished = response.data.elements[0].elements[0].elements[i].attributes.value
+                }
             }
-            if (response.data.elements[0].elements[0].elements[i].name === "name") {
-                name = response.data.elements[0].elements[0].elements[2].attributes.value
-            }
-            if (response.data.elements[0].elements[0].elements[i].name === "minplayers") {
-                minPlayers = response.data.elements[0].elements[0].elements[i].attributes.value
-            }
-            if (response.data.elements[0].elements[0].elements[i].name === 'maxplayers') {
-                maxPlayers = response.data.elements[0].elements[0].elements[i].attributes.value
-            }
-            if (response.data.elements[0].elements[0].elements[i].name === 'description') {
-                description = response.data.elements[0].elements[0].elements[i].elements[0].text
-            }
-            if (response.data.elements[0].elements[0].elements[i].name === 'minplaytime') {
-                minPlayTime = response.data.elements[0].elements[0].elements[i].attributes.value
-            }
-            if (response.data.elements[0].elements[0].elements[i].name === 'maxplaytime') {
-                maxPlayTime = response.data.elements[0].elements[0].elements[i].attributes.value
-            }
-            if (response.data.elements[0].elements[0].elements[i].name === 'yearpublished') {
-                yearPublished = response.data.elements[0].elements[0].elements[i].attributes.value
-            }
-        }
 
-        const gamePrevObj = {
-            gameId: gameId,
-            name: name,
-            image: image,
-            description: description,
-            minPlayers: minPlayers,
-            maxPlayers: maxPlayers,
-            minPlayTime: minPlayTime,
-            maxPlayTime: maxPlayTime,
-            yearPublished: yearPublished,
-        }
-        // console.log(gamePrevObj);
-        setGamePrev(gamePrevObj);
-        props.setAppState(gamePrevObj);
-    }   
-    fetchPreview(); 
-};
+            const gamePrevObj = {
+                gameId: gameId,
+                name: name,
+                image: image,
+                description: description,
+                minPlayers: minPlayers,
+                maxPlayers: maxPlayers,
+                minPlayTime: minPlayTime,
+                maxPlayTime: maxPlayTime,
+                yearPublished: yearPublished,
+            }
+            // console.log(gamePrevObj);
+            setGamePrev(gamePrevObj);
+            props.setAppState(gamePrevObj);
+        }   
+        fetchPreview(); 
+    };
 
     return (
         <div className={classes.root}>
