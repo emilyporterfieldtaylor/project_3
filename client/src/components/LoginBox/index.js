@@ -56,7 +56,7 @@ function LoginBox() {
     return (
         <div className="frame">
             <Grid item xs={12}>
-                <h2>Log In</h2>
+                <h2>LOGIN</h2>
                 <div className={classes.root}>
                     <div>
                         <TextField
@@ -64,6 +64,7 @@ function LoginBox() {
                             id="filled-start-adornment"
                             className={clsx(classes.margin, classes.textField)}
                             variant="filled"
+                            onChange={handleChange('name')}
                         />
                         <FormControl className={clsx(classes.margin, classes.textField)} variant="filled">
                             <InputLabel htmlFor="filled-adornment-password">Password</InputLabel>
@@ -89,16 +90,16 @@ function LoginBox() {
                     </div>
                 </div>
 
-                <button type="submit" className="btn btn-default"><Link className="login-link" to='/home'>Log In</Link></button>
-             
-                <br />
-                <p>Don't have an account?<Link className="nav" to="/signup">Create one</Link></p>
+                <button type="submit" className="btn">Login</button>
+                <br/>
+                <a className="google-btn" href="/auth/google"><img className="google"src="./images/btn_google_signin_light_pressed_web@2x.png"/></a>
+                <br/>
+                <p>Don't have an account?<Link className="nav" to="/signup">CREATE ONE</Link></p>
 
-
-                <p>Heads up Back-end: Login button will auto-direct to '/home' without putting anything in.</p>
             </Grid>
         </div>
     );
 }
 
 export default LoginBox;
+
