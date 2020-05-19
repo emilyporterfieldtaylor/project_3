@@ -3,6 +3,8 @@ import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import Paper from '@material-ui/core/Paper';
 import { Link } from 'react-router-dom';
+import DeleteBtn from '../DeleteBtn';
+import API from '../../utils/index';
 
 
 
@@ -16,6 +18,13 @@ const useStyles = makeStyles((theme) => ({
       color: theme.palette.text.secondary,
     },
 }));
+
+function deleteFriends(id) {
+    API.deleteFriend(id).then(results => {
+        console.log(results)
+    })
+
+  }
 
 function FriendsList() {
     const classes = useStyles();
@@ -39,6 +48,7 @@ function FriendsList() {
                             <Link to={`/users/${friend.id}`}>
                             {friend.name}
                             </Link>
+                            <DeleteBtn onClick={() => deleteFriends(friend._id)}/> 
                         </li>
                     ))}
                 </ul>
