@@ -1,22 +1,11 @@
 const axios = require("axios");
-// let Games = require('../../models/index');
 
 // Requiring our models and passport as we've configured it
 var db = require("../models");
 var passport = require("../config/passport");
 
 function apiRoutes(app) {
-
-/* 
-  axios.use(function (req, res, next) {
-    res.header("Access-Control-Allow-Origin", 'https://www.boardgamegeek.com/xmlapi/');
-    res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
-    next();
-  }); */
-
-
- 
-
+  
   app.get("/api/games", (req,res) =>{
     axios.get('https://www.boardgamegeek.com/xmlapi',{
    

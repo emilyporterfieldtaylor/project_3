@@ -11,48 +11,62 @@ import Visibility from '@material-ui/icons/Visibility';
 import VisibilityOff from '@material-ui/icons/VisibilityOff'
 import clsx from 'clsx';
 import { makeStyles } from '@material-ui/core/styles';
+import API from '../../utils/index';
 import './style.css';
 
 
 const useStyles = makeStyles((theme) => ({
-  root: {
-      display: 'flex',
-      flexWrap: 'wrap',
-  },
-  margin: {
-      margin: theme.spacing(1),
-  },
-  withoutLabel: {
-      marginTop: theme.spacing(3),
-  },
-  textField: {
-      width: '25ch',
-  },
+    root: {
+        display: 'flex',
+        flexWrap: 'wrap',
+    },
+    margin: {
+        margin: theme.spacing(1),
+    },
+    withoutLabel: {
+        marginTop: theme.spacing(3),
+    },
+    textField: {
+        width: '25ch',
+    },
 }));
 
 function LoginBox() {
     const classes = useStyles();
 
     const [values, setValues] = React.useState({
-      amount: '',
-      password: '',
-      weight: '',
-      weightRange: '',
-      showPassword: false,
+        email: '',
+        amount: '',
+        password: '',
+        weight: '',
+        weightRange: '',
+        showPassword: false,
     });
-    
+
     const handleChange = (prop) => (event) => {
         setValues({ ...values, [prop]: event.target.value });
     };
-    
+
     const handleClickShowPassword = () => {
         setValues({ ...values, showPassword: !values.showPassword });
     };
-    
+
     const handleMouseDownPassword = (event) => {
         event.preventDefault();
     };
-  
+
+    const handleFormLogin = (e) => {
+        console.log(values);
+        const userData = {
+            email: values.email,
+            password: values.password
+        }
+
+        API.login(userData).then(results => {
+            console.log(results);
+        })
+    }
+
     return (
         <div className="frame">
             <Grid item xs={12}>
@@ -64,7 +78,7 @@ function LoginBox() {
                             id="filled-start-adornment"
                             className={clsx(classes.margin, classes.textField)}
                             variant="filled"
-                            onChange={handleChange('name')}
+                            onChange={handleChange('email')}
                         />
                         <FormControl className={clsx(classes.margin, classes.textField)} variant="filled">
                             <InputLabel htmlFor="filled-adornment-password">Password</InputLabel>
@@ -90,10 +104,10 @@ function LoginBox() {
                     </div>
                 </div>
 
-                <button type="submit" className="btn">Login</button>
-                <br/>
-                <a className="google-btn" href="/auth/google"><img className="google"src="./images/btn_google_signin_light_pressed_web@2x.png"/></a>
-                <br/>
+                <button type="submit" className="btn" onClick={handleFormLogin}>Login</button>
+                <br />
+                <a className="google-btn" href="/auth/google"><img className="google" src="./images/btn_google_signin_light_pressed_web@2x.png" /></a>
+                <br />
                 <p>Don't have an account?<Link className="nav" to="/signup">CREATE ONE</Link></p>
 
             </Grid>
