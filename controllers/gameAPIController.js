@@ -1,6 +1,7 @@
 let axios = require('axios');
 var convert = require('xml-js');
 const db = require('../models');
+const Game = require('../models/games');
 
 const fetchXML = async (root, game) => {
     try {
@@ -50,10 +51,30 @@ module.exports = {
         }
     },
     create: function(req, res) {
-      db.Game
+      // console.log('in the controller');
+      let gameData = {
+        gameId: req.body.gameId,
+        name: req.body.name,
+        yearPublished: req.body.yearPublished,
+        description: req.body.description,
+        minPlayers: req.body.minPlayers,
+        maxPlayers: req.body.maxPlayers,
+        minPlayTime: req.body.minPlayTime,
+        maxPlayTime: req.body.maxPlayTime,
+        yearPublished: req.body.yearPublished,
+      }
+      // console.log("controller data: ", gameData)
+      db.Game.create(gameData)
       // call db to connect with database, then exported variable from model file
-        .create(req.body)
-        .then(dbModel => res.json(dbModel))
-        .catch(err => res.status(422).json(err));
+        // .create(req.body)
+        // console.log(gameData)
+        .then(game => {
+          res.json({status: game.name + ' successfully entered into database!'});
+        })
+        .catch(err => {
+          res.send('controller error: ' + err)
+        })
+          // console.log(err)); 
+          // res.status(422).json(err));
     },
 };
