@@ -67,9 +67,20 @@ export default function SignupForm() {
 
         API.signup(userData).then(results => {
             console.log(results)
-        }).catch('User already exists')
+        }).catch(loginError)
     }
 
+    function loginError(){
+        const userData = {
+            name: values.name,
+            email: values.email,
+            password: values.password
+        }
+        if (userData === userData){
+            alert('User already exists');
+        }
+        
+    }
     return (
         <div className="frame">
             <Grid item xs={12}>
