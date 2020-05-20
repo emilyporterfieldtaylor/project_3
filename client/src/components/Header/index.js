@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
@@ -11,6 +11,7 @@ import FormControlLabel from '@material-ui/core/FormControlLabel';
 import FormGroup from '@material-ui/core/FormGroup';
 import MenuItem from '@material-ui/core/MenuItem';
 import Menu from '@material-ui/core/Menu';
+import { useStoreContext } from '../../utils/GlobalState';
 import './style.css';
 
 const useStyles = makeStyles((theme) => ({
@@ -37,9 +38,14 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 function Header() {
+    const [state, dispatch] = useStoreContext();
+    
     const classes = useStyles();
     const [auth, setAuth] = React.useState(true);
     const [anchorEl, setAnchorEl] = React.useState(null);
+
+    console.log(state)
+
     const open = Boolean(anchorEl);
 
     const handleChange = (event) => {
@@ -103,10 +109,10 @@ function Header() {
                             control={<Switch checked={auth} onChange={handleChange} aria-label="login switch" />}
                             label={auth ? 'Logout' : 'Login'}
                         />
-                            {/* {!auth && (
+                        {/* {!auth && (
                                 <Typography className={classes.logout}>Log In</Typography>
                             )} */}
-                            {/* {auth && (
+                        {/* {auth && (
                                 <Typography className={classes.logout}>Log Out</Typography>
                             )} */}
                     </FormGroup>
