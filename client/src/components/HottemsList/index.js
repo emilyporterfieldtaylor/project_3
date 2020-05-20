@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Fragment, useState, useEffect } from 'react';
 import Button from '@material-ui/core/Button';
 import Card from '@material-ui/core/Card';
 import CardActions from '@material-ui/core/CardActions';
@@ -38,21 +38,36 @@ const useStyles = makeStyles((theme) => ({
 
 const cards = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12];
 
-function getHotItems () {
-  const fetchHotItems = async() => {
-    const response = await axios.get(`/api/games/hotitems`);
-    console.log('response: ',response);
- }
- fetchHotItems();
-};
 
- export default function HotItemsList() {
+ export default function HotItemsList(props) {
       const classes = useStyles();
+      const [hotGames, setHotGames] = useState([])
+
+      useEffect(()  => {      
+        const fetchHotItems = async() => {
+            const response = await axios.get(`/api/hotitems/`);
+            for (var i=0;i<12;i++){
+              let responseString = response.data.elements[0].elements[i];
+              let hotItems = {
+                id: i,
+                title: responseString.elements[1].attributes.value, 
+                year: responseString.elements[2].attributes.value, 
+                footer: "ADD THIS TO MY COLLECTION",
+                image: responseString.elements[0].attributes.value,                  
+              };
+              console.log(responseString);
+              setHotGames(hotGames => [...hotGames, hotItems ]);
+            }
+        };
+
+        fetchHotItems();    
+    }, []);
+
+
   return (
     <React.Fragment>
       <CssBaseline />
       <main>
-      {getHotItems()}
         {/* Hero unit */}
         <div className={classes.heroContent}>
           <Container maxWidth="sm">
@@ -76,25 +91,25 @@ function getHotItems () {
         <Container className={classes.cardGrid} maxWidth="md">
           
           <Grid container spacing={4}>
-            {cards.map((card) => (
-              <Grid item key={card} xs={12} sm={6} md={4}>
+            {hotGames.map((game) => (
+              <Grid item key={game.title} xs={12} sm={6} md={4}>
                 <Card className={classes.card}>
                   <CardMedia
                     className={classes.cardMedia}
-                    image="https://source.unsplash.com/random"
+                    image={game.image}
                     title="Image title"
                   />
                   <CardContent className={classes.cardContent}>
                     <Typography gutterBottom variant="h5" component="h2">
-                      Heading
+                      {game.title}
                     </Typography>
                     <Typography>
-                      This is a media card. You can use this section to describe the content.
+                      {game.year}
                     </Typography>
                   </CardContent>
                   <CardActions>
                     <Button size="small" color="primary">
-                      Add this to my collection
+                      {game.footer}
                     </Button>
                   </CardActions>
                 </Card>
