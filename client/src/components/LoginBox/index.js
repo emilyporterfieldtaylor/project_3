@@ -12,6 +12,7 @@ import VisibilityOff from '@material-ui/icons/VisibilityOff'
 import clsx from 'clsx';
 import { makeStyles } from '@material-ui/core/styles';
 import API from '../../utils/index';
+import { useHistory } from "react-router-dom"
 import './style.css';
 
 
@@ -31,7 +32,10 @@ const useStyles = makeStyles((theme) => ({
     },
 }));
 
-function LoginBox() {
+export default function LoginBox() {
+
+    let history = useHistory();
+
     const classes = useStyles();
 
     const [values, setValues] = React.useState({
@@ -64,6 +68,7 @@ function LoginBox() {
 
         API.login(userData).then(results => {
             console.log(results);
+            history.push("/home");
         })
     }
 
@@ -106,7 +111,7 @@ function LoginBox() {
 
                 <button type="submit" className="btn" onClick={handleFormLogin}>Login</button>
                 <br />
-                <a className="google-btn" href="/auth/google"><img className="google" src="./images/btn_google_signin_light_pressed_web@2x.png" /></a>
+                <a className="google-btn" href="/auth/google"><img className="google" src="./images/btn_google_signin_light_pressed_web@2x.png" alt="google-icon" /></a>
                 <br />
                 <p>Don't have an account?<Link className="nav" to="/signup">CREATE ONE</Link></p>
 
@@ -115,5 +120,5 @@ function LoginBox() {
     );
 }
 
-export default LoginBox;
+
 

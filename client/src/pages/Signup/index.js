@@ -1,13 +1,13 @@
 import React from 'react';
 import LoginBanner from '../../components/LoginBanner'
-import SignUpForm from '../../components/SignUpForm';
+import SignupForm from '../../components/SignupForm';
 
 
 export default function Signup () {
     return(
         <div>
         <LoginBanner/>
-        <SignUpForm/>
+        <SignupForm/>
         </div>
     )
 }

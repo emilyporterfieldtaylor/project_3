@@ -1,19 +1,23 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
-import Grid from '@material-ui/core/Grid';
-import clsx from 'clsx';
-import { makeStyles } from '@material-ui/core/styles';
-import IconButton from '@material-ui/core/IconButton';
-import FilledInput from '@material-ui/core/FilledInput';
-import InputLabel from '@material-ui/core/InputLabel';
-import InputAdornment from '@material-ui/core/InputAdornment';
-import FormControl from '@material-ui/core/FormControl';
-import TextField from '@material-ui/core/TextField';
-import Visibility from '@material-ui/icons/Visibility';
-import VisibilityOff from '@material-ui/icons/VisibilityOff'
+import React from './node_modules/react';
+import { Link } from './node_modules/react-router-dom';
+import Grid from './node_modules/@material-ui/core/Grid';
+import clsx from './node_modules/clsx';
+import { makeStyles } from './node_modules/@material-ui/core/styles';
+import IconButton from './node_modules/@material-ui/core/IconButton';
+import FilledInput from './node_modules/@material-ui/core/FilledInput';
+import InputLabel from './node_modules/@material-ui/core/InputLabel';
+import InputAdornment from './node_modules/@material-ui/core/InputAdornment';
+import FormControl from './node_modules/@material-ui/core/FormControl';
+import TextField from './node_modules/@material-ui/core/TextField';
+import Visibility from './node_modules/@material-ui/icons/Visibility';
+import VisibilityOff from './node_modules/@material-ui/icons/VisibilityOff'
 import './style.css';
 import API from '../../utils/index';
+import { useHistory } from "./node_modules/react-router-dom"
 
+
+
+//material ui code for input boxes
 const useStyles = makeStyles((theme) => ({
     root: {
         display: 'flex',
@@ -31,7 +35,9 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 
-export default function SignUpForm() {
+export default function SignupForm() {
+    let history = useHistory();
+
     const classes = useStyles();
     const [values, setValues] = React.useState({
         amount: '',
@@ -55,6 +61,8 @@ export default function SignUpForm() {
         event.preventDefault();
     };
 
+
+    //when signup button is clicked, post request made to input user into database
     const handleFormSubmit = (e) => {
         e.preventDefault();
         console.log(values);
@@ -66,9 +74,11 @@ export default function SignUpForm() {
 
         API.signup(userData).then(results => {
             console.log(results)
+            history.push("/login");
         }).catch(loginError)
     }
 
+    //validation to allow user to know they have already made an account
     function loginError(){
         const userData = {
             name: values.name,
