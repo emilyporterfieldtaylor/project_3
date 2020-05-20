@@ -5,7 +5,6 @@ import { Link } from 'react-router-dom';
 import Paper from '@material-ui/core/Paper';
 import FriendsList from '../../components/FriendsList';
 import Grid from '@material-ui/core/Grid';
-import UserInfo from '../../components/UserInfo';
 import './style.css';
 
 function userProfile() {
@@ -29,14 +28,16 @@ function userProfile() {
             <Header/>
             
             <Grid container spacing={3} >
-                <Grid item xs={6}>
-                    <UserInfo 
-                        // pull info from user database
+                <Grid xs={6} >
+                    <img alt="userProfilePic" src="http://place-puppy.com/200x200"></img>
+                        {/* // pull info from user database
                         // name={name}
                         // username={username}
                         // email={email}
-                        // picture={image}
-                    />
+                        // picture={image} */}
+                    <li className='userInfo'>Name: *user's name*</li>
+                    <li className='userInfo'>Username: *user's username*</li>
+                    <li className='userInfo'>Email???: *user's name*</li>
                 </Grid>
 
                 <Grid item xs={6}>
@@ -44,8 +45,9 @@ function userProfile() {
                 </Grid>
             </Grid>
 
+                <br></br>
 
-            <Paper>
+            <Paper style={{margin: '20px'}}>
                 <BoardGameList
                     // pull info from user's joined game database
                     // name={name}
@@ -54,10 +56,10 @@ function userProfile() {
 
             <br></br>
 
-            <Paper>
+            {/* <Paper>
                 <li> FUTURE DEVELOPMENT: Maybe we want a calender of events? </li>
-                {/* // google api */}
-            </Paper> 
+                // google api ???
+            </Paper>  */}
         </div>
     )
 }

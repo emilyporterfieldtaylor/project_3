@@ -24,7 +24,8 @@ const useStyles = makeStyles((theme) => ({
     title: {
         flexGrow: 1,
         fontFamily: 'Pangolin',
-        fontSize: '30px'
+        fontSize: '36px',
+        // textAlign: 'center'
     },
     loggedIn: {
         flexGrow: 1,
@@ -55,18 +56,6 @@ function Header() {
 
     return (
         <div className={classes.root}>
-            <FormGroup>
-                <FormControlLabel
-                    control={<Switch checked={auth} onChange={handleChange} aria-label="login switch" />}
-                    label={auth ? 'Logout' : 'Login'}
-                />
-                {!auth && (
-                    <Typography className={classes.logout}>Log In</Typography>
-                )}
-                {auth && (
-                    <Typography className={classes.logout}>Log Out</Typography>
-                )}
-            </FormGroup>
             <AppBar position="static">
                 <Toolbar>
                     <Typography variant="h6" className={classes.title}>
@@ -109,6 +98,18 @@ function Header() {
                             </Menu>
                         </div>
                     )}
+                    <FormGroup>
+                        <FormControlLabel
+                            control={<Switch checked={auth} onChange={handleChange} aria-label="login switch" />}
+                            label={auth ? 'Logout' : 'Login'}
+                        />
+                            {/* {!auth && (
+                                <Typography className={classes.logout}>Log In</Typography>
+                            )} */}
+                            {/* {auth && (
+                                <Typography className={classes.logout}>Log Out</Typography>
+                            )} */}
+                    </FormGroup>
                 </Toolbar>
             </AppBar>
         </div>
