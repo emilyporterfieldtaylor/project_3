@@ -1,8 +1,19 @@
 import React, { useContext, useReducer } from "react";
 
 const initialState = {
-    searchedGames: [],
-    savedGames: []
+    savedGames: [],
+    currentGame: []
+    // {
+    //   gameId: undefined,
+    //   name: undefined,
+    //   yearPublished: undefined,
+    //   description: undefined,
+    //   minPlayers: undefined,
+    //   maxPlayers: undefined,
+    //   minPlayTime: undefined,
+    //   maxPlayTime: undefined,
+    //   yearPublished: undefined,
+    // }
 };
 
 // Think of this as our main Context API that 

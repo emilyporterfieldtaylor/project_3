@@ -7,6 +7,15 @@ import BoardGamePreview from '../../components/BoardGamePreview/index';
 import BoardGameDescription from '../../components/BoardGameDescription/index';
 import Links from '../../components/ExternalLinks/index';
 import Header from '../../components/Header';
+import { Link } from 'react-router-dom';
+
+// let classes = {
+let bulletin = {
+  textAlign: 'center',
+  color: 'grey',
+  textShadow: '1px 1px white'
+}
+
 
 function App() {
   const [appState, setAppState] = useState(null);
@@ -15,7 +24,9 @@ function App() {
   return (
     <div className="App">
       <Header />
+      <h1 style={bulletin}>The Bulletin Board</h1>
       <SearchBar stateChange={setAppState}/>
+      
       <Grid container spacing={2}>
         <Grid item xs={3} >
           <BoardGameList />

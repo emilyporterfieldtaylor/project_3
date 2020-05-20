@@ -1,9 +1,10 @@
 .userInfo {
     color: white;
     list-style-type: none;
+    margin-left: 10px;
 }
 
-/* #userInfoDiv{
-    border: 1px solid white;
-    width: 400px;
+/* 
+.boardgamelist {
+    margin-left: 50px
 } */

@@ -1,27 +1,14 @@
 const axios = require("axios");
-// let Games = require('../../models/index');
 
 // Requiring our models and passport as we've configured it
 var db = require("../models");
 var passport = require("../config/passport");
+const Game = require('../models/games');
 
 function apiRoutes(app) {
-
-/* 
-  axios.use(function (req, res, next) {
-    res.header("Access-Control-Allow-Origin", 'https://www.boardgamegeek.com/xmlapi/');
-    res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
-    next();
-  }); */
-
-
- 
-
   app.get("/api/games", (req,res) =>{
     axios.get('https://www.boardgamegeek.com/xmlapi',{
-   
       "Access-Control-Allow-Headers": "Origin, X-Requested-With, Content-Type, Accept"
-  
     })
       .then(function (response) {
         res.json(response.data)
@@ -31,9 +18,7 @@ function apiRoutes(app) {
       }).finally(function () {
   
       });
-  
   })
-
  
   // Using the passport.authenticate middleware with our local strategy.
   // If the user has valid login credentials, send them to the members page.
@@ -80,7 +65,6 @@ function apiRoutes(app) {
       });
     }
   });
-
 }
 
 module.exports = apiRoutes;
