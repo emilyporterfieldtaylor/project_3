@@ -3,6 +3,7 @@ import { makeStyles } from '@material-ui/core/styles';
 import Paper from '@material-ui/core/Paper';
 import TextField from '@material-ui/core/TextField';
 import Autocomplete from '@material-ui/lab/Autocomplete';
+import Chip from '@material-ui/core/Chip';
 const axios = require("axios");
 
 const useStyles = makeStyles((theme) => ({
@@ -17,10 +18,12 @@ const useStyles = makeStyles((theme) => ({
     button: {
         padding: '5px',
         marginTop: '10px',
-        marginBottom: '10px'
+        marginBottom: '10px',
+        width: '95%'
     },
     div: {
-        marginTop: '5px'
+        marginTop: '5px',
+        textAlign: 'center'
     }
 }));
 
@@ -40,19 +43,17 @@ function SearchBGG(props) {
 
     const [gamePrev, setGamePrev] = useState({});
     const [games, setGames] = useState([]);
-    const [query, setQuery] = useState('catan');
-    const [search, setSearch] = useState('');
-    const [value, setValue] = useState({});
+    // const [query, setQuery] = useState('catan');
+    // const [search, setSearch] = useState('');
+    const [value, setValue] = useState(topGames[0].title);
     const [inputValue, setInputValue] = useState('');    
 
     useEffect(()  => {      
         const fetchData = async() => {
             const response = await axios.get(`/api/games/${inputValue}`);
-            console.log('response: ', response)
             let game = {
                 gameId: response.data.elements[0].elements[0].attributes.objectid,
                 name: response.data.elements[0].elements[0].elements[0].elements[0].text,
-                // yearPublished: response.data.elements[0].elements[0].elements[1].elements[0].text
             }
             setGames(games => [...games, game ]);
         };
@@ -60,64 +61,55 @@ function SearchBGG(props) {
         fetchData();    
     }, [inputValue]);
 
-function getPreview(id) {
-    const fetchPreview = async() => {
-        const response = await axios.get(`/api/ids/${id}`);
-        console.log('response: ',response.data);
-        let gameId = response.data.elements[0].elements[0].attributes.id;
-        let name;
-        let image;
-        let description;
-        let minPlayers;
-        let maxPlayers;
-        let minPlayTime;
-        let maxPlayTime;
-        let yearPublished;
+    function getPreview(id) {
+        const fetchPreview = async() => {
+            const response = await axios.get(`/api/ids/${id}`);
+            let gameId = response.data.elements[0].elements[0].attributes.id;
+            let name, image, description, minPlayers, maxPlayers, minPlayTime, maxPlayTime, yearPublished;
+    
+            for (let i = 0; i < response.data.elements[0].elements[0].elements.length; i++) {
+                if (response.data.elements[0].elements[0].elements[i].name === "thumbnail") {
+                    image = response.data.elements[0].elements[0].elements[0].elements[0].text
+                }
+                if (response.data.elements[0].elements[0].elements[i].name === "name") {
+                    name = response.data.elements[0].elements[0].elements[2].attributes.value
+                }
+                if (response.data.elements[0].elements[0].elements[i].name === "minplayers") {
+                    minPlayers = response.data.elements[0].elements[0].elements[i].attributes.value
+                }
+                if (response.data.elements[0].elements[0].elements[i].name === 'maxplayers') {
+                    maxPlayers = response.data.elements[0].elements[0].elements[i].attributes.value
+                }
+                if (response.data.elements[0].elements[0].elements[i].name === 'description') {
+                    description = response.data.elements[0].elements[0].elements[i].elements[0].text
+                }
+                if (response.data.elements[0].elements[0].elements[i].name === 'minplaytime') {
+                    minPlayTime = response.data.elements[0].elements[0].elements[i].attributes.value
+                }
+                if (response.data.elements[0].elements[0].elements[i].name === 'maxplaytime') {
+                    maxPlayTime = response.data.elements[0].elements[0].elements[i].attributes.value
+                }
+                if (response.data.elements[0].elements[0].elements[i].name === 'yearpublished') {
+                    yearPublished = response.data.elements[0].elements[0].elements[i].attributes.value
+                }
+            }
 
-        for (let i = 0; i < response.data.elements[0].elements[0].elements.length; i++) {
-            if (response.data.elements[0].elements[0].elements[i].name === "thumbnail") {
-                image = response.data.elements[0].elements[0].elements[0].elements[0].text
+            const gamePrevObj = {
+                gameId: gameId,
+                name: name,
+                image: image,
+                description: description,
+                minPlayers: minPlayers,
+                maxPlayers: maxPlayers,
+                minPlayTime: minPlayTime,
+                maxPlayTime: maxPlayTime,
+                yearPublished: yearPublished,
             }
-            if (response.data.elements[0].elements[0].elements[i].name === "name") {
-                name = response.data.elements[0].elements[0].elements[2].attributes.value
-            }
-            if (response.data.elements[0].elements[0].elements[i].name === "minplayers") {
-                minPlayers = response.data.elements[0].elements[0].elements[i].attributes.value
-            }
-            if (response.data.elements[0].elements[0].elements[i].name === 'maxplayers') {
-                maxPlayers = response.data.elements[0].elements[0].elements[i].attributes.value
-            }
-            if (response.data.elements[0].elements[0].elements[i].name === 'description') {
-                description = response.data.elements[0].elements[0].elements[i].elements[0].text
-            }
-            if (response.data.elements[0].elements[0].elements[i].name === 'minplaytime') {
-                minPlayTime = response.data.elements[0].elements[0].elements[i].attributes.value
-            }
-            if (response.data.elements[0].elements[0].elements[i].name === 'maxplaytime') {
-                maxPlayTime = response.data.elements[0].elements[0].elements[i].attributes.value
-            }
-            if (response.data.elements[0].elements[0].elements[i].name === 'yearpublished') {
-                yearPublished = response.data.elements[0].elements[0].elements[i].attributes.value
-            }
-        }
-
-        const gamePrevObj = {
-            gameId: gameId,
-            name: name,
-            image: image,
-            description: description,
-            minPlayers: minPlayers,
-            maxPlayers: maxPlayers,
-            minPlayTime: minPlayTime,
-            maxPlayTime: maxPlayTime,
-            yearPublished: yearPublished,
-        }
-        console.log(gamePrevObj);
-        setGamePrev(gamePrevObj);
-        props.setAppState(gamePrevObj);
-    }   
-    fetchPreview(); 
-};
+            setGamePrev(gamePrevObj);
+            props.setAppState(gamePrevObj);
+        }   
+        fetchPreview(); 
+    };
 
     return (
         <div className={classes.root}>
@@ -129,68 +121,43 @@ function getPreview(id) {
                     onChange={(event, newValue) => {
                         setValue(newValue);
                         setInputValue(newValue);
-                    }}
+                      }}
                     inputValue={inputValue}
                     onInputChange={(event, newInputValue) => {
                         setInputValue(newInputValue);
-                    }}
+                      }}
                     id="topGamesDropdown"
-
-                    // disableClearable
+                    disableClearable
                     options={topGames.map((option) => option.title)}
                     renderInput={(params) => (
                     <TextField
                         {...params}
                         label="Search for Board Game"
-                        // margin="normal"
                         variant="outlined"
-                        // value={query}
-                        // onChange = { 
-                        //     event => {
-                        //         setQuery(event.target.value);
-                        //         setSearchedFor(event.target.value);
-                        //     }
-                        // }
-                        // InputProps={{ ...params.InputProps, type: 'search' }}
                     />
                     )}
                 />
-                <p>
-                {inputValue && <React.Fragment>    
-                    <button 
-                    type="button"
-                    value={inputValue}
-                    // value={search}
-                    onClick={() =>  {
-                        setQuery(inputValue);
-                        setSearch(inputValue);
-                        }
-                    }
-                >
-                    Search
-                </button> 
-                </React.Fragment>}</p>
             </Paper>
             <Paper>
                 {games.length ? (
                     <div className={classes.div}>
                         {games.map(game => (
-                        <button className={classes.button}
-                            key={game.gameId} 
-                            value={game.gameId} 
-                            onClick={() => {
-                                getPreview(game.gameId)
-                              }
-                            }
-                        >
-                            <strong> {game.name} </strong>
-                        </button>
-                        
+                            <Chip className={classes.button}
+                                label={game.name} 
+                                clickable 
+                                color="primary"
+                                key={game.gameId} 
+                                value={game.gameId} 
+                                onClick={() => {
+                                    getPreview(game.gameId)
+                                  }
+                                }
+                            />
                         ))}
                     </div>
-                    ) : (
+                    )
+                     : (
                     <div>
-                        <h3>No Search Results to Display</h3>
                     </div>
                 )}
             </Paper>

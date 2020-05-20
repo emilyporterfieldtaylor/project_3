@@ -1,7 +1,34 @@
 var passport = require("passport");
 var LocalStrategy = require("passport-local").Strategy;
-
+var GoogleStrategy = require("passport-google-oauth20");
+require("dotenv").config();
+// var keys = require("./keys");  //  THIS IS A VARIABLE HIDDEN FROM VIEW LIKE A .env FILE.  USE WHICHEVER WORKS BEST.
+// var User = require("../models/user");
 var db = require("../models");
+ 
+
+passport.use(
+  new GoogleStrategy({
+  //options for the google strategy
+  clientID: process.env.clientID,
+  clientSecret: process.env.clientSecret,
+  callbackURL: "/auth/google/redirect"
+},(accessToken, refreshToken, profile, done) => {
+  //passport callback function
+  console.log("passport callback function fired");
+  db.User.create({
+    name: profile.displayName,
+    email: profile.id,
+    password: profile.id
+  })
+    .then(function(data) {            //   HERE DOWN TO LINE 31 NEEDS TO BE CHANGED TO REDIRECT THE USER TO THE MAIN PAGE.  COME BACK
+      window.location.replace("/");
+        // If there's an error, handle it by throwing up a bootstrap alert
+      })
+      .catch(er => console.log(er));
+    }
+  )
+)
 
 // Telling passport we want to use a Local Strategy. In other words, we want login with a username/email and password
 passport.use(new LocalStrategy(

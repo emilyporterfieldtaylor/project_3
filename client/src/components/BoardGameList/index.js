@@ -12,6 +12,9 @@ const useStyles = makeStyles((theme) => ({
       textAlign: 'left',
       color: theme.palette.text.secondary,
     },
+    boardgameUL: {
+        padding: '5px'
+    }
 }));
 
 function BoardGameList() {
@@ -33,7 +36,7 @@ function BoardGameList() {
         <div className={classes.root}>
             <Paper className={classes.paper}>
                 Board Game List:
-                <ul>
+                <ul className={classes.boardgameUL}>
                     {userSavedGames.map(game => (
                         <li key={game.title}>{game.title} ({game.year})</li>
                     ))}

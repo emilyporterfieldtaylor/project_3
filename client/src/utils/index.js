@@ -1,57 +1,28 @@
 import axios from "axios";
-const express = require("express");
-var app = express();
-
 
 export default {
   getBoardGame: async function(query) {
-    // app.get("/", function(req, res) {
-      return (
-        await axios.get(`https://www.boardgamegeek.com/xmlapi/search?search=${query}`)
-        // .then(response => {
-            // res.set('Content-Type', 'text/xml');
-            // res.send(response.data);
-        // });
-      // });
-      )
+    return (
+      await axios.get(`https://www.boardgamegeek.com/xmlapi/search?search=${query}`)
+    )
   },
-  // Gets the book with the given id
-  // getBook: function(id) {
-  //   return axios.get("/api/books/" + id);
-  // },
-  // // Deletes the book with the given id
-  // deleteBook: function(id) {
-  //   return axios.delete("/api/books/" + id);
-  // },
-  // // Saves a book to the database
-  // saveBook: function(bookData) {
-  //   return axios.post("/api/books", bookData);
-  // }
+  saveGame: async function(gameData) {
+    console.log('running saveGame function!!!');
+    return  (
+      await axios.post("/api/gameData", gameData),
+      alert("Game added successfully!")
+    )
+  },
+  signup: function(userData){
+    return axios.post("/api/signup", userData)
+  },
+  login: function(userData){
+    return axios.post("/api/login", userData)
+  },
+  logout: function(){
+    return axios.get("/logout")
+  },
+  userData:function(){
+    return axios.get("/api/user_data")
+  }
 };
-
-
-
-
-
-
-// -----------------
-// axios.use(function(req, res, next) {
-//   res.header("Access-Control-Allow-Origin", 'https://www.boardgamegeek.com/xmlapi/'); 
-//   res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
-//   next();
-// });
-
-// axios.get('/api/games', (req, res) => {
-
-// })
-// .then(function (response) {
-//   console.log(response);
-// })
-// .catch(function (error) {
-//   console.log(error);
-// }).finally(function (){
-
-// });
-
-// module.exports = axios;
-// export default getBoardGame;

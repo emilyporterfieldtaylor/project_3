@@ -4,7 +4,7 @@ import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
 import IconButton from '@material-ui/core/IconButton';
-import MenuIcon from '@material-ui/icons/Menu';
+// import { Link } from 'react-router-dom';
 import AccountCircle from '@material-ui/icons/AccountCircle';
 import Switch from '@material-ui/core/Switch';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
@@ -15,18 +15,24 @@ import './style.css';
 
 const useStyles = makeStyles((theme) => ({
     root: {
-      flexGrow: 1,
+        flexGrow: 1,
+        marginBottom: '10px',
     },
     menuButton: {
-      marginRight: theme.spacing(2),
+        marginRight: theme.spacing(2),
     },
     title: {
-      flexGrow: 1,
-      fontFamily: 'Pangolin',
-      fontSize: '30px'
+        flexGrow: 1,
+        fontFamily: 'Pangolin',
+        fontSize: '36px',
+        // textAlign: 'center'
     },
     loggedIn: {
         flexGrow: 1,
+    },
+    logout: {
+        color: 'white',
+        textAlign: 'left'
     }
 }));
 
@@ -35,73 +41,78 @@ function Header() {
     const [auth, setAuth] = React.useState(true);
     const [anchorEl, setAnchorEl] = React.useState(null);
     const open = Boolean(anchorEl);
-  
+
     const handleChange = (event) => {
-      setAuth(event.target.checked);
+        setAuth(event.target.checked);
     };
-  
+
     const handleMenu = (event) => {
-      setAnchorEl(event.currentTarget);
+        setAnchorEl(event.currentTarget);
     };
-  
+
     const handleClose = () => {
-      setAnchorEl(null);
+        setAnchorEl(null);
     };
 
     return (
         <div className={classes.root}>
-            <FormGroup>
-                <FormControlLabel
-                control={<Switch checked={auth} onChange={handleChange} aria-label="login switch" />}
-                label={auth ? 'Logout' : 'Login'}
-                />
-            </FormGroup>
             <AppBar position="static">
                 <Toolbar>
-                <IconButton edge="start" className={classes.menuButton} color="inherit" aria-label="menu">
-                    <MenuIcon />
-                </IconButton>
-                <Typography variant="h6" className={classes.title}>
-                    À La Board
-                </Typography>
-                {auth && (
-                    <div>
-                    <IconButton
-                        aria-label="account of current user"
-                        aria-controls="menu-appbar"
-                        aria-haspopup="true"
-                        onClick={handleMenu}
-                        color="inherit"
-                    >
-                        <AccountCircle />
-                    </IconButton>
-                    <Typography variant="subtitle2" className={classes.loggedIn}>
-                        Logged in as * user *!
+                    <Typography variant="h6" className={classes.title}>
+                        À La Board
                     </Typography>
-                    <Menu
-                        id="menu-appbar"
-                        anchorEl={anchorEl}
-                        anchorOrigin={{
-                        vertical: 'top',
-                        horizontal: 'right',
-                        }}
-                        keepMounted
-                        transformOrigin={{
-                        vertical: 'top',
-                        horizontal: 'right',
-                        }}
-                        open={open}
-                        onClose={handleClose}
-                    >
 
-                        <MenuItem onClick={handleClose}>Profile</MenuItem>
-                        <MenuItem onClick={handleClose}>My account</MenuItem>
-                    </Menu>
-                    </div>
-                )}
+                    {auth && (
+                        <div>
+                            <IconButton
+                                aria-label="account of current user"
+                                aria-controls="menu-appbar"
+                                aria-haspopup="true"
+                                onClick={handleMenu}
+                                color="inherit"
+                            >
+                                <AccountCircle />
+                            </IconButton>
+
+                            <Typography variant="subtitle2" className={classes.loggedIn}>
+                                Logged in as * user *!
+                            </Typography>
+
+                            <Menu
+                                id="menu-appbar"
+                                anchorEl={anchorEl}
+                                anchorOrigin={{
+                                    vertical: 'top',
+                                    horizontal: 'right',
+                                }}
+                                keepMounted
+                                transformOrigin={{
+                                    vertical: 'top',
+                                    horizontal: 'right',
+                                }}
+                                open={open}
+                                onClose={handleClose}
+                            >
+                                <MenuItem onClick={handleClose}>Profile</MenuItem>
+                                <MenuItem onClick={handleClose}>My account</MenuItem>
+                            </Menu>
+                        </div>
+                    )}
+                    <FormGroup>
+                        <FormControlLabel
+                            control={<Switch checked={auth} onChange={handleChange} aria-label="login switch" />}
+                            label={auth ? 'Logout' : 'Login'}
+                        />
+                            {/* {!auth && (
+                                <Typography className={classes.logout}>Log In</Typography>
+                            )} */}
+                            {/* {auth && (
+                                <Typography className={classes.logout}>Log Out</Typography>
+                            )} */}
+                    </FormGroup>
                 </Toolbar>
             </AppBar>
-    </div>
+        </div>
     )
 }
 

@@ -2,6 +2,10 @@ import React from 'react';
 // import './style.css';
 import { makeStyles } from '@material-ui/core/styles';
 import Paper from '@material-ui/core/Paper';
+import { Link } from 'react-router-dom';
+import DeleteBtn from '../DeleteBtn';
+import API from '../../utils/index';
+
 
 
 const useStyles = makeStyles((theme) => ({
@@ -13,29 +17,42 @@ const useStyles = makeStyles((theme) => ({
       textAlign: 'left',
       color: theme.palette.text.secondary,
     },
+    friendlistUL: {
+        padding: '5px'
+    }
 }));
 
-function FriendsList() {
+function deleteFriends(id) {
+    API.deleteFriend(id).then(results => {
+        console.log(results)
+    })
 
-    
+  }
+
+function FriendsList() {
     const classes = useStyles();
         
     const friendsList = [
         // this will eventually get removed and call from the database to show each user's friends to the dom
-        { name: 'Kendra Kwoka'},
-        { name: 'Eric Garcia'},
-        { name: 'Caitlin Huber'},
-        { name: 'Leander Turner'},
-        { name: 'Emily Taylor'}
+        { name: 'Kendra Kwoka', id: 1},
+        { name: 'Eric Garcia', id: 2},
+        { name: 'Caitlin Huber', id: 3},
+        { name: 'Leander Turner', id: 4},
+        { name: 'Emily Taylor', id: 5}
       ];
 
     return (
         <div className={classes.root}>
             <Paper className={classes.paper}>
                 Friend List:
-                <ul>
+                <ul className={classes.friendlistUL}>
                     {friendsList.map(friend => (
-                        <li key={friend.name}>{friend.name}</li>
+                        <li key={friend.name}>
+                            <Link to={`/users/${friend.id}`}>
+                            {friend.name}
+                            </Link>
+                            <DeleteBtn onClick={() => deleteFriends(friend._id)}/> 
+                        </li>
                     ))}
                 </ul>
             </Paper>
