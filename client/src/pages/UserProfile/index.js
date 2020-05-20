@@ -23,7 +23,7 @@ function userProfile() {
 
     return(
         <div>
-            <Link to='/home' style={{color:'white'}}>Home</Link>
+            <Link to='/home' style={{color:'white'}}>To the Bulletin Board</Link>
 
             <Header/>
             

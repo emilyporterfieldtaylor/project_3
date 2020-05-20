@@ -11,9 +11,10 @@ import { Link } from 'react-router-dom';
 
 // let classes = {
 let bulletin = {
-    textAlign: 'center',
-    color: 'tan'
-  }
+  textAlign: 'center',
+  color: 'grey',
+  textShadow: '1px 1px white'
+}
 
 
 function App() {
@@ -22,11 +23,10 @@ function App() {
 
   return (
     <div className="App">
-      <Link to='/home' className={bulletin}>Home</Link>
-
       <Header />
       <h1 style={bulletin}>The Bulletin Board</h1>
       <SearchBar stateChange={setAppState}/>
+      
       <Grid container spacing={2}>
         <Grid item xs={3} >
           <BoardGameList />
