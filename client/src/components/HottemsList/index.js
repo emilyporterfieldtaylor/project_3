@@ -46,7 +46,6 @@ function getHotItems () {
  fetchHotItems();
 };
 
-
  export default function HotItemsList() {
       const classes = useStyles();
   return (
