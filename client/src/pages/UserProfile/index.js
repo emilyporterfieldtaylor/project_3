@@ -28,8 +28,8 @@ function userProfile() {
             <Header/>
             
             <Grid container spacing={3} >
-                <Grid xs={6} >
-                    <img alt="userProfilePic" src="http://place-puppy.com/200x200"></img>
+                <Grid xs={6}>
+                    <img style={{margin: '10px'}} alt="userProfilePic" src="http://place-puppy.com/200x200"></img>
                         {/* // pull info from user database
                         // name={name}
                         // username={username}
