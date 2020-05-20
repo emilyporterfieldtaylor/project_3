@@ -4,6 +4,8 @@ import BoardGameList from '../../components/BoardGameList';
 import { Link } from 'react-router-dom';
 import Paper from '@material-ui/core/Paper';
 import FriendsList from '../../components/FriendsList';
+import Grid from '@material-ui/core/Grid';
+import UserInfo from '../../components/UserInfo';
 import './style.css';
 
 function userProfile() {
@@ -25,27 +27,36 @@ function userProfile() {
             <Link to='/home' style={{color:'white'}}>Home</Link>
 
             <Header/>
-            <div id="userInfoDiv">
-                <img alt="userProfilePic" src="http://place-puppy.com/200x200"></img>
-                <li className='userInfo'>Name: *user's name*</li>
-                <li className='userInfo'>Username: *user's username*</li>
-                <li className='userInfo'>Email???: *user's name*</li>
-            </div>
             
-            <BoardGameList>
-               <h1> Get User's games from database here!</h1>
-            </BoardGameList>
+            <Grid container spacing={3} >
+                <Grid item xs={6}>
+                    <UserInfo 
+                        // pull info from user database
+                        // name={name}
+                        // username={username}
+                        // email={email}
+                        // picture={image}
+                    />
+                </Grid>
 
-                <br></br>
+                <Grid item xs={6}>
+                    <FriendsList />
+                </Grid>
+            </Grid>
+
 
             <Paper>
-               <li> Maybe we want a calender of events? </li>
-               <li>Maybe we want a friend's list here? </li>
-               <li>Maybe we want to ........  ?</li>
+                <BoardGameList
+                    // pull info from user's joined game database
+                    // name={name}
+                />
             </Paper> 
 
+            <br></br>
+
             <Paper>
-              <FriendsList />
+                <li> FUTURE DEVELOPMENT: Maybe we want a calender of events? </li>
+                {/* // google api */}
             </Paper> 
         </div>
     )

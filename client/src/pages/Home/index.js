@@ -9,15 +9,23 @@ import Links from '../../components/ExternalLinks/index';
 import Header from '../../components/Header';
 import { Link } from 'react-router-dom';
 
+// let classes = {
+let bulletin = {
+    textAlign: 'center',
+    color: 'tan'
+  }
+
+
 function App() {
   const [appState, setAppState] = useState(null);
   // const [friendID, setFriendID] = useState('');
 
   return (
     <div className="App">
-      <Link to='/home' style={{color:'white'}}>Home</Link>
+      <Link to='/home' className={bulletin}>Home</Link>
 
       <Header />
+      <h1 style={bulletin}>The Bulletin Board</h1>
       <SearchBar stateChange={setAppState}/>
       <Grid container spacing={2}>
         <Grid item xs={3} >
