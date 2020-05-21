@@ -32,9 +32,10 @@ const reducer = (state, action) => {
             savedGames: [action.game, ...state.savedGames]
         }
         case "ADD_USERDATA":
+  
         return{
           ...state,
-          userData: [action.data]
+          userData: action.data
         }
 
     default:
@@ -42,7 +43,7 @@ const reducer = (state, action) => {
   }
 };
 
-//make userdata an object
+
 
 /*
   We need a way where our components can import our Provider 
