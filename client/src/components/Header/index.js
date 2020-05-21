@@ -37,8 +37,9 @@ const useStyles = makeStyles((theme) => ({
     }
 }));
 
-function Header() {
+function Header(props) {
     const [state, dispatch] = useStoreContext();
+   
     
     const classes = useStyles();
     const [auth, setAuth] = React.useState(true);
@@ -59,7 +60,7 @@ function Header() {
     const handleClose = () => {
         setAnchorEl(null);
     };
-
+   
     return (
         <div className={classes.root}>
             <AppBar position="static">
@@ -81,7 +82,8 @@ function Header() {
                             </IconButton>
 
                             <Typography variant="subtitle2" className={classes.loggedIn}>
-                                Logged in as * user *!
+                            
+                                Logged in as {state.userData.name}!
                             </Typography>
 
                             <Menu
