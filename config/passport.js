@@ -21,14 +21,14 @@ passport.use(
     email: profile.id,
     password: profile.id
   })
-    .then(function(data) {            //   HERE DOWN TO LINE 31 NEEDS TO BE CHANGED TO REDIRECT THE USER TO THE MAIN PAGE.  COME BACK
-      window.location.replace("/");
+  .then((newUser) => {            //   IDK IF THIS IS NEEDED -- PROB
+    console.log("new user created: " + newUser);
+    done(null, newUser);
         // If there's an error, handle it by throwing up a bootstrap alert
-      })
-      .catch(er => console.log(er));
-    }
-  )
-)
+    })
+    .catch(er => console.log(er));
+  })
+);
 
 // Telling passport we want to use a Local Strategy. In other words, we want login with a username/email and password
 passport.use(new LocalStrategy(

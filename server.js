@@ -1,4 +1,5 @@
 let gameController = require('./controllers/gameAPIController');
+const authRoutes = require("./routes/auth-routes");
 
 // Requiring necessary npm packages
 var express = require("express");
@@ -7,9 +8,11 @@ var session = require("express-session");
 // Requiring passport as we've configured it
 var passport = require("./config/passport");
 
-
 var app = express();
 var PORT = process.env.PORT || 3001;
+
+// set up auth routes for google
+app.use("/auth",  authRoutes);
 
 // Requiring models for syncing
 var db = require("./models");
