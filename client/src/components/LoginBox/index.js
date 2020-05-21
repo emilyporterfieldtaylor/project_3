@@ -78,7 +78,7 @@ export default function LoginBox() {
             history.push("/home");
         })
     }
-
+    
     return (
         <div className="frame">
             <Grid item xs={12}>
