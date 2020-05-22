@@ -22,7 +22,6 @@ function App() {
           <Route path='/games' component={GameDescription} />
           <Route exact path="/signup" component={Signup}/>
           <Route path="/users" component={userProfile}/>
-
         </Switch>
       </StoreProvider>
     </Router>

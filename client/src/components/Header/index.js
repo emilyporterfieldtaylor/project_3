@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
@@ -39,9 +39,13 @@ const useStyles = makeStyles((theme) => ({
 
 function Header() {
     const [state, dispatch] = useStoreContext();
+  
     const classes = useStyles();
     const [auth, setAuth] = React.useState(true);
     const [anchorEl, setAnchorEl] = React.useState(null);
+
+    console.log(state)
+
     const open = Boolean(anchorEl);
 
     const handleChange = (event) => {
@@ -55,7 +59,7 @@ function Header() {
     const handleClose = () => {
         setAnchorEl(null);
     };
-
+   
     return (
         <div className={classes.root}>
             <AppBar position="static">
@@ -77,7 +81,7 @@ function Header() {
                             </IconButton>
 
                             <Typography variant="subtitle2" className={classes.loggedIn}>
-                            Logged in as {state.userData.name}!
+                                Logged in as {state.userData.name}!
                             </Typography>
 
                             <Menu
@@ -105,10 +109,10 @@ function Header() {
                             control={<Switch checked={auth} onChange={handleChange} aria-label="login switch" />}
                             label={auth ? 'Logout' : 'Login'}
                         />
-                            {/* {!auth && (
+                        {/* {!auth && (
                                 <Typography className={classes.logout}>Log In</Typography>
                             )} */}
-                            {/* {auth && (
+                        {/* {auth && (
                                 <Typography className={classes.logout}>Log Out</Typography>
                             )} */}
                     </FormGroup>

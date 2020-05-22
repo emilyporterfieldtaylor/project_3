@@ -40,12 +40,13 @@ const reducer = (state, action) => {
           return{
             ...state,
             savedGames: action.games
-
           }
     default:
         return state;
   }
 };
+
+
 
 /*
   We need a way where our components can import our Provider 
