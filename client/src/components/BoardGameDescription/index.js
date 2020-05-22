@@ -32,10 +32,13 @@ function BoardGameDescription(props) {
             minPlayTime: props.minPlayTime,
             maxPlayTime: props.maxPlayTime,
             yearPublished: props.yearPublished,
+            UserId: props.UserId
         }
         API.saveGame(gameData)
         // .then(res => {console.log("res: ",res)})
-        .then(res => dispatch({type: "ADD_GAME", savedGames: res.data}))
+        .then(res =>{console.log(res)
+            dispatch({type: "ADD_GAME", savedGames: res.data})})
+
         .catch(err => console.log(err));
     }
 
