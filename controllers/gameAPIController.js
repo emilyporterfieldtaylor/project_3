@@ -1,7 +1,7 @@
 let axios = require('axios');
 var convert = require('xml-js');
 const db = require('../models');
-const Game = require('../models/games');
+// const Game = require('../models/games');
 
 const fetchXML = async (root, game) => {
   try {
@@ -47,10 +47,18 @@ module.exports = {
       res.json(json);
     }
   },
+    getAllFriends: async (req, res) => {
+      db.User
+        .findAll()
+        .then(users => res.json(users))
+        .catch(err => console.log(err))
+    },
     findUserById: async (req, res) => {
-      db.KKUser
-        .findById(req.params.id)
-        .then(user => res.json(user))
+      const { userId } = req.params;
+      db.User
+        .findById(req.params.userId)
+        .then(user => {status: user.name + ' successfully found!'})
+          // res.json(user))}
         .catch(err => console.log(err))
     },
   create: function (req, res) {
