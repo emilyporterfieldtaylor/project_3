@@ -13,6 +13,7 @@ import clsx from 'clsx';
 import { makeStyles } from '@material-ui/core/styles';
 import API from '../../utils/index';
 import { useHistory } from "react-router-dom"
+import { useStoreContext } from '../../utils/GlobalState';
 import './style.css';
 
 
@@ -33,6 +34,7 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 export default function LoginBox() {
+    const [state, dispatch] = useStoreContext();
 
     let history = useHistory();
 
@@ -68,6 +70,7 @@ export default function LoginBox() {
 
         API.login(userData).then(results => {
             console.log(results);
+            dispatch({ type: "ADD_USERDATA", data: results.data })
             history.push("/home");
         })
     }
