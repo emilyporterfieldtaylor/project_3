@@ -2,7 +2,8 @@ import React, { useContext, useReducer } from "react";
 
 const initialState = {
     savedGames: [],
-    currentGame: []
+    currentGame: [],
+    userData: []
     // {
     //   gameId: undefined,
     //   name: undefined,
@@ -30,11 +31,19 @@ const reducer = (state, action) => {
             ...state,
             savedGames: [action.game, ...state.savedGames]
         }
+        case "ADD_USERDATA":
+  
+        return{
+          ...state,
+          userData: action.data
+        }
 
     default:
         return state;
   }
 };
+
+
 
 /*
   We need a way where our components can import our Provider 
