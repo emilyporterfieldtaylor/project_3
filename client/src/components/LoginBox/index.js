@@ -111,7 +111,8 @@ export default function LoginBox() {
 
                 <button type="submit" className="btn" onClick={handleFormLogin}>Login</button>
                 <br />
-                <a className="google-btn" href="/auth/google"><img className="google" src="./images/btn_google_signin_light_pressed_web@2x.png" alt="google-icon" /></a>
+                
+                <a className="google-btn" href="http://localhost:3002/auth/google"><img className="google" src="./images/btn_google_signin_light_pressed_web@2x.png" alt="google-icon" /></a>
                 <br />
                 <p>Don't have an account?<Link className="nav" to="/signup">CREATE ONE</Link></p>
 

@@ -15,20 +15,43 @@ passport.use(
   callbackURL: "/auth/google/redirect"
 },(accessToken, refreshToken, profile, done) => {
   //passport callback function
-  console.log("passport callback function fired");
-  db.User.create({
-    name: profile.displayName,
-    email: profile.id,
-    password: profile.id
-  })
-  .then((newUser) => {            //   IDK IF THIS IS NEEDED -- PROB
-    console.log("new user created: " + newUser);
-    done(null, newUser);
+  db.User.findOne({where: {email: profile.id}}).then((currentUser) => {
+    if(currentUser) {
+      // already have the user
+      console.log("user is: ", currentUser)
+      done(null, currentUser)
+    } else {
+      // if not, create user in our db
+      db.User.create({
+        name: profile.displayName,
+        email: profile.id,
+        password: profile.id
+      })
+      .then((newUser) => {            //   IDK IF THIS IS NEEDED -- PROB
+        console.log("new user created: " + newUser);
+        done(null, newUser);
         // If there's an error, handle it by throwing up a bootstrap alert
+      })
+      .catch(er => console.log(er));
+      }
     })
-    .catch(er => console.log(er));
   })
-);
+)
+
+  // console.log("passport callback function fired");
+  // db.User.create({
+  //   name: profile.displayName,
+  //   email: profile.id,
+  //   password: profile.id
+  // })
+  // .then((newUser) => {            //   IDK IF THIS IS NEEDED -- PROB
+  //   console.log("new user created: " + newUser);
+  //   done(null, newUser);
+  //       // If there's an error, handle it by throwing up a bootstrap alert
+  //   })
+  //   .catch(er => console.log(er));
+  // })
+// );
 
 // Telling passport we want to use a Local Strategy. In other words, we want login with a username/email and password
 passport.use(new LocalStrategy(
