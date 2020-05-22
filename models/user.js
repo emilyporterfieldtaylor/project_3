@@ -1,7 +1,7 @@
 var bcrypt = require("bcryptjs");
 
 module.exports = function(sequelize, DataTypes) {
-    var KKUser = sequelize.define("KKUser", {
+    var User = sequelize.define("User", {
         name: {
             type:DataTypes.STRING,
             allowNull: false,
@@ -13,9 +13,9 @@ module.exports = function(sequelize, DataTypes) {
             type: DataTypes.STRING,
             allowNull: false,
             unique: true,
-            validate: {
+           /*  validate: {
                 isEmail: true
-            }
+            } */
           },
           // The password cannot be null
         password: {
@@ -27,26 +27,26 @@ module.exports = function(sequelize, DataTypes) {
 
 
 
-    KKUser.associate = function(models) {
+    User.associate = function(models) {
       // Associating Author with Posts
       // When an Author is deleted, also delete any associated Posts
-      KKUser.hasMany(models.Game, {
+      User.hasMany(models.Game, {
         onDelete: "cascade"
       });
 
-      KKUser.hasMany(models.Friend, {
+      User.hasMany(models.Friend, {
         onDelete: "cascade"
       });
     };
 
 
-    KKUser.prototype.validPassword = function(password) {
+    User.prototype.validPassword = function(password) {
         return bcrypt.compareSync(password, this.password);
       };
-      // Hooks are automatic methods that run during various phases of the KKUser Model lifecycle
-      // In this case, before a KKUser is created, we will automatically hash their password
-      KKUser.addHook("beforeCreate", function(user) {
+      // Hooks are automatic methods that run during various phases of the User Model lifecycle
+      // In this case, before a User is created, we will automatically hash their password
+      User.addHook("beforeCreate", function(user) {
         user.password = bcrypt.hashSync(user.password, bcrypt.genSaltSync(10), null);
       });
-      return KKUser;
+      return User;
 }
