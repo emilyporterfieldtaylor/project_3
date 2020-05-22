@@ -9,9 +9,12 @@ const useStyles = makeStyles((theme) => ({
     },
     paper: {
       padding: theme.spacing(2),
-      textAlign: 'center',
+      textAlign: 'left',
       color: theme.palette.text.secondary,
     },
+    externalLinks: {
+        padding: '5px'
+    }
 }));
 
 function Links() {
@@ -21,7 +24,7 @@ function Links() {
         <div className={classes.root} style={{marginTop: '20px'}}>
             <Paper className={classes.paper}>
                 Want to buy it?
-                <ul>
+                <ul className={classes.externalLinks}>
                     <li>Link 1</li>
                     <li>Link 2</li>
                     <li>Link 3</li>

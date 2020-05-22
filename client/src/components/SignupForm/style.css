@@ -1,7 +1,6 @@
-
 /* div containing textfields */
 .frame {
-    background-color: #fefff1;
+    background-color: #fcfbf9;
     border: 1px solid black;
     border-radius: 10px;
     box-shadow:  0 0 20px 5px #33231d;
@@ -28,4 +27,3 @@ p,
 .login-link {
     font-weight: bold;
 }
-

@@ -1,19 +1,16 @@
 import axios from "axios";
-// const express = require("express");
-// var app = express();
-
 
 export default {
   getBoardGame: async function(query) {
-      return (
-        await axios.get(`https://www.boardgamegeek.com/xmlapi/search?search=${query}`)
-      )
+    return (
+      await axios.get(`https://www.boardgamegeek.com/xmlapi/search?search=${query}`)
+    )
   },
   saveGame: async function(gameData) {
-    console.log('gameData: ', gameData)
     console.log('running saveGame function!!!');
     return  (
-      await axios.post("/api/gameData", gameData)
+      await axios.post("/api/gameData", gameData),
+      alert("Game added successfully!")
     )
   },
   signup: function(userData){
@@ -28,5 +25,4 @@ export default {
   userData:function(){
     return axios.get("/api/user_data")
   }
-
 };

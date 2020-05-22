@@ -13,7 +13,11 @@ import Visibility from '@material-ui/icons/Visibility';
 import VisibilityOff from '@material-ui/icons/VisibilityOff'
 import './style.css';
 import API from '../../utils/index';
+import { useHistory } from "react-router-dom"
 
+
+
+//material ui code for input boxes
 const useStyles = makeStyles((theme) => ({
     root: {
         display: 'flex',
@@ -32,6 +36,7 @@ const useStyles = makeStyles((theme) => ({
 
 
 export default function SignupForm() {
+    let history = useHistory();
 
     const classes = useStyles();
     const [values, setValues] = React.useState({
@@ -56,23 +61,34 @@ export default function SignupForm() {
         event.preventDefault();
     };
 
-    const handleFormSubmit= (e)=> {
+
+    //when signup button is clicked, post request made to input user into database
+    const handleFormSubmit = (e) => {
         e.preventDefault();
         console.log(values);
-        const userData={
+        const userData = {
             name: values.name,
             email: values.email,
             password: values.password
         }
-        
+
         API.signup(userData).then(results => {
             console.log(results)
-        })
-        
-      
-        
+            history.push("/login");
+        }).catch(loginError)
     }
 
+    //validation to allow user to know they have already made an account
+    function loginError(){
+        const userData = {
+            name: values.name,
+            email: values.email,
+            password: values.password
+        }
+        if (userData === userData){
+            alert('User already exists');
+        }  
+    }
     return (
         <div className="frame">
             <Grid item xs={12}>
@@ -116,18 +132,10 @@ export default function SignupForm() {
                         </FormControl>
                     </div>
                 </div>
-                {/* remove this p tag once button is working with database */}
-                <p>for right now this button goes back to login page with out sending info to database</p>
-
                 <button type="submit" className="btn btn-default" onClick={handleFormSubmit}>Sign Up</button>
                 <br />
-                <a class="google-btn" href="/auth/google">Sign up with Google</a> 
-                <br />
-                <p>Already have an account?<Link className="login-link" to="/login"> Login </Link></p>
+                <p>Already have an account?<Link className="login-link" to="/login"> LOGIN </Link></p>
             </Grid>
         </div>
     )
 };
-
-
-

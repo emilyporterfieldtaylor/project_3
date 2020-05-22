@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
@@ -11,19 +11,22 @@ import FormControlLabel from '@material-ui/core/FormControlLabel';
 import FormGroup from '@material-ui/core/FormGroup';
 import MenuItem from '@material-ui/core/MenuItem';
 import Menu from '@material-ui/core/Menu';
+import { useStoreContext } from '../../utils/GlobalState';
 import './style.css';
 
 const useStyles = makeStyles((theme) => ({
     root: {
-      flexGrow: 1,
+        flexGrow: 1,
+        marginBottom: '10px',
     },
     menuButton: {
-      marginRight: theme.spacing(2),
+        marginRight: theme.spacing(2),
     },
     title: {
-      flexGrow: 1,
-      fontFamily: 'Pangolin',
-      fontSize: '30px'
+        flexGrow: 1,
+        fontFamily: 'Pangolin',
+        fontSize: '36px',
+        // textAlign: 'center'
     },
     loggedIn: {
         flexGrow: 1,
@@ -34,38 +37,32 @@ const useStyles = makeStyles((theme) => ({
     }
 }));
 
-function Header() {
+function Header(props) {
+    const [state, dispatch] = useStoreContext();
+   
+    
     const classes = useStyles();
     const [auth, setAuth] = React.useState(true);
     const [anchorEl, setAnchorEl] = React.useState(null);
+
+    console.log(state)
+
     const open = Boolean(anchorEl);
-  
+
     const handleChange = (event) => {
-      setAuth(event.target.checked);
-    };
-  
-    const handleMenu = (event) => {
-      setAnchorEl(event.currentTarget);
-    };
-  
-    const handleClose = () => {
-      setAnchorEl(null);
+        setAuth(event.target.checked);
     };
 
+    const handleMenu = (event) => {
+        setAnchorEl(event.currentTarget);
+    };
+
+    const handleClose = () => {
+        setAnchorEl(null);
+    };
+   
     return (
         <div className={classes.root}>
-            <FormGroup>
-                <FormControlLabel
-                    control={<Switch checked={auth} onChange={handleChange} aria-label="login switch" />}
-                    label={auth ? 'Logout' : 'Login'}
-                />
-                {!auth && (
-                    <Typography className={classes.logout}>Log In</Typography>
-                )}
-                {auth && (
-                    <Typography className={classes.logout}>Log Out</Typography>
-                )}
-            </FormGroup>
             <AppBar position="static">
                 <Toolbar>
                     <Typography variant="h6" className={classes.title}>
@@ -85,20 +82,21 @@ function Header() {
                             </IconButton>
 
                             <Typography variant="subtitle2" className={classes.loggedIn}>
-                                Logged in as * user *!
-                            </Typography>
                             
+                                Logged in as {state.userData.name}!
+                            </Typography>
+
                             <Menu
                                 id="menu-appbar"
                                 anchorEl={anchorEl}
                                 anchorOrigin={{
-                                vertical: 'top',
-                                horizontal: 'right',
+                                    vertical: 'top',
+                                    horizontal: 'right',
                                 }}
                                 keepMounted
                                 transformOrigin={{
-                                vertical: 'top',
-                                horizontal: 'right',
+                                    vertical: 'top',
+                                    horizontal: 'right',
                                 }}
                                 open={open}
                                 onClose={handleClose}
@@ -108,6 +106,18 @@ function Header() {
                             </Menu>
                         </div>
                     )}
+                    <FormGroup>
+                        <FormControlLabel
+                            control={<Switch checked={auth} onChange={handleChange} aria-label="login switch" />}
+                            label={auth ? 'Logout' : 'Login'}
+                        />
+                        {/* {!auth && (
+                                <Typography className={classes.logout}>Log In</Typography>
+                            )} */}
+                        {/* {auth && (
+                                <Typography className={classes.logout}>Log Out</Typography>
+                            )} */}
+                    </FormGroup>
                 </Toolbar>
             </AppBar>
         </div>

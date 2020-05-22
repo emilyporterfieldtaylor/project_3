@@ -3,6 +3,8 @@ import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import Paper from '@material-ui/core/Paper';
 import { Link } from 'react-router-dom';
+import DeleteBtn from '../DeleteBtn';
+import API from '../../utils/index';
 
 
 
@@ -15,7 +17,17 @@ const useStyles = makeStyles((theme) => ({
       textAlign: 'left',
       color: theme.palette.text.secondary,
     },
+    friendlistUL: {
+        padding: '5px'
+    }
 }));
+
+function deleteFriends(id) {
+    API.deleteFriend(id).then(results => {
+        console.log(results)
+    })
+
+  }
 
 function FriendsList() {
     const classes = useStyles();
@@ -33,12 +45,13 @@ function FriendsList() {
         <div className={classes.root}>
             <Paper className={classes.paper}>
                 Friend List:
-                <ul>
+                <ul className={classes.friendlistUL}>
                     {friendsList.map(friend => (
                         <li key={friend.name}>
                             <Link to={`/users/${friend.id}`}>
                             {friend.name}
                             </Link>
+                            <DeleteBtn onClick={() => deleteFriends(friend._id)}/> 
                         </li>
                     ))}
                 </ul>

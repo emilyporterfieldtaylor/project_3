@@ -24,7 +24,6 @@ function App() {
           <Route exact path="/signup" component={Signup}/>
           <Route exact path="/hotitems" component={HotItems}/>
           <Route path="/users" component={userProfile}/>
-
         </Switch>
       </StoreProvider>
     </Router>
