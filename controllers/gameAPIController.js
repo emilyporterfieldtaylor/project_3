@@ -56,9 +56,11 @@ module.exports = {
     findUserById: async (req, res) => {
       const { userId } = req.params;
       db.User
-        .findById(req.params.userId)
-        .then(user => {status: user.name + ' successfully found!'})
-          // res.json(user))}
+        .findByPk(req.params.userId)
+        .then(user => {
+          // {status: user.name + ' successfully found!'}
+          res.json(user)
+        })
         .catch(err => console.log(err))
     },
     create: function(req, res) {

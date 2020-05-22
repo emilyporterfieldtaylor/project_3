@@ -35,23 +35,36 @@ function FriendsList(props) {
     // function getAllFriends() {
     useEffect(() => {
         const getFriends = async() => {
-            const response = await axios.get('/api/users');
+            const response = await axios.get(`/api/userfriends`);
             console.log('response: ', response.data)
-            for (let i = 0; i <response.data.length; i++) {
-                let friend = {
-                    email: response.data[i].email,
-                    id: response.data[i].id,
-                    name: response.data[i].name,
-                    password: response.data[i].password
+
+            for (let i = 0; i < response.data.length; i++) {
+                if (response.data[i].id === props.id) {
+                    console.log("test: ",response.data[i].id)
                 }
-                setFriends(friends => [...friends, friend]);
             }
+            // for (let i = 0; i <response.data.length; i++) {
+                // let friend = {
+                //     email: props.email,
+                //     id: props.id,
+                //     name: props.name,
+                //     password: props.password
+                // }
+                // setFriends(friends => [...friends, friend]);
+            // }
         }
         console.log(friends)
         getFriends();
     }, []);
 
-    // function getFriends(id) {
+    // function getFriends(id, name, email, password) {
+    //     let friend = {
+    //         id: {id},
+    //         name: {name},
+    //         email: {email},
+    //         password: {password}
+    //     }
+    //     console.log('friend; ',friend)
     //     const fetchFriends = async() => {
     //         const response = await axios.get(`/users/${id}`);
     //         let friendData = response.friendData;
@@ -80,7 +93,10 @@ function FriendsList(props) {
                         <li key={friend.name}>
                             {/* <button onClick={getFriends(friend.id)}></button> */}
                             <Link to={`/users/${friend.id}`}
-                                // onClick={getFriends(friend.id)}
+                                // onClick={getFriends(friend.id, friend.name, friend.email, friend.password)}
+                                // name={friend.name}
+                                // email={friend.email}
+                                // password={friend.password}
                             >
                             {friend.name}
                             </Link>
