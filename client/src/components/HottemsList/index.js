@@ -37,31 +37,33 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 const cards = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12];
+const gameArray = [];
 
-
- export default function HotItemsList(props) {
-      const classes = useStyles();
-      const [hotGames, setHotGames] = useState([])
-
-      useEffect(()  => {      
-        const fetchHotItems = async() => {
-            const response = await axios.get(`/api/hotitems/`);
-            for (var i=0;i<12;i++){
-              let responseString = response.data.elements[0].elements[i];
-              let hotItems = {
-                id: i,
-                title: responseString.elements[1].attributes.value, 
-                year: responseString.elements[2].attributes.value, 
-                footer: "ADD THIS TO MY COLLECTION",
-                image: responseString.elements[0].attributes.value,                  
-              };
-              console.log(responseString);
-              setHotGames(hotGames => [...hotGames, hotItems ]);
-            }
+export default function HotItemsList(props) {
+  const classes = useStyles();
+  const [hotGames, setHotGames] = useState([])
+  const handleClick = (e) => {
+    console.log("The link was clicked");
+  };
+  useEffect(() => {
+    const fetchHotItems = async () => {
+      const response = await axios.get(`/api/hotitems/`);
+      for (var i = 0; i < 12; i++) {
+        let responseString = response.data.elements[0].elements[i];
+        let hotItems = {
+          id: i,
+          title: responseString.elements[1].attributes.value,
+          year: responseString.elements[2].attributes.value,
+          footer: "ADD THIS TO MY COLLECTION",
+          image: responseString.elements[0].attributes.value,
         };
+        console.log(responseString);
+        setHotGames(hotGames => [...hotGames, hotItems]);
+      }
+    };
 
-        fetchHotItems();    
-    }, []);
+    fetchHotItems();
+  }, []);
 
 
   return (
@@ -75,13 +77,14 @@ const cards = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12];
               Welcome to À La Board!
             </Typography>
             <Typography variant="h5" align="center" color="textSecondary" paragraph>
-              To get you started, any of the boardgames below that you own to get you virtual collection started. 
+              To get you started, any of the boardgames below that you own to get you virtual collection started.
             </Typography>
             <div className={classes.heroButtons}>
               <Grid container spacing={2} justify="center">
                 <Grid item>
-                  <Button variant="contained" color="primary">
+                  <Button variant="contained" color="primary" ><a href="/home" onClick={handleClick}>
                     Skip this Step
+                    </a>
                   </Button>
                 </Grid>
               </Grid>
@@ -89,7 +92,7 @@ const cards = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12];
           </Container>
         </div>
         <Container className={classes.cardGrid} maxWidth="md">
-          
+
           <Grid container spacing={4}>
             {hotGames.map((game) => (
               <Grid item key={game.title} xs={12} sm={6} md={4}>
