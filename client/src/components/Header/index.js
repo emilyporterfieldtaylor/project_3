@@ -11,6 +11,7 @@ import FormControlLabel from '@material-ui/core/FormControlLabel';
 import FormGroup from '@material-ui/core/FormGroup';
 import MenuItem from '@material-ui/core/MenuItem';
 import Menu from '@material-ui/core/Menu';
+import { useStoreContext } from '../../utils/GlobalState';
 import './style.css';
 
 const useStyles = makeStyles((theme) => ({
@@ -37,6 +38,7 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 function Header() {
+    const [state, dispatch] = useStoreContext();
     const classes = useStyles();
     const [auth, setAuth] = React.useState(true);
     const [anchorEl, setAnchorEl] = React.useState(null);
@@ -75,7 +77,7 @@ function Header() {
                             </IconButton>
 
                             <Typography variant="subtitle2" className={classes.loggedIn}>
-                                Logged in as * user *!
+                            Logged in as {state.userData.name}!
                             </Typography>
 
                             <Menu
