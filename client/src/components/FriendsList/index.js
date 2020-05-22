@@ -46,7 +46,6 @@ function FriendsList(props) {
                 }
                 setFriends(friends => [...friends, friend]);
             }
-            // setFriends(friends => [...friends, friend]);
         }
         console.log(friends)
         getFriends();

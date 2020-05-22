@@ -48,14 +48,14 @@ module.exports = {
         }
     },
     getAllFriends: async (req, res) => {
-      db.KKUser
+      db.User
         .findAll()
         .then(users => res.json(users))
         .catch(err => console.log(err))
     },
     findUserById: async (req, res) => {
       const { userId } = req.params;
-      db.KKUser
+      db.User
         .findById(req.params.userId)
         .then(user => {status: user.name + ' successfully found!'})
           // res.json(user))}
