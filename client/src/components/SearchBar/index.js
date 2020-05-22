@@ -14,7 +14,8 @@ function SearchBar(props) {
                 </Grid>
 
                 <Grid item xs={4}>
-                    <SearchBGG setAppState={props.stateChange}/>
+                    <SearchBGG 
+                    setAppState={props.stateChange}/>
                 </Grid>
 
                 <Grid item xs={4}>

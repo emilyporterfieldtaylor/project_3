@@ -1,16 +1,19 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 // import './style.css';
 import { makeStyles } from '@material-ui/core/styles';
 import Paper from '@material-ui/core/Paper';
+import { useStoreContext } from '../../utils/GlobalState';
+import API from '../../utils/index'
+
 
 const useStyles = makeStyles((theme) => ({
     root: {
-      flexGrow: 1,
+        flexGrow: 1,
     },
     paper: {
-      padding: theme.spacing(2),
-      textAlign: 'left',
-      color: theme.palette.text.secondary,
+        padding: theme.spacing(2),
+        textAlign: 'left',
+        color: theme.palette.text.secondary,
     },
     boardgameUL: {
         padding: '5px'
@@ -18,7 +21,22 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 function BoardGameList() {
+    const [state, dispatch] = useStoreContext();
     const classes = useStyles();
+
+    //when user logs in, games are rendered 
+    useEffect(() => {
+        loadGames()
+    }, [])
+
+    
+    function loadGames() {
+        API.getUserGames().then(results=>{
+            console.log("Mygames",results.data)
+            dispatch({type: "GET_USER_GAMES", games: results.data })
+        })
+    }
+
 
     const userSavedGames = [
         // this will eventually be deleted
@@ -30,15 +48,17 @@ function BoardGameList() {
         { title: 'Scattergories', year: 1988 },
         { title: "Magic: The Gathering", year: 1993 },
         { title: 'Photosynthesis', year: 2017 },
-      ];
+    ];
+
 
     return (
         <div className={classes.root}>
             <Paper className={classes.paper}>
                 Board Game List:
                 <ul className={classes.boardgameUL}>
-                    {userSavedGames.map(game => (
-                        <li key={game.title}>{game.title} ({game.year})</li>
+                    {state.savedGames.map(game => (
+                        //pulling games from the database and rendering to the homepage
+                        <li key={game.id}>{game.name} ({game.yearPublished})</li>
                     ))}
                 </ul>
             </Paper>

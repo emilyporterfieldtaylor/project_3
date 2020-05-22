@@ -74,12 +74,13 @@ module.exports = {
         minPlayTime: req.body.minPlayTime,
         maxPlayTime: req.body.maxPlayTime,
         yearPublished: req.body.yearPublished,
+        UserId: req.body.UserId
       }
       db.Game.create(gameData)
-        .then(game => {
+        .then(game => {console.log(game)
           res.json({status: game.name + ' successfully entered into database!'});
         })
-        .catch(err => {
+        .catch(err => {console.log(err)
           res.send('controller error: ' + err)
         })
     },
