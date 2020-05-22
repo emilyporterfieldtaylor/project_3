@@ -104,6 +104,7 @@ function SearchBGG(props) {
                 minPlayTime: minPlayTime,
                 maxPlayTime: maxPlayTime,
                 yearPublished: yearPublished,
+               // UserId: UserId
             }
             setGamePrev(gamePrevObj);
             props.setAppState(gamePrevObj);
