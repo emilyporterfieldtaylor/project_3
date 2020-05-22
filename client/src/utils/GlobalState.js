@@ -3,7 +3,8 @@ import React, { useContext, useReducer } from "react";
 const initialState = {
     savedGames: [],
     currentGame: [],
-    userData: []
+    userData: [],
+    userFriends: []
     // {
     //   gameId: undefined,
     //   name: undefined,
@@ -40,6 +41,11 @@ const reducer = (state, action) => {
           return{
             ...state,
             savedGames: action.games
+          }
+        case "GET_USER_FRIENDS":
+          return{
+            ...state,
+            userFriends: action.friends
           }
     default:
         return state;

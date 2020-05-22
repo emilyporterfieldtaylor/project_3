@@ -37,8 +37,6 @@ const useStyles = makeStyles((theme) => ({
 
 export default function LoginBox() {
     const [state, dispatch] = useStoreContext();
-
-    const [state, dispatch] = useStoreContext();
     //console.log(useStoreContext());
 
     let history = useHistory();

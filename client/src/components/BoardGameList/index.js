@@ -38,17 +38,17 @@ function BoardGameList() {
     }
 
 
-    const userSavedGames = [
-        // this will eventually be deleted
-        // info should be pulled from database of a user's saved games 
-        { title: 'Settlers of Catan', year: 1995 },
-        { title: 'Crossbows and Catapults', year: 1983 },
-        { title: 'Cards Against Humanity', year: 2009 },
-        { title: 'Exploding Kittens', year: 2015 },
-        { title: 'Scattergories', year: 1988 },
-        { title: "Magic: The Gathering", year: 1993 },
-        { title: 'Photosynthesis', year: 2017 },
-    ];
+    // const userSavedGames = [
+    //     // this will eventually be deleted
+    //     // info should be pulled from database of a user's saved games 
+    //     { title: 'Settlers of Catan', year: 1995 },
+    //     { title: 'Crossbows and Catapults', year: 1983 },
+    //     { title: 'Cards Against Humanity', year: 2009 },
+    //     { title: 'Exploding Kittens', year: 2015 },
+    //     { title: 'Scattergories', year: 1988 },
+    //     { title: "Magic: The Gathering", year: 1993 },
+    //     { title: 'Photosynthesis', year: 2017 },
+    // ];
 
 
     return (

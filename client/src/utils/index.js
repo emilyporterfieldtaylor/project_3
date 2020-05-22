@@ -27,5 +27,8 @@ export default {
   },
   getUserGames:function(){
     return axios.get("/api/user_games")
+  },
+  getUserFriends:function(){
+    return axios.get("/api/users_friends")
   }
 };

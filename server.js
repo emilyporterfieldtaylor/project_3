@@ -36,7 +36,7 @@ app.get('/api/games/:game', gameController.gameController);
 app.get('/api/ids/:id', gameController.findById);
 app.get('/api/users/:id', gameController.findUserById);
 app.post('/api/gameData/', gameController.create);
-app.get('/api/userfriends', gameController.getAllFriends)
+// app.get('/api/userfriends', gameController.getAllFriends)
 
 
 //temporary: demonstrating passport
