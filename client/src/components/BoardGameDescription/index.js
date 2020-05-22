@@ -20,7 +20,7 @@ function BoardGameDescription(props) {
     const [state, dispatch] = useStoreContext();
     // console.log(state);
 
-    const saveGameFunction = async (e) => {
+    const saveGameFunction = (e) => {
         e.preventDefault();
         let gameData = {
             gameId: props.gameId,
@@ -34,12 +34,19 @@ function BoardGameDescription(props) {
             yearPublished: props.yearPublished,
             UserId: state.userData.id
         }
+        //recalling games
         API.saveGame(gameData)
-        // .then(res => {console.log("res: ",res)})
-        .then(res =>{console.log(res)
-            dispatch({type: "ADD_GAME", savedGames: res.data})})
-
-        .catch(err => console.log(err));
+        .then(results =>{
+           loadGames()
+        })
+        }
+       
+     //part of associating games to a specific user
+     const loadGames =()=> {
+        API.getUserGames().then(results=>{
+            console.log("My games",results.data)
+            dispatch({type: "GET_USER_GAMES", games: results.data })
+        })
     }
 
     const classes = useStyles();
