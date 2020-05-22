@@ -6,8 +6,8 @@ var passport = require("../config/passport");
 const Game = require('../models/games');
 
 function apiRoutes(app) {
-  app.get("/api/games", (req,res) =>{
-    axios.get('https://www.boardgamegeek.com/xmlapi',{
+  app.get("/api/games", (req, res) => {
+    axios.get('https://www.boardgamegeek.com/xmlapi', {
       "Access-Control-Allow-Headers": "Origin, X-Requested-With, Content-Type, Accept"
     })
       .then(function (response) {
@@ -16,10 +16,10 @@ function apiRoutes(app) {
       .catch(function (error) {
         console.log(error);
       }).finally(function () {
-  
+
       });
   })
- 
+
   // Using the passport.authenticate middleware with our local strategy.
   // If the user has valid login credentials, send them to the members page.
   // Otherwise the user will be sent an error
@@ -65,6 +65,18 @@ function apiRoutes(app) {
       });
     }
   });
+//allows games be tied to a user 
+  app.get("/api/user_games", function (req, res) {
+    db.Game.findAll({
+      where: {UserId: req.user.id}
+    })
+      .then(function (userData) {
+        res.json(userData)
+      })
+      .catch(function (err) {
+        res.status(401).json(err);
+      });
+  })
 }
 
 module.exports = apiRoutes;
