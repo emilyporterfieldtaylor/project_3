@@ -35,7 +35,7 @@ function BoardGameDescription(props) {
         }
         API.saveGame(gameData)
         // .then(res => {console.log("res: ",res)})
-        .then(res => dispatch({type: "ADD_BOOK", savedGames: res.data}))
+        .then(res => dispatch({type: "ADD_GAME", savedGames: res.data}))
         .catch(err => console.log(err));
     }
 

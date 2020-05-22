@@ -17,7 +17,7 @@ let bulletin = {
 }
 
 
-function App() {
+function Home() {
   const [appState, setAppState] = useState(null);
   // const [friendID, setFriendID] = useState('');
 
@@ -26,7 +26,7 @@ function App() {
       <Header />
       <h1 style={bulletin}>The Bulletin Board</h1>
       <SearchBar stateChange={setAppState}/>
-      
+
       <Grid container spacing={2}>
         <Grid item xs={3} >
           <BoardGameList />
@@ -61,4 +61,4 @@ function App() {
   );
 }
 
-export default App;
+export default Home;

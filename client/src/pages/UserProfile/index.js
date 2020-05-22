@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import Header from '../../components/Header';
 import BoardGameList from '../../components/BoardGameList';
 import { Link } from 'react-router-dom';
@@ -8,18 +8,7 @@ import Grid from '@material-ui/core/Grid';
 import './style.css';
 
 function userProfile() {
-    // const id = req.params.id;
-    // const [user, setUser] = useState([]);
-
-    // useEffect(()  => {      
-    //     const fetchData = async() => {
-    //         const response = await axios.get(`/users/${id}`);
-    //         console.log('user response: ',response)
-    //         setGames(games => [...games, game ]);
-    //     };
-
-    //     fetchData();    
-    // }, [id]);
+    // const [userState, setUserState] = useState(null);
 
     return(
         <div>
