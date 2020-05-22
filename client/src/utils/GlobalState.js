@@ -4,7 +4,8 @@ const initialState = {
     savedGames: [],
     currentGame: [],
     userData: [],
-    userFriends: []
+    userFriends: [],
+    usersData: []
     // {
     //   gameId: undefined,
     //   name: undefined,
@@ -46,6 +47,11 @@ const reducer = (state, action) => {
           return{
             ...state,
             userFriends: action.friends
+          }
+        case "GET_USER_DATA":
+          return{
+            ...state,
+            usersData: action.user
           }
     default:
         return state;

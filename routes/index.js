@@ -89,6 +89,18 @@ function apiRoutes(app) {
         res.status(401).json(err);
       });
   })
+
+  // app.get("/api/data", function (req, res) {
+  //   db.User.findAll({
+  //     where: {UserId: req.params.id}
+  //   })
+  //     .then(function (userData) {
+  //       res.json(userData)
+  //     })
+  //     .catch(function (err) {
+  //       res.status(401).json(err);
+  //     });
+  // })
 }
 
 module.exports = apiRoutes;

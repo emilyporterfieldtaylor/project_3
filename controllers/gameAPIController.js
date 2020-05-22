@@ -53,18 +53,18 @@ module.exports = {
         .then(users => res.json(users))
         .catch(err => console.log(err))
     },
-    findUserById: async (req, res) => {
-      // const { userId } = req.params;
-      db.User
-        .findAll({
-          where: { id: req.params.userId }
-        })
-        .then(user => {
-          // {status: user.name + ' successfully found!'}
-          res.json(user)
-        })
-        .catch(err => console.log(err))
-    },
+    // findUserById: async (req, res) => {
+    //   const { paramsID } = req.params;
+    //   db.User
+    //     .findAll({
+    //       where: { id: req.params.paramsID }
+    //     })
+    //     .then(user => {
+    //       // {status: user.name + ' successfully found!'}
+    //       res.json(user)
+    //     })
+    //     .catch(err => console.log(err))
+    // },
     create: function(req, res) {
       let gameData = {
         gameId: req.body.gameId,

@@ -30,5 +30,8 @@ export default {
   },
   getUserFriends:function(){
     return axios.get("/api/users_friends")
-  }
+  },
+  // loadUserData:function(){
+  //   return axios.get("/api/data")
+  // }
 };
