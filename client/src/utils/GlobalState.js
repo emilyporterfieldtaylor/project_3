@@ -30,7 +30,7 @@ const reducer = (state, action) => {
         console.log("INSIDE ADD GAME CASE"); //FOR DEBUG
         return {
             ...state,
-            savedGames: [action.game, ...state.savedGames]
+            savedGames: [ ...state.savedGames]
         }
         case "ADD_USERDATA":
           return{
