@@ -7,6 +7,7 @@ import Autocomplete from '@material-ui/lab/Autocomplete';
 import API from '../../utils/index';
 import { useStoreContext } from '../../utils/GlobalState';
 import SearchFriendList from '../../components/SearchFriendList';
+import { Link } from 'react-router-dom';
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -25,7 +26,11 @@ const useStyles = makeStyles((theme) => ({
 
 function SearchFriendsPage() {
     return (
+      <div>
+        <Link to='/home' style={{color:'white'}}>To the Bulletin Board</Link>
+
         <SearchFriendList />
+      </div>
     )
 }
 

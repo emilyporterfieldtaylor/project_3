@@ -53,6 +53,7 @@ module.exports = {
         .then(users => res.json(users))
         .catch(err => console.log(err))
     },
+
     // findUserById: async (req, res) => {
     //   const { paramsID } = req.params;
     //   db.User

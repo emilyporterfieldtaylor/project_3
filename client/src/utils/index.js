@@ -21,8 +21,8 @@ export default {
   },
   addFriend: function (friendData) {
     return (
-      axios.post("/api/add_friend", friendData),
-      alert("Friend added successfully!")
+      axios.post("/api/add_friend", friendData)
+      // alert("Friend added successfully!")
     )
   },
   logout: function(){

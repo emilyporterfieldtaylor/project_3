@@ -44,17 +44,18 @@ function apiRoutes(app) {
       });
   });
 
-  // app.post("/api/add_friend", function (req, res) {
-  //   db.Friend.create({
-  //     name: req.body.name
-  //   })
-  //   .then(function (friend) {
-  //     res.json(friend)
-  //   })
-  //   .catch(function(err) {
-  //     res.status(401).json(err)
-  //   })
-  // })
+  app.post("/api/add_friend", function (req, res) {
+    console.log('in routes'),
+    db.Friend.create({
+      name: req.body.name
+    })
+    .then(function (friend) {
+      res.json(friend)
+    })
+    .catch(function(err) {
+      res.status(401).json(err)
+    })
+  })
 
   // Route for logging user out
   app.get("/logout", function (req, res) {
