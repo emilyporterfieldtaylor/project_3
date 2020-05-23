@@ -8,11 +8,9 @@ export default {
   },
   saveGame: function(gameData) {
     console.log('running saveGame function!!!');
-    return  (
-      axios.post("/api/gameData", gameData),
-      alert("Game added successfully!")
-    )
+    return  axios.post("/api/gameData", gameData)
   },
+  
   signup: function(userData){
     return axios.post("/api/signup", userData)
   },

@@ -1,5 +1,4 @@
 import React from 'react';
-// import './style.css';
 import { makeStyles } from '@material-ui/core/styles';
 import Paper from '@material-ui/core/Paper';
 import API from '../../utils/index.js';
@@ -34,10 +33,19 @@ function BoardGameDescription(props) {
             yearPublished: props.yearPublished,
             UserId: state.userData.id
         }
+        //recalling games
         API.saveGame(gameData)
-        .then(res =>{console.log(res)
-            dispatch({type: "ADD_GAME", savedGames: res.data})})
-        .catch(err => console.log(err));
+        .then(results =>{
+           loadGames()
+        })
+        }
+       
+     //part of associating games to a specific user
+     const loadGames =()=> {
+        API.getUserGames().then(results=>{
+            console.log("My games",results.data)
+            dispatch({type: "GET_USER_GAMES", games: results.data })
+        })
     }
 
     const classes = useStyles();

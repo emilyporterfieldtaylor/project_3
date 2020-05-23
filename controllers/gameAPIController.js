@@ -80,7 +80,7 @@ module.exports = {
         UserId: req.body.UserId
       }
       db.Game.create(gameData)
-        .then(game => {console.log(game)
+        .then(game => {//console.log(game)
           res.json({status: game.name + ' successfully entered into database!'});
         })
         .catch(err => {console.log(err)
