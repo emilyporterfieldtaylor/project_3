@@ -32,12 +32,15 @@ const reducer = (state, action) => {
             savedGames: [action.game, ...state.savedGames]
         }
         case "ADD_USERDATA":
-  
-        return{
-          ...state,
-          userData: action.data
-        }
-
+          return{
+            ...state,
+            userData: action.data
+          }
+        case "GET_USER_GAMES":
+          return{
+            ...state,
+            savedGames: action.games
+          }
     default:
         return state;
   }

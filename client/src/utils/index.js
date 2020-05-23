@@ -24,5 +24,8 @@ export default {
   },
   userData:function(){
     return axios.get("/api/user_data")
+  },
+  getUserGames:function(){
+    return axios.get("/api/user_games")
   }
 };
