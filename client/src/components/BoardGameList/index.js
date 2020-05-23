@@ -22,6 +22,7 @@ const useStyles = makeStyles((theme) => ({
 
 function BoardGameList() {
     const [state, dispatch] = useStoreContext();
+    console.log(state, "state")
     const classes = useStyles();
 
     //when user logs in, games are rendered 
@@ -56,7 +57,7 @@ function BoardGameList() {
             <Paper className={classes.paper}>
                 Board Game List:
                 <ul className={classes.boardgameUL}>
-                    {/* {console.log(state.savedGames, "saved-games")} */}
+                    {console.log(state.savedGames, "saved-games")}
                     {state.savedGames.map(game => (
                         //pulling games from the database and rendering to the homepage
                         <li key={game.id}>{game.name} ({game.yearPublished})</li>

@@ -99,17 +99,21 @@ function apiRoutes(app) {
 
   //allows friends to be tied to a specific user
   app.get("/api/users_friends", function (req, res) {
-    db.Friend.findAll({
-      where: { UserId: req.user.id }
-    })
-      .then(function (userData) {
-        res.json(userData)
+    if (!req.user) {
+      // The user is not logged in, send back an empty object
+      res.json({});
+    } else {
+      db.Friend.findAll({
+        where: { UserId: req.user.id }
       })
-      .catch(function (err) {
-        res.status(401).json(err);
-      });
+        .then(function (userData) {
+          res.json(userData)
+        })
+        .catch(function (err) {
+          res.status(401).json(err);
+        });
+    }
   })
-
   app.get("/api/all_friends", function (req, res) {
     db.User.findAll({
       // where: { name: req.body }
