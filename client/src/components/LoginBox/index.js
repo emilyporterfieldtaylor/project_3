@@ -17,8 +17,6 @@ import { useStoreContext } from '../../utils/GlobalState';
 import './style.css';
 
 
-
-
 const useStyles = makeStyles((theme) => ({
     root: {
         display: 'flex',
