@@ -6,52 +6,38 @@ require("dotenv").config();
 // var User = require("../models/user");
 var db = require("../models");
  
-
 passport.use(
   new GoogleStrategy({
   //options for the google strategy
   clientID: process.env.clientID,
   clientSecret: process.env.clientSecret,
   callbackURL: "/auth/google/redirect"
-},(accessToken, refreshToken, profile, done) => {
+}, (accessToken, refreshToken, profile, done) => {
   //passport callback function
-  db.User.findOne({where: {email: profile.id}}).then((currentUser) => {
+  db.User.findOne({where: {email: profile.emails[0].value, provider: "google"}}).then((currentUser) => {
     if(currentUser) {
       // already have the user
       console.log("user is: ", currentUser)
       done(null, currentUser)
     } else {
-      // if not, create user in our db
-      db.User.create({
-        name: profile.displayName,
-        email: profile.id,
-        password: profile.id
-      })
-      .then((newUser) => {            //   IDK IF THIS IS NEEDED -- PROB
-        console.log("new user created: " + newUser);
-        done(null, newUser);
-        // If there's an error, handle it by throwing up a bootstrap alert
-      })
-      .catch(er => console.log(er));
+        // if not, create user in our db
+        db.User.create({
+          name: profile.displayName,
+          email: profile.emails[0].value,
+          password: profile.id, // I guess we'll have to make the id the password since you are requiring it in the model.
+                            // However, OAuth2 doesnt need a password. But since you are doing LocalStrategy as well this is OK for now. We will need to specify the provider "google" in our queries to seperate localstore users from OAuth
+          provider: "google",
+          profilePicture: profile.photos[0].value
+        })
+        .then((newUser) => {
+          console.log("new user created: " + newUser);
+          done(null, newUser);
+          // If there's an error, handle it by throwing up a bootstrap alert
+        }).catch(er => console.log(er));
       }
     })
   })
 )
-
-  // console.log("passport callback function fired");
-  // db.User.create({
-  //   name: profile.displayName,
-  //   email: profile.id,
-  //   password: profile.id
-  // })
-  // .then((newUser) => {            //   IDK IF THIS IS NEEDED -- PROB
-  //   console.log("new user created: " + newUser);
-  //   done(null, newUser);
-  //       // If there's an error, handle it by throwing up a bootstrap alert
-  //   })
-  //   .catch(er => console.log(er));
-  // })
-// );
 
 // Telling passport we want to use a Local Strategy. In other words, we want login with a username/email and password
 passport.use(new LocalStrategy(
