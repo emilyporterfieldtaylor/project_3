@@ -6,13 +6,11 @@ export default {
       await axios.get(`https://www.boardgamegeek.com/xmlapi/search?search=${query}`)
     )
   },
-  saveGame: async function(gameData) {
+  saveGame: function(gameData) {
     console.log('running saveGame function!!!');
-    return  (
-      await axios.post("/api/gameData", gameData),
-      alert("Game added successfully!")
-    )
+    return  axios.post("/api/gameData", gameData)
   },
+  
   signup: function(userData){
     return axios.post("/api/signup", userData)
   },
