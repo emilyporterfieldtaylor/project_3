@@ -6,10 +6,10 @@ export default {
       await axios.get(`https://www.boardgamegeek.com/xmlapi/search?search=${query}`)
     )
   },
-  saveGame: async function(gameData) {
+  saveGame: function(gameData) {
     console.log('running saveGame function!!!');
     return  (
-      await axios.post("/api/gameData", gameData),
+      axios.post("/api/gameData", gameData),
       alert("Game added successfully!")
     )
   },
@@ -18,6 +18,12 @@ export default {
   },
   login: function(userData){
     return axios.post("/api/login", userData)
+  },
+  addFriend: function (friendData) {
+    return (
+      axios.post("/api/add_friend", friendData),
+      alert("Friend added successfully!")
+    )
   },
   logout: function(){
     return axios.get("/logout")
@@ -34,4 +40,8 @@ export default {
   // loadUserData:function(){
   //   return axios.get("/api/data")
   // }
+
+  searchFriends: function() {
+    return axios.get("/api/all_friends")
+  }
 };

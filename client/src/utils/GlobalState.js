@@ -5,7 +5,9 @@ const initialState = {
     currentGame: [],
     userData: [],
     userFriends: [],
-    usersData: []
+    searchFriendArr: [],
+    newFriendArr: []
+    // usersData: []
     // {
     //   gameId: undefined,
     //   name: undefined,
@@ -48,11 +50,21 @@ const reducer = (state, action) => {
             ...state,
             userFriends: action.friends
           }
-        case "GET_USER_DATA":
-          return{
+        case "SEARCH_ALL_FRIENDS":
+          return {
             ...state,
-            usersData: action.user
+            searchFriendArr: action.searchFriend
           }
+        case "ADD_FRIEND": 
+          return {
+            ...state,
+            newFriendArr: action.newFriend
+          }
+        // case "GET_USER_DATA":
+        //   return{
+        //     ...state,
+        //     usersData: action.user
+        //   }
     default:
         return state;
   }

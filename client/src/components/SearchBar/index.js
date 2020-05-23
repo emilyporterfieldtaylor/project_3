@@ -4,6 +4,9 @@ import Grid from '@material-ui/core/Grid';
 import SearchFriendList from '../SearchFriendList';
 import SearchGameList from '../SearchGameList';
 import SearchBGG from '../SearchBGG';
+import { Link } from 'react-router-dom';
+import Paper from '@material-ui/core/Paper';
+
 
 function SearchBar(props) {
     return (
@@ -19,7 +22,12 @@ function SearchBar(props) {
                 </Grid>
 
                 <Grid item xs={4}>
-                    <SearchFriendList />
+                    <Paper>
+                    {/* <SearchFriendList /> */}
+                    <Link to="/search_friends">
+                        Want to Find More Friends?
+                    </Link>
+                    </Paper>
                 </Grid>
             </Grid>
         </div>

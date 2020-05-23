@@ -18,25 +18,6 @@ function UserProfile() {
     // console.log(paramsID)
     // console.log('params: ', params);
 
-    // const [state, dispatch] = useStoreContext();
-
-    // function getAllFriends() {
-    // useEffect(() => {
-    //     loadUserData();
-    // }, []);
-
-    // function loadUserData() {
-    //     API.loadUserData().then(results => {
-    //         console.log("userData: ", results.data)
-    //         dispatch({type: "GET_USER_DATA", user: results.data})
-    //     })
-    // }
-
-    // const loadUserData = async() => {
-    //     const response = await axios.get(`/api/users/${paramsID}`);
-    //     console.log('response: ', response);
-    // }
-
     return (
         <div>
             <Link to='/home' style={{color:'white'}}>To the Bulletin Board</Link>
@@ -45,21 +26,15 @@ function UserProfile() {
             
             <Grid container spacing={3} >
                 <Grid item xs={6}>
-                    {/* <div> */}
                     <img style={{margin: '10px'}} alt="userProfilePic" src="http://place-puppy.com/200x200"></img>
                         {/* // pull info from user database
                         // name={name}
                         // username={username}
                         // email={email}
                         // picture={image} */}
-                    <ul>
-                    {/* {state.usersData.map(user => ( */}
                         <li className='userInfo'>Name: ** name **</li>
                         <li className='userInfo'>Username: *user's username*</li>
                         <li className='userInfo'>Email???: ** email **</li>
-                    {/* ))} */}
-                    </ul>
-                    {/* </div> */}
                 </Grid>
 
                 <Grid item xs={6}>

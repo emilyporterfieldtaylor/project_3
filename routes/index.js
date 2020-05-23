@@ -44,6 +44,18 @@ function apiRoutes(app) {
       });
   });
 
+  // app.post("/api/add_friend", function (req, res) {
+  //   db.Friend.create({
+  //     name: req.body.name
+  //   })
+  //   .then(function (friend) {
+  //     res.json(friend)
+  //   })
+  //   .catch(function(err) {
+  //     res.status(401).json(err)
+  //   })
+  // })
+
   // Route for logging user out
   app.get("/logout", function (req, res) {
     req.logout();
@@ -88,6 +100,23 @@ function apiRoutes(app) {
       .catch(function (err) {
         res.status(401).json(err);
       });
+  })
+
+  app.get("/api/all_friends", function (req, res) {
+    db.User.findAll({
+      // where: { name: req.body }
+    })
+    .then(function (data) {
+      // for (let i=0; i < data.length; i++) {
+      //   if (data[i].name === req.body) {
+      //     res.json(data);
+      //   }
+      // }
+      res.json(data);
+    })
+    .catch(function (err) {
+      res.status(401).json(err);
+    });
   })
 
   // app.get("/api/data", function (req, res) {

@@ -20,7 +20,7 @@ function BoardGameDescription(props) {
     const [state, dispatch] = useStoreContext();
     // console.log(state);
 
-    const saveGameFunction = async (e) => {
+    const saveGameFunction = (e) => {
         e.preventDefault();
         let gameData = {
             gameId: props.gameId,
@@ -35,10 +35,8 @@ function BoardGameDescription(props) {
             UserId: state.userData.id
         }
         API.saveGame(gameData)
-        // .then(res => {console.log("res: ",res)})
         .then(res =>{console.log(res)
             dispatch({type: "ADD_GAME", savedGames: res.data})})
-
         .catch(err => console.log(err));
     }
 
