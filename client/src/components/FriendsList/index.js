@@ -5,6 +5,8 @@ import Paper from '@material-ui/core/Paper';
 import { Link } from 'react-router-dom';
 import DeleteBtn from '../DeleteBtn';
 import API from '../../utils/index';
+import { useStoreContext } from '../../utils/GlobalState';
+
 const axios = require("axios");
 
 
@@ -30,28 +32,44 @@ function deleteFriends(id) {
 
 function FriendsList(props) {
     const classes = useStyles();
-    const [friends, setFriends] = useState([]);
+    // const [friends, setFriends] = useState([]);
+    const [state, dispatch] = useStoreContext();
 
     // function getAllFriends() {
     useEffect(() => {
-        const getFriends = async() => {
-            const response = await axios.get('/api/users');
-            console.log('response: ', response.data)
-            for (let i = 0; i <response.data.length; i++) {
-                let friend = {
-                    email: response.data[i].email,
-                    id: response.data[i].id,
-                    name: response.data[i].name,
-                    password: response.data[i].password
-                }
-                setFriends(friends => [...friends, friend]);
-            }
-        }
-        console.log(friends)
         getFriends();
     }, []);
 
-    // function getFriends(id) {
+    function getFriends() {
+        API.getUserFriends().then(results => {
+            console.log("myFriends: ", results.data)
+            dispatch({type: "GET_USER_FRIENDS", friends: results.data})
+        })
+    }
+
+    
+        // const response = await axios.get(`/api/users/${props.id}`);
+        // console.log('response: ', response.data)
+        // for (let i = 0; i <response.data.length; i++) {
+            // let friend = {
+            //     email: props.email,
+            //     id: props.id,
+            //     name: props.name,
+            //     password: props.password
+            // }
+            // setFriends(friends => [...friends, friend]);
+        // }
+    
+    // console.log(friends)
+
+    // function getFriends(id, name, email, password) {
+    //     let friend = {
+    //         id: {id},
+    //         name: {name},
+    //         email: {email},
+    //         password: {password}
+    //     }
+    //     console.log('friend; ',friend)
     //     const fetchFriends = async() => {
     //         const response = await axios.get(`/users/${id}`);
     //         let friendData = response.friendData;
@@ -76,12 +94,9 @@ function FriendsList(props) {
             <Paper className={classes.paper}>
                 Friend List:
                 <ul className={classes.friendlistUL}>
-                    {friends.map(friend => (
+                    {state.userFriends.map(friend => (
                         <li key={friend.name}>
-                            {/* <button onClick={getFriends(friend.id)}></button> */}
-                            <Link to={`/users/${friend.id}`}
-                                // onClick={getFriends(friend.id)}
-                            >
+                            <Link to={`/users/${friend.id}`}>
                             {friend.name}
                             </Link>
                             <DeleteBtn onClick={() => deleteFriends(friend._id)}/> 

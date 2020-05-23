@@ -22,6 +22,8 @@ module.exports = function(sequelize, DataTypes) {
             type: DataTypes.STRING,
             allowNull: false
         },
+        // image: DataTypes.LONGBLOB,
+
         // favGame: DataTypes.ARRAY
     });
 
@@ -48,5 +50,5 @@ module.exports = function(sequelize, DataTypes) {
       User.addHook("beforeCreate", function(user) {
         user.password = bcrypt.hashSync(user.password, bcrypt.genSaltSync(10), null);
       });
-      return User;
+  return User;
 }
