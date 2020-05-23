@@ -1,7 +1,6 @@
 module.exports = function(sequelize, DataTypes) {
     var Friend = sequelize.define("Friend", {
-        name:{ 
-            
+        name:{  
         type:DataTypes.STRING,
         allowNull: false
         }
