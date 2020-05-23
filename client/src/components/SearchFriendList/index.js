@@ -83,9 +83,9 @@ function SearchFriendList(props) {
                     freeSolo
                     id="free-solo-2-demo"
                     disableClearable
-                    options = {
+                   /*  options = {
                         state.searchFriendArr.map(friend => friend.name)
-                    }
+                    } */
                     renderInput={(params) => (
                     <TextField
                         className={classes.searchFriendList}
@@ -119,7 +119,7 @@ function SearchFriendList(props) {
                                 }
                             }   
                         >
-                           <i class="fas fa-user-plus"></i>   Add Friend
+                           <i className="fas fa-user-plus"></i>   Add Friend
                         </button>    
                     </li>
 
