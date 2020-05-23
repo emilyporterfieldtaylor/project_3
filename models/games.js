@@ -11,13 +11,16 @@ module.exports = function (sequelize, DataTypes) {
   })
 
   Game.associate = function (models) {
-    // We're saying that a Post should belong to an Author
-    // A Post can't be created without an Author due to the foreign key constraint
+
+  //   // We're saying that a game should belong to a user
+  //   // A game can't be created without an user due to the foreign key constraint
     Game.belongsTo(models.User, {
       foreignKey: {
-        allowNull: false
-      }
-    });
-  }
-  return Game;
+        //may need to change back to true
+        allowNull: true
+    }
+  })
+}
+    return Game;
+  
 }

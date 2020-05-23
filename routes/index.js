@@ -44,6 +44,19 @@ function apiRoutes(app) {
       });
   });
 
+  app.post("/api/add_friend", function (req, res) {
+    console.log('in routes'),
+    db.Friend.create({
+      name: req.body.name
+    })
+    .then(function (friend) {
+      res.json(friend)
+    })
+    .catch(function(err) {
+      res.status(401).json(err)
+    })
+  })
+
   // Route for logging user out
   app.get("/logout", function (req, res) {
     req.logout();
@@ -58,6 +71,7 @@ function apiRoutes(app) {
     } else {
       // Otherwise send back the user's email and id
       // Sending back a password, even a hashed password, isn't a good idea
+
       res.json({
         email: req.user.email,
         id: req.user.id,
@@ -65,10 +79,28 @@ function apiRoutes(app) {
       });
     }
   });
-//allows games be tied to a user 
+  //allows games be tied to a specific user 
   app.get("/api/user_games", function (req, res) {
-    db.Game.findAll({
-      where: {UserId: req.user.id}
+    if (!req.user) {
+      // The user is not logged in, send back an empty object
+      res.json({});
+    } else {
+      db.Game.findAll({
+        where: { UserId: req.user.id }
+      })
+        .then(function (userData) {
+          res.json(userData)
+        })
+        .catch(function (err) {
+          res.status(401).json(err);
+        });
+    }
+  })
+
+  //allows friends to be tied to a specific user
+  app.get("/api/users_friends", function (req, res) {
+    db.Friend.findAll({
+      where: { UserId: req.user.id }
     })
       .then(function (userData) {
         res.json(userData)
@@ -77,6 +109,35 @@ function apiRoutes(app) {
         res.status(401).json(err);
       });
   })
+
+  app.get("/api/all_friends", function (req, res) {
+    db.User.findAll({
+      // where: { name: req.body }
+    })
+    .then(function (data) {
+      // for (let i=0; i < data.length; i++) {
+      //   if (data[i].name === req.body) {
+      //     res.json(data);
+      //   }
+      // }
+      res.json(data);
+    })
+    .catch(function (err) {
+      res.status(401).json(err);
+    });
+  })
+
+  // app.get("/api/data", function (req, res) {
+  //   db.User.findAll({
+  //     where: {UserId: req.params.id}
+  //   })
+  //     .then(function (userData) {
+  //       res.json(userData)
+  //     })
+  //     .catch(function (err) {
+  //       res.status(401).json(err);
+  //     });
+  // })
 }
 
 module.exports = apiRoutes;

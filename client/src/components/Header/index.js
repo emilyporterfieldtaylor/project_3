@@ -44,7 +44,7 @@ function Header() {
     const [auth, setAuth] = React.useState(true);
     const [anchorEl, setAnchorEl] = React.useState(null);
 
-    console.log(state)
+    //console.log(state)
 
     const open = Boolean(anchorEl);
 
