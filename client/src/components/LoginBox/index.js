@@ -65,14 +65,14 @@ export default function LoginBox() {
     };
 
     const handleFormLogin = (e) => {
-        console.log(values);
+       // console.log(values);
         const userData = {
             email: values.email,
             password: values.password
         }
 
         API.login(userData).then(results => {
-            console.log(results);
+            //console.log(results);
             dispatch({ type: "ADD_USERDATA", data: results.data })
             history.push("/home");
         })
