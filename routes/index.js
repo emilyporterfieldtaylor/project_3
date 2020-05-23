@@ -58,6 +58,7 @@ function apiRoutes(app) {
     } else {
       // Otherwise send back the user's email and id
       // Sending back a password, even a hashed password, isn't a good idea
+
       res.json({
         email: req.user.email,
         id: req.user.id,
@@ -65,22 +66,28 @@ function apiRoutes(app) {
       });
     }
   });
-//allows games be tied to a user 
+  //allows games be tied to a specific user 
   app.get("/api/user_games", function (req, res) {
-    db.Game.findAll({
-      where: {UserId: req.user.id}
-    })
-      .then(function (userData) {
-        res.json(userData)
+    if (!req.user) {
+      // The user is not logged in, send back an empty object
+      res.json({});
+    } else {
+      db.Game.findAll({
+        where: { UserId: req.user.id }
       })
-      .catch(function (err) {
-        res.status(401).json(err);
-      });
+        .then(function (userData) {
+          res.json(userData)
+        })
+        .catch(function (err) {
+          res.status(401).json(err);
+        });
+    }
   })
 
+  //allows friends to be tied to a specific user
   app.get("/api/users_friends", function (req, res) {
     db.Friend.findAll({
-      where: {UserId: req.user.id}
+      where: { UserId: req.user.id }
     })
       .then(function (userData) {
         res.json(userData)
