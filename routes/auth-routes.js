@@ -26,7 +26,9 @@ router.get("/login/failed", (req, res) => {
 // auth logout
 router.get("/logout", (req, res) => {
   //handle with passport
+  console.log("logging user out on server");
   req.logout();
+  res.clearCookie("logged_in");
   res.redirect(CLIENT_HOME_PAGE_URL);
 })
 
@@ -41,9 +43,12 @@ router.get("/google", passport.authenticate("google", {
 //   res.redirect("/home")
 // })
 router.get("/google/redirect", passport.authenticate("google", {
-  successRedirect: CLIENT_HOME_PAGE_URL,
   failureRedirect: "/auth/login/failed"
-  })
+  }),function(req, res) {
+    // Succesful authentication!
+    res.cookie('logged_in', true);
+    res.redirect(CLIENT_HOME_PAGE_URL);
+  }
 )
 
 module.exports = router;

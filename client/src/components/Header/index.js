@@ -11,8 +11,8 @@ import FormControlLabel from '@material-ui/core/FormControlLabel';
 import FormGroup from '@material-ui/core/FormGroup';
 import MenuItem from '@material-ui/core/MenuItem';
 import Menu from '@material-ui/core/Menu';
-import { useStoreContext } from '../../utils/GlobalState';
 import './style.css';
+import AuthManager from "../../utils/AuthManager";
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -37,11 +37,9 @@ const useStyles = makeStyles((theme) => ({
     }
 }));
 
-function Header() {
-    const [state, dispatch] = useStoreContext();
-  
+function Header() {  
     const classes = useStyles();
-    const [auth, setAuth] = React.useState(true);
+    const {user: auth, logout} = AuthManager();
     const [anchorEl, setAnchorEl] = React.useState(null);
 
     //console.log(state)
@@ -49,7 +47,7 @@ function Header() {
     const open = Boolean(anchorEl);
 
     const handleChange = (event) => {
-        setAuth(event.target.checked);
+        logout();
     };
 
     const handleMenu = (event) => {
@@ -81,7 +79,7 @@ function Header() {
                             </IconButton>
 
                             <Typography variant="subtitle2" className={classes.loggedIn}>
-                                Logged in as {state.userData.name}!
+                                Logged in as {auth.name}!
                             </Typography>
 
                             <Menu

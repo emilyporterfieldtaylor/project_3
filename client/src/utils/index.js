@@ -23,7 +23,7 @@ export default {
     )
   },
   logout: function(){
-    return axios.get("/logout")
+    return axios.get("/auth/logout")
   },
   userData:function(){
     return axios.get("/api/user_data")

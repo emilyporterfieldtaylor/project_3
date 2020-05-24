@@ -29,7 +29,7 @@ function Home() {
 
       <Grid container spacing={2}>
         <Grid item xs={3} >
-          <BoardGameList />
+          {/* <BoardGameList /> */}
         </Grid>
 
         <Grid item xs={6} >
@@ -52,9 +52,9 @@ function Home() {
         </Grid>
 
         <Grid item xs={3} >
-          <FriendsList 
+          {/* <FriendsList 
             // friendID={friendID.id}
-          />
+          /> */}
           <Links />
         </Grid>
       </Grid>
