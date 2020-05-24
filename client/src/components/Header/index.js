@@ -37,15 +37,14 @@ const useStyles = makeStyles((theme) => ({
     }
 }));
 
-function Header(props) {
+function Header() {
     const [state, dispatch] = useStoreContext();
-   
-    
+  
     const classes = useStyles();
     const [auth, setAuth] = React.useState(true);
     const [anchorEl, setAnchorEl] = React.useState(null);
 
-    console.log(state)
+    //console.log(state)
 
     const open = Boolean(anchorEl);
 
@@ -82,7 +81,6 @@ function Header(props) {
                             </IconButton>
 
                             <Typography variant="subtitle2" className={classes.loggedIn}>
-                            
                                 Logged in as {state.userData.name}!
                             </Typography>
 

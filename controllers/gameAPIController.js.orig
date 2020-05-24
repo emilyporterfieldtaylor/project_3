@@ -53,6 +53,18 @@ module.exports = {
         .then(users => res.json(users))
         .catch(err => console.log(err))
     },
+<<<<<<< HEAD
+    findUserById: async (req, res) => {
+      const { userId } = req.params;
+      db.User
+        .findById(req.params.userId)
+        .then(user => {status: user.name + ' successfully found!'})
+          // res.json(user))}
+        .catch(err => console.log(err))
+    },
+  create: function (req, res) {
+      // console.log('in the controller');
+=======
 
     // findUserById: async (req, res) => {
     //   const { paramsID } = req.params;
@@ -66,8 +78,8 @@ module.exports = {
     //     })
     //     .catch(err => console.log(err))
     // },
-  create: function (req, res) {
-      // console.log('in the controller');
+    create: function(req, res) {
+>>>>>>> master
       let gameData = {
         gameId: req.body.gameId,
         name: req.body.name,
@@ -82,13 +94,12 @@ module.exports = {
       }
       // console.log("controller data: ", gameData)
       db.Game.create(gameData)
-        .then(game => {
-          res.json({status: game.name + ' successfully entered into database!'});
-        })
-        .catch(err => {console.log(err)
-	res.send('controller error: ' + err)
-  	}),
-  	hotItems: async (req, res) => {
+<<<<<<< HEAD
+        // .create(req.body)
+        // console.log(gameData)
+      .catch(err => res.status(422).json(err));
+  },
+  hotItems: async (req, res) => {
     const root = 'https://boardgamegeek.com/xmlapi2/hot?type=boardgame';
     const output = await fetchXML(root);
       const json = JSON.parse(output);
@@ -104,5 +115,14 @@ module.exports = {
         res.json(json);
     }
   }
+=======
+        .then(game => {//console.log(game)
+          res.json({status: game.name + ' successfully entered into database!'});
+        })
+        .catch(err => {console.log(err)
+          res.send('controller error: ' + err)
+        })
+    },
+>>>>>>> master
 };
 

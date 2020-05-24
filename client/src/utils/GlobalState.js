@@ -1,26 +1,18 @@
 import React, { useContext, useReducer } from "react";
 
 const initialState = {
-    savedGames: [],
-    currentGame: [],
-    userData: []
-    // {
-    //   gameId: undefined,
-    //   name: undefined,
-    //   yearPublished: undefined,
-    //   description: undefined,
-    //   minPlayers: undefined,
-    //   maxPlayers: undefined,
-    //   minPlayTime: undefined,
-    //   maxPlayTime: undefined,
-    //   yearPublished: undefined,
-    // }
+  savedGames: [],
+  currentGame: [],
+  userData: [],
+  userFriends: [],
+  searchFriendArr: [],
+  newFriendArr: [],
 };
 
 // Think of this as our main Context API that 
 //will server as the Provider and Consumer to 
 //handling all our data in our entire application. Global State
-const StoreContext = React.createContext(); 
+const StoreContext = React.createContext();
 
 // Don't forget to import all of your actions!
 const reducer = (state, action) => {
@@ -29,21 +21,42 @@ const reducer = (state, action) => {
         console.log("INSIDE ADD GAME CASE"); //FOR DEBUG
         return {
             ...state,
-            savedGames: [action.game, ...state.savedGames]
+            savedGames: [...state.savedGames]
         }
         case "ADD_USERDATA":
-  
-        return{
-          ...state,
-          userData: action.data
-        }
-
-    default:
-        return state;
+          return{
+            ...state,
+            userData: action.data
+          }
+        case "GET_USER_GAMES":
+          return{
+            ...state,
+            savedGames: action.games
+          }
+        case "GET_USER_FRIENDS":
+          return{
+            ...state,
+            userFriends: action.friends
+          }
+        case "SEARCH_ALL_FRIENDS":
+          return {
+            ...state,
+            searchFriendArr: action.searchFriend
+          }
+        case "ADD_FRIEND": 
+          return {
+            ...state,
+            newFriendArr: action.newFriend
+          }
+        // case "GET_USER_DATA":
+        //   return{
+        //     ...state,
+        //     usersData: action.user
+        //   }
+        default:
+          return state;
   }
 };
-
-
 
 /*
   We need a way where our components can import our Provider 
@@ -73,3 +86,15 @@ const useStoreContext = () => {
 export { StoreProvider, useStoreContext }; // There are 2 things we are exposing from our Global Context API.
 // Provider
 // Consumer - aka useContext Hook
+
+  // {
+    //   gameId: undefined,
+    //   name: undefined,
+    //   yearPublished: undefined,
+    //   description: undefined,
+    //   minPlayers: undefined,
+    //   maxPlayers: undefined,
+    //   minPlayTime: undefined,
+    //   maxPlayTime: undefined,
+    //   yearPublished: undefined,
+    // }

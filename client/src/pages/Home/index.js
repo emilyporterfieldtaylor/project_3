@@ -46,6 +46,7 @@ function Home() {
               yearPublished={appState.yearPublished}
               saveButton={<button>Save to My Games</button>}
               image={appState.image}
+              UserId={appState.UserId}
             />
           </React.Fragment>}
         </Grid>

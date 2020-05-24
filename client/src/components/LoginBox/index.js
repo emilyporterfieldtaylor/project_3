@@ -17,26 +17,23 @@ import { useStoreContext } from '../../utils/GlobalState';
 import './style.css';
 
 
-
-
 const useStyles = makeStyles((theme) => ({
-    root: {
-        display: 'flex',
-        flexWrap: 'wrap',
-    },
-    margin: {
-        margin: theme.spacing(1),
-    },
-    withoutLabel: {
-        marginTop: theme.spacing(3),
-    },
-    textField: {
-        width: '25ch',
-    },
+  root: {
+    display: "flex",
+    flexWrap: "wrap",
+  },
+  margin: {
+    margin: theme.spacing(1),
+  },
+  withoutLabel: {
+    marginTop: theme.spacing(3),
+  },
+  textField: {
+    width: "25ch",
+  },
 }));
 
 export default function LoginBox() {
-
     const [state, dispatch] = useStoreContext();
     //console.log(useStoreContext());
 
@@ -66,14 +63,14 @@ export default function LoginBox() {
     };
 
     const handleFormLogin = (e) => {
-        console.log(values);
+       // console.log(values);
         const userData = {
             email: values.email,
             password: values.password
         }
 
         API.login(userData).then(results => {
-            console.log(results);
+            //console.log(results);
             dispatch({ type: "ADD_USERDATA", data: results.data })
             history.push("/home");
         })
@@ -124,8 +121,5 @@ export default function LoginBox() {
 
             </Grid>
         </div>
-    );
+  );
 }
-
-
-
