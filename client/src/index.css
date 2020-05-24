@@ -1,10 +1,23 @@
 body {
   margin: 0;
   padding: 0;
-  background-image: url('/images/diplomacy-illustration.jpg')
+  font-size: 22px;
 }
 
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+/* For all hyperlinks */
+a:link, a:visited { /* Unvisited link, visited link  */
+  color: #04a0a8; 
+  text-decoration: none;
+  font-weight: bold;
+}  
+
+/* Mouse over link, Mouse over link  */
+a:hover, a:active {
+  color:#018086;
+  text-decoration: none;
+}   

@@ -20,7 +20,7 @@ function BoardGamePreview(props) {
 
     return (
         <div className={classes.root} style={{marginTop: '20px'}}>
-            <Paper className={classes.paper}>
+            <Paper className={classes.paper} id="game-preview">
                 Board Game Preview:
             <Paper>
                 {props.image ? <img alt={props.name} src={props.image}></img> : <h5>Sorry, No Image Available</h5>}

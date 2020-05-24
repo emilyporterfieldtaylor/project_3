@@ -6,7 +6,7 @@ const initialState = {
   userData: [],
   userFriends: [],
   searchFriendArr: [],
-  newFriendArr: [],
+  newFriendArr: []
 };
 
 // Think of this as our main Context API that 
@@ -18,41 +18,42 @@ const StoreContext = React.createContext();
 const reducer = (state, action) => {
   switch (action.type) {
     case "ADD_GAME":
-        console.log("INSIDE ADD GAME CASE"); //FOR DEBUG
-        return {
-            ...state,
-            savedGames: [...state.savedGames]
-        }
-        case "ADD_USERDATA":
-          return{
-            ...state,
-            userData: action.data
-          }
-        case "GET_USER_GAMES":
-          return{
-            ...state,
-            savedGames: action.games
-          }
-        case "GET_USER_FRIENDS":
-          return{
-            ...state,
-            userFriends: action.friends
-          }
-        case "SEARCH_ALL_FRIENDS":
-          return {
-            ...state,
-            searchFriendArr: action.searchFriend
-          }
-        case "ADD_FRIEND": 
-          return {
-            ...state,
-            newFriendArr: action.newFriend
-          }
+      console.log("INSIDE ADD GAME CASE"); //FOR DEBUG
+      return {
+          ...state,
+          savedGames: [...state.savedGames]
+      }
+    case "ADD_USERDATA":
+      return {
+        ...state,
+        userData: action.data
+      }
+    case "GET_USER_GAMES":
+      return {
+        ...state,
+        savedGames: action.games
+      }
+    case "GET_USER_FRIENDS":
+      return {
+        ...state,
+        userFriends: action.friends
+      }
+    case "SEARCH_ALL_FRIENDS":
+      return {
+        ...state,
+        searchFriendArr: action.searchFriend
+      }
+    case "ADD_FRIEND": 
+      return {
+        ...state,
+        newFriendArr: action.newFriend
+      }
         // case "GET_USER_DATA":
         //   return{
         //     ...state,
-        //     usersData: action.user
+        //     usersData: action.userfsd
         //   }
+
         default:
           return state;
   }

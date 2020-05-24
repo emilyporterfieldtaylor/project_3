@@ -12,6 +12,7 @@ import userProfile from './pages/UserProfile';
 import { StoreProvider } from './utils/GlobalState';
 import SearchFriendsPage from './pages/SearchFriendsPage';
 import PlanEvent from './pages/PlanEvent';
+import Footer from './components/Footer';
 
 
 function App() {
@@ -29,6 +30,7 @@ function App() {
           <Route path="/search_friends" component={SearchFriendsPage} />
           <Route path="/planmyevent" component={PlanEvent}/>
         </Switch>
+        <Footer/>
       </StoreProvider>
     </Router>
   );

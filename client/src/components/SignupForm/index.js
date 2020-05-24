@@ -90,9 +90,11 @@ export default function SignupForm() {
         }  
     }
     return (
+        <div className="signup-main">
+            <img className="logo" src="/images/ALaBoardLogo1.png" alt="game logo"/>
         <div className="frame">
             <Grid item xs={12}>
-                <h2>Sign Up</h2>
+                <h2>Join the party!</h2>
                 <div className={classes.root}>
                     <div>
                         <TextField
@@ -136,6 +138,7 @@ export default function SignupForm() {
                 <br />
                 <p>Already have an account?<Link className="login-link" to="/login"> LOGIN </Link></p>
             </Grid>
+        </div>
         </div>
     )
 };

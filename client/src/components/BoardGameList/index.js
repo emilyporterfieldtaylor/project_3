@@ -4,6 +4,7 @@ import { makeStyles } from '@material-ui/core/styles';
 import Paper from '@material-ui/core/Paper';
 import { useStoreContext } from '../../utils/GlobalState';
 import API from '../../utils/index'
+import './list.css'
 
 
 const useStyles = makeStyles((theme) => ({
@@ -27,7 +28,7 @@ function BoardGameList() {
 
     //when user logs in, games are rendered 
     useEffect(() => {
-        loadGames()
+        loadGames();
     }, [])
 
     //part of associating games to a specific user
@@ -54,15 +55,20 @@ function BoardGameList() {
 
     return (
         <div className={classes.root}>
-            <Paper className={classes.paper}>
+            <Paper className={classes.paper} id="game-list">
                 Board Game List:
-                <ul className={classes.boardgameUL}>
-                    {/* {console.log(state.savedGames, "saved-games")} */}
-                    {state.savedGames.map(game => (
-                        //pulling games from the database and rendering to the homepage
-                        <li key={game.id}>{game.name} ({game.yearPublished})</li>
-                    ))}
-                </ul>
+                {state.savedGames ? (
+                    <ul className={classes.boardgameUL}>
+                        {state.savedGames.map(game => (
+                            //pulling games from the database and rendering to the homepage
+                            <li key={game.id}>{game.name} ({game.yearPublished})</li>
+                        ))}
+                    </ul>
+                ) : (
+                    <div>
+                        You Haven't Saved Any Games Yet!
+                    </div>
+                )}
             </Paper>
         </div>
     )
