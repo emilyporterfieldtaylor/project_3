@@ -10,6 +10,7 @@ import Signup from './pages/Signup';
 import userProfile from './pages/UserProfile';
 import { StoreProvider } from './utils/GlobalState';
 import SearchFriendsPage from './pages/SearchFriendsPage';
+import Footer from './components/Footer';
 
 
 function App() {
@@ -25,6 +26,7 @@ function App() {
           <Route path="/users" component={userProfile}/>
           <Route path="/search_friends" component={SearchFriendsPage} />
         </Switch>
+        <Footer/>
       </StoreProvider>
     </Router>
   );
