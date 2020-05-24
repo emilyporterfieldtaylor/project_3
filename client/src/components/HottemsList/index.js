@@ -37,9 +37,6 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const cards = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12];
-const gameArray = [];
-
 export default function HotItemsList(props) {
   const classes = useStyles();
   const [hotGames, setHotGames] = useState([])
@@ -56,6 +53,7 @@ export default function HotItemsList(props) {
           title: responseString.elements[1].attributes.value,
           year: responseString.elements[2].attributes.value,
           footer: "ADD THIS TO MY COLLECTION",
+          addEnabled: true,
           image: responseString.elements[0].attributes.value,
         };
         console.log(responseString);
@@ -71,8 +69,18 @@ export default function HotItemsList(props) {
     console.log(game.data);
 
     API.saveGame(game.data)
-    .then(results =>{
-      alert()
+    .then(results => {
+      const list = hotGames.map((game) => {
+        if (game.id === id) {
+          game.footer = "ADDED TO COLLECTION";
+          game.addEnabled = false;
+          return game;
+        } else {
+          return game;
+        }
+      });
+
+      setHotGames(list);
     })
   }
 
@@ -93,7 +101,7 @@ export default function HotItemsList(props) {
               <Grid container spacing={2} justify="center">
                 <Grid item>
                   <Button variant="contained" color="primary" ><a href="/home" onClick={handleClick}>
-                    Skip this Step
+                    Continue To Home Page
                     </a>
                   </Button>
                 </Grid>
@@ -121,7 +129,7 @@ export default function HotItemsList(props) {
                     </Typography>
                   </CardContent>
                   <CardActions>
-                    <Button onClick={() => {saveGameFunction(game.id)}} size="small" color="primary">
+                    <Button disabled={!game.addEnabled} onClick={() => {saveGameFunction(game.id)}} size="small" color="primary">
                       {game.footer}
                     </Button>
                   </CardActions>
