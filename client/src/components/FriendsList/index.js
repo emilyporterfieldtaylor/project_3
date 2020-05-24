@@ -6,7 +6,7 @@ import { Link } from 'react-router-dom';
 import DeleteBtn from '../DeleteBtn';
 import API from '../../utils/index';
 import { useStoreContext } from '../../utils/GlobalState';
-
+import './friend.css';
 const axios = require("axios");
 
 
@@ -91,7 +91,7 @@ function FriendsList(props) {
 
     return (
         <div className={classes.root}>
-            <Paper className={classes.paper}>
+            <Paper className={classes.paper} id="friend-list">
                 Friend List:
                 <ul className={classes.friendlistUL}>
                     {state.userFriends.map(friend => (
