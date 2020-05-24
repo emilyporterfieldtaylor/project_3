@@ -48,6 +48,11 @@ const reducer = (state, action) => {
         ...state,
         newFriendArr: action.newFriend
       }
+        case "LOGOUT":
+          return {
+            ...state,
+            userData: []
+          } 
         // case "GET_USER_DATA":
         //   return{
         //     ...state,

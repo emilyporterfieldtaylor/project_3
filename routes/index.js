@@ -24,6 +24,7 @@ function apiRoutes(app) {
   // If the user has valid login credentials, send them to the members page.
   // Otherwise the user will be sent an error
   app.post("/api/login", passport.authenticate("local"), function (req, res) {
+    res.cookie('logged_in', true);
     res.json(req.user);
   });
 
@@ -56,12 +57,6 @@ function apiRoutes(app) {
       res.status(401).json(err)
     })
   })
-
-  // Route for logging user out
-  app.get("/logout", function (req, res) {
-    req.logout();
-    res.redirect("/");
-  });
 
   // Route for getting some data about our user to be used client side
   app.get("/api/user_data", function (req, res) {
