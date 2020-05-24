@@ -1,7 +1,7 @@
 body {
   margin: 0;
   padding: 0;
-  font-size: 20px;
+  font-size: 22px;
 }
 
 code {
@@ -11,18 +11,13 @@ code {
 
 /* For all hyperlinks */
 a:link, a:visited { /* Unvisited link, visited link  */
-  color: #2d4865; 
+  color: #04a0a8; 
   text-decoration: none;
   font-weight: bold;
 }  
 
 /* Mouse over link, Mouse over link  */
 a:hover, a:active {
-  color:#536470;
+  color:#018086;
   text-decoration: none;
 }   
-
-/* login and signup button */
-.btn {
-  font-weight: bold;
-}
