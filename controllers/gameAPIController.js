@@ -47,62 +47,52 @@ module.exports = {
       res.json(json);
     }
   },
-    getAllFriends: async (req, res) => {
-      db.User
-        .findAll()
-        .then(users => res.json(users))
-        .catch(err => console.log(err))
-    },
+  getAllFriends: async (req, res) => {
+    db.User
+      .findAll()
+      .then(users => res.json(users))
+      .catch(err => console.log(err))
+  },
 
-    // findUserById: async (req, res) => {
-    //   const { paramsID } = req.params;
-    //   db.User
-    //     .findAll({
-    //       where: { id: req.params.paramsID }
-    //     })
-    //     .then(user => {
-    //       // {status: user.name + ' successfully found!'}
-    //       res.json(user)
-    //     })
-    //     .catch(err => console.log(err))
-    // },
+        hotItems: async (req, res) => {
+          const root = 'https://boardgamegeek.com/xmlapi2/hot?type=boardgame';
+          const output = await fetchXML(root);
+          const json = JSON.parse(output);
+          console.log("json: ", json);
+          console.log("output: ", output);
+          if (json.errors) {
+            res.status(500);
+            res.json({
+              content: 'Unable to get the data from boardgamegeek.com',
+              ...json
+            })
+          } else {
+            res.json(json);
+          }
+  },
   create: function (req, res) {
-      // console.log('in the controller');
-      let gameData = {
-        gameId: req.body.gameId,
-        name: req.body.name,
-        yearPublished: req.body.yearPublished,
-        description: req.body.description,
-        minPlayers: req.body.minPlayers,
-        maxPlayers: req.body.maxPlayers,
-        minPlayTime: req.body.minPlayTime,
-        maxPlayTime: req.body.maxPlayTime,
-        yearPublished: req.body.yearPublished,
-        UserId: req.body.UserId
-      }
-      // console.log("controller data: ", gameData)
-      db.Game.create(gameData)
-        .then(game => {
-          res.json({status: game.name + ' successfully entered into database!'});
-        })
-        .catch(err => {console.log(err)
-	res.send('controller error: ' + err)
-  	}),
-  	hotItems: async (req, res) => {
-    const root = 'https://boardgamegeek.com/xmlapi2/hot?type=boardgame';
-    const output = await fetchXML(root);
-      const json = JSON.parse(output);
-      console.log("json: ",json);
-      console.log("output: ", output);
-      if (json.errors) {
-        res.status(500);
-        res.json({
-        content: 'Unable to get the data from boardgamegeek.com',
-        ... json
-        })
-    } else {
-        res.json(json);
+    // console.log('in the controller');
+    let gameData = {
+      gameId: req.body.gameId,
+      name: req.body.name,
+      yearPublished: req.body.yearPublished,
+      description: req.body.description,
+      minPlayers: req.body.minPlayers,
+      maxPlayers: req.body.maxPlayers,
+      minPlayTime: req.body.minPlayTime,
+      maxPlayTime: req.body.maxPlayTime,
+      yearPublished: req.body.yearPublished,
+      UserId: req.body.UserId
     }
-  }
+    // console.log("controller data: ", gameData)
+    db.Game.create(gameData)
+      .then(game => {
+        res.json({ status: game.name + ' successfully entered into database!' });
+      })
+      .catch(err => {
+        console.log(err)
+        res.send('controller error: ' + err)
+      })
+    }
 };
 
