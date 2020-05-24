@@ -88,7 +88,7 @@ export default function LoginBox() {
                 <h2>Welcome, weary travelers.</h2>
                 <h2>Fear not, inside are friends</h2>
                 <div className={classes.root}>
-                    <div>
+                    <div className>
                         <TextField
                             label="Email"
                             id="filled-start-adornment"
@@ -121,9 +121,9 @@ export default function LoginBox() {
                 </div>
 
                 <button type="submit" className="btn" onClick={handleFormLogin}>Login</button>
-                <br />
+                <br/>
                 <a className="google-btn" href="/auth/google"><img className="google" src="./images/btn_google_signin_light_pressed_web@2x.png" alt="google-icon" /></a>
-                <br />
+                
                 <p>Don't have an account?<Link className="nav" to="/signup">CREATE ONE</Link></p>
 
             </Grid>
