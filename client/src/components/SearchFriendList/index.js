@@ -38,22 +38,14 @@ function SearchFriendList(props) {
     const classes = useStyles();
     const [state, dispatch] = useStoreContext();
 
-    // const friendsList = [
-    //     { title: 'Kendra Kwoka'},
-    //     { title: 'Eric Garcia'},
-    //     { title: 'Caitlin Huber'},
-    //     { title: 'Leander Turner'},
-    //     { title: 'Emily Taylor'},
-    //   ];
-
-    // const [searchedFor, setSearchedFor] = useState([]);
+    const [searchedFor, setSearchedFor] = useState([]);
     // const [games, setGames] = useState([]);
     // const [query, setQuery] = useState('catan');
     // const [search, setSearch] = useState('');
     // const [friendarr, setFriend] = useState({});
 
-
     useEffect(() => {
+        console.log('sate: ',state.searchFriendArr)
         searchFriends();
     }, []);
 
@@ -70,6 +62,8 @@ function SearchFriendList(props) {
         }
         API.addFriend(friendData)
         .then(res => {
+            console.log('sate: ',state.searchFriendArr)
+
             dispatch({type: "ADD_FRIEND", newFriend: res.data})
         })
         .catch(err => console.log(err))
@@ -94,17 +88,17 @@ function SearchFriendList(props) {
                         // margin="normal"
                         variant="outlined"
                         // value={query}
-                        // onChange = { 
-                        //     event => {
-                        //         setQuery(event.target.value);
-                        //         setSearchedFor(event.target.value)
-                        //     }
-                        // }
+                        onChange = { 
+                            event => {
+                                // setQuery(event.target.value);
+                                setSearchedFor(event.target.value)
+                            }
+                        }
                         InputProps={{ ...params.InputProps, type: 'search' }}
                     />
                     )}
                 />
-                {state.searchFriendArr.map(friend =>  (
+                {state.searchedFor.map(friend =>  (
                     <li 
                     key={friend.name}
                     className={classes.li}

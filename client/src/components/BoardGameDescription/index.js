@@ -35,7 +35,7 @@ function BoardGameDescription(props) {
         }
         //recalling games
         API.saveGame(gameData)
-        .then(results =>{
+        .then(() => {
            loadGames()
         })
         }
