@@ -14,6 +14,20 @@ const fetchXML = async (root, game) => {
   }
 }
 
+// Searches the list for the item name, and then returns value or text depending if that element has attributes or elements
+const getAttributeValue = (list, name) => {
+  var index = list.findIndex(item => (item.name === name));
+  if (index === -1){
+    console.log("Missing element: " + name);
+  }
+  else if (typeof  list[index].attributes != "undefined") {
+    return list[index].attributes.value;
+  }
+  else if (typeof list[index].elements != "undefined") {
+    return list[index].elements[0].text;
+  }
+}
+
 module.exports = {
   gameController: async (req, res) => {
     const { game } = req.params;
@@ -62,14 +76,14 @@ module.exports = {
       let game = json.elements[0].elements[0];
       let gameData = {
         gameId: game.attributes.id,
-        name: game.elements[2].attributes.value,
-        image: game.elements[1].elements[0].text,
-        description: game.elements[3].elements[0].text,
-        minPlayers: game.elements[5].attributes.value,
-        maxPlayers: game.elements[6].attributes.value,
-        minPlayTime: game.elements[9].attributes.value,
-        maxPlayTime: game.elements[10].attributes.value,
-        yearPublished: game.elements[4].attributes.value
+        name: getAttributeValue(game.elements, "name"),
+        image: getAttributeValue(game.elements, "image"),
+        description: getAttributeValue(game.elements, "description"),
+        minPlayers: getAttributeValue(game.elements, "minplayers"),
+        maxPlayers: getAttributeValue(game.elements, "maxplayers"),
+        minPlayTime: getAttributeValue(game.elements, "minplaytime"),
+        maxPlayTime: getAttributeValue(game.elements, "maxplaytime"),
+        yearPublished: getAttributeValue(game.elements, "yearpublished"),
       }
       console.log(gameData);
       res.json(gameData);
