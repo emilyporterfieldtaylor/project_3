@@ -9,6 +9,7 @@ import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
+import API from '../../utils/index.js';
 const axios = require("axios");
 
 const useStyles = makeStyles((theme) => ({
@@ -51,7 +52,7 @@ export default function HotItemsList(props) {
       for (var i = 0; i < 12; i++) {
         let responseString = response.data.elements[0].elements[i];
         let hotItems = {
-          id: i,
+          id: responseString.attributes.id,
           title: responseString.elements[1].attributes.value,
           year: responseString.elements[2].attributes.value,
           footer: "ADD THIS TO MY COLLECTION",
@@ -65,6 +66,15 @@ export default function HotItemsList(props) {
     fetchHotItems();
   }, []);
 
+  const saveGameFunction = async (id) => {
+    const game = await axios.get(`/api/gameById/` + id);
+    console.log(game.data);
+
+    API.saveGame(game.data)
+    .then(results =>{
+      alert()
+    })
+  }
 
   return (
     <React.Fragment>
@@ -111,7 +121,7 @@ export default function HotItemsList(props) {
                     </Typography>
                   </CardContent>
                   <CardActions>
-                    <Button size="small" color="primary">
+                    <Button onClick={() => {saveGameFunction(game.id)}} size="small" color="primary">
                       {game.footer}
                     </Button>
                   </CardActions>

@@ -47,6 +47,34 @@ module.exports = {
       res.json(json);
     }
   },
+  findByBggId: async (req, res) => {
+    const { id } = req.params;
+    const root = 'https://www.boardgamegeek.com/xmlapi2/thing?id=';
+    const output = await fetchXML(root, id);
+    const json = JSON.parse(output);
+    if (json.errors) {
+      res.status(500);
+      res.json({
+        content: 'Unable to get the data from boardgamegeek.com',
+        ...json
+      })
+    } else {
+      let game = json.elements[0].elements[0];
+      let gameData = {
+        gameId: game.attributes.id,
+        name: game.elements[2].attributes.value,
+        image: game.elements[1].elements[0].text,
+        description: game.elements[3].elements[0].text,
+        minPlayers: game.elements[5].attributes.value,
+        maxPlayers: game.elements[6].attributes.value,
+        minPlayTime: game.elements[9].attributes.value,
+        maxPlayTime: game.elements[10].attributes.value,
+        yearPublished: game.elements[4].attributes.value
+      }
+      console.log(gameData);
+      res.json(gameData);
+    }
+  },
   getAllFriends: async (req, res) => {
     db.User
       .findAll()
@@ -54,21 +82,19 @@ module.exports = {
       .catch(err => console.log(err))
   },
 
-        hotItems: async (req, res) => {
-          const root = 'https://boardgamegeek.com/xmlapi2/hot?type=boardgame';
-          const output = await fetchXML(root);
-          const json = JSON.parse(output);
-          console.log("json: ", json);
-          console.log("output: ", output);
-          if (json.errors) {
-            res.status(500);
-            res.json({
-              content: 'Unable to get the data from boardgamegeek.com',
-              ...json
-            })
-          } else {
-            res.json(json);
-          }
+  hotItems: async (req, res) => {
+    const root = 'https://boardgamegeek.com/xmlapi2/hot?type=boardgame';
+    const output = await fetchXML(root);
+    const json = JSON.parse(output);
+    if (json.errors) {
+      res.status(500);
+      res.json({
+        content: 'Unable to get the data from boardgamegeek.com',
+        ...json
+      })
+    } else {
+      res.json(json);
+    }
   },
   create: function (req, res) {
     // console.log('in the controller');
@@ -93,6 +119,6 @@ module.exports = {
         console.log(err)
         res.send('controller error: ' + err)
       })
-    }
+  }
 };
 
