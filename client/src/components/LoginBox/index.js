@@ -21,6 +21,10 @@ const useStyles = makeStyles((theme) => ({
     root: {
         display: 'flex',
         flexWrap: 'wrap',
+        flexGrow: 1,
+        fontFamily: 'Pangolin',
+        color: 'beige',
+        textAlign: 'center'
     },
     margin: {
         margin: theme.spacing(1),
@@ -77,9 +81,12 @@ export default function LoginBox() {
     }
     
     return (
+        <div className="main">
+            <img className="logo" src="/images/ALaBoardLogo1.png" alt="game logo"/>
         <div className="frame">
             <Grid item xs={12}>
-                <h2>LOGIN</h2>
+                <h2>Welcome, weary travelers.</h2>
+                <h2>Fear not, inside are friends</h2>
                 <div className={classes.root}>
                     <div>
                         <TextField
@@ -120,6 +127,7 @@ export default function LoginBox() {
                 <p>Don't have an account?<Link className="nav" to="/signup">CREATE ONE</Link></p>
 
             </Grid>
+        </div>
         </div>
     );
 }
