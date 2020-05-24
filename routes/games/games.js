@@ -11,4 +11,8 @@ router
   .get(gameAPIController.findById)
   .delete(gameAPIController.remove);
 
+// Matches with "/api/games/hotitems"
+router.route("/hotitems")
+.get(gameAPIController.hotitems);
+
 module.exports = router;

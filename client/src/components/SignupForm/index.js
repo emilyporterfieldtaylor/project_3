@@ -74,7 +74,7 @@ export default function SignupForm() {
 
         API.signup(userData).then(results => {
             console.log(results)
-            history.push("/login");
+            history.push("/hotitems");
         }).catch(loginError)
     }
 
@@ -132,7 +132,7 @@ export default function SignupForm() {
                         </FormControl>
                     </div>
                 </div>
-                <button type="submit" className="btn btn-default" onClick={handleFormSubmit}>Sign Up</button>
+                <button type="submit" className="btn btn-default" onClick={handleFormSubmit}><a href="/hotitems" >Sign Up</a></button>
                 <br />
                 <p>Already have an account?<Link className="login-link" to="/login"> LOGIN </Link></p>
             </Grid>
