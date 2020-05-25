@@ -55,6 +55,10 @@ Leandra Turner
 <a href="https://www.freepik.com/free-photos-vectors/background">Background photo created by freepik - www.freepik.com</a>
 
 
+https://hipwallpaper.com/settlers-wallpapers/
+
+https://news.gamestart.asia/review-everdell/
+
 ### BADGES
 
 

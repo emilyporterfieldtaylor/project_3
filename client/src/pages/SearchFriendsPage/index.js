@@ -8,6 +8,7 @@ import API from '../../utils/index';
 import { useStoreContext } from '../../utils/GlobalState';
 import SearchFriendList from '../../components/SearchFriendList';
 import { Link } from 'react-router-dom';
+import './searchFriendsPage.css';
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -17,18 +18,14 @@ const useStyles = makeStyles((theme) => ({
       padding: theme.spacing(2),
       textAlign: 'center',
       color: theme.palette.text.secondary,
-    },
-    searchFriendList: {
-        fontSize: '10px'
     }
 }));
 
 
 function SearchFriendsPage() {
     return (
-      <div>
-        <Link to='/home' style={{color:'white'}}>To the Bulletin Board</Link>
-
+      <div className="main-friend-page">
+        <Link to='/home'>To the Bulletin Board</Link>
         <SearchFriendList />
       </div>
     )

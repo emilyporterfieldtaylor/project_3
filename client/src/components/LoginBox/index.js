@@ -14,7 +14,7 @@ import { makeStyles } from '@material-ui/core/styles';
 import API from '../../utils/index';
 import { useHistory } from 'react-router-dom';
 import { useStoreContext } from '../../utils/GlobalState';
-import './style.css';
+import './loginBox.css';
 
 
 const useStyles = makeStyles((theme) => ({
