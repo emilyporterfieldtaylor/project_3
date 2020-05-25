@@ -75,11 +75,13 @@ export default function SignupForm() {
         API.signup(userData).then(results => {
             console.log(results)
             history.push("/hotitems");
+            console.log("words");
         }).catch(loginError)
     }
 
     //validation to allow user to know they have already made an account
     function loginError(){
+        alert("An error occurred");
         const userData = {
             name: values.name,
             email: values.email,

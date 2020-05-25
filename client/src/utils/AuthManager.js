@@ -17,7 +17,7 @@ const AuthManager = () => {
             try {
                 const user = await API.userData();
                 dispatch({type: "ADD_USERDATA", data: user.data});
-                history.push("/home");
+                // history.push("/home");
             } catch (error) {
                 console.log("Error With User Data API", error);
             }

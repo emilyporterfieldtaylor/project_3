@@ -50,7 +50,7 @@ require("./routes")(app);//keep this
 app.get('/api/games/:game', gameController.gameController);
 app.get('/api/ids/:id', gameController.findById);
 app.get('/api/gameById/:id', gameController.findByBggId);
-app.get('/api/hotitems', gameController.hotItems)
+app.get('/api/hotitems', gameController.hotItems);
 // app.get('/api/users/:id', gameController.findUserById);
 app.post('/api/gameData/', gameController.create);
 // app.get('/api/userfriends', gameController.getAllFriends)
