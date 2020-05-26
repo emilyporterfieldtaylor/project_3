@@ -6,6 +6,7 @@ import TextField from '@material-ui/core/TextField';
 import Autocomplete from '@material-ui/lab/Autocomplete';
 import API from '../../utils/index';
 import { useStoreContext } from '../../utils/GlobalState';
+import './searchFriendList.css';
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -13,23 +14,6 @@ const useStyles = makeStyles((theme) => ({
     },
     paper: {
       padding: theme.spacing(4),
-    },
-    li: {
-        textAlign: 'center',
-        color: 'darkred',
-        fontFamily: 'Comic Sans MS, cursive, sans-serif',
-        listStyleType: 'none',
-        borderBottom: '1px solid black'
-    },
-    button: {
-        margin: '10px'
-    },
-    searchFriendList: {
-        fontSize: '10px'
-    },
-    header : {
-        color: 'salmon',
-        textAlign: 'center'
     }
 }));
 
@@ -71,8 +55,8 @@ function SearchFriendList(props) {
 
     return (
         <div className={classes.root}>
-            <h1 className={classes.header}>Search For New Friends!</h1>
-            <Paper className={classes.paper}>
+            <h1 id="srch-friend-title" className={classes.header}>Search For New Friends!</h1>
+            <Paper id="srch-friend" className={classes.paper}>
                 <Autocomplete
                     freeSolo
                     id="free-solo-2-demo"
@@ -86,7 +70,7 @@ function SearchFriendList(props) {
                         {...params}
                         label="Search Friend List"
                         // margin="normal"
-                        variant="outlined"
+                        variant="filled"
                         // value={query}
                         onChange = { 
                             event => {
@@ -98,14 +82,14 @@ function SearchFriendList(props) {
                     />
                     )}
                 />
-                {/* {state.searchedFor.map(friend =>  (
-                    <li 
+                {state.searchFriendArr.map(friend =>  (
+                    <li  id="srch-friend-li"
                     key={friend.name}
                     className={classes.li}
                     value={friend.name}
                     >
                         {friend.name}
-                        <button 
+                        <button id="add-friend"
                             className={classes.button}
                             onClick={() =>  {
                                 // setFriend(friend.name);

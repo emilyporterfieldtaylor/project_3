@@ -1,20 +1,13 @@
 import React, { useState } from 'react';
 import Grid from '@material-ui/core/Grid';
 import SearchBar from '../../components/SearchBar/index';
-import BoardGameList from '../../components/BoardGameList/index';
+//import BoardGameList from '../../components/BoardGameList/index';
 import FriendsList from '../../components/FriendsList/index';
 import BoardGamePreview from '../../components/BoardGamePreview/index';
 import BoardGameDescription from '../../components/BoardGameDescription/index';
 import Links from '../../components/ExternalLinks/index';
 import Header from '../../components/Header';
-import { Link } from 'react-router-dom';
-
-// let classes = {
-let bulletin = {
-  textAlign: 'center',
-  color: 'grey',
-  textShadow: '1px 1px white'
-}
+import './home.css';
 
 
 function Home() {
@@ -22,9 +15,9 @@ function Home() {
   // const [friendID, setFriendID] = useState('');
 
   return (
-    <div className="App">
+    <div className="main-home">
       <Header />
-      <h1 style={bulletin}>The Bulletin Board</h1>
+      <h1 className="bulletin">The Bulletin Board</h1>
       <SearchBar stateChange={setAppState}/>
 
       <Grid container spacing={2}>

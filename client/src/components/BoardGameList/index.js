@@ -25,17 +25,22 @@ function BoardGameList() {
     const [state, dispatch] = useStoreContext();
    // console.log(state, "state")
     const classes = useStyles();
-
     //when user logs in, games are rendered 
     useEffect(() => {
-        loadGames();
+        loadGames()
     }, [])
 
     //part of associating games to a specific user
     function loadGames() {
         API.getUserGames().then(results=>{
+<<<<<<< HEAD
            // console.log("My games",results.data)
             dispatch({type: "GET_USER_GAMES", games: results.data })
+=======
+            console.log("function loadgames",results.data)
+           { dispatch({type: "GET_USER_GAMES", games: results.data })
+        }
+>>>>>>> 837cc8d191f9498173ad7211bef8213ff6832c69
         })
     }
 
@@ -52,13 +57,14 @@ function BoardGameList() {
          { title: 'Photosynthesis', year: 2017 },
      ];
 
-
+   
     return (
         <div className={classes.root}>
             <Paper className={classes.paper} id="game-list">
                 Board Game List:
                 {state.savedGames ? (
                     <ul className={classes.boardgameUL}>
+<<<<<<< HEAD
                         {state.savedGames.map(game => (
                             //pulling games from the database and rendering to the homepage
                             <li key={game.id}>{game.name} ({game.yearPublished})</li>
@@ -69,6 +75,14 @@ function BoardGameList() {
                         You Haven't Saved Any Games Yet!
                     </div>
                 )}
+=======
+                     {console.log(state.savedGames, "state.saved-games")} 
+                    {state.savedGames.map(game => (
+                        //pulling games from the database and rendering to the homepage
+                        <li key={game.id}>{game.name} ({game.yearPublished})</li>
+                    ))}
+                </ul>
+>>>>>>> 837cc8d191f9498173ad7211bef8213ff6832c69
             </Paper>
         </div>
     )

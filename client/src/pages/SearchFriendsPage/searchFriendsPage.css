@@ -1,0 +1,10 @@
+.main-friend-page {
+    background-image: url('/images/settlers.jpg');
+    height: 100vH;
+    background-position: center;
+    background-size: cover;
+}
+
+.main-friend-page a {
+    color: #a98c6c;  
+}

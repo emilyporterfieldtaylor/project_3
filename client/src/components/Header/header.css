@@ -1,0 +1,18 @@
+#appBar {
+    margin: 20px;
+}
+
+.MuiToolbar-root {
+    background-color: #80aec0 !important;
+}
+
+.logo-two {
+    width: 15%;
+    margin-left: 44rem; 
+}
+
+/* current user name */
+.MuiTypography-root {
+    font-size: 18px !important;
+    width: 70%;
+}

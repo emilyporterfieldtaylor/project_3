@@ -11,7 +11,7 @@ code {
 
 /* For all hyperlinks */
 a:link, a:visited { /* Unvisited link, visited link  */
-  color: #04a0a8; 
+  color: #9b9931; 
   text-decoration: none;
   font-weight: bold;
 }  

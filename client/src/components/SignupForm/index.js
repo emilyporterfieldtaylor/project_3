@@ -11,7 +11,7 @@ import FormControl from '@material-ui/core/FormControl';
 import TextField from '@material-ui/core/TextField';
 import Visibility from '@material-ui/icons/Visibility';
 import VisibilityOff from '@material-ui/icons/VisibilityOff'
-import './style.css';
+import './signup.css';
 import API from '../../utils/index';
 import { useHistory } from "react-router-dom"
 
@@ -94,9 +94,9 @@ export default function SignupForm() {
     return (
         <div className="signup-main">
             <img className="logo" src="/images/ALaBoardLogo1.png" alt="game logo"/>
-        <div className="frame">
+        <div className="signup-frame">
             <Grid item xs={12}>
-                <h2>Join the party!</h2>
+                <h2 className="signup-h2">Join the party!</h2>
                 <div className={classes.root}>
                     <div>
                         <TextField

@@ -11,8 +11,9 @@ import FormControlLabel from '@material-ui/core/FormControlLabel';
 import FormGroup from '@material-ui/core/FormGroup';
 import MenuItem from '@material-ui/core/MenuItem';
 import Menu from '@material-ui/core/Menu';
-import './style.css';
 import AuthManager from "../../utils/AuthManager";
+import { useStoreContext } from '../../utils/GlobalState';
+import './header.css';
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -24,9 +25,6 @@ const useStyles = makeStyles((theme) => ({
     },
     title: {
         flexGrow: 1,
-        fontFamily: 'Pangolin',
-        fontSize: '36px',
-        // textAlign: 'center'
     },
     loggedIn: {
         flexGrow: 1,
@@ -63,7 +61,7 @@ function Header() {
             <AppBar position="static">
                 <Toolbar>
                     <Typography variant="h6" className={classes.title}>
-                        À La Board
+                        <img className="logo-two" src="/images/ALaBoardLogo1.png"/>
                     </Typography>
 
                     {auth && (
@@ -78,8 +76,13 @@ function Header() {
                                 <AccountCircle />
                             </IconButton>
 
+<<<<<<< HEAD
                             <Typography variant="subtitle2" className={classes.loggedIn}>
                                 Logged in as {auth.name}!
+=======
+                            <Typography  variant="subtitle2" className={classes.loggedIn}>
+                                Logged in as {state.userData.name}!
+>>>>>>> 837cc8d191f9498173ad7211bef8213ff6832c69
                             </Typography>
 
                             <Menu
