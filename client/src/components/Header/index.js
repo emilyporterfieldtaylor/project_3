@@ -36,6 +36,7 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 function Header() {  
+    const [state, dispatch] = useStoreContext();
     const classes = useStyles();
     const {user: auth, logout} = AuthManager();
     const [anchorEl, setAnchorEl] = React.useState(null);

@@ -9,7 +9,6 @@ import Links from '../../components/ExternalLinks/index';
 import Header from '../../components/Header';
 import './home.css';
 
-
 function Home() {
   const [appState, setAppState] = useState(null);
   // const [friendID, setFriendID] = useState('');
@@ -20,12 +19,8 @@ function Home() {
       <h1 className="bulletin">The Bulletin Board</h1>
       <SearchBar stateChange={setAppState}/>
 
-      <Grid container spacing={2}>
-        <Grid item xs={3} >
-          {/* <BoardGameList /> */}
-        </Grid>
-
-        <Grid item xs={6} >
+      <Grid>
+        <Grid item xs={12} >
           {appState && <React.Fragment>
             <BoardGamePreview name={appState.name} image={appState.image} />
             <BoardGameDescription 
@@ -45,9 +40,6 @@ function Home() {
         </Grid>
 
         <Grid item xs={3} >
-          {/* <FriendsList 
-            // friendID={friendID.id}
-          /> */}
           <Links />
         </Grid>
       </Grid>

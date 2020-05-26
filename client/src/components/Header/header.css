@@ -8,11 +8,10 @@
 
 .logo-two {
     width: 15%;
-    margin-left: 44rem; 
 }
 
 /* current user name */
 .MuiTypography-root {
-    font-size: 18px !important;
+    font-size: 12px !important;
     width: 70%;
 }

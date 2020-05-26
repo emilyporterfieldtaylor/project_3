@@ -2,7 +2,7 @@
 .main {
     background-image: url('/images/town.jpg');
     width: 100%;
-    height: 100vh;
+    height: 130vh;
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
@@ -19,7 +19,7 @@
     border: 2px solid #d7eee7;
     border-radius: 10px;
     text-align: center;
-    width: 30%;
+    width: 50%;
     padding: 10px;
     margin: auto;
     position: relative;
@@ -63,6 +63,6 @@ p {
 
 /* google icon */
 .google {
-    width: 50%;
+    width: 25%;
     margin-top: 20px;
 }

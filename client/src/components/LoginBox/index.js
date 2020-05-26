@@ -16,15 +16,14 @@ import { useHistory } from 'react-router-dom';
 import { useStoreContext } from '../../utils/GlobalState';
 import './loginBox.css';
 
-
 const useStyles = makeStyles((theme) => ({
   root: {
-    display: "flex",
+    // display: "flex",
     flexWrap: "wrap",
-        flexGrow: 1,
-        fontFamily: 'Pangolin',
-        color: 'beige',
-        textAlign: 'center'
+    flexGrow: 1,
+    fontFamily: 'Pangolin',
+    color: 'beige',
+    textAlign: 'center'
   },
   margin: {
     margin: theme.spacing(1),
@@ -33,8 +32,8 @@ const useStyles = makeStyles((theme) => ({
     marginTop: theme.spacing(3),
   },
   textField: {
-    width: "25ch",
-  },
+    width: "95%",
+  }
 }));
 
 export default function LoginBox() {
@@ -83,7 +82,7 @@ export default function LoginBox() {
     return (
         <div className="main">
             <img className="logo" src="/images/ALaBoardLogo1.png" alt="game logo"/>
-        <div className="frame">
+        <div className="frame" >
             <Grid item xs={12}>
                 <h2>Welcome, weary travelers.</h2>
                 <h2>Fear not, inside are friends</h2>

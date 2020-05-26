@@ -6,15 +6,14 @@ import { useStoreContext } from '../../utils/GlobalState';
 import API from '../../utils/index'
 import './list.css'
 
-
 const useStyles = makeStyles((theme) => ({
     root: {
         flexGrow: 1,
     },
     paper: {
-        padding: theme.spacing(2),
         textAlign: 'left',
         color: theme.palette.text.secondary,
+        marginLeft: '1rem !important'
     },
     boardgameUL: {
         padding: '5px'
@@ -23,8 +22,9 @@ const useStyles = makeStyles((theme) => ({
 
 function BoardGameList() {
     const [state, dispatch] = useStoreContext();
-   // console.log(state, "state")
+   console.log("state: ", state)
     const classes = useStyles();
+
     //when user logs in, games are rendered 
     useEffect(() => {
         loadGames()
@@ -39,20 +39,18 @@ function BoardGameList() {
         })
     }
 
+    const userSavedGames = [
+        // this will eventually be deleted
+        // info should be pulled from database of a user's saved games 
+        { title: 'Settlers of Catan', year: 1995 },
+        { title: 'Crossbows and Catapults', year: 1983 },
+        { title: 'Cards Against Humanity', year: 2009 },
+        { title: 'Exploding Kittens', year: 2015 },
+        { title: 'Scattergories', year: 1988 },
+        { title: "Magic: The Gathering", year: 1993 },
+        { title: 'Photosynthesis', year: 2017 },
+    ];
 
-     const userSavedGames = [
-         // this will eventually be deleted
-         // info should be pulled from database of a user's saved games 
-         { title: 'Settlers of Catan', year: 1995 },
-         { title: 'Crossbows and Catapults', year: 1983 },
-         { title: 'Cards Against Humanity', year: 2009 },
-         { title: 'Exploding Kittens', year: 2015 },
-         { title: 'Scattergories', year: 1988 },
-         { title: "Magic: The Gathering", year: 1993 },
-         { title: 'Photosynthesis', year: 2017 },
-     ];
-
-   
     return (
         <div className={classes.root}>
             <Paper className={classes.paper} id="game-list">
