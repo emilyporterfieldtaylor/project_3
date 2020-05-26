@@ -19,8 +19,8 @@ function Home() {
       <h1 className="bulletin">The Bulletin Board</h1>
       <SearchBar stateChange={setAppState}/>
 
-      <Grid>
-        <Grid item xs={12} >
+      <Grid container spacing={1}>
+        <Grid item xs={8} >
           {appState && <React.Fragment>
             <BoardGamePreview name={appState.name} image={appState.image} />
             <BoardGameDescription 
@@ -39,7 +39,7 @@ function Home() {
           </React.Fragment>}
         </Grid>
 
-        <Grid item xs={3} >
+        <Grid item xs={4} >
           <Links />
         </Grid>
       </Grid>

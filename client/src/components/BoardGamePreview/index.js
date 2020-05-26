@@ -24,7 +24,7 @@ function BoardGamePreview(props) {
         <div className={classes.root} style={{marginTop: '20px'}}>
             <Paper className={classes.paper}>
                 <div>
-                    <h3>Board Game Preview: </h3>
+                    <h3 style={{margin: '5px'}}>Board Game Preview: </h3>
                     {props.image ? <img alt={props.name} src={props.image}></img> : <h5>Sorry, No Image Available</h5>}
                 </div>
             </Paper>

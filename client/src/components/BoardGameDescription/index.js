@@ -16,9 +16,22 @@ const useStyles = makeStyles((theme) => ({
       marginRight: '32px' 
     },
     button: {
-        // marginBottom: '50px',
+        margin: '10px',
+        padding: '5px 0px 5px 0px',
+        width: '100%',
+        borderRadius: '10px',
+        backgroundColor: '#94bdcd',
+        color: theme.palette.text.secondary,
+        fontFamily: 'Pangolin',
+        cursor: 'pointer',
+        fontSize: '20px'
+    },
+    centerbutton: {
         margin: '0 auto',
-        textAlign: 'center'
+        width: '70%'
+    },
+    descriptionDIV: {
+        margin: '0px 20px 0px 20px'
     }
 }));
 
@@ -60,15 +73,20 @@ function BoardGameDescription(props) {
     return (
         <div className={classes.root} style={{marginTop: '20px'}}>               
                 <Paper className={classes.paper}>
-                    <h3 style={{textAlign: 'center'}}>Board Game Description: </h3>
+                    <h3 style={{textAlign: 'center', paddingTop: '10px', marginBottom: '20px'}}>Board Game Description: </h3>
 
-                    <strong>Name: {props.name}</strong>
-                    <li style={{ listStyle: 'none' }}><strong>Description:</strong> {props.description} </li>
-                    <li style={{ listStyle: 'none' }}><strong>Players:</strong> {props.minPlayers} - {props.maxPlayers} people</li>
-                    <li style={{ listStyle: 'none' }}><strong>PlayTime:</strong> {props.minPlayTime} - {props.maxPlayTime} minutes</li>
-                    <li style={{ listStyle: 'none' }}><strong>Year Published:</strong> {props.yearPublished} </li>
-                    
-                    <button onClick={saveGameFunction} className={classes.button}>Save to My Games!</button>
+                    <div className={classes.descriptionDIV}>
+                        <strong>Name: {props.name}</strong>
+                        <li style={{ listStyle: 'none' }}><strong>Description:</strong> {props.description} </li>
+                        <li style={{ listStyle: 'none' }}><strong>Players:</strong> {props.minPlayers} - {props.maxPlayers} people</li>
+                        <li style={{ listStyle: 'none' }}><strong>PlayTime:</strong> {props.minPlayTime} - {props.maxPlayTime} minutes</li>
+                        <li style={{ listStyle: 'none' }}><strong>Year Published:</strong> {props.yearPublished} </li>
+                    </div>
+
+                    <div className={classes.centerbutton}>
+                        <button onClick={saveGameFunction} className={classes.button}>Save to My Games!</button>
+                    </div>
+
                 </Paper>
         </div>
     )

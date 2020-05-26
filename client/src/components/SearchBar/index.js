@@ -16,7 +16,8 @@ const useStyles = makeStyles((theme) => ({
         // padding: '5px 10px 0px 10px',
         height: '105px',
         marginLeft: '1rem !important',
-        marginRight: '1rem !important'
+        marginRight: '1rem !important',
+        fontFamily: 'Pangolin',
     }
 }));
 

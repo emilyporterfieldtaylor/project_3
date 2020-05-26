@@ -13,7 +13,8 @@ const useStyles = makeStyles((theme) => ({
     paper: {
         textAlign: 'left',
         color: theme.palette.text.secondary,
-        marginLeft: '1rem !important'
+        marginLeft: '1rem !important',
+        fontFamily: 'Pangolin',
     },
     boardgameUL: {
         padding: '5px'
@@ -54,8 +55,7 @@ function BoardGameList() {
     return (
         <div className={classes.root}>
             <Paper className={classes.paper} id="game-list">
-                Board Game List:
-                {state.savedGames ? (
+                Saved Games List:
                     <ul className={classes.boardgameUL}>
                         {console.log(state.savedGames, "state.saved-games")} 
                         {state.savedGames.map(game => (
@@ -63,11 +63,6 @@ function BoardGameList() {
                             <li key={game.id}>{game.name} ({game.yearPublished})</li>
                         ))}
                     </ul>
-                ) : (
-                    <div>
-                        <h5>You haven't Saved Any Games Yet!</h5>
-                    </div>
-                )}
             </Paper>
         </div>
     )

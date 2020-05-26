@@ -24,7 +24,8 @@ const useStyles = makeStyles((theme) => ({
         marginTop: '10px',
         marginBottom: '10px',
         // width: '95%',
-        cursor: 'pointer'
+        cursor: 'pointer',
+        borderRadius: '5px'
     },
     chipdiv: {
         // marginTop: '5px',

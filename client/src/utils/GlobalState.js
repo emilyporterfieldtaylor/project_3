@@ -25,17 +25,17 @@ const reducer = (state, action) => {
             savedGames: [...state.savedGames]
         }
         case "ADD_USERDATA":
-          return{
+          return {
             ...state,
             userData: action.data
           }
         case "GET_USER_GAMES":
-          return{
+          return {
             ...state,
-            savedGames: action.games
+            savedGames: [action.games]
           }
         case "GET_USER_FRIENDS":
-          return{
+          return {
             ...state,
             userFriends: action.friends
           }
