@@ -44,7 +44,7 @@ function BoardGameDescription(props) {
      const loadGames =()=> {
         API.getUserGames().then(results=>{
             console.log("My games",results.data)
-            dispatch({type: "ADD_GAMES", games: results.data })
+            dispatch({type: "GET_USER_GAMES", games: results.data })
         })
     }
 

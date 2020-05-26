@@ -1,3 +1,9 @@
 .main-home {
-    background-color:#96bec4;
+    background-color:#adcfc7;
+}
+
+.bulletin {
+    text-align: center;
+    color: #79665d;
+    text-shadow: 1px 1px whitesmoke;
 }

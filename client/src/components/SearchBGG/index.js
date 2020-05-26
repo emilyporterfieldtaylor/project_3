@@ -4,7 +4,9 @@ import Paper from '@material-ui/core/Paper';
 import TextField from '@material-ui/core/TextField';
 import Autocomplete from '@material-ui/lab/Autocomplete';
 import Chip from '@material-ui/core/Chip';
+import './bgg.css';
 const axios = require("axios");
+
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -145,10 +147,10 @@ function SearchBGG(props) {
                 {games.length ? (
                     <div className={classes.div}>
                         {games.map(game => (
-                            <Chip className={classes.button}
+                            <Chip id="chip" className={classes.button}
                                 label={game.name} 
                                 clickable 
-                                color="primary"
+                              
                                 key={game.gameId} 
                                 value={game.gameId} 
                                 onClick={() => {
