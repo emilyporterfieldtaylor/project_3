@@ -10,6 +10,7 @@ import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
 import API from '../../utils/index.js';
+import { useStoreContext } from '../../utils/GlobalState'
 const axios = require("axios");
 
 const useStyles = makeStyles((theme) => ({
@@ -38,6 +39,7 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 export default function HotItemsList(props) {
+  const globalState = useStoreContext();
   const classes = useStyles();
   const [hotGames, setHotGames] = useState([])
   const handleClick = (e) => {
@@ -67,8 +69,9 @@ export default function HotItemsList(props) {
   const saveGameFunction = async (id) => {
     const game = await axios.get(`/api/gameById/` + id);
     console.log(game.data);
-
-    API.saveGame(game.data)
+    console.log(globalState.gameData)
+    game.data.UserId = globalState.userData['WHATEVER THE KEY FOR THE ID IS']
+    API.saveGame({...game.data, UserId: 1})
     .then(results => {
       const list = hotGames.map((game) => {
         if (game.id === id) {
