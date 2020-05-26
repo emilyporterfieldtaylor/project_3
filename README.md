@@ -19,13 +19,23 @@ AS a person throwing a board game party, I want to be able to narrow down my boa
 
 ## FEATURES
 
+1. Users can choose to log into the app by one of two routes
+   a. Signup up for an account
+   b. Use google to authenticate account
+
+2. The user will be able to search and then add to a list of board games they currently own.
+
+3. The user can search for people they know that are currently using the app, to add them to their friends list.
+
+4. The user can view their friends' profiles. ????
+
 
 
 <br>
 
 ## INSTALLATION
 
-
+Once the repository has been cloned, a **npm i** or **npm install** should be run to download all necessary dependencies.
 
 <br>
 
@@ -52,13 +62,17 @@ Leandra Turner
 
 ## RESOURCES
 
-<a href="https://www.freepik.com/free-photos-vectors/background">Background photo created by freepik - www.freepik.com</a>
-<a href="https://www.freepik.com/free-photos-vectors/background">Background photo created by freepik - www.freepik.com</a>
+**Login Background**: https://www.hipwallpaper.com
+
+**Search for Friends**: https://www.hipwallpaper.com
+
+**Signup Background**: https://news.gamestart.asia/review-everdell/
+
 
 ### BADGES
 
 
-[![forthebadge](https://forthebadge.com/images/badges/check-it-out.svg)](https://mysterious-sierra-72763.herokuapp.com/)
+[![forthebadge](https://forthebadge.com/images/badges/check-it-out.svg)](need heroku link)
 
 [![Open Source Love svg1](https://badges.frapsoft.com/os/v1/open-source.svg?v=103)](https://github.com/emilyporterfieldtaylor/project_3)
 [![made-for-VSCode](https://img.shields.io/badge/Made%20for-VSCode-1f425f.svg)](https://code.visualstudio.com/)
