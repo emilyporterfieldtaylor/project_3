@@ -10,9 +10,10 @@
 }
 
 .signup-frame {
-    background-color: #f0eae0;
+    background-color: snow;
     border: 2px solid #a3a14e;
     border-radius: 10px;
+    opacity: 0.9;
     text-align: center;
     width: 30%;
     padding: 10px;
