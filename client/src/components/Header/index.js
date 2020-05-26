@@ -12,7 +12,7 @@ import FormGroup from '@material-ui/core/FormGroup';
 import MenuItem from '@material-ui/core/MenuItem';
 import Menu from '@material-ui/core/Menu';
 import { useStoreContext } from '../../utils/GlobalState';
-import './style.css';
+import './header.css';
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -65,7 +65,7 @@ function Header() {
             <AppBar position="static">
                 <Toolbar>
                     <Typography variant="h6" className={classes.title}>
-                        À La Board
+                        <img className="logo-two" src="/images/ALaBoardLogo1.png"/>
                     </Typography>
 
                     {auth && (

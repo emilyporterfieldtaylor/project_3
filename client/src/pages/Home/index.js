@@ -22,7 +22,7 @@ function Home() {
   // const [friendID, setFriendID] = useState('');
 
   return (
-    <div className="App">
+    <div className="main-home">
       <Header />
       <h1 style={bulletin}>The Bulletin Board</h1>
       <SearchBar stateChange={setAppState}/>

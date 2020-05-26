@@ -7,10 +7,7 @@ const initialState = {
   userFriends: [],
   searchFriendArr: [],
   newFriendArr: [],
-  savedGames: [],
-  currentGame: [],
-  userData: [],
-  userFriends: []
+ 
 };
 
 // Think of this as our main Context API that 
@@ -25,7 +22,7 @@ const reducer = (state, action) => {
         console.log("INSIDE ADD GAME CASE"); //FOR DEBUG
         return {
             ...state,
-            savedGames: [action.game, ...state.savedGames]
+            savedGames: [...state.savedGames]
         }
         case "ADD_USERDATA":
           return{
@@ -57,26 +54,6 @@ const reducer = (state, action) => {
         //     ...state,
         //     usersData: action.user
         //   }
-      console.log("INSIDE ADD GAME CASE"); //FOR DEBUG
-      return {
-        ...state,
-        savedGames: [...state.savedGames]
-      }
-    case "ADD_USERDATA":
-      return {
-        ...state,
-        userData: action.data
-      }
-    case "GET_USER_GAMES":
-      return {
-        ...state,
-        savedGames: action.games
-      }
-    case "GET_USER_FRIENDS":
-      return {
-        ...state,
-        userFriends: action.friends
-      }
     default:
       return state;
   }

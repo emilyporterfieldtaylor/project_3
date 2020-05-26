@@ -88,7 +88,7 @@ export default function LoginBox() {
                 <h2>Welcome, weary travelers.</h2>
                 <h2>Fear not, inside are friends</h2>
                 <div className={classes.root}>
-                    <div className>
+                    <div>
                         <TextField
                             label="Email"
                             id="filled-start-adornment"

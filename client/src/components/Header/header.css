@@ -1,0 +1,12 @@
+#appBar {
+    margin: 20px;
+}
+
+.MuiToolbar-root {
+    background-color: #94bdcd !important;
+}
+
+.logo-two {
+    width: 15%;
+    margin-left: 44rem; 
+}
