@@ -76,13 +76,8 @@ function Header() {
                                 <AccountCircle />
                             </IconButton>
 
-<<<<<<< HEAD
-                            <Typography variant="subtitle2" className={classes.loggedIn}>
-                                Logged in as {auth.name}!
-=======
                             <Typography  variant="subtitle2" className={classes.loggedIn}>
                                 Logged in as {state.userData.name}!
->>>>>>> 837cc8d191f9498173ad7211bef8213ff6832c69
                             </Typography>
 
                             <Menu
