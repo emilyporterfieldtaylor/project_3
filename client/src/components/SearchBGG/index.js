@@ -48,17 +48,20 @@ function SearchBGG(props) {
     const [value, setValue] = useState(topGames[0].title);
     const [inputValue, setInputValue] = useState('');    
 
-    useEffect(()  => {      
+    useEffect(()  => {     
+        let mounted = true; 
         const fetchData = async() => {
             const response = await axios.get(`/api/games/${inputValue}`);
             let game = {
                 gameId: response.data.elements[0].elements[0].attributes.objectid,
                 name: response.data.elements[0].elements[0].elements[0].elements[0].text,
             }
+           if (mounted){
             setGames(games => [...games, game ]);
+           }
         };
-
-        fetchData();    
+        fetchData(); 
+        return () => mounted = false;   
     }, [inputValue]);
 
     function getPreview(id) {
