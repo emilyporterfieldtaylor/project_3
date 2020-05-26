@@ -27,8 +27,9 @@ const useStyles = makeStyles((theme) => ({
         cursor: 'pointer'
     },
     chipdiv: {
-        marginTop: '5px',
-        textAlign: 'center'
+        // marginTop: '5px',
+        textAlign: 'center',
+        marginLeft: '16px'
     }
 }));
 
@@ -146,7 +147,6 @@ function SearchBGG(props) {
                     )}
                 />
             </Paper>
-            <br></br>
             <Grid item xs={12}>
                     {games.length ? (
                         <div className={classes.chipdiv}>

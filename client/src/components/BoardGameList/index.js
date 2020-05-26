@@ -55,14 +55,19 @@ function BoardGameList() {
         <div className={classes.root}>
             <Paper className={classes.paper} id="game-list">
                 Board Game List:
-                {/* {state.savedGames ? ( */}
+                {state.savedGames ? (
                     <ul className={classes.boardgameUL}>
-                     {console.log(state.savedGames, "state.saved-games")} 
-                    {state.savedGames.map(game => (
-                        //pulling games from the database and rendering to the homepage
-                        <li key={game.id}>{game.name} ({game.yearPublished})</li>
-                    ))}
-                </ul>
+                        {console.log(state.savedGames, "state.saved-games")} 
+                        {state.savedGames.map(game => (
+                            //pulling games from the database and rendering to the homepage
+                            <li key={game.id}>{game.name} ({game.yearPublished})</li>
+                        ))}
+                    </ul>
+                ) : (
+                    <div>
+                        <h5>You haven't Saved Any Games Yet!</h5>
+                    </div>
+                )}
             </Paper>
         </div>
     )
