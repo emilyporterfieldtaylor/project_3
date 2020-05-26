@@ -10,6 +10,8 @@ import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
 import API from '../../utils/index.js';
+import {useHistory} from "react-router-dom";
+import { useStoreContext } from "../../utils/GlobalState.js";
 const axios = require("axios");
 
 const useStyles = makeStyles((theme) => ({
@@ -40,8 +42,14 @@ const useStyles = makeStyles((theme) => ({
 export default function HotItemsList(props) {
   const classes = useStyles();
   const [hotGames, setHotGames] = useState([])
+  const [state, dispatch] = useStoreContext();
+  const history = useHistory();
   const handleClick = (e) => {
-    console.log("The link was clicked");
+    const user = API.userData();
+    //Causing routing issue. Look at this with group
+    dispatch({type: "ADD_USERDATA", data: user.data});
+    // history.push("/hotitems");
+    history.push("/home");
   };
   useEffect(() => {
     const fetchHotItems = async () => {
@@ -67,7 +75,7 @@ export default function HotItemsList(props) {
   const saveGameFunction = async (id) => {
     const game = await axios.get(`/api/gameById/` + id);
     console.log(game.data);
-
+    game.data.UserId = 1;
     API.saveGame(game.data)
     .then(results => {
       const list = hotGames.map((game) => {

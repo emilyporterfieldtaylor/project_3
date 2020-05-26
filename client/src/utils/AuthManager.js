@@ -12,12 +12,13 @@ const AuthManager = () => {
         loadUserData();
     }, []);
 
+    //Causing routing issue. Look at this with group
     const loadUserData = async () => {
         if(await isUserLoggedIn() && state.userData) {
             try {
                 const user = await API.userData();
                 dispatch({type: "ADD_USERDATA", data: user.data});
-                // history.push("/home");
+                history.push("/hotitems");
             } catch (error) {
                 console.log("Error With User Data API", error);
             }
