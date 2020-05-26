@@ -101,7 +101,7 @@ function SearchFriendList(props) {
                         </button>    
                     </li>
 
-                ))} */}
+                ))}
                 
             </Paper>
         </div>

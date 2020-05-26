@@ -1,5 +1,6 @@
 .main-home {
-    background-color:#adcfc7;
+    /* background-color:#adcfc7; */
+    background-image: url('./settlers.jpg');
 }
 
 .bulletin {
