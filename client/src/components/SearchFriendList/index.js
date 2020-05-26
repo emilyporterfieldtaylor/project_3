@@ -77,9 +77,9 @@ function SearchFriendList(props) {
                     freeSolo
                     id="free-solo-2-demo"
                     disableClearable
-                    options = {
-                        state.searchFriendArr.map(friend => friend.name)
-                    }
+                    // options = {
+                    //     state.searchFriendArr.map(friend => friend.name)
+                    // }
                     renderInput={(params) => (
                     <TextField
                         className={classes.searchFriendList}
@@ -98,7 +98,7 @@ function SearchFriendList(props) {
                     />
                     )}
                 />
-                {state.searchedFor.map(friend =>  (
+                {/* {state.searchedFor.map(friend =>  (
                     <li 
                     key={friend.name}
                     className={classes.li}
@@ -117,7 +117,7 @@ function SearchFriendList(props) {
                         </button>    
                     </li>
 
-                ))}
+                ))} */}
                 
             </Paper>
         </div>
