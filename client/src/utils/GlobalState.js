@@ -21,7 +21,7 @@ const reducer = (state, action) => {
       console.log("INSIDE ADD GAME CASE"); //FOR DEBUG
       return {
           ...state,
-          savedGames: [...state.savedGames]
+          savedGames: [action.game, ...state.savedGames]
       }
     case "ADD_USERDATA":
       return {
@@ -48,14 +48,19 @@ const reducer = (state, action) => {
         ...state,
         newFriendArr: action.newFriend
       }
+        case "LOGOUT":
+          return {
+            ...state,
+            userData: []
+          } 
         // case "GET_USER_DATA":
         //   return{
         //     ...state,
         //     usersData: action.userfsd
         //   }
 
-    default:
-      return state;
+        default:
+          return state;
   }
 };
 

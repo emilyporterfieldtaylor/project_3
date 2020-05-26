@@ -23,6 +23,7 @@ const useStyles = makeStyles((theme) => ({
 
 function BoardGameList() {
     const [state, dispatch] = useStoreContext();
+   // console.log(state, "state")
     const classes = useStyles();
 
     //when user logs in, games are rendered 
@@ -33,7 +34,7 @@ function BoardGameList() {
     //part of associating games to a specific user
     function loadGames() {
         API.getUserGames().then(results=>{
-            console.log("My games",results.data)
+           // console.log("My games",results.data)
             dispatch({type: "GET_USER_GAMES", games: results.data })
         })
     }

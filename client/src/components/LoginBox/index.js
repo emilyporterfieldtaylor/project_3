@@ -18,23 +18,23 @@ import './style.css';
 
 
 const useStyles = makeStyles((theme) => ({
-    root: {
-        display: 'flex',
-        flexWrap: 'wrap',
+  root: {
+    display: "flex",
+    flexWrap: "wrap",
         flexGrow: 1,
         fontFamily: 'Pangolin',
         color: 'beige',
         textAlign: 'center'
-    },
-    margin: {
-        margin: theme.spacing(1),
-    },
-    withoutLabel: {
-        marginTop: theme.spacing(3),
-    },
-    textField: {
-        width: '25ch',
-    },
+  },
+  margin: {
+    margin: theme.spacing(1),
+  },
+  withoutLabel: {
+    marginTop: theme.spacing(3),
+  },
+  textField: {
+    width: "25ch",
+  },
 }));
 
 export default function LoginBox() {
@@ -122,15 +122,12 @@ export default function LoginBox() {
 
                 <button type="submit" className="btn" onClick={handleFormLogin}>Login</button>
                 <br/>
-                <a className="google-btn" href="/auth/google"><img className="google" src="./images/btn_google_signin_light_pressed_web@2x.png" alt="google-icon" /></a>
                 
+                <a className="google-btn" href="http://localhost:3002/auth/google"><img className="google" src="./images/btn_google_signin_light_pressed_web@2x.png" alt="google-icon" /></a>
                 <p>Don't have an account?<Link className="nav" to="/signup">CREATE ONE</Link></p>
 
             </Grid>
         </div>
         </div>
-    );
+  );
 }
-
-
-

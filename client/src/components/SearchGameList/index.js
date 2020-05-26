@@ -69,6 +69,10 @@ function SearchGameList() {
                     >
                         Search
                     </button> 
+                    <button><a href="/planmyevent" >
+                        Plan My Event
+                    </a>
+                    </button>
                 </Paper>
         </div>
     )

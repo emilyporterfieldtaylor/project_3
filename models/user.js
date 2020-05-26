@@ -2,29 +2,30 @@ var bcrypt = require("bcryptjs");
 
 module.exports = function(sequelize, DataTypes) {
     var User = sequelize.define("User", {
-        name: {
-            type:DataTypes.STRING,
-            allowNull: false,
-            validate: {
-                len: [1]
-            }
-        },
-        email: {
-            type: DataTypes.STRING,
-            allowNull: false,
-            unique: true,
-           /*  validate: {
-                isEmail: true
-            } */
-          },
-          // The password cannot be null
-        password: {
-            type: DataTypes.STRING,
-            allowNull: false
-        },
-        // image: DataTypes.LONGBLOB,
-
-        // favGame: DataTypes.ARRAY
+        name:
+        {type:DataTypes.STRING,
+        allowNull: false,
+        validate: {
+            len: [1]
+        }
+      },
+      email: {
+        type: DataTypes.STRING,
+        allowNull: false,
+        unique: true,
+        validate: {
+          isEmail: true
+        }
+      },
+      // The password cannot be null
+      password: {
+        type: DataTypes.STRING,
+        allowNull: false
+      },
+      provider: DataTypes.STRING,
+      profilePicture: DataTypes.STRING,
+      // image: DataTypes.LONGBLOB,
+      // favGame: DataTypes.ARRAY
     });
 
 
@@ -32,8 +33,9 @@ module.exports = function(sequelize, DataTypes) {
     User.associate = function(models) {
       // Associating Author with Posts
       // When an Author is deleted, also delete any associated Posts
-      User.hasMany(models.Game, {
-        onDelete: "cascade"
+      User.belongsToMany(models.Game, {
+        //onDelete: "cascade",
+        through: 'User_Games'
       });
 
       User.hasMany(models.Friend, {
@@ -52,3 +54,4 @@ module.exports = function(sequelize, DataTypes) {
       });
   return User;
 }
+

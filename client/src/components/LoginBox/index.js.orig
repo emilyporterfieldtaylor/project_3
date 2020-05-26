@@ -1,8 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import Grid from '@material-ui/core/Grid';
-import clsx from 'clsx';
-import { makeStyles } from '@material-ui/core/styles';
 import IconButton from '@material-ui/core/IconButton';
 import FilledInput from '@material-ui/core/FilledInput';
 import InputLabel from '@material-ui/core/InputLabel';
@@ -11,42 +9,49 @@ import FormControl from '@material-ui/core/FormControl';
 import TextField from '@material-ui/core/TextField';
 import Visibility from '@material-ui/icons/Visibility';
 import VisibilityOff from '@material-ui/icons/VisibilityOff'
-import './style.css';
+import clsx from 'clsx';
+import { makeStyles } from '@material-ui/core/styles';
 import API from '../../utils/index';
-import { useHistory } from "react-router-dom"
+import { useHistory } from 'react-router-dom';
+import { useStoreContext } from '../../utils/GlobalState';
+import './style.css';
 
 
-
-//material ui code for input boxes
 const useStyles = makeStyles((theme) => ({
-    root: {
-        display: 'flex',
-        flexWrap: 'wrap',
-    },
-    margin: {
-        margin: theme.spacing(1),
-    },
-    withoutLabel: {
-        marginTop: theme.spacing(3),
-    },
-    textField: {
-        width: '25ch',
-    },
+  root: {
+    display: "flex",
+    flexWrap: "wrap",
+        flexGrow: 1,
+        fontFamily: 'Pangolin',
+        color: 'beige',
+        textAlign: 'center'
+  },
+  margin: {
+    margin: theme.spacing(1),
+  },
+  withoutLabel: {
+    marginTop: theme.spacing(3),
+  },
+  textField: {
+    width: "25ch",
+  },
 }));
 
+export default function LoginBox() {
+    const [state, dispatch] = useStoreContext();
+    //console.log(useStoreContext());
 
-export default function SignupForm() {
     let history = useHistory();
 
     const classes = useStyles();
+
     const [values, setValues] = React.useState({
-        amount: '',
-        name: '',
         email: '',
+        amount: '',
         password: '',
         weight: '',
-        showPassword: false,
         weightRange: '',
+        showPassword: false,
     });
 
     const handleChange = (prop) => (event) => {
@@ -61,51 +66,29 @@ export default function SignupForm() {
         event.preventDefault();
     };
 
-
-    //when signup button is clicked, post request made to input user into database
-    const handleFormSubmit = (e) => {
-        e.preventDefault();
-        console.log(values);
+    const handleFormLogin = (e) => {
+       // console.log(values);
         const userData = {
-            name: values.name,
             email: values.email,
             password: values.password
         }
 
-        API.signup(userData).then(results => {
-            console.log(results)
-            history.push("/hotitems");
-            console.log("words");
-        }).catch(loginError)
+        API.login(userData).then(results => {
+            //console.log(results);
+            dispatch({ type: "ADD_USERDATA", data: results.data })
+            history.push("/home");
+        })
     }
-
-    //validation to allow user to know they have already made an account
-    function loginError(){
-        alert("An error occurred");
-        const userData = {
-            name: values.name,
-            email: values.email,
-            password: values.password
-        }
-        if (userData === userData){
-            alert('User already exists');
-        }  
-    }
+    
     return (
-        <div className="signup-main">
+        <div className="main">
             <img className="logo" src="/images/ALaBoardLogo1.png" alt="game logo"/>
         <div className="frame">
             <Grid item xs={12}>
-                <h2>Join the party!</h2>
+                <h2>Welcome, weary travelers.</h2>
+                <h2>Fear not, inside are friends</h2>
                 <div className={classes.root}>
-                    <div>
-                        <TextField
-                            label="Full Name"
-                            id="filled-start-adornment"
-                            className={clsx(classes.margin, classes.textField)}
-                            variant="filled"
-                            onChange={handleChange('name')}
-                        />
+                    <div className>
                         <TextField
                             label="Email"
                             id="filled-start-adornment"
@@ -136,11 +119,22 @@ export default function SignupForm() {
                         </FormControl>
                     </div>
                 </div>
-                <button type="submit" className="btn btn-default" onClick={handleFormSubmit}><a href="/hotitems" >Sign Up</a></button>
+
+                <button type="submit" className="btn" onClick={handleFormLogin}>Login</button>
+<<<<<<< HEAD
+                <br/>
+                <a className="google-btn" href="/auth/google"><img className="google" src="./images/btn_google_signin_light_pressed_web@2x.png" alt="google-icon" /></a>
+                
+=======
                 <br />
-                <p>Already have an account?<Link className="login-link" to="/login"> LOGIN </Link></p>
+                
+                <a className="google-btn" href="http://localhost:3002/auth/google"><img className="google" src="./images/btn_google_signin_light_pressed_web@2x.png" alt="google-icon" /></a>
+                <br />
+>>>>>>> origin/stillOauth
+                <p>Don't have an account?<Link className="nav" to="/signup">CREATE ONE</Link></p>
+
             </Grid>
         </div>
         </div>
-    )
-};
+  );
+}

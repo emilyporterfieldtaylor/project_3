@@ -24,6 +24,7 @@ function apiRoutes(app) {
   // If the user has valid login credentials, send them to the members page.
   // Otherwise the user will be sent an error
   app.post("/api/login", passport.authenticate("local"), function (req, res) {
+    res.cookie('logged_in', true);
     res.json(req.user);
   });
 
@@ -40,6 +41,7 @@ function apiRoutes(app) {
         res.redirect(307, "/api/login");
       })
       .catch(function (err) {
+        console.log(err);
         res.status(401).json(err);
       });
   });
@@ -56,12 +58,6 @@ function apiRoutes(app) {
       res.status(401).json(err)
     })
   })
-
-  // Route for logging user out
-  app.get("/logout", function (req, res) {
-    req.logout();
-    res.redirect("/");
-  });
 
   // Route for getting some data about our user to be used client side
   app.get("/api/user_data", function (req, res) {
@@ -99,17 +95,21 @@ function apiRoutes(app) {
 
   //allows friends to be tied to a specific user
   app.get("/api/users_friends", function (req, res) {
-    db.Friend.findAll({
-      where: { UserId: req.user.id }
-    })
-      .then(function (userData) {
-        res.json(userData)
+    if (!req.user) {
+      // The user is not logged in, send back an empty object
+      res.json({});
+    } else {
+      db.Friend.findAll({
+        where: { UserId: req.user.id }
       })
-      .catch(function (err) {
-        res.status(401).json(err);
-      });
+        .then(function (userData) {
+          res.json(userData)
+        })
+        .catch(function (err) {
+          res.status(401).json(err);
+        });
+    }
   })
-
   app.get("/api/all_friends", function (req, res) {
     db.User.findAll({
       // where: { name: req.body }

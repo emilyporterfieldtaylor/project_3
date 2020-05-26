@@ -22,15 +22,15 @@ module.exports = function(app) {
     res.sendFile(path.join(__dirname, "../public/login.html"));
   });
   
-  // auth with google
-  app.get("auth/google", passport.authenticate("google", {
-    scope: ["profile"]
-  }));
+  // // auth with google
+  // app.get("auth/google", passport.authenticate("google", {
+  //   scope: ["profile"]
+  // }));
 
-  // callback route for google to redirect to 
-  app.get("auth/google/redirect", passport.authenticate("google"), (req, res) => {
-  res.send("you reached a callback URI")
-  })
+  // // callback route for google to redirect to 
+  // app.get("auth/google/redirect", passport.authenticate("google"), (req, res) => {
+  // res.send("you reached a callback URI")
+  // })
 
   // Here we've add our isAuthenticated middleware to this route.
   // If a user who is not logged in tries to access this route they will be redirected to the signup page
