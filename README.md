@@ -69,6 +69,7 @@ Leandra Turner
 **Signup Background**: https://news.gamestart.asia/review-everdell/
 
 <br>
+
 ### BADGES
 
 
