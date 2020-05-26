@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import Grid from '@material-ui/core/Grid';
 import SearchBar from '../../components/SearchBar/index';
-import BoardGameList from '../../components/BoardGameList/index';
+//import BoardGameList from '../../components/BoardGameList/index';
 import FriendsList from '../../components/FriendsList/index';
 import BoardGamePreview from '../../components/BoardGamePreview/index';
 import BoardGameDescription from '../../components/BoardGameDescription/index';
@@ -22,7 +22,7 @@ function Home() {
 
       <Grid container spacing={2}>
         <Grid item xs={3} >
-          <BoardGameList />
+          {/* <BoardGameList /> */}
         </Grid>
 
         <Grid item xs={6} >
