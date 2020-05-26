@@ -1,5 +1,7 @@
-#friend-list {
-    border:1px solid #cac9c7;
+#friend-list { 
     margin-right: 2rem;
-    box-shadow: 0 0 5px 2px #cac9c7;
+}
+
+#main-friend a {
+    color: black;
 }

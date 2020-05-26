@@ -90,7 +90,7 @@ function FriendsList(props) {
     //   ];
 
     return (
-        <div className={classes.root}>
+        <div id="main-friend" className={classes.root}>
             <Paper className={classes.paper} id="friend-list">
                 Friend List:
                 <ul className={classes.friendlistUL}>

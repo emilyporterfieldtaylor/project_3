@@ -19,7 +19,7 @@ function UserProfile() {
     // console.log('params: ', params);
 
     return (
-        <div>
+        <div className="main-user">
             <Link to='/home' style={{color:'white'}}>To the Bulletin Board</Link>
 
             <Header/>
@@ -51,12 +51,12 @@ function UserProfile() {
 
                 <br></br>
 
-            <Paper style={{margin: '20px'}}>
+           
                 <BoardGameList
                     // pull info from user's joined game database
                     // name={name}
                 />
-            </Paper> 
+          
 
             <br></br>
 

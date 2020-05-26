@@ -24,9 +24,6 @@ const useStyles = makeStyles((theme) => ({
     },
     title: {
         flexGrow: 1,
-        fontFamily: 'Pangolin',
-        fontSize: '36px',
-        // textAlign: 'center'
     },
     loggedIn: {
         flexGrow: 1,
@@ -80,7 +77,7 @@ function Header() {
                                 <AccountCircle />
                             </IconButton>
 
-                            <Typography variant="subtitle2" className={classes.loggedIn}>
+                            <Typography  variant="subtitle2" className={classes.loggedIn}>
                                 Logged in as {state.userData.name}!
                             </Typography>
 
