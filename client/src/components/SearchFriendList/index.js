@@ -14,6 +14,10 @@ const useStyles = makeStyles((theme) => ({
     },
     paper: {
       padding: theme.spacing(4),
+      marginLeft: '0px !important'
+    },
+    button: {
+        marginLeft: '0px !important'
     }
 }));
 
@@ -56,7 +60,8 @@ function SearchFriendList(props) {
     return (
         <div className={classes.root}>
             <h1 id="srch-friend-title" className={classes.header}>Search For New Friends!</h1>
-            <Paper id="srch-friend" className={classes.paper}>
+            <div  id="srch-friend">
+            <Paper className={classes.paper}>
                 <Autocomplete
                     freeSolo
                     id="free-solo-2-demo"
@@ -104,6 +109,7 @@ function SearchFriendList(props) {
                 ))}
                 
             </Paper>
+            </div>
         </div>
     )
 }

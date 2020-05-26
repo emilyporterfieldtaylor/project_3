@@ -144,6 +144,7 @@ function SearchBGG(props) {
                         {...params}
                         label="Search for Board Game"
                         variant="outlined"
+                        multiline='true'
                     />
                     )}
                 />
