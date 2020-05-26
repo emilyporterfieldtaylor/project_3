@@ -2,7 +2,7 @@
 
 ## INTRODUCTION
 
-AS a person throwing a board game party, I want to be able to narrow down my board games by categories so I can pick the perfect board game to play with any party group.
+AS a person throwing a board game party, I want to be able to narrow down my board games by categories so I can pick the perfect board game to play with any party group.  ***???? Do we need to revise***
 
 <br>
 
@@ -19,11 +19,11 @@ AS a person throwing a board game party, I want to be able to narrow down my boa
 
 ## FEATURES
 
-1. Users can choose to log into the app by one of two routes
+1. Users can choose to log into the app by one of two ways:
    a. Signup up for an account
    b. Use google to authenticate account
 
-2. The user will be able to search and then add to a list of board games they currently own.
+2. The user will be able to search and then add to their online list of board games they currently own.
 
 3. The user can search for people they know that are currently using the app, to add them to their friends list.
 
@@ -68,7 +68,7 @@ Leandra Turner
 
 **Signup Background**: https://news.gamestart.asia/review-everdell/
 
-
+<br>
 ### BADGES
 
 
