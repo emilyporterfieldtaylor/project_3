@@ -52,10 +52,12 @@ function BoardGameList() {
         { title: 'Photosynthesis', year: 2017 },
     ];
 
+    console.log('no here!: ', state.savedGames)
     return (
         <div className={classes.root}>
             <Paper className={classes.paper} id="game-list">
                 Saved Games List:
+                {state.savedGames.length ? (
                     <ul className={classes.boardgameUL}>
                         {console.log(state.savedGames, "state.saved-games")} 
                         {state.savedGames.map(game => (
@@ -63,6 +65,9 @@ function BoardGameList() {
                             <li key={game.id}>{game.name} ({game.yearPublished})</li>
                         ))}
                     </ul>
+                ) : (
+                    <h4>You Don't Have Any Saved Games Yet!</h4>
+                )}
             </Paper>
         </div>
     )
