@@ -1,15 +1,15 @@
 import React, { useState, useEffect } from 'react';
 import Header from '../../components/Header';
 import BoardGameList from '../../components/BoardGameList';
+import FriendsList from '../../components/FriendsList';
 import { Link } from 'react-router-dom';
 import Paper from '@material-ui/core/Paper';
-import FriendsList from '../../components/FriendsList';
 import Grid from '@material-ui/core/Grid';
 import { useLocation } from 'react-router-dom';
 import API from '../../utils/index';
 import { useStoreContext } from '../../utils/GlobalState';
 import './style.css';
-import axios from 'axios';
+
 
 function UserProfile() {
     // const [userState, setUserState] = useState(null);
@@ -19,7 +19,7 @@ function UserProfile() {
     // console.log('params: ', params);
 
     return (
-        <div>
+        <div className="main-user">
             <Link to='/home' style={{color:'white'}}>To the Bulletin Board</Link>
 
             <Header/>
@@ -51,12 +51,12 @@ function UserProfile() {
 
                 <br></br>
 
-            <Paper style={{margin: '20px'}}>
+           
                 <BoardGameList
                     // pull info from user's joined game database
                     // name={name}
                 />
-            </Paper> 
+          
 
             <br></br>
 

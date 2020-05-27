@@ -24,6 +24,7 @@ function apiRoutes(app) {
   // If the user has valid login credentials, send them to the members page.
   // Otherwise the user will be sent an error
   app.post("/api/login", passport.authenticate("local"), function (req, res) {
+    res.cookie('logged_in', true);
     res.json(req.user);
   });
 
@@ -40,6 +41,7 @@ function apiRoutes(app) {
         res.redirect(307, "/api/login");
       })
       .catch(function (err) {
+        console.log(err);
         res.status(401).json(err);
       });
   });
@@ -47,21 +49,17 @@ function apiRoutes(app) {
   app.post("/api/add_friend", function (req, res) {
     console.log('in routes'),
     db.Friend.create({
-      name: req.body.name
+      name: req.body.name,
+      UserId: req.body.userId
     })
     .then(function (friend) {
+      console.log('friend in post: ', friend)
       res.json(friend)
     })
     .catch(function(err) {
       res.status(401).json(err)
     })
   })
-
-  // Route for logging user out
-  app.get("/logout", function (req, res) {
-    req.logout();
-    res.redirect("/");
-  });
 
   // Route for getting some data about our user to be used client side
   app.get("/api/user_data", function (req, res) {

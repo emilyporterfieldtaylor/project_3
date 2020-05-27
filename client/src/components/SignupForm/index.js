@@ -11,7 +11,7 @@ import FormControl from '@material-ui/core/FormControl';
 import TextField from '@material-ui/core/TextField';
 import Visibility from '@material-ui/icons/Visibility';
 import VisibilityOff from '@material-ui/icons/VisibilityOff'
-import './style.css';
+import './signup.css';
 import API from '../../utils/index';
 import { useHistory } from "react-router-dom"
 
@@ -30,7 +30,7 @@ const useStyles = makeStyles((theme) => ({
         marginTop: theme.spacing(3),
     },
     textField: {
-        width: '25ch',
+        width: '95%',
     },
 }));
 
@@ -75,11 +75,13 @@ export default function SignupForm() {
         API.signup(userData).then(results => {
             console.log(results)
             history.push("/hotitems");
+            console.log("words");
         }).catch(loginError)
     }
 
     //validation to allow user to know they have already made an account
     function loginError(){
+        alert("An error occurred");
         const userData = {
             name: values.name,
             email: values.email,
@@ -90,9 +92,11 @@ export default function SignupForm() {
         }  
     }
     return (
-        <div className="frame">
+        <div className="signup-main">
+            <img className="logo" src="/images/ALaBoardLogo1.png" alt="game logo"/>
+        <div className="signup-frame">
             <Grid item xs={12}>
-                <h2>Sign Up</h2>
+                <h2 className="signup-h2">Join the party!</h2>
                 <div className={classes.root}>
                     <div>
                         <TextField
@@ -136,6 +140,7 @@ export default function SignupForm() {
                 <br />
                 <p>Already have an account?<Link className="login-link" to="/login"> LOGIN </Link></p>
             </Grid>
+        </div>
         </div>
     )
 };

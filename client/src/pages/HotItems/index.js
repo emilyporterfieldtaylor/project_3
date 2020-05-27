@@ -5,7 +5,7 @@ import './style.css';
 
 function HotItems () {
   return (
-    <div>
+    <div className='main'>
       <Header />
       <HotItemsList />
     </div>

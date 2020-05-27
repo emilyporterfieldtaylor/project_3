@@ -56,11 +56,19 @@ Leandra Turner
 
 ### PREVIEW
 
-![project 3 preview](image or gif pathway)
+![app preview](./images/preview1.png)
+
 
 <br>
 
 ## RESOURCES
+<a href="https://www.freepik.com/free-photos-vectors/background">Background photo created by freepik - www.freepik.com</a>
+<a href="https://www.freepik.com/free-photos-vectors/background">Background photo created by freepik - www.freepik.com</a>
+<a href="https://www.freepik.com/free-photos-vectors/background">Background photo created by freepik - www.freepik.com</a>
+
+https://hipwallpaper.com/settlers-wallpapers/
+
+https://news.gamestart.asia/review-everdell/
 
 **Login Background**: https://www.hipwallpaper.com
 

@@ -6,6 +6,9 @@ import TextField from '@material-ui/core/TextField';
 import Autocomplete from '@material-ui/lab/Autocomplete';
 import API from '../../utils/index';
 import { useStoreContext } from '../../utils/GlobalState';
+import Button from '@material-ui/core/Button';
+import Header from '../Header';
+import './searchFriendList.css';
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -13,23 +16,13 @@ const useStyles = makeStyles((theme) => ({
     },
     paper: {
       padding: theme.spacing(4),
-    },
-    li: {
-        textAlign: 'center',
-        color: 'darkred',
-        fontFamily: 'Comic Sans MS, cursive, sans-serif',
-        listStyleType: 'none',
-        borderBottom: '1px solid black'
+      marginLeft: '0px !important'
     },
     button: {
-        margin: '10px'
-    },
-    searchFriendList: {
-        fontSize: '10px'
-    },
-    header : {
-        color: 'salmon',
-        textAlign: 'center'
+        marginLeft: '5px !important',
+        padding: '4px',
+        // borderStyle: 'none',
+        // borderRadius: '2px'
     }
 }));
 
@@ -38,22 +31,14 @@ function SearchFriendList(props) {
     const classes = useStyles();
     const [state, dispatch] = useStoreContext();
 
-    // const friendsList = [
-    //     { title: 'Kendra Kwoka'},
-    //     { title: 'Eric Garcia'},
-    //     { title: 'Caitlin Huber'},
-    //     { title: 'Leander Turner'},
-    //     { title: 'Emily Taylor'},
-    //   ];
-
-    // const [searchedFor, setSearchedFor] = useState([]);
+    const [searchedFor, setSearchedFor] = useState([]);
     // const [games, setGames] = useState([]);
     // const [query, setQuery] = useState('catan');
     // const [search, setSearch] = useState('');
     // const [friendarr, setFriend] = useState({});
 
-
     useEffect(() => {
+        console.log('state: ',state.searchFriendArr)
         searchFriends();
     }, []);
 
@@ -66,10 +51,13 @@ function SearchFriendList(props) {
 
     function addFriend(friend) {
         let friendData = {
-            name: friend
+            name: friend,
+            userId: state.userData.id
         }
         API.addFriend(friendData)
         .then(res => {
+            console.log('state: ',state.searchFriendArr)
+
             dispatch({type: "ADD_FRIEND", newFriend: res.data})
         })
         .catch(err => console.log(err))
@@ -77,42 +65,48 @@ function SearchFriendList(props) {
 
     return (
         <div className={classes.root}>
-            <h1 className={classes.header}>Search For New Friends!</h1>
+            <Header />
+            <h1 id="srch-friend-title" className={classes.header}>Search For New Friends!</h1>
+            <div  id="srch-friend">
             <Paper className={classes.paper}>
                 <Autocomplete
                     freeSolo
                     id="free-solo-2-demo"
                     disableClearable
-                   /*  options = {
+                    options = {
                         state.searchFriendArr.map(friend => friend.name)
-                    } */
+                    } 
                     renderInput={(params) => (
                     <TextField
                         className={classes.searchFriendList}
                         {...params}
                         label="Search Friend List"
                         // margin="normal"
-                        variant="outlined"
+                        variant="filled"
                         // value={query}
-                        // onChange = { 
-                        //     event => {
-                        //         setQuery(event.target.value);
-                        //         setSearchedFor(event.target.value)
-                        //     }
-                        // }
+                        onChange = { 
+                            event => {
+                                // setQuery(event.target.value);
+                                setSearchedFor(event.target.value)
+                            }
+                        }
                         InputProps={{ ...params.InputProps, type: 'search' }}
                     />
                     )}
                 />
                 {state.searchFriendArr.map(friend =>  (
-                    <li 
+                    <li  id="srch-friend-li"
                     key={friend.name}
                     className={classes.li}
                     value={friend.name}
                     >
                         {friend.name}
-                        <button 
+                        <Button 
+                            id="add-friend"
                             className={classes.button}
+                            color='primary'
+                            size="small"
+                            variant='outlined'
                             onClick={() =>  {
                                 // setFriend(friend.name);
                                 addFriend(friend.name);
@@ -120,12 +114,13 @@ function SearchFriendList(props) {
                             }   
                         >
                            <i className="fas fa-user-plus"></i>   Add Friend
-                        </button>    
+                        </Button>    
                     </li>
 
                 ))}
                 
             </Paper>
+            </div>
         </div>
     )
 }

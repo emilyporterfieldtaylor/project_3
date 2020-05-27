@@ -7,6 +7,7 @@ const initialState = {
   userFriends: [],
   searchFriendArr: [],
   newFriendArr: [],
+ 
 };
 
 // Think of this as our main Context API that 
@@ -24,17 +25,17 @@ const reducer = (state, action) => {
             savedGames: [...state.savedGames]
         }
         case "ADD_USERDATA":
-          return{
+          return {
             ...state,
             userData: action.data
           }
         case "GET_USER_GAMES":
-          return{
+          return {
             ...state,
             savedGames: action.games
           }
         case "GET_USER_FRIENDS":
-          return{
+          return {
             ...state,
             userFriends: action.friends
           }
@@ -53,8 +54,8 @@ const reducer = (state, action) => {
         //     ...state,
         //     usersData: action.user
         //   }
-        default:
-          return state;
+    default:
+      return state;
   }
 };
 

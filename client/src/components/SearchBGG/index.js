@@ -4,7 +4,10 @@ import Paper from '@material-ui/core/Paper';
 import TextField from '@material-ui/core/TextField';
 import Autocomplete from '@material-ui/lab/Autocomplete';
 import Chip from '@material-ui/core/Chip';
+import Grid from '@material-ui/core/Grid';
+import './bgg.css';
 const axios = require("axios");
+
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -13,17 +16,21 @@ const useStyles = makeStyles((theme) => ({
     paper: {
         padding: theme.spacing(2),
         textAlign: 'center',
-        height: '78px'
+        height: '78px',
+        marginLeft: '1rem !important'
     },
-    button: {
+    chip: {
         padding: '5px',
         marginTop: '10px',
         marginBottom: '10px',
-        width: '95%'
+        // width: '95%',
+        cursor: 'pointer',
+        borderRadius: '5px'
     },
-    div: {
-        marginTop: '5px',
-        textAlign: 'center'
+    chipdiv: {
+        // marginTop: '5px',
+        textAlign: 'center',
+        marginLeft: '16px'
     }
 }));
 
@@ -39,7 +46,7 @@ function SearchBGG(props) {
         { title: 'Scattergories', year: 1988 },
         { title: "Magic: The Gathering", year: 1993 },
         { title: 'Photosynthesis', year: 2017 },
-      ];
+    ];
 
     const [gamePrev, setGamePrev] = useState({});
     const [games, setGames] = useState([]);
@@ -48,17 +55,20 @@ function SearchBGG(props) {
     const [value, setValue] = useState(topGames[0].title);
     const [inputValue, setInputValue] = useState('');    
 
-    useEffect(()  => {      
+    useEffect(()  => {     
+        let mounted = true; 
         const fetchData = async() => {
             const response = await axios.get(`/api/games/${inputValue}`);
             let game = {
                 gameId: response.data.elements[0].elements[0].attributes.objectid,
                 name: response.data.elements[0].elements[0].elements[0].elements[0].text,
             }
+           if (mounted){
             setGames(games => [...games, game ]);
+           }
         };
-
-        fetchData();    
+        fetchData(); 
+        return () => mounted = false;   
     }, [inputValue]);
 
     function getPreview(id) {
@@ -134,33 +144,36 @@ function SearchBGG(props) {
                         {...params}
                         label="Search for Board Game"
                         variant="outlined"
+                        multiline='true'
                     />
                     )}
                 />
             </Paper>
-            <Paper>
-                {games.length ? (
-                    <div className={classes.div}>
-                        {games.map(game => (
-                            <Chip className={classes.button}
-                                label={game.name} 
-                                clickable 
-                                color="primary"
-                                key={game.gameId} 
-                                value={game.gameId} 
-                                onClick={() => {
-                                    getPreview(game.gameId)
-                                  }
-                                }
-                            />
-                        ))}
-                    </div>
-                    )
-                     : (
-                    <div>
-                    </div>
-                )}
-            </Paper>
+            <Grid item xs={12}>
+                    {games.length ? (
+                        <div className={classes.chipdiv}>
+                            {games.map(game => (
+                                <button 
+                                    id="chip" 
+                                    className={classes.chip}
+                                    label={game.name}                                 
+                                    key={game.gameId} 
+                                    value={game.gameId} 
+                                    onClick={() => {
+                                        getPreview(game.gameId)
+                                      }
+                                    }
+                                >
+                                    {game.name}
+                                </button>
+                            ))}
+                        </div>
+                        )
+                        : (
+                        <div>
+                        </div>
+                    )}
+            </Grid>
         </div>
     )
 }

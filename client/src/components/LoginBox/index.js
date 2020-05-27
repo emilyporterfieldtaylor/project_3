@@ -14,13 +14,16 @@ import { makeStyles } from '@material-ui/core/styles';
 import API from '../../utils/index';
 import { useHistory } from 'react-router-dom';
 import { useStoreContext } from '../../utils/GlobalState';
-import './style.css';
-
+import './loginBox.css';
 
 const useStyles = makeStyles((theme) => ({
   root: {
-    display: "flex",
+    // display: "flex",
     flexWrap: "wrap",
+    flexGrow: 1,
+    fontFamily: 'Pangolin',
+    color: 'beige',
+    textAlign: 'center'
   },
   margin: {
     margin: theme.spacing(1),
@@ -29,8 +32,8 @@ const useStyles = makeStyles((theme) => ({
     marginTop: theme.spacing(3),
   },
   textField: {
-    width: "25ch",
-  },
+    width: "95%",
+  }
 }));
 
 export default function LoginBox() {
@@ -77,9 +80,12 @@ export default function LoginBox() {
     }
     
     return (
-        <div className="frame">
+        <div className="main">
+            <img className="logo" src="/images/ALaBoardLogo1.png" alt="game logo"/>
+        <div className="frame" >
             <Grid item xs={12}>
-                <h2>LOGIN</h2>
+                <h2>Welcome, weary travelers.</h2>
+                <h2>Fear not, inside are friends</h2>
                 <div className={classes.root}>
                     <div>
                         <TextField
@@ -114,12 +120,13 @@ export default function LoginBox() {
                 </div>
 
                 <button type="submit" className="btn" onClick={handleFormLogin}>Login</button>
-                <br />
-                <a className="google-btn" href="/auth/google"><img className="google" src="./images/btn_google_signin_light_pressed_web@2x.png" alt="google-icon" /></a>
-                <br />
+                <br/>
+                
+                <a className="google-btn" href="http://localhost:3002/auth/google"><img className="google" src="./images/btn_google_signin_light_pressed_web@2x.png" alt="google-icon" /></a>
                 <p>Don't have an account?<Link className="nav" to="/signup">CREATE ONE</Link></p>
 
             </Grid>
+        </div>
         </div>
   );
 }

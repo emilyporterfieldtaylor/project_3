@@ -6,7 +6,7 @@ import { Link } from 'react-router-dom';
 import DeleteBtn from '../DeleteBtn';
 import API from '../../utils/index';
 import { useStoreContext } from '../../utils/GlobalState';
-
+import './friend.css';
 const axios = require("axios");
 
 
@@ -88,21 +88,26 @@ function FriendsList(props) {
     //     { name: 'Leander Turner', id: 4},
     //     { name: 'Emily Taylor', id: 5}
     //   ];
+    console.log("herrrrrre: ",state.userFriends)
 
     return (
-        <div className={classes.root}>
-            <Paper className={classes.paper}>
+        <div id="main-friend" className={classes.root}>
+            <Paper className={classes.paper} id="friend-list">
                 Friend List:
-                <ul className={classes.friendlistUL}>
-                    {state.userFriends.map(friend => (
-                        <li key={friend.name}>
-                            <Link to={`/users/${friend.id}`}>
-                            {friend.name}
-                            </Link>
-                            <DeleteBtn onClick={() => deleteFriends(friend._id)}/> 
-                        </li>
-                    ))}
-                </ul>
+                {state.userFriends.length ? ( 
+                    <ul className={classes.friendlistUL}>
+                        {state.userFriends.map(friend => (
+                            <li key={friend.name}>
+                                <Link to={`/users/${friend.id}`}>
+                                {friend.name}
+                                </Link>
+                                <DeleteBtn onClick={() => deleteFriends(friend._id)}/> 
+                            </li>
+                        ))}
+                    </ul>
+                ) : (
+                    <h4>You Don't Have Any Friends Just Yet!</h4>
+                )}
             </Paper>
         </div>
     )

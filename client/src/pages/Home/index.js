@@ -1,38 +1,26 @@
 import React, { useState } from 'react';
 import Grid from '@material-ui/core/Grid';
 import SearchBar from '../../components/SearchBar/index';
-import BoardGameList from '../../components/BoardGameList/index';
+//import BoardGameList from '../../components/BoardGameList/index';
 import FriendsList from '../../components/FriendsList/index';
 import BoardGamePreview from '../../components/BoardGamePreview/index';
 import BoardGameDescription from '../../components/BoardGameDescription/index';
 import Links from '../../components/ExternalLinks/index';
 import Header from '../../components/Header';
-import { Link } from 'react-router-dom';
-
-// let classes = {
-let bulletin = {
-  textAlign: 'center',
-  color: 'grey',
-  textShadow: '1px 1px white'
-}
-
+import './home.css';
 
 function Home() {
   const [appState, setAppState] = useState(null);
   // const [friendID, setFriendID] = useState('');
 
   return (
-    <div className="App">
+    <div className="main-home">
       <Header />
-      <h1 style={bulletin}>The Bulletin Board</h1>
+      <h1 className="bulletin">The Bulletin Board</h1>
       <SearchBar stateChange={setAppState}/>
 
-      <Grid container spacing={2}>
-        <Grid item xs={3} >
-          <BoardGameList />
-        </Grid>
-
-        <Grid item xs={6} >
+      <Grid container spacing={1}>
+        <Grid item xs={8} >
           {appState && <React.Fragment>
             <BoardGamePreview name={appState.name} image={appState.image} />
             <BoardGameDescription 
@@ -51,12 +39,12 @@ function Home() {
           </React.Fragment>}
         </Grid>
 
-        <Grid item xs={3} >
-          <FriendsList 
-            // friendID={friendID.id}
-          />
+        <Grid item xs={4} >
+          <FriendsList />
+            <br></br>
           <Links />
         </Grid>
+
       </Grid>
     </div>
   );

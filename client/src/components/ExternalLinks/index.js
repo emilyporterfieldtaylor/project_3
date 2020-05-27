@@ -8,9 +8,12 @@ const useStyles = makeStyles((theme) => ({
       flexGrow: 1,
     },
     paper: {
-      padding: theme.spacing(2),
+      padding: theme.spacing(3),
       textAlign: 'left',
       color: theme.palette.text.secondary,
+      fontFamily: 'Pangolin',
+      marginLeft: '1rem !important',
+      marginRight: '1rem !important',
     },
     externalLinks: {
         padding: '5px'
