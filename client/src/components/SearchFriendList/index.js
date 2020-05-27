@@ -6,6 +6,8 @@ import TextField from '@material-ui/core/TextField';
 import Autocomplete from '@material-ui/lab/Autocomplete';
 import API from '../../utils/index';
 import { useStoreContext } from '../../utils/GlobalState';
+import Button from '@material-ui/core/Button';
+import Header from '../Header';
 import './searchFriendList.css';
 
 const useStyles = makeStyles((theme) => ({
@@ -17,7 +19,10 @@ const useStyles = makeStyles((theme) => ({
       marginLeft: '0px !important'
     },
     button: {
-        marginLeft: '0px !important'
+        marginLeft: '5px !important',
+        padding: '4px',
+        // borderStyle: 'none',
+        // borderRadius: '2px'
     }
 }));
 
@@ -33,7 +38,7 @@ function SearchFriendList(props) {
     // const [friendarr, setFriend] = useState({});
 
     useEffect(() => {
-        console.log('sate: ',state.searchFriendArr)
+        console.log('state: ',state.searchFriendArr)
         searchFriends();
     }, []);
 
@@ -46,11 +51,12 @@ function SearchFriendList(props) {
 
     function addFriend(friend) {
         let friendData = {
-            name: friend
+            name: friend,
+            userId: state.userData.id
         }
         API.addFriend(friendData)
         .then(res => {
-            console.log('sate: ',state.searchFriendArr)
+            console.log('state: ',state.searchFriendArr)
 
             dispatch({type: "ADD_FRIEND", newFriend: res.data})
         })
@@ -59,6 +65,7 @@ function SearchFriendList(props) {
 
     return (
         <div className={classes.root}>
+            <Header />
             <h1 id="srch-friend-title" className={classes.header}>Search For New Friends!</h1>
             <div  id="srch-friend">
             <Paper className={classes.paper}>
@@ -94,8 +101,12 @@ function SearchFriendList(props) {
                     value={friend.name}
                     >
                         {friend.name}
-                        <button id="add-friend"
+                        <Button 
+                            id="add-friend"
                             className={classes.button}
+                            color='primary'
+                            size="small"
+                            variant='outlined'
                             onClick={() =>  {
                                 // setFriend(friend.name);
                                 addFriend(friend.name);
@@ -103,7 +114,7 @@ function SearchFriendList(props) {
                             }   
                         >
                            <i className="fas fa-user-plus"></i>   Add Friend
-                        </button>    
+                        </Button>    
                     </li>
 
                 ))}

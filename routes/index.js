@@ -49,9 +49,11 @@ function apiRoutes(app) {
   app.post("/api/add_friend", function (req, res) {
     console.log('in routes'),
     db.Friend.create({
-      name: req.body.name
+      name: req.body.name,
+      UserId: req.body.userId
     })
     .then(function (friend) {
+      console.log('friend in post: ', friend)
       res.json(friend)
     })
     .catch(function(err) {
