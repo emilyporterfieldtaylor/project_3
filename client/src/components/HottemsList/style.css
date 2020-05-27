@@ -1,0 +1,17 @@
+.main-hot{
+        background-image: url('/images/photosynthesis-light.jpg');
+        height: 100%;
+        background-position: center;
+        background-size: cover;    
+}
+
+#hot-container {
+        background-image: linear-gradient(to right, rgba(0, 128, 0, 0.289), rgba(255, 255, 0, 0.282), rgba(255, 166, 0, 0.282), rgba(255, 255, 0, 0.282), rgba(0, 128, 0, 0.282));
+        border-radius: 10px;
+        margin:auto;
+        width: 50%;
+}
+
+#hot-button {
+        background-color: antiquewhite; 
+}
