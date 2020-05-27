@@ -10,7 +10,7 @@ import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
 import API from '../../utils/index.js';
-import { useStoreContext } from '../../utils/GlobalState'
+import {useStoreContext} import '../../utils/globalState'
 const axios = require("axios");
 
 const useStyles = makeStyles((theme) => ({
@@ -29,7 +29,6 @@ const useStyles = makeStyles((theme) => ({
     height: '100%',
     display: 'flex',
     flexDirection: 'column',
-    boxShadow: '10px 10px 20px'
   },
   cardMedia: {
     paddingTop: '56.25%', // 16:9
@@ -37,20 +36,11 @@ const useStyles = makeStyles((theme) => ({
   cardContent: {
     flexGrow: 1,
   },
-  welcome: {
-    textAlign: "center",
-    color: "#1976d2" 
-  },
-  tagline: {
-    textAlign: "center", 
-    color:"#dc004e"
-  }
 }));
 
 export default function HotItemsList(props) {
-  const globalState = useStoreContext();
+  const globalState = useStoreContext()
   const classes = useStyles();
-
   const [hotGames, setHotGames] = useState([])
   const handleClick = (e) => {
     console.log("The link was clicked");
@@ -79,14 +69,15 @@ export default function HotItemsList(props) {
   const saveGameFunction = async (id) => {
     const game = await axios.get(`/api/gameById/` + id);
     console.log(game.data);
-    console.log(globalState.gameData)
-    game.data.UserId = globalState.userData['WHATEVER THE KEY FOR THE ID IS']
-    API.saveGame({...game.data, UserId: 1})
+
+    API.saveGame(game.data)
     .then(results => {
       const list = hotGames.map((game) => {
+        game.UserId=1;
         if (game.id === id) {
           game.footer = "ADDED TO COLLECTION";
           game.addEnabled = false;
+        
           return game;
         } else {
           return game;
@@ -104,17 +95,16 @@ export default function HotItemsList(props) {
         {/* Hero unit */}
         <div className={classes.heroContent}>
           <Container maxWidth="sm">
-            <h1 className={classes.welcome}>
+            <Typography component="h1" variant="h3" align="center" color="textPrimary" gutterBottom>
               Welcome to À La Board!
-            </h1>
-            <h4 className={classes.tagline}>
+            </Typography>
+            <Typography variant="h5" align="center" color="textSecondary" paragraph>
               To get you started, any of the boardgames below that you own to get you virtual collection started.
-            </h4>
+            </Typography>
             <div className={classes.heroButtons}>
               <Grid container spacing={2} justify="center">
                 <Grid item>
-                  <Button variant="contained" color="primary" >
-                    <a href="/home" onClick={handleClick}>
+                  <Button variant="contained" color="primary" ><a href="/home" onClick={handleClick}>
                     Continue To Home Page
                     </a>
                   </Button>
