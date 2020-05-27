@@ -1,7 +1,12 @@
-/* will need to push photo from local branch */
+/* will need to push photo from local computer */
 .main-hot {
    /* background-image: url ('/images/photosynthesis-light.css'); */
   height: 100%;
   background-size: cover;
   background-position: center;
+}
+
+/* will need to push coloring from local computer */
+#hot-banner {
+/*background-image:linear-gradient(to right, );*/
 }
