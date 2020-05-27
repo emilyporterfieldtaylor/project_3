@@ -20,6 +20,7 @@ AS a person throwing a board game party, I want to be able to narrow down my boa
 ## FEATURES
 
 1. Users can choose to log into the app by one of two ways:
+
    a. Signup up for an account
    b. Use google to authenticate account
 
