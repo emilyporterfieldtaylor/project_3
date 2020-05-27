@@ -104,7 +104,7 @@ export default function HotItemsList(props) {
       <CssBaseline />
       <main className="main-hot">
         {/* Hero unit */}
-        <div className={classes.heroContent}>
+        <div id="hot-banner" className={classes.heroContent}>
           <Container maxWidth="sm">
             <h1 className={classes.welcome}>
               Welcome to À La Board!
