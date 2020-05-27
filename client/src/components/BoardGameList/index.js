@@ -17,7 +17,15 @@ const useStyles = makeStyles((theme) => ({
         fontFamily: 'Pangolin',
     },
     boardgameUL: {
-        padding: '5px'
+        marginTop: '15px !important',
+        marginBottom: '15px !important',
+        padding: '5px',
+        listStyle: 'circle'
+    },
+    gameLI: {
+        marginBottom: '15px',
+        marginLeft: '20px',
+        fontSize: '18px'
     }
 }));
 
@@ -66,11 +74,11 @@ function BoardGameList() {
                         {console.log(state.savedGames, "state.saved-games")} 
                         {state.savedGames.map(game => (
                             //pulling games from the database and rendering to the homepage
-                            <li key={game.id}>{game.name} ({game.yearPublished})</li>
+                            <li key={game.id} className={classes.gameLI}>{game.name} ({game.yearPublished})</li>
                         ))}
                     </ul>
                 ) : (
-                    <h6>You Don't Have Any Saved Games Yet!</h6>
+                    <h6 id='savedGameElse'>You Don't Have Any Saved Games Yet!</h6>
                 )}
             </Paper>
         </div>

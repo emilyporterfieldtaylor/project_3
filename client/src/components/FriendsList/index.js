@@ -18,6 +18,7 @@ const useStyles = makeStyles((theme) => ({
       padding: theme.spacing(2),
       textAlign: 'left',
       color: theme.palette.text.secondary,
+      fontFamily: 'Pangolin',
     },
     friendlistUL: {
         padding: '5px'
@@ -47,49 +48,6 @@ function FriendsList(props) {
         })
     }
 
-    
-        // const response = await axios.get(`/api/users/${props.id}`);
-        // console.log('response: ', response.data)
-        // for (let i = 0; i <response.data.length; i++) {
-            // let friend = {
-            //     email: props.email,
-            //     id: props.id,
-            //     name: props.name,
-            //     password: props.password
-            // }
-            // setFriends(friends => [...friends, friend]);
-        // }
-    
-    // console.log(friends)
-
-    // function getFriends(id, name, email, password) {
-    //     let friend = {
-    //         id: {id},
-    //         name: {name},
-    //         email: {email},
-    //         password: {password}
-    //     }
-    //     console.log('friend; ',friend)
-    //     const fetchFriends = async() => {
-    //         const response = await axios.get(`/users/${id}`);
-    //         let friendData = response.friendData;
-    //         console.log(friendData);
-    //         setFriends(friendData);
-    //     // props.setUserState(friendData)
-    //     };
-    //     fetchFriends();
-    // }
-        
-    // const friendsList = [
-    //     // this will eventually get removed and call from the database to show each user's friends to the dom
-    //     { name: 'Kendra Kwoka', id: 1},
-    //     { name: 'Eric Garcia', id: 2},
-    //     { name: 'Caitlin Huber', id: 3},
-    //     { name: 'Leander Turner', id: 4},
-    //     { name: 'Emily Taylor', id: 5}
-    //   ];
-    console.log("herrrrrre: ",state.userFriends)
-
     return (
         <div id="main-friend" className={classes.root}>
             <Paper className={classes.paper} id="friend-list">
@@ -97,8 +55,8 @@ function FriendsList(props) {
                 {state.userFriends.length ? ( 
                     <ul className={classes.friendlistUL}>
                         {state.userFriends.map(friend => (
-                            <li key={friend.name}>
-                                <Link to={`/users/${friend.id}`}>
+                            <li key={friend.name} >
+                                <Link to={`/users/${friend.id}`} >
                                 {friend.name}
                                 </Link>
                                 <DeleteBtn onClick={() => deleteFriends(friend._id)}/> 

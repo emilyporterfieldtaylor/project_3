@@ -2,7 +2,7 @@ const router = require("express").Router();
 const passport = require("passport");
 const path = require("path");
 var isAuthenticated = require("../config/middleware/isAuthenticated");
-const CLIENT_HOME_PAGE_URL = "https://mysterious-sierra-72763.herokuapp.com";
+const CLIENT_HOME_PAGE_URL = "http://localhost:3000";
 
 // auth login
 router.get("/login/success", (req, res) => {
@@ -47,7 +47,7 @@ router.get("/google/redirect", passport.authenticate("google", {
   }),function(req, res) {
     // Succesful authentication!
     res.cookie('logged_in', true);
-    res.redirect('/home');
+    res.redirect('http://localhost:3000/home');
   }
 )
 
