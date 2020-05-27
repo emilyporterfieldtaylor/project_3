@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from "react";
-// import './style.css';
 import { makeStyles } from '@material-ui/core/styles';
 import Paper from '@material-ui/core/Paper';
 import TextField from '@material-ui/core/TextField';
@@ -21,8 +20,6 @@ const useStyles = makeStyles((theme) => ({
     button: {
         marginLeft: '5px !important',
         padding: '4px',
-        // borderStyle: 'none',
-        // borderRadius: '2px'
     }
 }));
 
@@ -30,12 +27,7 @@ const useStyles = makeStyles((theme) => ({
 function SearchFriendList(props) {
     const classes = useStyles();
     const [state, dispatch] = useStoreContext();
-
     const [searchedFor, setSearchedFor] = useState([]);
-    // const [games, setGames] = useState([]);
-    // const [query, setQuery] = useState('catan');
-    // const [search, setSearch] = useState('');
-    // const [friendarr, setFriend] = useState({});
 
     useEffect(() => {
         console.log('state: ',state.searchFriendArr)
@@ -56,8 +48,7 @@ function SearchFriendList(props) {
         }
         API.addFriend(friendData)
         .then(res => {
-            console.log('state: ',state.searchFriendArr)
-
+            // console.log('state: ',state.searchFriendArr)
             dispatch({type: "ADD_FRIEND", newFriend: res.data})
         })
         .catch(err => console.log(err))

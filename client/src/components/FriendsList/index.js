@@ -6,6 +6,7 @@ import { Link } from 'react-router-dom';
 import DeleteBtn from '../DeleteBtn';
 import API from '../../utils/index';
 import { useStoreContext } from '../../utils/GlobalState';
+import Button from '@material-ui/core/Button';
 import './friend.css';
 const axios = require("axios");
 
@@ -43,8 +44,24 @@ function FriendsList(props) {
 
     function getFriends() {
         API.getUserFriends().then(results => {
-            console.log("myFriends: ", results.data)
+            // console.log("myFriends: ", results.data)
             dispatch({type: "GET_USER_FRIENDS", friends: results.data})
+        })
+    }
+    
+    function getClickedFriend(friend) {
+        let clickedFriend = {
+            name: friend
+        }
+        console.log('clicked friend: ', clickedFriend)
+        API.getClickedFriend().then(results => {
+            for (let i = 0; i < results.data.length; i++) {
+                if (results.data[i].name === clickedFriend.name) {
+                    dispatch({type: "GET_CLICKED_FRIEND", clickedFriend: results.data[i]})
+                    // redirect(`/user/${results.data[i].id}`);
+
+                }
+            }
         })
     }
 
@@ -55,12 +72,18 @@ function FriendsList(props) {
                 {state.userFriends.length ? ( 
                     <ul className={classes.friendlistUL}>
                         {state.userFriends.map(friend => (
-                            <li key={friend.name} >
-                                <Link to={`/users/${friend.id}`} >
-                                {friend.name}
+                            <Button 
+                                key={friend.name} 
+                                onClick={() => getClickedFriend(friend.name)}
+                                // href={`/users/${friend.id}`}
+                            >
+                                <Link 
+                                    to={`/users/${friend.id}`} 
+                                >
+                                    {friend.name}
                                 </Link>
                                 <DeleteBtn onClick={() => deleteFriends(friend._id)}/> 
-                            </li>
+                            </Button>
                         ))}
                     </ul>
                 ) : (

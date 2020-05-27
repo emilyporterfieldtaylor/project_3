@@ -129,6 +129,15 @@ function apiRoutes(app) {
     });
   })
 
+  app.get('/api/clicked_friend', function (req, res) {
+    db.User.findAll({})
+    .then(function (friend) {
+      console.log('in routes: ', friend)
+      res.json(friend);
+    })
+    .catch(err => console.log(err));
+  })
+
   // app.get("/api/data", function (req, res) {
   //   db.User.findAll({
   //     where: {UserId: req.params.id}

@@ -7,7 +7,7 @@ const initialState = {
   userFriends: [],
   searchFriendArr: [],
   newFriendArr: [],
- 
+  clickedFriendArr: []
 };
 
 // Think of this as our main Context API that 
@@ -48,6 +48,11 @@ const reducer = (state, action) => {
           return {
             ...state,
             newFriendArr: action.newFriend
+          }
+        case "GET_CLICKED_FRIEND":
+          return {
+            ...state,
+            clickedFriendArr: action.clickedFriend
           }
         // case "GET_USER_DATA":
         //   return{

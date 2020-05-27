@@ -71,7 +71,6 @@ function BoardGameList() {
                 <u>Saved Games List:</u>
                 {state.savedGames.length ? (
                     <ul className={classes.boardgameUL}>
-                        {console.log(state.savedGames, "state.saved-games")} 
                         {state.savedGames.map(game => (
                             //pulling games from the database and rendering to the homepage
                             <li key={game.id} className={classes.gameLI}>{game.name} ({game.yearPublished})</li>
