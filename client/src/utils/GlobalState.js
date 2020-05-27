@@ -32,7 +32,7 @@ const reducer = (state, action) => {
         case "GET_USER_GAMES":
           return {
             ...state,
-            savedGames: [action.games]
+            savedGames: action.games
           }
         case "GET_USER_FRIENDS":
           return {

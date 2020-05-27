@@ -52,7 +52,11 @@ function BoardGameList() {
         { title: 'Photosynthesis', year: 2017 },
     ];
 
-    console.log('no here!: ', state.savedGames)
+    //if games is empty, then loading, prevents map error
+    if(!state.savedGames) {
+        return <div>Loading</div>
+    }
+
     return (
         <div className={classes.root}>
             <Paper className={classes.paper} id="game-list">
