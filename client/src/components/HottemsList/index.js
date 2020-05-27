@@ -102,7 +102,7 @@ export default function HotItemsList(props) {
   return (
     <React.Fragment>
       <CssBaseline />
-      <main>
+      <main className="main-hot">
         {/* Hero unit */}
         <div className={classes.heroContent}>
           <Container maxWidth="sm">
