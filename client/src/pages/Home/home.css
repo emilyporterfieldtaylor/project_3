@@ -1,7 +1,8 @@
-.main-home {
-    /* background-color:#adcfc7; */
-    background-image: url('./settlers.jpg');
-    height: 120%;
+.home {
+    background-image: url('/images/settlers.jpg');
+    height: ;
+    background-position: center;
+    background-size: cover;
 }
 
 .bulletin {

@@ -11,7 +11,9 @@ import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
 import API from '../../utils/index.js';
 import {useStoreContext} from '../../utils/GlobalState'
+import './style.css';
 const axios = require("axios");
+
 
 const useStyles = makeStyles((theme) => ({
   heroContent: {
@@ -104,6 +106,7 @@ export default function HotItemsList(props) {
       <CssBaseline />
       <main className="main-hot">
         {/* Hero unit */}
+
         <div id="hot-banner" className={classes.heroContent}>
           <Container maxWidth="sm">
             <h1 className={classes.welcome}>
@@ -115,7 +118,7 @@ export default function HotItemsList(props) {
             <div className={classes.heroButtons}>
               <Grid container spacing={2} justify="center">
                 <Grid item>
-                  <Button variant="contained" color="primary" >
+                  <Button id="hot-button" variant="contained" >
                     <a href="/home" onClick={handleClick}>
                     Continue To Home Page
                     </a>

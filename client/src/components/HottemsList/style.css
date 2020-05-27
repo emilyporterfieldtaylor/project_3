@@ -1,12 +1,19 @@
-/* will need to push photo from local computer */
-.main-hot {
-   /* background-image: url ('/images/photosynthesis-light.css'); */
-  height: 100%;
-  background-size: cover;
-  background-position: center;
+
+.main-hot{
+        background-image: url('/images/photosynthesis-light.jpg');
+        height: 100%;
+        background-position: center;
+        background-size: cover;    
 }
 
-/* will need to push coloring from local computer */
-#hot-banner {
-/*background-image:linear-gradient(to right, );*/
+#hot-container {
+        background-image: linear-gradient(to right, rgba(0, 128, 0, 0.289), rgba(255, 255, 0, 0.282), rgba(255, 166, 0, 0.282), rgba(255, 255, 0, 0.282), rgba(0, 128, 0, 0.282));
+        border-radius: 10px;
+        margin:auto;
+        width: 50%;
 }
+
+#hot-button {
+        background-color: antiquewhite; 
+}
+
