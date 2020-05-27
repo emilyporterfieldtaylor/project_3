@@ -6,7 +6,7 @@
         background-size: cover;    
 }
 
-#hot-container {
+#hot-banner {
         background-image: linear-gradient(to right, rgba(0, 128, 0, 0.289), rgba(255, 255, 0, 0.282), rgba(255, 166, 0, 0.282), rgba(255, 255, 0, 0.282), rgba(0, 128, 0, 0.282));
         border-radius: 10px;
         margin:auto;
