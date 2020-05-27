@@ -80,7 +80,7 @@ export default function LoginBox() {
     }
     
     return (
-        <div className="main">
+        <div className="main" id="loginPage">
             <img className="logo" src="/images/ALaBoardLogo1.png" alt="game logo"/>
         <div className="frame" >
             <Grid item xs={12}>

@@ -1,12 +1,12 @@
 /* outermost div container */
-.main {
+/* .main {
     background-image: url('/images/town.jpg');
     width: 100%;
     height: 120%;
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
-}
+} */
 
 .logo {
     width: 15%;
@@ -65,4 +65,8 @@ p {
 .google {
     width: 25%;
     margin-top: 20px;
+}
+
+#loginPage {
+    padding-bottom: 50px;
 }
