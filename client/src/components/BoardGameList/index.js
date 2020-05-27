@@ -51,7 +51,7 @@ function BoardGameList() {
         { title: "Magic: The Gathering", year: 1993 },
         { title: 'Photosynthesis', year: 2017 },
     ];
-    
+
     //if games is empty, then loading, prevents map error
     if(!state.savedGames) {
         return <div>Loading</div>
@@ -61,6 +61,7 @@ function BoardGameList() {
         <div className={classes.root}>
             <Paper className={classes.paper} id="game-list">
                 Saved Games List:
+                {state.savedGames.length ? (
                     <ul className={classes.boardgameUL}>
                         {console.log(state.savedGames, "state.saved-games")} 
                         {state.savedGames.map(game => (
@@ -68,6 +69,9 @@ function BoardGameList() {
                             <li key={game.id}>{game.name} ({game.yearPublished})</li>
                         ))}
                     </ul>
+                ) : (
+                    <h4>You Don't Have Any Saved Games Yet!</h4>
+                )}
             </Paper>
         </div>
     )

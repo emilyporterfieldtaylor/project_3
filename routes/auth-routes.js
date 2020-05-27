@@ -47,7 +47,7 @@ router.get("/google/redirect", passport.authenticate("google", {
   }),function(req, res) {
     // Succesful authentication!
     res.cookie('logged_in', true);
-    res.redirect(CLIENT_HOME_PAGE_URL);
+    res.redirect('http://localhost:3000/home');
   }
 )
 

@@ -39,9 +39,8 @@ function Header() {
     const [state, dispatch] = useStoreContext();
     const classes = useStyles();
     const {user: auth, logout} = AuthManager();
+    const [auth2, setAuth2] = React.useState(true);
     const [anchorEl, setAnchorEl] = React.useState(null);
-
-    //console.log(state)
 
     const open = Boolean(anchorEl);
 
@@ -62,10 +61,10 @@ function Header() {
             <AppBar position="static">
                 <Toolbar>
                     <Typography variant="h6" className={classes.title}>
-                        <img className="logo-two" src="/images/ALaBoardLogo1.png"/>
+                        <img className="logo-two" src="/images/ALaBoardLogo1NameLong.png"/>
                     </Typography>
 
-                    {auth && (
+                    {auth2 && (
                         <div>
                             <IconButton
                                 aria-label="account of current user"
@@ -103,15 +102,9 @@ function Header() {
                     )}
                     <FormGroup>
                         <FormControlLabel
-                            control={<Switch checked={auth} onChange={handleChange} aria-label="login switch" />}
-                            label={auth ? 'Logout' : 'Login'}
+                            control={<Switch checked={auth2} onChange={handleChange} aria-label="login switch" />}
+                            label={auth2 ? 'Logout' : 'Login'}
                         />
-                        {/* {!auth && (
-                                <Typography className={classes.logout}>Log In</Typography>
-                            )} */}
-                        {/* {auth && (
-                                <Typography className={classes.logout}>Log Out</Typography>
-                            )} */}
                     </FormGroup>
                 </Toolbar>
             </AppBar>
