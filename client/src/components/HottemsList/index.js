@@ -11,6 +11,7 @@ import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
 import API from '../../utils/index.js';
 import {useStoreContext} from '../../utils/GlobalState'
+import './hotitems.css';
 const axios = require("axios");
 
 const useStyles = makeStyles((theme) => ({
