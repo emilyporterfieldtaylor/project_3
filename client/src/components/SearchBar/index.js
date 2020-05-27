@@ -14,11 +14,18 @@ const useStyles = makeStyles((theme) => ({
     moreFriends: {
         textAlign: 'center',
         // padding: '5px 10px 0px 10px',
-        height: '105px',
+        // height: '105px',
         marginLeft: '1rem !important',
         marginRight: '1rem !important',
+
+        listStyleType: 'none'
+    }, 
+    searchBarLI: {
         fontFamily: 'Pangolin',
-    }
+        fontSize: '18px',
+        padding: '5px 3px 0px 3px'
+    },
+
 }));
 
 function SearchBar(props) {
@@ -37,9 +44,17 @@ function SearchBar(props) {
 
                 <Grid item xs={4}>
                     <Paper className={classes.moreFriends}>
-                        <Link to="/search_friends">
-                            Want to Find More Friends?
-                        </Link>
+                        <li className={classes.searchBarLI}>
+                            <Link to="/search_friends">
+                                Want to Find More Friends?
+                            </Link>
+                        </li>
+                        --
+                        <li className={classes.searchBarLI} >
+                            <Link to="/planmyevent" >
+                                Want to Plan a Game Night?
+                            </Link>
+                        </li>
                     </Paper>
                 </Grid>
             </Grid>

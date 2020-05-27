@@ -40,5 +40,8 @@ export default {
 
   searchFriends: function() {
     return axios.get("/api/all_friends")
+  },
+  getClickedFriend: function () {
+    return axios.get('/api/clicked_friend')
   }
 };

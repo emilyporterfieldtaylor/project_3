@@ -6,6 +6,7 @@ import { Link } from 'react-router-dom';
 import DeleteBtn from '../DeleteBtn';
 import API from '../../utils/index';
 import { useStoreContext } from '../../utils/GlobalState';
+import Button from '@material-ui/core/Button';
 import './friend.css';
 const axios = require("axios");
 
@@ -18,6 +19,7 @@ const useStyles = makeStyles((theme) => ({
       padding: theme.spacing(2),
       textAlign: 'left',
       color: theme.palette.text.secondary,
+      fontFamily: 'Pangolin',
     },
     friendlistUL: {
         padding: '5px'
@@ -42,53 +44,26 @@ function FriendsList(props) {
 
     function getFriends() {
         API.getUserFriends().then(results => {
-            console.log("myFriends: ", results.data)
+            // console.log("myFriends: ", results.data)
             dispatch({type: "GET_USER_FRIENDS", friends: results.data})
         })
     }
-
     
-        // const response = await axios.get(`/api/users/${props.id}`);
-        // console.log('response: ', response.data)
-        // for (let i = 0; i <response.data.length; i++) {
-            // let friend = {
-            //     email: props.email,
-            //     id: props.id,
-            //     name: props.name,
-            //     password: props.password
-            // }
-            // setFriends(friends => [...friends, friend]);
-        // }
-    
-    // console.log(friends)
+    function getClickedFriend(friend) {
+        let clickedFriend = {
+            name: friend
+        }
+        console.log('clicked friend: ', clickedFriend)
+        API.getClickedFriend().then(results => {
+            for (let i = 0; i < results.data.length; i++) {
+                if (results.data[i].name === clickedFriend.name) {
+                    dispatch({type: "GET_CLICKED_FRIEND", clickedFriend: results.data[i]})
+                    // redirect(`/user/${results.data[i].id}`);
 
-    // function getFriends(id, name, email, password) {
-    //     let friend = {
-    //         id: {id},
-    //         name: {name},
-    //         email: {email},
-    //         password: {password}
-    //     }
-    //     console.log('friend; ',friend)
-    //     const fetchFriends = async() => {
-    //         const response = await axios.get(`/users/${id}`);
-    //         let friendData = response.friendData;
-    //         console.log(friendData);
-    //         setFriends(friendData);
-    //     // props.setUserState(friendData)
-    //     };
-    //     fetchFriends();
-    // }
-        
-    // const friendsList = [
-    //     // this will eventually get removed and call from the database to show each user's friends to the dom
-    //     { name: 'Kendra Kwoka', id: 1},
-    //     { name: 'Eric Garcia', id: 2},
-    //     { name: 'Caitlin Huber', id: 3},
-    //     { name: 'Leander Turner', id: 4},
-    //     { name: 'Emily Taylor', id: 5}
-    //   ];
-    console.log("herrrrrre: ",state.userFriends)
+                }
+            }
+        })
+    }
 
     return (
         <div id="main-friend" className={classes.root}>
@@ -97,12 +72,18 @@ function FriendsList(props) {
                 {state.userFriends.length ? ( 
                     <ul className={classes.friendlistUL}>
                         {state.userFriends.map(friend => (
-                            <li key={friend.name}>
-                                <Link to={`/users/${friend.id}`}>
-                                {friend.name}
+                            <Button 
+                                key={friend.name} 
+                                onClick={() => getClickedFriend(friend.name)}
+                                // href={`/users/${friend.id}`}
+                            >
+                                <Link 
+                                    to={`/users/${friend.id}`} 
+                                >
+                                    {friend.name}
                                 </Link>
                                 <DeleteBtn onClick={() => deleteFriends(friend._id)}/> 
-                            </li>
+                            </Button>
                         ))}
                     </ul>
                 ) : (

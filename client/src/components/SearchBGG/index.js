@@ -16,7 +16,7 @@ const useStyles = makeStyles((theme) => ({
     paper: {
         padding: theme.spacing(2),
         textAlign: 'center',
-        height: '78px',
+        // height: '78px',
         marginLeft: '1rem !important'
     },
     chip: {

@@ -5,7 +5,7 @@ import Planner from '../../components/Planner';
 export default function PlanEvent () {
     return(
         <div>
-        <Planner/>
+            <Planner/>
         </div>
     )
 }
