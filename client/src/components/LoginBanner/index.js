@@ -8,7 +8,7 @@ const useStyles = makeStyles((theme) => ({
   root: {
     flexGrow: 1,
     fontFamily: 'Pangolin',
-    color: 'plum',
+    color: 'beige',
     textAlign: 'center'
   }
 }));

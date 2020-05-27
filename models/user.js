@@ -9,19 +9,23 @@ module.exports = function(sequelize, DataTypes) {
             len: [1]
         }
       },
-        email: {
-            type: DataTypes.STRING,
-            allowNull: false,
-            unique: true,
-//             validate: {
-//               isEmail: true
-//             }
-          },
-          // The password cannot be null
-          password: {
-            type: DataTypes.STRING,
-            allowNull: false
-          }
+      email: {
+        type: DataTypes.STRING,
+        allowNull: false,
+        unique: true,
+        validate: {
+          isEmail: true
+        }
+      },
+      // The password cannot be null
+      password: {
+        type: DataTypes.STRING,
+        allowNull: false
+      },
+      provider: DataTypes.STRING,
+      profilePicture: DataTypes.STRING,
+      // image: DataTypes.LONGBLOB,
+      // favGame: DataTypes.ARRAY
     });
 
 
@@ -30,7 +34,8 @@ module.exports = function(sequelize, DataTypes) {
       // Associating Author with Posts
       // When an Author is deleted, also delete any associated Posts
       User.hasMany(models.Game, {
-        onDelete: "cascade"
+        onDelete: "cascade",
+        //through: 'User_Games'
       });
 
       User.hasMany(models.Friend, {
@@ -47,5 +52,5 @@ module.exports = function(sequelize, DataTypes) {
       User.addHook("beforeCreate", function(user) {
         user.password = bcrypt.hashSync(user.password, bcrypt.genSaltSync(10), null);
       });
-      return User;
+  return User;
 }

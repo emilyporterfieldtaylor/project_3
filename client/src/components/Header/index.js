@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
@@ -11,7 +11,9 @@ import FormControlLabel from '@material-ui/core/FormControlLabel';
 import FormGroup from '@material-ui/core/FormGroup';
 import MenuItem from '@material-ui/core/MenuItem';
 import Menu from '@material-ui/core/Menu';
-import './style.css';
+import AuthManager from "../../utils/AuthManager";
+import { useStoreContext } from '../../utils/GlobalState';
+import './header.css';
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -23,9 +25,6 @@ const useStyles = makeStyles((theme) => ({
     },
     title: {
         flexGrow: 1,
-        fontFamily: 'Pangolin',
-        fontSize: '36px',
-        // textAlign: 'center'
     },
     loggedIn: {
         flexGrow: 1,
@@ -36,14 +35,17 @@ const useStyles = makeStyles((theme) => ({
     }
 }));
 
-function Header() {
+function Header() {  
+    const [state, dispatch] = useStoreContext();
     const classes = useStyles();
-    const [auth, setAuth] = React.useState(true);
+    const {user: auth, logout} = AuthManager();
+    const [auth2, setAuth2] = React.useState(true);
     const [anchorEl, setAnchorEl] = React.useState(null);
+
     const open = Boolean(anchorEl);
 
     const handleChange = (event) => {
-        setAuth(event.target.checked);
+        logout();
     };
 
     const handleMenu = (event) => {
@@ -53,16 +55,16 @@ function Header() {
     const handleClose = () => {
         setAnchorEl(null);
     };
-
+   
     return (
         <div className={classes.root}>
             <AppBar position="static">
                 <Toolbar>
                     <Typography variant="h6" className={classes.title}>
-                        À La Board
+                        <img className="logo-two" src="/images/ALaBoardLogo1NameLong.png"/>
                     </Typography>
 
-                    {auth && (
+                    {auth2 && (
                         <div>
                             <IconButton
                                 aria-label="account of current user"
@@ -74,8 +76,8 @@ function Header() {
                                 <AccountCircle />
                             </IconButton>
 
-                            <Typography variant="subtitle2" className={classes.loggedIn}>
-                                Logged in as * user *!
+                            <Typography  variant="subtitle2" className={classes.loggedIn}>
+                                Logged in as {state.userData.name}!
                             </Typography>
 
                             <Menu
@@ -100,15 +102,9 @@ function Header() {
                     )}
                     <FormGroup>
                         <FormControlLabel
-                            control={<Switch checked={auth} onChange={handleChange} aria-label="login switch" />}
-                            label={auth ? 'Logout' : 'Login'}
+                            control={<Switch checked={auth2} onChange={handleChange} aria-label="login switch" />}
+                            label={auth2 ? 'Logout' : 'Login'}
                         />
-                            {/* {!auth && (
-                                <Typography className={classes.logout}>Log In</Typography>
-                            )} */}
-                            {/* {auth && (
-                                <Typography className={classes.logout}>Log Out</Typography>
-                            )} */}
                     </FormGroup>
                 </Toolbar>
             </AppBar>
