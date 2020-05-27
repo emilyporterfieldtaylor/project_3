@@ -22,6 +22,7 @@ AS a person throwing a board game party, I want to be able to narrow down my boa
 1. Users can choose to log into the app by one of two ways:
 
    a. Signup up for an account
+   
    b. Use google to authenticate account
 
 2. The user will be able to search and then add to their online list of board games they currently own.
