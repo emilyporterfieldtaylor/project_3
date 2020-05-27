@@ -140,12 +140,12 @@ function SearchBGG(props) {
                     disableClearable
                     options={topGames.map((option) => option.title)}
                     renderInput={(params) => (
-                    <TextField
-                        {...params}
-                        label="Search for Board Game"
-                        variant="outlined"
-                        multiline='true'
-                    />
+                        <TextField
+                            {...params}
+                            label="Search for Board Game"
+                            variant="outlined"
+                            multiline={true}
+                        />
                     )}
                 />
             </Paper>
