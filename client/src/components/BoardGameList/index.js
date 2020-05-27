@@ -51,6 +51,11 @@ function BoardGameList() {
         { title: "Magic: The Gathering", year: 1993 },
         { title: 'Photosynthesis', year: 2017 },
     ];
+    
+    //if games is empty, then loading, prevents map error
+    if(!state.savedGames) {
+        return <div>Loading</div>
+    }
 
     return (
         <div className={classes.root}>

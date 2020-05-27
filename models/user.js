@@ -33,9 +33,9 @@ module.exports = function(sequelize, DataTypes) {
     User.associate = function(models) {
       // Associating Author with Posts
       // When an Author is deleted, also delete any associated Posts
-      User.belongsToMany(models.Game, {
-        //onDelete: "cascade",
-        through: 'User_Games'
+      User.hasMany(models.Game, {
+        onDelete: "cascade",
+        //through: 'User_Games'
       });
 
       User.hasMany(models.Friend, {
@@ -54,4 +54,3 @@ module.exports = function(sequelize, DataTypes) {
       });
   return User;
 }
-
