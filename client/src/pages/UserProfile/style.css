@@ -1,7 +1,6 @@
 .userInfo {
     color: white;
     list-style-type: none;
-    margin-left: 10px;
 }
 
 .main-user {
@@ -12,10 +11,6 @@
     display: block;
     background-color: #80aec0;
 }
-/* 
-.boardgamelist {
-    margin-left: 50px
-} */
 
 .MuiPaper-elevation1 {
     margin-left: 2rem !important;

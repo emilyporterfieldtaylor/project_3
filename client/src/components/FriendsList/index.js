@@ -28,7 +28,7 @@ const useStyles = makeStyles((theme) => ({
 
 function deleteFriends(id) {
     API.deleteFriend(id).then(results => {
-        console.log(results)
+        // console.log(results)
     })
 }
 
@@ -53,7 +53,7 @@ function FriendsList(props) {
         let clickedFriend = {
             name: friend
         }
-        console.log('clicked friend: ', clickedFriend)
+        // console.log('clicked friend: ', clickedFriend)
         API.getClickedFriend().then(results => {
             for (let i = 0; i < results.data.length; i++) {
                 if (results.data[i].name === clickedFriend.name) {

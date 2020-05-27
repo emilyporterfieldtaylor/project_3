@@ -43,5 +43,11 @@ export default {
   },
   getClickedFriend: function () {
     return axios.get('/api/clicked_friend')
+  },
+  loadUserFriends: function() {
+    return axios.get('/api/user_profile_friends')
+  },
+  loadUserGames: function() {
+    return axios.get('/api/user_profile_games')
   }
 };
