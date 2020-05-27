@@ -1,11 +1,10 @@
 #srch-friend {
     background-color: #c6dbc8;
-    width: 50%;
+    width: 75%;
     opacity: 0.9;
     margin: auto;
-    margin-top: 5rem;
+    /* margin-top: 5rem; */
 }
-
 
 #srch-friend-li {
     text-align: center;
