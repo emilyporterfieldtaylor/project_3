@@ -40,11 +40,11 @@ function Home() {
         </Grid>
 
         <Grid item xs={4} >
+          <FriendsList />
+            <br></br>
           <Links />
         </Grid>
-        <Grid item xs={4} >
-          <FriendsList />
-        </Grid>
+
       </Grid>
     </div>
   );
