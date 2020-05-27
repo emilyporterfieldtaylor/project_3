@@ -2,7 +2,7 @@ const router = require("express").Router();
 const passport = require("passport");
 const path = require("path");
 var isAuthenticated = require("../config/middleware/isAuthenticated");
-const CLIENT_HOME_PAGE_URL = "http://localhost:3000";
+const CLIENT_HOME_PAGE_URL = "https://mysterious-sierra-72763.herokuapp.com";
 
 // auth login
 router.get("/login/success", (req, res) => {
