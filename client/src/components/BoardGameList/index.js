@@ -23,7 +23,7 @@ const useStyles = makeStyles((theme) => ({
 
 function BoardGameList() {
     const [state, dispatch] = useStoreContext();
-   console.log("state: ", state)
+    // console.log("state: ", state);
     const classes = useStyles();
 
     //when user logs in, games are rendered 
@@ -60,7 +60,7 @@ function BoardGameList() {
     return (
         <div className={classes.root}>
             <Paper className={classes.paper} id="game-list">
-                Saved Games List:
+                <u>Saved Games List:</u>
                 {state.savedGames.length ? (
                     <ul className={classes.boardgameUL}>
                         {console.log(state.savedGames, "state.saved-games")} 
@@ -70,7 +70,7 @@ function BoardGameList() {
                         ))}
                     </ul>
                 ) : (
-                    <h4>You Don't Have Any Saved Games Yet!</h4>
+                    <h6>You Don't Have Any Saved Games Yet!</h6>
                 )}
             </Paper>
         </div>
