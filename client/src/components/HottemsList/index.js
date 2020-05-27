@@ -102,9 +102,9 @@ export default function HotItemsList(props) {
   return (
     <React.Fragment>
       <CssBaseline />
-      <main>
+      <main className="main-hot">
         {/* Hero unit */}
-        <div className={classes.heroContent}>
+        <div id="hot-banner" className={classes.heroContent}>
           <Container maxWidth="sm">
             <h1 className={classes.welcome}>
               Welcome to À La Board!
@@ -112,7 +112,7 @@ export default function HotItemsList(props) {
             <h4 className={classes.tagline}>
               To get you started, any of the boardgames below that you own to get you virtual collection started.
             </h4>
-            <div className={classes.heroButtons}>
+            <div id="hot-link" className={classes.heroButtons}>
               <Grid container spacing={2} justify="center">
                 <Grid item>
                   <Button variant="contained" color="primary" >
@@ -132,6 +132,7 @@ export default function HotItemsList(props) {
               <Grid item key={game.title} xs={12} sm={6} md={4}>
                 <Card className={classes.card}>
                   <CardMedia
+                  id="hot-image-title"
                     className={classes.cardMedia}
                     image={game.image}
                     title="Image title"
