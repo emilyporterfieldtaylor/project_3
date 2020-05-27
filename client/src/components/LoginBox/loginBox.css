@@ -8,7 +8,7 @@
 } 
 
 .logo {
-    width: 15%;
+    width: 14%;
     margin-left: 42%;
 }
 
@@ -19,15 +19,11 @@
     border-radius: 10px;
     text-align: center;
     width: 40%;
-    height: 25rem;
     padding: 10px;
     margin: auto;
     position: relative;
 }
 
-#loginPage {
-    padding-bottom: 50px;
-}
 
 /* login and signup header */
 h2 {
