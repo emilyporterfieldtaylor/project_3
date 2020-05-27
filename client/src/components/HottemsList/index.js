@@ -39,7 +39,7 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 export default function HotItemsList(props) {
-  const globalState = useStoreContext()
+  const [globalState, ] = useStoreContext();
   const classes = useStyles();
   const [hotGames, setHotGames] = useState([])
   const handleClick = (e) => {
@@ -68,9 +68,10 @@ export default function HotItemsList(props) {
 
   const saveGameFunction = async (id) => {
     const game = await axios.get(`/api/gameById/` + id);
-    console.log(game.data);
-
-    API.saveGame(game.data)
+    //console.log(game.data);
+    //console.log(globalState.userData, "global")
+    game.data.UserId = globalState.userData.id;
+    API.saveGame({...game.data})
     .then(results => {
       const list = hotGames.map((game) => {
         game.UserId=1;

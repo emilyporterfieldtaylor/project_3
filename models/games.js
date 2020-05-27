@@ -12,10 +12,12 @@ module.exports = function (sequelize, DataTypes) {
 
   Game.associate = function (models) {
 
-    Game.belongsToMany(models.User, {
-      through: 'User_Games'
-    })
-
+    Game.belongsTo(models.User, {
+      foreignKey: {
+        //may need to change back to true
+        allowNull: true
+    }
+  })
 }
     return Game;
   
