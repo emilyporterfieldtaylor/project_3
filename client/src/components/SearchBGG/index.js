@@ -8,7 +8,6 @@ import Grid from '@material-ui/core/Grid';
 import './bgg.css';
 const axios = require("axios");
 
-
 const useStyles = makeStyles((theme) => ({
     root: {
       flexGrow: 1,
@@ -16,19 +15,16 @@ const useStyles = makeStyles((theme) => ({
     paper: {
         padding: theme.spacing(2),
         textAlign: 'center',
-        // height: '78px',
         marginLeft: '1rem !important'
     },
     chip: {
         padding: '5px',
         marginTop: '10px',
         marginBottom: '10px',
-        // width: '95%',
         cursor: 'pointer',
         borderRadius: '5px'
     },
     chipdiv: {
-        // marginTop: '5px',
         textAlign: 'center',
         marginLeft: '16px'
     }
@@ -37,25 +33,32 @@ const useStyles = makeStyles((theme) => ({
 function SearchBGG(props) {
     const classes = useStyles();
 
-    const topGames = [
-        // top BGG games? Most recent user search?
-        { title: 'Settlers of Catan', year: 1995 },
-        { title: 'Crossbows and Catapults', year: 1983 },
-        { title: 'Cards Against Humanity', year: 2009 },
-        { title: 'Exploding Kittens', year: 2015 },
-        { title: 'Scattergories', year: 1988 },
-        { title: "Magic: The Gathering", year: 1993 },
-        { title: 'Photosynthesis', year: 2017 },
-    ];
-
     const [gamePrev, setGamePrev] = useState({});
     const [games, setGames] = useState([]);
     // const [query, setQuery] = useState('catan');
     // const [search, setSearch] = useState('');
-    const [value, setValue] = useState(topGames[0].title);
-    const [inputValue, setInputValue] = useState('');  
+    const [value, setValue] = useState('Settlers of Catan');
+    const [inputValue, setInputValue] = useState(''); 
+    const [gameList, setGameList] = useState([]); 
+
     let searchValue;
     let newInputValue;  
+
+    useEffect(() => {
+        const getGameList = async() => {
+            const response = await axios.get(`/api/gamelist/`);
+            for (var i = 0; i < 50; i++) {
+                let responseString = response.data.elements[0].elements[i];
+                let hotItem = {
+                    id: responseString.attributes.id,
+                    title: responseString.elements[1].attributes.value,
+                    year: responseString.elements[2].attributes.value,
+                };
+                setGameList(gameList => [...gameList, hotItem]);
+            }
+        }
+        getGameList();
+        }, []);
 
     // useEffect(()  => {     
     //     let mounted = true; 
@@ -124,20 +127,19 @@ function SearchBGG(props) {
     };
 
     function handleInputChange(inputValue) {
-            // searchValue = inputValue;
-            console.log('searchValue: ', inputValue)
-            const fetchData = async() => {
-                const response = await axios.get(`/api/games/${inputValue}`);
-                let game = {
-                    gameId: response.data.elements[0].elements[0].attributes.objectid,
-                    name: response.data.elements[0].elements[0].elements[0].elements[0].text,
-                }
-                setGames(games => [...games, game ]);
-               }
-            fetchData(); 
-        }
+        // searchValue = inputValue;
+        console.log('inputValue!!!: ', inputValue)
+        const fetchData = async(inputValue) => {
+            const response = await axios.get(`/api/games/${inputValue}`);
+            let game = {
+                gameId: response.data.elements[0].elements[0].attributes.objectid,
+                name: response.data.elements[0].elements[0].elements[0].elements[0].text,
+            }
+            setGames(games => [...games, game ]);
+            }
+        fetchData(); 
+    }
     
-
     return (
         <div className={classes.root}>
             <Paper className={classes.paper}>
@@ -156,7 +158,7 @@ function SearchBGG(props) {
                       }}
                     id="topGamesDropdown"
                     disableClearable
-                    options={topGames.map((option) => option.title)}
+                    options={gameList.map((option) => option.title)}
                     renderInput={(params) => (
                         <TextField
                             {...params}

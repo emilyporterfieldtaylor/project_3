@@ -110,6 +110,22 @@ module.exports = {
       res.json(json);
     }
   },
+
+  gameList: async (req, res) => {
+    const root = 'https://boardgamegeek.com/xmlapi2/hot?type=boardgame';
+    const output = await fetchXML(root);
+    const json = JSON.parse(output);
+    if (json.errors) {
+      res.status(500);
+      res.json({
+        content: 'Unable to get the data from boardgamegeek.com',
+        ...json
+      })
+    } else {
+      res.json(json);
+    }
+  },
+  
   create: function (req, res) {
     // console.log('in the controller');
     let gameData = {
