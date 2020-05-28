@@ -66,24 +66,35 @@ export default function LoginBox() {
     };
 
     const handleFormLogin = (e) => {
+   
         const userData = {
             email: values.email,
             password: values.password
         }
-
-        if (values.email === "" && values.password === "") {
-            alert("Please fill out email and password")
-         
-        } else {
-             console.log(userData);
-            API.login(userData).then(results => {
-                //console.log(results);
-                dispatch({ type: "ADD_USERDATA", data: results.data })
-                history.push("/home");
-            })
-        }
+        
+        console.log(userData);
+        API.login(userData).then(results => {
+            console.log(results);
+            dispatch({ type: "ADD_USERDATA", data: results.data })
+            history.push("/home");
+        }).catch(loginError)
     }
     
+
+const loginError =() => {
+    const userData = {
+        email: values.email,
+        password: values.password
+    }
+    if (values.email === "" || values.password === ""){
+        alert("Oops your email and/or password are missing");
+        return;
+    }else if (values !== userData){
+        alert("This user does not exist, please create an account");
+        return;
+    }
+}
+
     return (
         <div className="main-login">
             <img className="logo" src="/images/ALaBoardLogo1.png" alt="game logo"/>
