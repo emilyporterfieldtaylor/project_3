@@ -52,7 +52,7 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 export default function HotItemsList(props) {
-  const [globalState,] = useStoreContext();
+  const [globalState, ] = useStoreContext();
   const classes = useStyles();
 
   const [hotGames, setHotGames] = useState([])
@@ -88,7 +88,6 @@ export default function HotItemsList(props) {
     API.saveGame({ ...game.data })
       .then(results => {
         const list = hotGames.map((game) => {
-          game.UserId = 1;
           if (game.id === id) {
             game.footer = "ADDED TO COLLECTION";
             game.addEnabled = false;
@@ -116,7 +115,7 @@ export default function HotItemsList(props) {
               Welcome to À La Board!
             </h1>
             <h4 className={classes.tagline}>
-              To get you started, any of the boardgames below that you own to get you virtual collection started.
+              To start you virtual collection, add any of the games below or go straight to the homepage by clicking the button below.
             </h4>
             <div id="hot-link" className={classes.heroButtons}>
               <Grid container spacing={2} justify="center">
