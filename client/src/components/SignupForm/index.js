@@ -86,7 +86,9 @@ export default function SignupForm() {
             alert('Oops one of the fields was left blank, please fully complete form.');
         } else if (values.email === values.email) {
             alert("User already exists, use login page to continue");
-        } 
+        } else if (values.password < 8 || values.password > 128) {
+            alert("Please select a password between 8 and 128 characters")
+        }
     }
 
         return (

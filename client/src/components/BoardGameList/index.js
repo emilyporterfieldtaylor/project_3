@@ -40,6 +40,7 @@ function BoardGameList() {
 
     //part of associating games to a specific user
     function loadGames() {
+        
         API.getUserGames().then(results=>{
            { dispatch({type: "GET_USER_GAMES", games: results.data }) }
         })
