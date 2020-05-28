@@ -5,6 +5,7 @@ import { useStoreContext } from '../../utils/GlobalState';
 import API from '../../utils/index'
 import './list.css'
 
+//material ui provided styling
 const useStyles = makeStyles((theme) => ({
     root: {
         flexGrow: 1,
