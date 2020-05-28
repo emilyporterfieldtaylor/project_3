@@ -1,8 +1,7 @@
 
 /*.login-link directs user to login page*/
 .signup-main {
-    background-image: url('/images/everdell.jpg');
-    width: 100%;
+    background-image: url('/images/everdell-bright.jpg');
     height: 100vh;
     background-position: center;
     background-repeat: no-repeat;
@@ -10,12 +9,11 @@
 }
 
 .signup-frame {
-    background-color: snow;
+    background-color: #fdf3db;
     border: 2px solid #a3a14e;
     border-radius: 10px;
-    opacity: 0.9;
     text-align: center;
-    width: 50%;
+    width: 40%;
     padding: 10px;
     margin: auto;
     position: relative;
