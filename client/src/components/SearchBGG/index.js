@@ -126,36 +126,38 @@ function SearchBGG(props) {
         fetchPreview(); 
     };
 
-    function handleInputChange(inputValue) {
-        // searchValue = inputValue;
-        console.log('inputValue!!!: ', inputValue)
-        const fetchData = async(inputValue) => {
+    function renderGameToDOM(e, inputValue) {
+        e.preventDefault();
+        console.log('inputValue!!!: ', inputValue, games)
+        const fetchData = async() => {
             const response = await axios.get(`/api/games/${inputValue}`);
             let game = {
                 gameId: response.data.elements[0].elements[0].attributes.objectid,
                 name: response.data.elements[0].elements[0].elements[0].elements[0].text,
             }
-            setGames(games => [...games, game ]);
+            setGames(game);
             }
         fetchData(); 
     }
-    
+
     return (
         <div className={classes.root}>
             <Paper className={classes.paper}>
             {/* <div>{`value: ${value !== null ? `'${value}'` : 'null'}`}</div> */}
             {/* <div>{`inputValue: '${inputValue}'`}</div> */}
                 <Autocomplete
-                    // value={value}
-                    onChange={(event, newValue) => {
-                        setValue(newValue);
-                        setInputValue(newValue);
-                      }}
+                    // // value={value}
+                    // onChange={(event, newValue) => {
+                    //     setValue(newValue);
+                    //     setInputValue(newValue);
+                    //   }}
                     inputValue={inputValue}
                     onInputChange={(event, newInputValue) => {
                         setInputValue(newInputValue);
+                        console.log('newinputvalue: ',newInputValue)
                         console.log(inputValue)
                       }}
+                    // newInputValue={newInputValue}
                     id="topGamesDropdown"
                     disableClearable
                     options={gameList.map((option) => option.title)}
@@ -168,32 +170,24 @@ function SearchBGG(props) {
                         />
                     )}
                 />
-                <button onClick={handleInputChange(inputValue)}>Sumbit</button>
+                <button onClick={(e) => renderGameToDOM(e, inputValue)}>Sumbit</button>
             </Paper>
             <Grid item xs={12}>
-                    {games.length ? (
-                        <div className={classes.chipdiv}>
-                            {games.map(game => (
-                                <button 
-                                    id="chip" 
-                                    className={classes.chip}
-                                    label={game.name}                                 
-                                    key={game.gameId} 
-                                    value={game.gameId} 
-                                    onClick={() => {
-                                        getPreview(game.gameId)
-                                      }
-                                    }
-                                >
-                                    {game.name}
-                                </button>
-                            ))}
-                        </div>
-                        )
-                        : (
-                        <div>
-                        </div>
-                    )}
+                <div className={classes.chipdiv}>
+                        <button 
+                            id="chip" 
+                            className={classes.chip}
+                            label={games.name}                                 
+                            key={games.gameId} 
+                            value={games.gameId} 
+                            onClick={() => {
+                                getPreview(games.gameId)
+                                }
+                            }
+                        >
+                            {games.name}
+                        </button>
+                </div>
             </Grid>
         </div>
     )
