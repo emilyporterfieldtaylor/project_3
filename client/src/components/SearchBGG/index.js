@@ -18,11 +18,12 @@ const useStyles = makeStyles((theme) => ({
         marginLeft: '1rem !important'
     },
     chip: {
-        padding: '5px',
+        padding: '0px',
         marginTop: '10px',
         marginBottom: '10px',
         cursor: 'pointer',
-        borderRadius: '5px'
+        // borderRadius: '5px',
+        borderStyle: 'none'
     },
     chipdiv: {
         textAlign: 'center',
@@ -59,22 +60,6 @@ function SearchBGG(props) {
         }
         getGameList();
         }, []);
-
-    // useEffect(()  => {     
-    //     let mounted = true; 
-    //     const fetchData = async() => {
-    //         const response = await axios.get(`/api/games/${searchValue}`);
-    //         let game = {
-    //             gameId: response.data.elements[0].elements[0].attributes.objectid,
-    //             name: response.data.elements[0].elements[0].elements[0].elements[0].text,
-    //         }
-    //        if (mounted){
-    //         setGames(games => [...games, game ]);
-    //        }
-    //     };
-    //     fetchData(); 
-    //     return () => mounted = false;   
-    // }, [searchValue]);
 
     function getPreview(id) {
         const fetchPreview = async() => {
