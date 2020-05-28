@@ -3,7 +3,6 @@ import { makeStyles } from '@material-ui/core/styles';
 import Paper from '@material-ui/core/Paper';
 import TextField from '@material-ui/core/TextField';
 import Autocomplete from '@material-ui/lab/Autocomplete';
-import Chip from '@material-ui/core/Chip';
 import Grid from '@material-ui/core/Grid';
 import './bgg.css';
 const axios = require("axios");
@@ -22,7 +21,6 @@ const useStyles = makeStyles((theme) => ({
         marginTop: '10px',
         marginBottom: '10px',
         cursor: 'pointer',
-        // borderRadius: '5px',
         borderStyle: 'none'
     },
     chipdiv: {
@@ -33,17 +31,11 @@ const useStyles = makeStyles((theme) => ({
 
 function SearchBGG(props) {
     const classes = useStyles();
-
     const [gamePrev, setGamePrev] = useState({});
     const [games, setGames] = useState([]);
-    // const [query, setQuery] = useState('catan');
-    // const [search, setSearch] = useState('');
     const [value, setValue] = useState('Settlers of Catan');
     const [inputValue, setInputValue] = useState(''); 
     const [gameList, setGameList] = useState([]); 
-
-    let searchValue;
-    let newInputValue;  
 
     useEffect(() => {
         const getGameList = async() => {
@@ -124,54 +116,50 @@ function SearchBGG(props) {
             }
         fetchData(); 
     }
+    
+    const handleChange = (e) => {
+        setInputValue(e.target.value);
+    }
 
     return (
         <div className={classes.root}>
             <Paper className={classes.paper}>
-            {/* <div>{`value: ${value !== null ? `'${value}'` : 'null'}`}</div> */}
-            {/* <div>{`inputValue: '${inputValue}'`}</div> */}
                 <Autocomplete
-                    // // value={value}
-                    // onChange={(event, newValue) => {
-                    //     setValue(newValue);
-                    //     setInputValue(newValue);
-                    //   }}
-                    inputValue={inputValue}
-                    onInputChange={(event, newInputValue) => {
-                        setInputValue(newInputValue);
-                        console.log('newinputvalue: ',newInputValue)
-                        console.log(inputValue)
+                    onChange={(event, newValue) => {
+                        // setValue(newValue);
+                        setInputValue(newValue);
                       }}
-                    // newInputValue={newInputValue}
+                    inputValue={inputValue}
                     id="topGamesDropdown"
                     disableClearable
                     options={gameList.map((option) => option.title)}
                     renderInput={(params) => (
                         <TextField
                             {...params}
+                            onChange={handleChange}
                             label="Search for Board Game"
                             variant="outlined"
                             multiline={true}
                         />
                     )}
                 />
-                <button onClick={(e) => renderGameToDOM(e, inputValue)}>Sumbit</button>
+                <button onClick={(e) => renderGameToDOM(e, inputValue)}>Search</button>
             </Paper>
             <Grid item xs={12}>
                 <div className={classes.chipdiv}>
-                        <button 
-                            id="chip" 
-                            className={classes.chip}
-                            label={games.name}                                 
-                            key={games.gameId} 
-                            value={games.gameId} 
-                            onClick={() => {
-                                getPreview(games.gameId)
-                                }
+                    <button 
+                        id="chip" 
+                        className={classes.chip}
+                        label={games.name}                                 
+                        key={games.gameId} 
+                        value={games.gameId} 
+                        onClick={() => {
+                            getPreview(games.gameId)
                             }
-                        >
-                            {games.name}
-                        </button>
+                        }
+                    >
+                        {games.name}
+                    </button>
                 </div>
             </Grid>
         </div>
