@@ -20,16 +20,27 @@ const useStyles = makeStyles((theme) => ({
 
 export default function Planner () {
   const [playerInput, setPlayerInput] = useState([]);
-
+  const [gameCategory, setGameCategory] = useState([]);
   const classes = useStyles();
 
   function applyPlayerNumber(e) {
     e.preventDefault();
     console.log('in function: ',playerInput)
+    // api call for number of players
   }
 
-  const handleChange = (e) => {
+  function applyGameCategory(e) {
+    e.preventDefault();
+    console.log('game type: ')
+    // api call for categories
+  }
+
+  const handlePlayerChange = (e) => {
     setPlayerInput(e.target.value);
+  }
+
+  const handleGameChange = (e) => {
+    setGameCategory(e.target.value);
   }
 
   console.log('outside function: ',playerInput)
@@ -44,21 +55,32 @@ export default function Planner () {
               label="Players" 
               variant="outlined"
               size='small'
-              onChange={handleChange}
+              onChange={handlePlayerChange}
               />
             <button onClick={(e) => {applyPlayerNumber(e)}}>Apply!</button>
+            
             <h4>Category of games:</h4>
-            <TextField id="outlined-basic" label="Category" variant="outlined" />
-            <h4>How many players would you like to have?</h4>
+            <TextField 
+              id="outlined-basic" 
+              label="Players" 
+              variant="outlined"
+              size='small'
+              onChange={handleGameChange}
+              />
+            <button onClick={(e) => {applyGameCategory(e)}}>Apply!</button>
+            
+              <h4>How many players would you like to have?</h4>
             <TextField id="outlined-basic" label="numberPlayers" variant="outlined" />
 
           </form>
         </Grid>
         <Grid item xs={12} sm={6} md={6}>
-        <h4>Category of games:</h4>
-        <h4>Category of games:</h4>
-        <h4>Category of games:</h4>
-        <h4>Category of games:</h4>
+          <h3>You'd like to create an event for:</h3>
+          <ul>
+            <li> <b>{playerInput}</b> player(s) </li>
+            <li> <b>{gameCategory}</b> type </li>
+          </ul>
+          {playerInput} player
 
         </Grid>
       </Grid>
