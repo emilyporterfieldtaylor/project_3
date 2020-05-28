@@ -53,23 +53,25 @@ function SearchBGG(props) {
     // const [query, setQuery] = useState('catan');
     // const [search, setSearch] = useState('');
     const [value, setValue] = useState(topGames[0].title);
-    const [inputValue, setInputValue] = useState('');    
+    const [inputValue, setInputValue] = useState('');  
+    let searchValue;
+    let newInputValue;  
 
-    useEffect(()  => {     
-        let mounted = true; 
-        const fetchData = async() => {
-            const response = await axios.get(`/api/games/${inputValue}`);
-            let game = {
-                gameId: response.data.elements[0].elements[0].attributes.objectid,
-                name: response.data.elements[0].elements[0].elements[0].elements[0].text,
-            }
-           if (mounted){
-            setGames(games => [...games, game ]);
-           }
-        };
-        fetchData(); 
-        return () => mounted = false;   
-    }, [inputValue]);
+    // useEffect(()  => {     
+    //     let mounted = true; 
+    //     const fetchData = async() => {
+    //         const response = await axios.get(`/api/games/${searchValue}`);
+    //         let game = {
+    //             gameId: response.data.elements[0].elements[0].attributes.objectid,
+    //             name: response.data.elements[0].elements[0].elements[0].elements[0].text,
+    //         }
+    //        if (mounted){
+    //         setGames(games => [...games, game ]);
+    //        }
+    //     };
+    //     fetchData(); 
+    //     return () => mounted = false;   
+    // }, [searchValue]);
 
     function getPreview(id) {
         const fetchPreview = async() => {
@@ -121,13 +123,28 @@ function SearchBGG(props) {
         fetchPreview(); 
     };
 
+    function handleInputChange(inputValue) {
+            // searchValue = inputValue;
+            console.log('searchValue: ', inputValue)
+            const fetchData = async() => {
+                const response = await axios.get(`/api/games/${inputValue}`);
+                let game = {
+                    gameId: response.data.elements[0].elements[0].attributes.objectid,
+                    name: response.data.elements[0].elements[0].elements[0].elements[0].text,
+                }
+                setGames(games => [...games, game ]);
+               }
+            fetchData(); 
+        }
+    
+
     return (
         <div className={classes.root}>
             <Paper className={classes.paper}>
             {/* <div>{`value: ${value !== null ? `'${value}'` : 'null'}`}</div> */}
             {/* <div>{`inputValue: '${inputValue}'`}</div> */}
                 <Autocomplete
-                    value={value}
+                    // value={value}
                     onChange={(event, newValue) => {
                         setValue(newValue);
                         setInputValue(newValue);
@@ -135,6 +152,7 @@ function SearchBGG(props) {
                     inputValue={inputValue}
                     onInputChange={(event, newInputValue) => {
                         setInputValue(newInputValue);
+                        console.log(inputValue)
                       }}
                     id="topGamesDropdown"
                     disableClearable
@@ -148,6 +166,7 @@ function SearchBGG(props) {
                         />
                     )}
                 />
+                <button onClick={handleInputChange(inputValue)}>Sumbit</button>
             </Paper>
             <Grid item xs={12}>
                     {games.length ? (
