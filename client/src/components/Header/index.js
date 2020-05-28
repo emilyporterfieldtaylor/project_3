@@ -18,7 +18,7 @@ import './header.css';
 const useStyles = makeStyles((theme) => ({
     root: {
         flexGrow: 1,
-        marginBottom: '10px',
+        // marginBottom: '10px',
     },
     menuButton: {
         marginRight: theme.spacing(2),
