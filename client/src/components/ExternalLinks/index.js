@@ -1,7 +1,7 @@
 import React from 'react';
-// import './style.css';
 import { makeStyles } from '@material-ui/core/styles';
 import Paper from '@material-ui/core/Paper';
+import { useStoreContext } from '../../utils/GlobalState';
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -17,18 +17,33 @@ const useStyles = makeStyles((theme) => ({
     },
     externalLinks: {
         padding: '5px'
+    },
+    hiddenLi: {
+        listStyleType: 'none'
     }
 }));
 
 function Links() {
     const classes = useStyles();
+    const [state, dispatch] = useStoreContext();
+
+    let gameId;
+    let replaceSpace; 
 
     return (
         <div className={classes.root} style={{marginTop: '20px'}}>
             <Paper className={classes.paper}>
                 Want to buy it?
                 <ul className={classes.externalLinks}>
-                    <li>Link 1</li>
+                    
+                    {state.externalLinks.length ? (
+                        gameId = state.externalLinks[0].name,
+                        replaceSpace = gameId.replace(/\s/g, "+"),
+                        
+                        <a target="_blank" href={`https://www.amazon.com/s?k=${replaceSpace}`}>https://www.amazon.com/s?k={replaceSpace}</a>
+                    ) : (
+                        <li className={classes.hiddenLi}></li>
+                    )}
                     <li>Link 2</li>
                     <li>Link 3</li>
                     <li>Link 4</li>

@@ -1,5 +1,4 @@
 import React, { useEffect } from 'react';
-// import './style.css';
 import { makeStyles } from '@material-ui/core/styles';
 import Paper from '@material-ui/core/Paper';
 import { useStoreContext } from '../../utils/GlobalState';
@@ -17,13 +16,20 @@ const useStyles = makeStyles((theme) => ({
         fontFamily: 'Pangolin',
     },
     boardgameUL: {
-        padding: '5px'
+        marginTop: '15px !important',
+        marginBottom: '15px !important',
+        padding: '5px',
+        listStyle: 'circle'
+    },
+    gameLI: {
+        marginBottom: '15px',
+        marginLeft: '20px',
+        fontSize: '18px'
     }
 }));
 
 function BoardGameList() {
     const [state, dispatch] = useStoreContext();
-    // console.log("state: ", state);
     const classes = useStyles();
 
     //when user logs in, games are rendered 
@@ -34,9 +40,7 @@ function BoardGameList() {
     //part of associating games to a specific user
     function loadGames() {
         API.getUserGames().then(results=>{
-            console.log("function loadgames",results.data)
-           { dispatch({type: "GET_USER_GAMES", games: results.data })
-        }
+           { dispatch({type: "GET_USER_GAMES", games: results.data }) }
         })
     }
 
@@ -63,14 +67,13 @@ function BoardGameList() {
                 <u>Saved Games List:</u>
                 {state.savedGames.length ? (
                     <ul className={classes.boardgameUL}>
-                        {console.log(state.savedGames, "state.saved-games")} 
                         {state.savedGames.map(game => (
                             //pulling games from the database and rendering to the homepage
-                            <li key={game.id}>{game.name} ({game.yearPublished})</li>
+                            <li key={game.id} className={classes.gameLI}>{game.name} ({game.yearPublished})</li>
                         ))}
                     </ul>
                 ) : (
-                    <h6>You Don't Have Any Saved Games Yet!</h6>
+                    <h6 id='savedGameElse'>You Don't Have Any Saved Games Yet!</h6>
                 )}
             </Paper>
         </div>

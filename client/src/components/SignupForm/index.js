@@ -15,8 +15,6 @@ import './signup.css';
 import API from '../../utils/index';
 import { useHistory } from "react-router-dom"
 
-
-
 //material ui code for input boxes
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -33,7 +31,6 @@ const useStyles = makeStyles((theme) => ({
         width: '95%',
     },
 }));
-
 
 export default function SignupForm() {
     let history = useHistory();
@@ -61,7 +58,6 @@ export default function SignupForm() {
         event.preventDefault();
     };
 
-
     //when signup button is clicked, post request made to input user into database
     const handleFormSubmit = (e) => {
         e.preventDefault();
@@ -80,67 +76,66 @@ export default function SignupForm() {
     }
 
     //validation to allow user to know they have already made an account
-    function loginError(){
-        alert("An error occurred");
+    const loginError = () => {
         const userData = {
             name: values.name,
             email: values.email,
             password: values.password
         }
-        if (userData === userData){
+        if (userData === userData) {
             alert('User already exists');
-        }  
+        }
     }
     return (
         <div className="signup-main">
-            <img className="logo" src="/images/ALaBoardLogo1.png" alt="game logo"/>
-        <div className="signup-frame">
-            <Grid item xs={12}>
-                <h2 className="signup-h2">Join the party!</h2>
-                <div className={classes.root}>
-                    <div>
-                        <TextField
-                            label="Full Name"
-                            id="filled-start-adornment"
-                            className={clsx(classes.margin, classes.textField)}
-                            variant="filled"
-                            onChange={handleChange('name')}
-                        />
-                        <TextField
-                            label="Email"
-                            id="filled-start-adornment"
-                            className={clsx(classes.margin, classes.textField)}
-                            variant="filled"
-                            onChange={handleChange('email')}
-                        />
-                        <FormControl className={clsx(classes.margin, classes.textField)} variant="filled">
-                            <InputLabel htmlFor="filled-adornment-password">Password</InputLabel>
-                            <FilledInput
-                                id="filled-adornment-password"
-                                type={values.showPassword ? 'text' : 'password'}
-                                value={values.password}
-                                onChange={handleChange('password')}
-                                endAdornment={
-                                    <InputAdornment position="end">
-                                        <IconButton
-                                            aria-label="toggle password visibility"
-                                            onClick={handleClickShowPassword}
-                                            onMouseDown={handleMouseDownPassword}
-                                            edge="end"
-                                        >
-                                            {values.showPassword ? <Visibility /> : <VisibilityOff />}
-                                        </IconButton>
-                                    </InputAdornment>
-                                }
+            <img className="logo" src="/images/ALaBoardLogo1.png" alt="game logo" />
+            <div className="signup-frame">
+                <Grid item xs={12}>
+                    <h2 className="signup-h2">Join the party!</h2>
+                    <div className={classes.root}>
+                        <div>
+                            <TextField
+                                label="Full Name"
+                                id="filled-start-adornment"
+                                className={clsx(classes.margin, classes.textField)}
+                                variant="filled"
+                                onChange={handleChange('name')}
                             />
-                        </FormControl>
+                            <TextField
+                                label="Email"
+                                id="filled-start-adornment"
+                                className={clsx(classes.margin, classes.textField)}
+                                variant="filled"
+                                onChange={handleChange('email')}
+                            />
+                            <FormControl className={clsx(classes.margin, classes.textField)} variant="filled">
+                                <InputLabel htmlFor="filled-adornment-password">Password</InputLabel>
+                                <FilledInput
+                                    id="filled-adornment-password"
+                                    type={values.showPassword ? 'text' : 'password'}
+                                    value={values.password}
+                                    onChange={handleChange('password')}
+                                    endAdornment={
+                                        <InputAdornment position="end">
+                                            <IconButton
+                                                aria-label="toggle password visibility"
+                                                onClick={handleClickShowPassword}
+                                                onMouseDown={handleMouseDownPassword}
+                                                edge="end"
+                                            >
+                                                {values.showPassword ? <Visibility /> : <VisibilityOff />}
+                                            </IconButton>
+                                        </InputAdornment>
+                                    }
+                                />
+                            </FormControl>
+                        </div>
                     </div>
-                </div>
-                <button type="submit" className="btn btn-default" onClick={handleFormSubmit}><a href="/hotitems" >Sign Up</a></button>
-                <br />
-                <p>Already have an account?<Link className="login-link" to="/login"> LOGIN </Link></p>
-            </Grid>
-        </div>
+                    <button type="submit" className="btn btn-default" onClick={handleFormSubmit}><a href="/hotitems" >Sign Up</a></button>
+                    <br />
+                    <p>Already have an account?<Link className="login-link" to="/login"> LOGIN </Link></p>
+                </Grid>
+            </div>
         </div>
     )
 };

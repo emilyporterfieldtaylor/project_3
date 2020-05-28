@@ -9,7 +9,6 @@ const useStyles = makeStyles((theme) => ({
       flexGrow: 1,
     },
     paper: {
-    //   padding: theme.spacing(1),
       textAlign: 'left',
       color: theme.palette.text.secondary,
       marginBottom: '50px',
@@ -37,7 +36,6 @@ const useStyles = makeStyles((theme) => ({
 
 function BoardGameDescription(props) {
     const [state, dispatch] = useStoreContext();
-    // console.log(state);
 
     const saveGameFunction = (e) => {
         e.preventDefault();
@@ -63,7 +61,6 @@ function BoardGameDescription(props) {
      //part of associating games to a specific user
      const loadGames =()=> {
         API.getUserGames().then(results=>{
-            console.log("My games",results.data)
             dispatch({type: "GET_USER_GAMES", games: results.data })
         })
     }
@@ -72,22 +69,22 @@ function BoardGameDescription(props) {
 
     return (
         <div className={classes.root} style={{marginTop: '20px'}}>               
-                <Paper className={classes.paper}>
-                    <h3 style={{textAlign: 'center', paddingTop: '10px', marginBottom: '20px'}}>Board Game Description: </h3>
+            <Paper className={classes.paper}>
+                <h3 style={{textAlign: 'center', paddingTop: '10px', marginBottom: '20px'}}>Board Game Description: </h3>
 
-                    <div className={classes.descriptionDIV}>
-                        <strong>Name: {props.name}</strong>
-                        <li style={{ listStyle: 'none' }}><strong>Description:</strong> {props.description} </li>
-                        <li style={{ listStyle: 'none' }}><strong>Players:</strong> {props.minPlayers} - {props.maxPlayers} people</li>
-                        <li style={{ listStyle: 'none' }}><strong>PlayTime:</strong> {props.minPlayTime} - {props.maxPlayTime} minutes</li>
-                        <li style={{ listStyle: 'none' }}><strong>Year Published:</strong> {props.yearPublished} </li>
-                    </div>
+                <div className={classes.descriptionDIV}>
+                    <strong>Name: {props.name}</strong>
+                    <li style={{ listStyle: 'none' }}><strong>Description:</strong> {props.description} </li>
+                    <li style={{ listStyle: 'none' }}><strong>Players:</strong> {props.minPlayers} - {props.maxPlayers} people</li>
+                    <li style={{ listStyle: 'none' }}><strong>PlayTime:</strong> {props.minPlayTime} - {props.maxPlayTime} minutes</li>
+                    <li style={{ listStyle: 'none' }}><strong>Year Published:</strong> {props.yearPublished} </li>
+                </div>
 
-                    <div className={classes.centerbutton}>
-                        <button onClick={saveGameFunction} className={classes.button}>Save to My Games!</button>
-                    </div>
+                <div className={classes.centerbutton}>
+                    <button onClick={saveGameFunction} className={classes.button}>Save to My Games!</button>
+                </div>
 
-                </Paper>
+            </Paper>
         </div>
     )
 }

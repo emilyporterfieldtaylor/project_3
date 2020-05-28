@@ -51,10 +51,9 @@ app.get('/api/games/:game', gameController.gameController);
 app.get('/api/ids/:id', gameController.findById);
 app.get('/api/gameById/:id', gameController.findByBggId);
 app.get('/api/hotitems', gameController.hotItems);
-// app.get('/api/users/:id', gameController.findUserById);
+app.get('/api/gamelist/', gameController.gameList);
+// app.get('/api/external_links/:name', gameController.externalLinks);
 app.post('/api/gameData/', gameController.create);
-// app.get('/api/userfriends', gameController.getAllFriends)
-
 
 //temporary: demonstrating passport
 require("./routes/html-routes")(app);

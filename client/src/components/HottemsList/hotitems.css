@@ -1,0 +1,24 @@
+.main-hot {
+    background-image: url('/images/photosynthesis-light.jpg');
+    height: 100%;
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+
+.hot-banner {
+    background-color: #85aba3d6;
+    border: 1px solid #6e8580ea;
+    box-shadow: 1px 7px 10px 1px; 
+    border-radius: 10px;
+    padding: 45px;
+    margin: auto;
+    width: 50%;
+}
+
+.to-home {
+    background-color: #4a6495 !important;
+}
+#hot-link a {
+    color: rgb(226, 226, 200);
+}

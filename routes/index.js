@@ -114,14 +114,8 @@ function apiRoutes(app) {
   })
   app.get("/api/all_friends", function (req, res) {
     db.User.findAll({
-      // where: { name: req.body }
     })
     .then(function (data) {
-      // for (let i=0; i < data.length; i++) {
-      //   if (data[i].name === req.body) {
-      //     res.json(data);
-      //   }
-      // }
       res.json(data);
     })
     .catch(function (err) {
@@ -129,17 +123,30 @@ function apiRoutes(app) {
     });
   })
 
-  // app.get("/api/data", function (req, res) {
-  //   db.User.findAll({
-  //     where: {UserId: req.params.id}
-  //   })
-  //     .then(function (userData) {
-  //       res.json(userData)
-  //     })
-  //     .catch(function (err) {
-  //       res.status(401).json(err);
-  //     });
-  // })
+  app.get('/api/clicked_friend', function (req, res) {
+    db.User.findAll({})
+    .then(function (friend) {
+      res.json(friend);
+    })
+    .catch(err => console.log(err));
+  })
+
+  app.get('/api/user_profile_friends', function (req, res) {
+    db.Friend.findAll({})
+    .then(function (friend) {
+      res.json(friend);
+    })
+    .catch(err => console.log(err));
+  })
+
+  app.get('/api/user_profile_games', function (req, res) {
+    db.Game.findAll({})
+    .then(function (game){
+      console.log('in routes: ', game)
+      res.json(game);
+    })
+    .catch(err => console.log(err));
+    })
 }
 
 module.exports = apiRoutes;
