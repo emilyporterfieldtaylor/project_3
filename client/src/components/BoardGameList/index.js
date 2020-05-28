@@ -1,5 +1,4 @@
 import React, { useEffect } from 'react';
-// import './style.css';
 import { makeStyles } from '@material-ui/core/styles';
 import Paper from '@material-ui/core/Paper';
 import { useStoreContext } from '../../utils/GlobalState';
@@ -31,7 +30,6 @@ const useStyles = makeStyles((theme) => ({
 
 function BoardGameList() {
     const [state, dispatch] = useStoreContext();
-    // console.log("state: ", state);
     const classes = useStyles();
 
     //when user logs in, games are rendered 
@@ -42,9 +40,7 @@ function BoardGameList() {
     //part of associating games to a specific user
     function loadGames() {
         API.getUserGames().then(results=>{
-            console.log("function loadgames",results.data)
-           { dispatch({type: "GET_USER_GAMES", games: results.data })
-        }
+           { dispatch({type: "GET_USER_GAMES", games: results.data }) }
         })
     }
 

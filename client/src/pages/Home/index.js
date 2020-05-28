@@ -11,7 +11,6 @@ import './home.css';
 
 function Home() {
   const [appState, setAppState] = useState(null);
-  // const [friendID, setFriendID] = useState('');
 
   return (
     <div className="main-home">

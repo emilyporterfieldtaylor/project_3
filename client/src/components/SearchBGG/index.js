@@ -4,6 +4,7 @@ import Paper from '@material-ui/core/Paper';
 import TextField from '@material-ui/core/TextField';
 import Autocomplete from '@material-ui/lab/Autocomplete';
 import Grid from '@material-ui/core/Grid';
+import { useStoreContext } from '../../utils/GlobalState';
 import './bgg.css';
 const axios = require("axios");
 
@@ -36,6 +37,7 @@ function SearchBGG(props) {
     const [value, setValue] = useState('Settlers of Catan');
     const [inputValue, setInputValue] = useState(''); 
     const [gameList, setGameList] = useState([]); 
+    const [state, dispatch] = useStoreContext();
 
     useEffect(() => {
         const getGameList = async() => {
@@ -99,13 +101,13 @@ function SearchBGG(props) {
             }
             setGamePrev(gamePrevObj);
             props.setAppState(gamePrevObj);
+            dispatch({type: 'GET_LINKS', links: gamePrevObj})
         }   
         fetchPreview(); 
     };
 
     function renderGameToDOM(e, inputValue) {
         e.preventDefault();
-        console.log('inputValue!!!: ', inputValue, games)
         const fetchData = async() => {
             const response = await axios.get(`/api/games/${inputValue}`);
             let game = {
@@ -126,7 +128,6 @@ function SearchBGG(props) {
             <Paper className={classes.paper}>
                 <Autocomplete
                     onChange={(event, newValue) => {
-                        // setValue(newValue);
                         setInputValue(newValue);
                       }}
                     inputValue={inputValue}

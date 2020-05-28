@@ -71,7 +71,6 @@ export default function Planner () {
             
               <h4>How many players would you like to have?</h4>
             <TextField id="outlined-basic" label="numberPlayers" variant="outlined" />
-
           </form>
         </Grid>
         <Grid item xs={12} sm={6} md={6}>
@@ -81,7 +80,6 @@ export default function Planner () {
             <li> <b>{gameCategory}</b> type </li>
           </ul>
           {playerInput} player
-
         </Grid>
       </Grid>
     

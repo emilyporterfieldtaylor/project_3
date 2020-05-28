@@ -54,11 +54,12 @@ const useStyles = makeStyles((theme) => ({
 export default function HotItemsList(props) {
   const [globalState, ] = useStoreContext();
   const classes = useStyles();
-
   const [hotGames, setHotGames] = useState([])
+
   const handleClick = (e) => {
     console.log("The link was clicked");
   };
+
   useEffect(() => {
     const fetchHotItems = async () => {
       const response = await axios.get(`/api/hotitems/`);
@@ -82,8 +83,6 @@ export default function HotItemsList(props) {
 
   const saveGameFunction = async (id) => {
     const game = await axios.get(`/api/gameById/` + id);
-    //console.log(game.data);
-    //console.log(globalState.userData, "global")
     game.data.UserId = globalState.userData.id;
     API.saveGame({ ...game.data })
       .then(results => {
@@ -91,13 +90,12 @@ export default function HotItemsList(props) {
           if (game.id === id) {
             game.footer = "ADDED TO COLLECTION";
             game.addEnabled = false;
-
             return game;
-          } else {
+          } 
+          else {
             return game;
           }
         });
-
         setHotGames(list);
       })
   }

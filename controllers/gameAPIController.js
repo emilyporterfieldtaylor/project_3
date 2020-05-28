@@ -1,7 +1,6 @@
 let axios = require('axios');
 var convert = require('xml-js');
 const db = require('../models');
-// const Game = require('../models/games');
 
 const fetchXML = async (root, game) => {
   try {
@@ -34,8 +33,6 @@ module.exports = {
     const root = 'https://www.boardgamegeek.com/xmlapi/search?search=';
     const output = await fetchXML(root, game);
     const json = JSON.parse(output);
-    // console.log("json: ",json);
-    // console.log("output: ", output);
     if (json.errors) {
       res.status(500);
       res.json({
@@ -46,6 +43,7 @@ module.exports = {
       res.json(json);
     }
   },
+  
   findById: async (req, res) => {
     const { id } = req.params;
     const root = 'https://www.boardgamegeek.com/xmlapi2/thing?id=';
@@ -61,6 +59,7 @@ module.exports = {
       res.json(json);
     }
   },
+
   findByBggId: async (req, res) => {
     const { id } = req.params;
     const root = 'https://www.boardgamegeek.com/xmlapi2/thing?id=';
@@ -89,6 +88,7 @@ module.exports = {
       res.json(gameData);
     }
   },
+
   getAllFriends: async (req, res) => {
     db.User
       .findAll()
@@ -127,7 +127,6 @@ module.exports = {
   },
   
   create: function (req, res) {
-    // console.log('in the controller');
     let gameData = {
       gameId: req.body.gameId,
       name: req.body.name,
@@ -140,7 +139,6 @@ module.exports = {
       yearPublished: req.body.yearPublished,
       UserId: req.body.UserId
     }
-    // console.log("controller data: ", gameData)
     db.Game.create(gameData)
       .then(game => {
         res.json({ status: game.name + ' successfully entered into database!' });

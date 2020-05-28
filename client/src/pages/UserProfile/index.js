@@ -24,7 +24,6 @@ function UserProfile() {
     const [state, dispatch] = useStoreContext();
     const params = useLocation().pathname.split('/');
     const paramsID = params.pop();
-    let friendsArr = [];
 
     useEffect(() => {
         loadUserFriends();

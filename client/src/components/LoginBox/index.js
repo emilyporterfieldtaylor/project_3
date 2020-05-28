@@ -17,7 +17,6 @@ import './loginBox.css';
 
 const useStyles = makeStyles((theme) => ({
   root: {
-    // display: "flex",
     flexWrap: "wrap",
     flexGrow: 1,
     fontFamily: 'Pangolin',
@@ -37,12 +36,8 @@ const useStyles = makeStyles((theme) => ({
 
 export default function LoginBox() {
     const [state, dispatch] = useStoreContext();
-    //console.log(useStoreContext());
-
     let history = useHistory();
-
     const classes = useStyles();
-
     const [values, setValues] = React.useState({
         email: '',
         amount: '',
@@ -65,12 +60,10 @@ export default function LoginBox() {
     };
 
     const handleFormLogin = (e) => {
-   
         const userData = {
             email: values.email,
             password: values.password
         }
-        
         console.log(userData);
         API.login(userData).then(results => {
             console.log(results);
@@ -78,21 +71,20 @@ export default function LoginBox() {
             history.push("/home");
         }).catch(loginError)
     }
-    
 
-const loginError =() => {
-    const userData = {
-        email: values.email,
-        password: values.password
+    const loginError =() => {
+        const userData = {
+            email: values.email,
+            password: values.password
+        }
+        if (values.email === "" || values.password === ""){
+            alert("Oops your email and/or password are missing");
+            return;
+        }else if (values !== userData){
+            alert("This user does not exist, please create an account");
+            return;
+        }
     }
-    if (values.email === "" || values.password === ""){
-        alert("Oops your email and/or password are missing");
-        return;
-    }else if (values !== userData){
-        alert("This user does not exist, please create an account");
-        return;
-    }
-}
 
     return (
         <div className="main-login">

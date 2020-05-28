@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-// import './style.css';
 import { makeStyles } from '@material-ui/core/styles';
 import Paper from '@material-ui/core/Paper';
 import TextField from '@material-ui/core/TextField';
@@ -17,9 +16,11 @@ const useStyles = makeStyles((theme) => ({
     },
 }));
 
-
 function SearchGameList() {
     const classes = useStyles();
+    const [searchedFor, setSearchedFor] = useState([]);
+    const [query, setQuery] = useState('catan');
+    const [search, setSearch] = useState('');
 
     const userSavedGames = [
         { title: 'Settlers of Catan', year: 1995 },
@@ -30,11 +31,6 @@ function SearchGameList() {
         { title: "Magic: The Gathering", year: 1993 },
         { title: 'Photosynthesis', year: 2017 },
       ];
-
-    const [searchedFor, setSearchedFor] = useState([]);
-    // const [games, setGames] = useState([]);
-    const [query, setQuery] = useState('catan');
-    const [search, setSearch] = useState('');
 
     return (
         <div className={classes.root}>
@@ -48,7 +44,6 @@ function SearchGameList() {
                         <TextField
                             {...params}
                             label="Search Saved Games"
-                            // margin="normal"
                             variant="outlined"
                             value={query}
                             onChange = { 

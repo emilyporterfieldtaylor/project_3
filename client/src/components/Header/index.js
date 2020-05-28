@@ -4,7 +4,6 @@ import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
 import IconButton from '@material-ui/core/IconButton';
-// import { Link } from 'react-router-dom';
 import AccountCircle from '@material-ui/icons/AccountCircle';
 import Switch from '@material-ui/core/Switch';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
@@ -18,7 +17,6 @@ import './header.css';
 const useStyles = makeStyles((theme) => ({
     root: {
         flexGrow: 1,
-        // marginBottom: '10px',
     },
     menuButton: {
         marginRight: theme.spacing(2),
@@ -41,7 +39,6 @@ function Header() {
     const {user: auth, logout} = AuthManager();
     const [auth2, setAuth2] = React.useState(true);
     const [anchorEl, setAnchorEl] = React.useState(null);
-
     const open = Boolean(anchorEl);
 
     const handleChange = (event) => {

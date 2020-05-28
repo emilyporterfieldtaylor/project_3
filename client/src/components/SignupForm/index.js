@@ -15,8 +15,6 @@ import './signup.css';
 import API from '../../utils/index';
 import { useHistory } from "react-router-dom"
 
-
-
 //material ui code for input boxes
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -33,7 +31,6 @@ const useStyles = makeStyles((theme) => ({
         width: '95%',
     },
 }));
-
 
 export default function SignupForm() {
     let history = useHistory();
@@ -60,7 +57,6 @@ export default function SignupForm() {
     const handleMouseDownPassword = (event) => {
         event.preventDefault();
     };
-
 
     //when signup button is clicked, post request made to input user into database
     const handleFormSubmit = (e) => {

@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import SearchFriendList from '../../components/SearchFriendList';
 import { Link } from 'react-router-dom';
 import './searchFriendsPage.css';
