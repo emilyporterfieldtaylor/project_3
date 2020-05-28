@@ -81,7 +81,6 @@ export default function SignupForm() {
 
     //validation to allow user to know they have already made an account
     function loginError(){
-        alert("An error occurred");
         const userData = {
             name: values.name,
             email: values.email,

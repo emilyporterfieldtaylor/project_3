@@ -66,17 +66,22 @@ export default function LoginBox() {
     };
 
     const handleFormLogin = (e) => {
-       // console.log(values);
         const userData = {
             email: values.email,
             password: values.password
         }
 
-        API.login(userData).then(results => {
-            //console.log(results);
-            dispatch({ type: "ADD_USERDATA", data: results.data })
-            history.push("/home");
-        })
+        if (values.email === "" && values.password === "") {
+            alert("Please fill out email and password")
+         
+        } else {
+             console.log(userData);
+            API.login(userData).then(results => {
+                //console.log(results);
+                dispatch({ type: "ADD_USERDATA", data: results.data })
+                history.push("/home");
+            })
+        }
     }
     
     return (
