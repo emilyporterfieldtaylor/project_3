@@ -1,8 +1,6 @@
 import React from 'react';
-// import './style.css';
 import { makeStyles } from '@material-ui/core/styles';
 import Paper from '@material-ui/core/Paper';
-// import SearchBar from '../SearchBar';
 
 const useStyles = makeStyles((theme) => ({
     root: {

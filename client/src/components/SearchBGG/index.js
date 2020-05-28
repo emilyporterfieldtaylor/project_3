@@ -3,11 +3,10 @@ import { makeStyles } from '@material-ui/core/styles';
 import Paper from '@material-ui/core/Paper';
 import TextField from '@material-ui/core/TextField';
 import Autocomplete from '@material-ui/lab/Autocomplete';
-import Chip from '@material-ui/core/Chip';
 import Grid from '@material-ui/core/Grid';
+import { useStoreContext } from '../../utils/GlobalState';
 import './bgg.css';
 const axios = require("axios");
-
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -16,19 +15,16 @@ const useStyles = makeStyles((theme) => ({
     paper: {
         padding: theme.spacing(2),
         textAlign: 'center',
-        // height: '78px',
         marginLeft: '1rem !important'
     },
     chip: {
-        padding: '5px',
+        padding: '0px',
         marginTop: '10px',
         marginBottom: '10px',
-        // width: '95%',
         cursor: 'pointer',
-        borderRadius: '5px'
+        borderStyle: 'none'
     },
     chipdiv: {
-        // marginTop: '5px',
         textAlign: 'center',
         marginLeft: '16px'
     }
@@ -36,42 +32,28 @@ const useStyles = makeStyles((theme) => ({
 
 function SearchBGG(props) {
     const classes = useStyles();
-
-    const topGames = [
-        // top BGG games? Most recent user search?
-        { title: 'Settlers of Catan', year: 1995 },
-        { title: 'Crossbows and Catapults', year: 1983 },
-        { title: 'Cards Against Humanity', year: 2009 },
-        { title: 'Exploding Kittens', year: 2015 },
-        { title: 'Scattergories', year: 1988 },
-        { title: "Magic: The Gathering", year: 1993 },
-        { title: 'Photosynthesis', year: 2017 },
-    ];
-
     const [gamePrev, setGamePrev] = useState({});
     const [games, setGames] = useState([]);
-    // const [query, setQuery] = useState('catan');
-    // const [search, setSearch] = useState('');
-    const [value, setValue] = useState(topGames[0].title);
-    const [inputValue, setInputValue] = useState('');  
-    let searchValue;
-    let newInputValue;  
+    const [value, setValue] = useState('Settlers of Catan');
+    const [inputValue, setInputValue] = useState(''); 
+    const [gameList, setGameList] = useState([]); 
+    const [state, dispatch] = useStoreContext();
 
-    // useEffect(()  => {     
-    //     let mounted = true; 
-    //     const fetchData = async() => {
-    //         const response = await axios.get(`/api/games/${searchValue}`);
-    //         let game = {
-    //             gameId: response.data.elements[0].elements[0].attributes.objectid,
-    //             name: response.data.elements[0].elements[0].elements[0].elements[0].text,
-    //         }
-    //        if (mounted){
-    //         setGames(games => [...games, game ]);
-    //        }
-    //     };
-    //     fetchData(); 
-    //     return () => mounted = false;   
-    // }, [searchValue]);
+    useEffect(() => {
+        const getGameList = async() => {
+            const response = await axios.get(`/api/gamelist/`);
+            for (var i = 0; i < 50; i++) {
+                let responseString = response.data.elements[0].elements[i];
+                let hotItem = {
+                    id: responseString.attributes.id,
+                    title: responseString.elements[1].attributes.value,
+                    year: responseString.elements[2].attributes.value,
+                };
+                setGameList(gameList => [...gameList, hotItem]);
+            }
+        }
+        getGameList();
+        }, []);
 
     function getPreview(id) {
         const fetchPreview = async() => {
@@ -119,79 +101,67 @@ function SearchBGG(props) {
             }
             setGamePrev(gamePrevObj);
             props.setAppState(gamePrevObj);
+            dispatch({type: 'GET_LINKS', links: gamePrevObj})
         }   
         fetchPreview(); 
     };
 
-    function handleInputChange(inputValue) {
-            // searchValue = inputValue;
-            console.log('searchValue: ', inputValue)
-            const fetchData = async() => {
-                const response = await axios.get(`/api/games/${inputValue}`);
-                let game = {
-                    gameId: response.data.elements[0].elements[0].attributes.objectid,
-                    name: response.data.elements[0].elements[0].elements[0].elements[0].text,
-                }
-                setGames(games => [...games, game ]);
-               }
-            fetchData(); 
-        }
+    function renderGameToDOM(e, inputValue) {
+        e.preventDefault();
+        const fetchData = async() => {
+            const response = await axios.get(`/api/games/${inputValue}`);
+            let game = {
+                gameId: response.data.elements[0].elements[0].attributes.objectid,
+                name: response.data.elements[0].elements[0].elements[0].elements[0].text,
+            }
+            setGames(game);
+            }
+        fetchData(); 
+    }
     
+    const handleChange = (e) => {
+        setInputValue(e.target.value);
+    }
 
     return (
         <div className={classes.root}>
             <Paper className={classes.paper}>
-            {/* <div>{`value: ${value !== null ? `'${value}'` : 'null'}`}</div> */}
-            {/* <div>{`inputValue: '${inputValue}'`}</div> */}
                 <Autocomplete
-                    // value={value}
                     onChange={(event, newValue) => {
-                        setValue(newValue);
                         setInputValue(newValue);
                       }}
                     inputValue={inputValue}
-                    onInputChange={(event, newInputValue) => {
-                        setInputValue(newInputValue);
-                        console.log(inputValue)
-                      }}
                     id="topGamesDropdown"
                     disableClearable
-                    options={topGames.map((option) => option.title)}
+                    options={gameList.map((option) => option.title)}
                     renderInput={(params) => (
                         <TextField
                             {...params}
+                            onChange={handleChange}
                             label="Search for Board Game"
                             variant="outlined"
                             multiline={true}
                         />
                     )}
                 />
-                <button onClick={handleInputChange(inputValue)}>Sumbit</button>
+                <button onClick={(e) => renderGameToDOM(e, inputValue)}>Search</button>
             </Paper>
             <Grid item xs={12}>
-                    {games.length ? (
-                        <div className={classes.chipdiv}>
-                            {games.map(game => (
-                                <button 
-                                    id="chip" 
-                                    className={classes.chip}
-                                    label={game.name}                                 
-                                    key={game.gameId} 
-                                    value={game.gameId} 
-                                    onClick={() => {
-                                        getPreview(game.gameId)
-                                      }
-                                    }
-                                >
-                                    {game.name}
-                                </button>
-                            ))}
-                        </div>
-                        )
-                        : (
-                        <div>
-                        </div>
-                    )}
+                <div className={classes.chipdiv}>
+                    <button 
+                        id="chip" 
+                        className={classes.chip}
+                        label={games.name}                                 
+                        key={games.gameId} 
+                        value={games.gameId} 
+                        onClick={() => {
+                            getPreview(games.gameId)
+                            }
+                        }
+                    >
+                        {games.name}
+                    </button>
+                </div>
             </Grid>
         </div>
     )

@@ -2,9 +2,7 @@ import './style.css';
 import React from 'react';
 import Grid from '@material-ui/core/Grid';
 import SearchGameList from '../SearchGameList';
-import SearchFriendList from '../SearchFriendList';
 import SearchBGG from '../SearchBGG';
-import BoardGameList from '../BoardGameList';
 import { Link } from 'react-router-dom';
 import Paper from '@material-ui/core/Paper';
 import { makeStyles } from '@material-ui/core/styles';
@@ -13,11 +11,8 @@ import './style.css';
 const useStyles = makeStyles((theme) => ({
     moreFriends: {
         textAlign: 'center',
-        // padding: '5px 10px 0px 10px',
-        // height: '105px',
         marginLeft: '1rem !important',
         marginRight: '1rem !important',
-
         listStyleType: 'none'
     }, 
     searchBarLI: {
@@ -25,7 +20,6 @@ const useStyles = makeStyles((theme) => ({
         fontSize: '18px',
         padding: '5px 3px 0px 3px'
     },
-
 }));
 
 function SearchBar(props) {
@@ -35,7 +29,7 @@ function SearchBar(props) {
         <div>
             <Grid container spacing={1}>
                 <Grid item xs={4}>
-                    <BoardGameList/>
+                    <SearchGameList/>
                 </Grid>
 
                 <Grid item xs={4} >
