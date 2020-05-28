@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
 import Grid from '@material-ui/core/Grid';
 import IconButton from '@material-ui/core/IconButton';
 import FilledInput from '@material-ui/core/FilledInput';
@@ -12,7 +12,6 @@ import VisibilityOff from '@material-ui/icons/VisibilityOff'
 import clsx from 'clsx';
 import { makeStyles } from '@material-ui/core/styles';
 import API from '../../utils/index';
-import { useHistory } from 'react-router-dom';
 import { useStoreContext } from '../../utils/GlobalState';
 import './loginBox.css';
 
