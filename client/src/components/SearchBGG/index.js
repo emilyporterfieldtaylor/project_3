@@ -148,19 +148,26 @@ function SearchBGG(props) {
             </Paper>
             <Grid item xs={12}>
                 <div className={classes.chipdiv}>
-                    <button 
-                        id="chip" 
-                        className={classes.chip}
-                        label={games.name}                                 
-                        key={games.gameId} 
-                        value={games.gameId} 
-                        onClick={() => {
-                            getPreview(games.gameId)
+                    {inputValue.length ? (
+                        <div>
+                        {console.log('1:',inputValue, '2:', inputValue.length)}
+                        <button 
+                            id="chip" 
+                            className={classes.chip}
+                            label={games.name}                                 
+                            key={games.gameId} 
+                            value={games.gameId} 
+                            onClick={() => {
+                                getPreview(games.gameId)
+                                }
                             }
-                        }
-                    >
-                        {games.name}
-                    </button>
+                        >
+                            {games.name}
+                        </button>
+                        </div>
+                    ) : (
+                        <div></div>
+                    )}
                 </div>
             </Grid>
         </div>

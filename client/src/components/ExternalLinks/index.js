@@ -20,6 +20,13 @@ const useStyles = makeStyles((theme) => ({
     },
     hiddenLi: {
         listStyleType: 'none'
+    },
+    aTag: {
+        width: '150px',
+        display: 'block',
+        whiteSpace: 'wrap',
+        textOverflow: 'ellipsis',
+        overflow: 'hidden'
     }
 }));
 
@@ -41,7 +48,7 @@ function Links() {
                         replaceSpace = gameId.replace(/\s/g, "+"),
                         
                         <li className={classes.hiddenLi}>
-                            <a target="_blank" href={`https://www.amazon.com/s?k=${replaceSpace}`}>https://www.amazon.com/s?k={replaceSpace}</a>
+                            <a className={classes.aTag} target="_blank" href={`https://www.amazon.com/s?k=${replaceSpace}`}>https://www.amazon.com/s?k={replaceSpace}</a>
                         </li>
                     ) : (
                         <li className={classes.hiddenLi}></li>

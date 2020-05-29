@@ -3,6 +3,8 @@
     color: white;
     /* font-size: 19px; */
     font-weight: bold;
+    padding: 10px;
+    border-radius: 10px;
 }
 
 .MuiAutocomplete-popper {
