@@ -2,7 +2,7 @@
 
 ## INTRODUCTION
 
-AS a person throwing a board game party, I want to be able to narrow down my board games by categories so I can pick the perfect board game to play with any party group.  ***???? Do we need to revise***
+AS a person throwing a board game party, I want to be able to narrow down my board games by player size and game time so I can pick the perfect board game to play with any party group.
 
 <br>
 
@@ -27,7 +27,7 @@ AS a person throwing a board game party, I want to be able to narrow down my boa
 
 3. The user can search for people they know that are currently using the app, to add them to their friends list.
 
-4. The user can view their friends' profiles. ????
+4. View their friends profile pages
 
 
 
@@ -81,7 +81,7 @@ https://news.gamestart.asia/review-everdell/
 ### BADGES
 
 
-[![forthebadge](https://forthebadge.com/images/badges/check-it-out.svg)](need heroku link)
+[![forthebadge](https://forthebadge.com/images/badges/check-it-out.svg)](https://mysterious-sierra-72763.herokuapp.com/)
 
 [![Open Source Love svg1](https://badges.frapsoft.com/os/v1/open-source.svg?v=103)](https://github.com/emilyporterfieldtaylor/project_3)
 [![made-for-VSCode](https://img.shields.io/badge/Made%20for-VSCode-1f425f.svg)](https://code.visualstudio.com/)
