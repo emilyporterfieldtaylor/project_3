@@ -86,9 +86,6 @@ export default function SignupForm() {
             email: values.email,
             password: values.password
         }
-        if (userData === userData) {
-            alert('User already exists');
-        }
     }
     return (
         <div className="signup-main">
