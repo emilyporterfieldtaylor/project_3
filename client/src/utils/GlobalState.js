@@ -73,16 +73,12 @@ const reducer = (state, action) => {
         ...state,
         externalLinks: [action.links]
       }
-<<<<<<< .merge_file_a17012
     case 'SEARCH_SAVED_GAMES': 
       return {
         ...state,
         gameCategories: action.games
       }
   
-=======
-
->>>>>>> .merge_file_a04148
     default:
       return state;
   }
