@@ -1,6 +1,7 @@
 .main-home {
     /* background-color:#adcfc7; */
     background-image: url('./settlers.jpg');
+    width: 100%;
     height: 120%;
 }
 

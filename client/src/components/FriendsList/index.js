@@ -24,11 +24,11 @@ const useStyles = makeStyles((theme) => ({
     }
 }));
 
-// function deleteFriends(id) {
-//     API.deleteFriend(id).then(results => {
-//         console.log(results)
-//     })
-// }
+function deleteFriends(id) {
+    API.deleteFriend(id).then(results => {
+        console.log(results)
+    })
+}
 
 function FriendsList(props) {
     const classes = useStyles();

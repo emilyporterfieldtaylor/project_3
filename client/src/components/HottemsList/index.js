@@ -84,6 +84,7 @@ export default function HotItemsList(props) {
   const saveGameFunction = async (id) => {
     const game = await axios.get(`/api/gameById/` + id);
     game.data.UserId = globalState.userData.id;
+    console.log("HERE!: ",globalState.userData.id)
     API.saveGame({ ...game.data })
       .then(results => {
         const list = hotGames.map((game) => {
