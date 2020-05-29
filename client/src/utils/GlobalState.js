@@ -1,4 +1,5 @@
 import React, { useContext, useReducer } from "react";
+// import { BIconBook } from "bootstrap-vue";
 
 const initialState = {
   savedGames: [],
@@ -52,6 +53,7 @@ const reducer = (state, action) => {
         ...state,
         newFriendArr: action.newFriend
       }
+
     case "GET_CLICKED_FRIEND":
       return {
         ...state,

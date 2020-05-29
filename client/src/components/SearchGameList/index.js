@@ -5,6 +5,7 @@ import TextField from '@material-ui/core/TextField';
 import Autocomplete from '@material-ui/lab/Autocomplete';
 import { useStoreContext } from '../../utils/GlobalState';
 import API from '../../utils/index';
+import './searchGame.css'
 
 const useStyles = makeStyles((theme) => ({
     root: {

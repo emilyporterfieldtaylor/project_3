@@ -1,9 +1,10 @@
 /* outermost div container */
  .main-login {
     background-image: url('/images/town.jpg');
-    height: 100vH;
+    min-height: 100vh;
+    width: 100%;
+    height: auto;
     background-position: center;
-    background-repeat: no-repeat;
     background-size: cover;
 } 
 

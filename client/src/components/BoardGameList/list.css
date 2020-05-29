@@ -1,18 +1,20 @@
+/* outermost div */
 .MuiPaper-root {
     background-color: #faf5f2 !important;
 }
 
+/* container holding game list */
 #game-list {
-    border:1px solid #cac9c7;
-    /* margin-left: 2rem;
-    margin-right: 1rem; */
-  
+    border:1px solid #cac9c7; 
 }
-/*  */
-/* li {
-    margin-left: 1rem;
-} */
 
+/* h6 */
 #savedGameElse {
     margin: 10px
+}
+
+.MuiPaper-root, .makeStyles-paper-370, .MuiPaper-elevation1, .MuiPaper-rounded {
+    margin-left: 0rem !important;
+    margin-right: 0px !important;
+
 }

@@ -140,7 +140,7 @@ function SearchBGG(props) {
                             onChange={handleChange}
                             label="Search for Board Game"
                             variant="outlined"
-                            multiline={true}
+                            multiline={true}                       
                         />
                     )}
                 />

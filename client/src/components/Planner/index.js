@@ -24,6 +24,7 @@ const useStyles = makeStyles((theme) => ({
     listStyleType: 'none'
   },
   container: {
+    // paddingRight: '20px',
     display: 'flex',
     flexWrap: 'wrap',
   },
@@ -90,11 +91,9 @@ console.log('gamenight: ', gameNight)
         </Grid>
         <Grid item xs={12} sm={6} md={6} className='eventPageGrid'>
           <h3>You'd like to create an event for:</h3>
-          <ul>
-            <li className={classes.hiddenLI}> <b>{playerInput}</b> player(s) </li>
-            <li className={classes.hiddenLI}> <b>{gameCategory}</b> type </li>
-            <li className={classes.hiddenLI}> <b>{gameNight}</b> date / time </li>
-          </ul>
+            <li className={classes.hiddenLI}> player(s): <b>{playerInput}</b> </li>
+            <li className={classes.hiddenLI}>  type: <b>{gameCategory}</b> </li>
+            <li className={classes.hiddenLI}> date / time :<b>{gameNight}</b>  </li>
         </Grid>
         <Grid item xs={12} sm={6} md={6}>
           <form className={classes.container} noValidate>
@@ -102,7 +101,7 @@ console.log('gamenight: ', gameNight)
               id="datetime-local"
               label="Game Day"
               type="datetime-local"
-              defaultValue="2020-12-31T10:30"
+              defaultValue="2020-12-31 T10:30"
               className={classes.textField}
               InputLabelProps={{
                 shrink: true,

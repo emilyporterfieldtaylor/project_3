@@ -58,7 +58,7 @@ function Header() {
             <AppBar position="static">
                 <Toolbar>
                     <Typography variant="h6" className={classes.title}>
-                        <img className="logo-two" src="/images/ALaBoardLogo1NameLong.png"/>
+                        <img className="logo-two" src="/images/ALaBoardLogo1NameLong.png" alt="logo"/>
                     </Typography>
 
                     {auth2 && (
