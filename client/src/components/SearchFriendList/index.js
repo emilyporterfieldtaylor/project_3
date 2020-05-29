@@ -15,7 +15,8 @@ const useStyles = makeStyles((theme) => ({
     },
     paper: {
         padding: theme.spacing(4),
-        marginLeft: '0px !important'
+        marginLeft: '0px !important',
+        fontSize: "18px"
     },
     button: {
         marginLeft: '5px !important',

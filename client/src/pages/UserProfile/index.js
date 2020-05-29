@@ -11,7 +11,7 @@ import { makeStyles } from '@material-ui/core/styles';
 const useStyles = makeStyles((theme) => ({
     friendsList: {
         fontFamily: 'Pangolin',
-        marginLeft: '25px',
+        marginLeft: '60px',
         marginRight: '10px'
     },
     userInfo: {
@@ -58,7 +58,7 @@ function UserProfile() {
         
             <Grid className="main-grid"container >
         
-                <Grid className="grid-1" item xs={6}>
+                <Grid className="grid-one" item xs={6}>
                     <div className={classes.userInfo}>
                         <img src="http://place-puppy.com/200x200" alt="userProfilePic" ></img>
                         <li className='userInfo'>Name: {state.clickedFriendArr.name}</li>
@@ -67,7 +67,7 @@ function UserProfile() {
                 </Grid>
 
              
-                <Grid className="grid-2" item xs={6}>
+                <Grid className="grid-two" item xs={6}>
                     <div className="friend-listing">
                         <div className={classes.friendsList}>
                             <h3 ><u>Friends List:</u></h3>

@@ -15,7 +15,8 @@ const useStyles = makeStyles((theme) => ({
       padding: theme.spacing(2),
       textAlign: 'center',
       color: theme.palette.text.secondary,
-      marginLeft: '1rem !important'
+      marginLeft: '1rem !important',
+      fontSize: '18px'
     },
 }));
 
@@ -72,7 +73,7 @@ function SearchGameList() {
                                     // setQuery(event.target.value);
                                     // setSearchedFor(event.target.value)
                                     setSearch(event.target.value);
-                                    console.log(';;;',search)
+                                    //console.log(';;;',search)
                                 }
                             }
                             InputProps={{ ...params.InputProps, type: 'search' }}
