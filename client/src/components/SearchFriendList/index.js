@@ -48,7 +48,7 @@ function SearchFriendList(props) {
         API.addFriend(friendData)
         .then(res => {
             dispatch({type: "ADD_FRIEND", newFriend: res.data})
-            alert("Friend added");
+            alert("Your friend was added");
         })
         .catch(err => console.log(err))
     }
