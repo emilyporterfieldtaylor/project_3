@@ -26,11 +26,10 @@ module.exports = function(sequelize, DataTypes) {
     });
 
 
-
+// when a user is removed, the games and friends associated will be removed
     User.associate = function(models) {
       User.hasMany(models.Game, {
         onDelete: "cascade",
-        //through: 'User_Games'
       });
 
       User.hasMany(models.Friend, {
