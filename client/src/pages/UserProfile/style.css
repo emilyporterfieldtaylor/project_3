@@ -49,5 +49,14 @@ margin-left: 25%;
 
 /*  */
 .MuiPaper-elevation1 {
-    margin-left: 2rem !important;
+    margin-left: 1rem !important;
+}
+
+.main-user {
+    background-image: url('./photosynthesis.jpg');
+    min-height: 100vh;
+    width: 100%;
+    height: auto;
+    background-position: center;
+    background-size: cover;
 }

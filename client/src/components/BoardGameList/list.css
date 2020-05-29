@@ -12,3 +12,9 @@
 #savedGameElse {
     margin: 10px
 }
+
+.MuiPaper-root, .makeStyles-paper-370, .MuiPaper-elevation1, .MuiPaper-rounded {
+    margin-left: 0rem !important;
+    margin-right: 0px !important;
+
+}

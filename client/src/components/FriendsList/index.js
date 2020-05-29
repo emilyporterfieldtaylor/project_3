@@ -6,14 +6,13 @@ import API from '../../utils/index';
 import { useStoreContext } from '../../utils/GlobalState';
 import Button from '@material-ui/core/Button';
 import './friend.css';
-const axios = require("axios");
 
 const useStyles = makeStyles((theme) => ({
     root: {
       flexGrow: 1,
     },
     paper: {
-      padding: theme.spacing(2),
+      padding: theme.spacing(1),
       textAlign: 'left',
       color: theme.palette.text.secondary,
       fontFamily: 'Pangolin',
@@ -55,7 +54,7 @@ export default function FriendsList(props) {
     return (
         <div id="main-friend" className={classes.root}>
             <Paper className={classes.paper} id="friend-list">
-                Friend List:
+                <u>Friend List:</u>
                 {state.userFriends.length ? ( 
                     <ul className={classes.friendlistUL}>
                         {state.userFriends.map(friend => (

@@ -11,3 +11,8 @@
     left: -10px !important;
     width: 275px !important;
 }
+
+#topGamesDropdown-label {
+    font-size: 10px;
+    width: 75%;
+}

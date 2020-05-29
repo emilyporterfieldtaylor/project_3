@@ -21,11 +21,11 @@ function Home() {
      
       <Grid container spacing={2}>
 
-      <Grid item xs={3} >
+      <Grid item xs={4} sm={3} md={3}>
           <BoardGameList />
         </Grid>
    
-        <Grid item xs={6} >
+        <Grid item xs={4} sm={6} md={6}>
           {appState && <React.Fragment>
             <BoardGamePreview name={appState.name} image={appState.image} />
             <BoardGameDescription 
@@ -44,7 +44,7 @@ function Home() {
           </React.Fragment>}
         </Grid>
 
-        <Grid item xs={3} >
+        <Grid item xs={4} sm={3} md={3}>
           <FriendsList />
             <br></br>
           <Links />
