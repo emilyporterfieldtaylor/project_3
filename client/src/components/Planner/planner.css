@@ -6,6 +6,13 @@
     text-align: center;
 }
 
-.makeStyles-textField-132 {
-    width: 100% !important
+
+.event-grid {
+    background-color:  #eeeee6;
+    border: 1px solid grey;
+    width: 75% !important;
+    border-radius: 5px;
+    box-shadow: 1px 2px 5px 2px grey;
+    margin-top: 50% !important;
+    margin: auto !important;
 }

@@ -13,13 +13,7 @@ const useStyles = makeStyles((theme) => ({
       width: '25ch',
     }
   },
-  outerdiv: {
-    border: 'solid 1px grey',
-    backgroundColor: 'whitesmoke',
-    margin: '20px',
-    fontFamily: 'Pangolin',
-    borderRadius: '10px'
-  },
+ 
   hiddenLI: {
     listStyleType: 'none'
   },
@@ -41,17 +35,6 @@ export default function Planner () {
   const [gameNight, setGameNight] = useState('');
   const classes = useStyles();
 
-  // function applyPlayerNumber(e) {
-  //   e.preventDefault();
-  //   console.log('in function: ',playerInput)
-  //   // api call for number of players
-  // }
-
-  // function applyGameCategory(e) {
-  //   e.preventDefault();
-  //   console.log('game type: ')
-  //   // api call for categories
-  // }
 
   const handlePlayerChange = (e) => {
     setPlayerInput(e.target.value);
@@ -61,11 +44,10 @@ export default function Planner () {
     setGameCategory(e.target.value);
   }
   
-console.log('gamenight: ', gameNight)
 
   return (
-    <div className={classes.outerdiv}>
-      <Grid container spacing={3}>
+    <div className="outer-div">
+      <Grid className="event-grid" container spacing={3}>
         <Grid item xs={12} sm={6} md={6} className='eventPageGrid'>
           <form className={classes.root} noValidate autoComplete="off">
             <h4>Number of players: </h4>
