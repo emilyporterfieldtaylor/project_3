@@ -87,6 +87,7 @@ export default function HotItemsList(props) {
     console.log(game.data, "game.data")
     console.log(globalState.userData.id, "userData")
     game.data.UserId = globalState.userData.id;
+    console.log("HERE!: ",globalState.userData.id)
     API.saveGame({ ...game.data })
       .then(results => {
         const list = hotGames.map((game) => {

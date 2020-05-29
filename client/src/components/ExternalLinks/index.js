@@ -40,13 +40,12 @@ function Links() {
                         gameId = state.externalLinks[0].name,
                         replaceSpace = gameId.replace(/\s/g, "+"),
                         
-                        <a target="_blank" href={`https://www.amazon.com/s?k=${replaceSpace}`}>https://www.amazon.com/s?k={replaceSpace}</a>
+                        <li className={classes.hiddenLi}>
+                            <a target="_blank" href={`https://www.amazon.com/s?k=${replaceSpace}`}>https://www.amazon.com/s?k={replaceSpace}</a>
+                        </li>
                     ) : (
                         <li className={classes.hiddenLi}></li>
                     )}
-                    <li>Link 2</li>
-                    <li>Link 3</li>
-                    <li>Link 4</li>
                 </ul>    
             </Paper>
         </div>
