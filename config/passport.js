@@ -17,8 +17,8 @@ passport.use(
   db.User.findOne({where: {email: profile.emails[0].value, provider: "google"}}).then((currentUser) => {
     if(currentUser) {
       // already have the user
-      console.log("user is: ", currentUser)
-      done(null, currentUser)
+      //console.log("user is: ", currentUser)
+      done(null, currentUser, {isFirstTime: false})
     } else {
         // if not, create user in our db
         db.User.create({
@@ -31,7 +31,7 @@ passport.use(
         })
         .then((newUser) => {
           // console.log("new user created: " + newUser);
-          done(null, newUser, true);
+          done(null, newUser, {isFirstTime: true});
           // If there's an error, handle it by throwing up a bootstrap alert
         }).catch(er => console.log(er));
       }

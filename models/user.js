@@ -23,6 +23,10 @@ module.exports = function(sequelize, DataTypes) {
       },
       provider: DataTypes.STRING,
       profilePicture: DataTypes.STRING,
+      firstTimeLogin: {
+        type: DataTypes.BOOLEAN,
+        defaultValue: true
+      }
     });
 
 

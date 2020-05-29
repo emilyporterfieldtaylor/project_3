@@ -40,5 +40,8 @@ export default {
   },
   loadUserGames: function() {
     return axios.get('/api/user_profile_games')
+  },
+  updateFirstTimeLogin: function() {
+    return axios.put('/api/firstlogin')
   }
 };

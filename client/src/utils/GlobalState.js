@@ -3,7 +3,7 @@ import React, { useContext, useReducer } from "react";
 const initialState = {
   savedGames: [],
   currentGame: [],
-  userData: [],
+  userData: {},
   userFriends: [],
   searchFriendArr: [],
   newFriendArr: [],
@@ -31,6 +31,16 @@ const reducer = (state, action) => {
         ...state,
         userData: action.data
       }
+    case 'UPDATE_FIRSTTIME_LOGIN':
+      return {
+        ...state,
+        userData: {...state.userData, firstTimeLogin: action.data}
+      }
+      case 'LOGOUT':
+        return {
+          ...state,
+          userData: {}
+        }
     case "GET_USER_GAMES":
       return {
         ...state,
