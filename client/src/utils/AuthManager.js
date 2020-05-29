@@ -4,6 +4,7 @@ import {useHistory} from "react-router-dom";
 import API from "./index";
 import { useStoreContext } from "./GlobalState";
 
+
 const AuthManager = () => {
     const history = useHistory();
     const [state, dispatch] = useStoreContext();
@@ -13,10 +14,16 @@ const AuthManager = () => {
     }, []);
 
     const loadUserData = async () => {
-        if(await isUserLoggedIn() && state.userData) {
+        if(await isUserLoggedIn() && state.userData.length === 0) {
             try {
                 const user = await API.userData();
-                dispatch({type: "ADD_USERDATA", data: user.data});
+                console.log(user.data)
+                dispatch({type: "ADD_USERDATA", data: [...user.data]});
+                if(await isFirstLog()) {
+                  history.push("/hotitems")
+                } else {
+                  history.push("/home")
+                }
                 // history.push("/home");
             } catch (error) {
                 console.log("Error With User Data API", error);
@@ -32,6 +39,11 @@ const AuthManager = () => {
         if (userLoggedIn === undefined || userLoggedIn === "") return false;
         return true
     }
+    const isFirstLog =  () => {
+      const userLoggedIn =  Cookies.get('first_log')
+      if (userLoggedIn === undefined || userLoggedIn === "") return false;
+      return true
+    }
 
     const handleLogout = async () => {
         console.log("logging out");
@@ -45,7 +57,7 @@ const AuthManager = () => {
     }
 
     return {
-        user: state.userData || undefined,
+        user: state.userData[0] || [],
         logout: handleLogout
     }
 }

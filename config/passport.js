@@ -30,8 +30,8 @@ passport.use(
           profilePicture: profile.photos[0].value
         })
         .then((newUser) => {
-          console.log("new user created: " + newUser);
-          done(null, newUser);
+          // console.log("new user created: " + newUser);
+          done(null, newUser, true);
           // If there's an error, handle it by throwing up a bootstrap alert
         }).catch(er => console.log(er));
       }

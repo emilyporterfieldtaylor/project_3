@@ -74,7 +74,7 @@ function Header() {
                             </IconButton>
 
                             <Typography  variant="subtitle2" className={classes.loggedIn}>
-                                Logged in as {state.userData.name}!
+                                Logged in as {auth2.name}!
                             </Typography>
 
                             <Menu
