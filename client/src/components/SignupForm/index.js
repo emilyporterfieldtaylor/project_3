@@ -13,8 +13,13 @@ import Visibility from '@material-ui/icons/Visibility';
 import VisibilityOff from '@material-ui/icons/VisibilityOff'
 import './signup.css';
 import API from '../../utils/index';
+<<<<<<< HEAD
 
 
+=======
+import { useHistory } from "react-router-dom"
+import { useStoreContext } from '../../utils/GlobalState';
+>>>>>>> origin/kkStyling
 //material ui code for input boxes
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -33,6 +38,7 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 export default function SignupForm() {
+    const [state, dispatch] = useStoreContext();
     let history = useHistory();
 
     const classes = useStyles();
@@ -69,10 +75,17 @@ export default function SignupForm() {
         }
 
         API.signup(userData).then(results => {
+<<<<<<< HEAD
             //console.log(results)
+=======
+            { dispatch({type: "ADD_USERDATA", data: results.data }) }
+            console.log(results)
+>>>>>>> origin/kkStyling
             history.push("/hotitems");
             //console.log("words");
         }).catch(loginError)
+
+
     }
 
     //validation, missing info/user already created

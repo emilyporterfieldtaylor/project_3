@@ -64,6 +64,7 @@ export default function LoginBox() {
             email: values.email,
             password: values.password
         }
+        
         API.login(userData).then(results => {
             dispatch({ type: "ADD_USERDATA", data: results.data })
             history.push("/home");

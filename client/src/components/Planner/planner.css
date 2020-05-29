@@ -1,7 +1,7 @@
 .makeStyles-root-420 > * {
     width: 18ch !important;
 }
-/* 
-.MuiFormControl-root, .MuiTextField-root {
-    width: 10ch !important
-} */
+
+.eventPageGrid {
+    text-align: center;
+}

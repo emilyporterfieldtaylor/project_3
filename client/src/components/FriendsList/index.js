@@ -2,7 +2,6 @@ import React, { useEffect, useState } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import Paper from '@material-ui/core/Paper';
 import { Link } from 'react-router-dom';
-import DeleteBtn from '../DeleteBtn';
 import API from '../../utils/index';
 import { useStoreContext } from '../../utils/GlobalState';
 import Button from '@material-ui/core/Button';
@@ -24,13 +23,9 @@ const useStyles = makeStyles((theme) => ({
     }
 }));
 
-function deleteFriends(id) {
-    API.deleteFriend(id).then(results => {
-        console.log(results)
-    })
-}
 
-function FriendsList(props) {
+
+export default function FriendsList(props) {
     const classes = useStyles();
     const [state, dispatch] = useStoreContext();
 
@@ -73,7 +68,6 @@ function FriendsList(props) {
                                 >
                                     {friend.name}
                                 </Link>
-                                <DeleteBtn onClick={() => deleteFriends(friend._id)}/> 
                             </Button>
                         ))}
                     </ul>
@@ -84,5 +78,3 @@ function FriendsList(props) {
         </div>
     )
 }
-
-export default FriendsList;

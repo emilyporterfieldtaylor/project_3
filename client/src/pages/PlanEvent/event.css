@@ -2,3 +2,9 @@
     background-image: url('./map.jpg');
     height: 100vh;
 }
+
+.bulletin2 {
+    text-align: center;
+    color: #ddb931;
+    text-shadow: 1px 1px whitesmoke;
+}

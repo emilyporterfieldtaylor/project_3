@@ -73,7 +73,7 @@ export default function HotItemsList(props) {
           addEnabled: true,
           image: responseString.elements[0].attributes.value,
         };
-       // console.log(responseString);
+     //   console.log(responseString);
         setHotGames(hotGames => [...hotGames, hotItems]);
       }
     };
@@ -83,9 +83,11 @@ export default function HotItemsList(props) {
 
   const saveGameFunction = async (id) => {
     const game = await axios.get(`/api/gameById/` + id);
-    console.log(globalState.userData.id, "globalState.data.UserId")
-    console.log(globalState, "globalState")
+/*     console.log(globalState, "GlobalState")
+    console.log(game.data, "game.data")
+    console.log(globalState.userData.id, "userData") */
     game.data.UserId = globalState.userData.id;
+    console.log("HERE!: ",globalState.userData.id)
     API.saveGame({ ...game.data })
       .then(results => {
         const list = hotGames.map((game) => {

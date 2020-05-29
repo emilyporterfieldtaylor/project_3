@@ -127,6 +127,10 @@ module.exports = {
   },
   
   create: function (req, res) {
+    
+    console.log(req.body, "req.body")
+    if (req.body.UserId) {console.log("it's here")}
+
     let gameData = {
       gameId: req.body.gameId,
       name: req.body.name,
@@ -138,6 +142,7 @@ module.exports = {
       maxPlayTime: req.body.maxPlayTime,
       yearPublished: req.body.yearPublished,
       UserId: req.body.UserId
+      //UserId: 2
     }
     db.Game.create(gameData)
       .then(game => {

@@ -42,10 +42,11 @@ function BoardGameList() {
     function loadGames() {
         
         API.getUserGames().then(results=>{
+            console.log('userGames: ', results.data)
            { dispatch({type: "GET_USER_GAMES", games: results.data }) }
         })
     }
-
+console.log('savedGames: ', state.savedGames)
     const userSavedGames = [
         // this will eventually be deleted
         // info should be pulled from database of a user's saved games 
