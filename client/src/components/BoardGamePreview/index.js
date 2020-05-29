@@ -1,8 +1,6 @@
 import React from 'react';
-// import './style.css';
 import { makeStyles } from '@material-ui/core/styles';
 import Paper from '@material-ui/core/Paper';
-// import SearchBar from '../SearchBar';
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -15,6 +13,9 @@ const useStyles = makeStyles((theme) => ({
       color: theme.palette.text.secondary,
       marginRight: '32px' 
     },
+    gameImage: {
+        width: '150px !important'
+    }
 }));
 
 function BoardGamePreview(props) {
@@ -25,7 +26,7 @@ function BoardGamePreview(props) {
             <Paper className={classes.paper}>
                 <div>
                     <h3 style={{margin: '5px'}}>Board Game Preview: </h3>
-                    {props.image ? <img alt={props.name} src={props.image}></img> : <h5>Sorry, No Image Available</h5>}
+                    {props.image ? <img className={classes.gameImage} alt={props.name} src={props.image}></img> : <h5>Sorry, No Image Available</h5>}
                 </div>
             </Paper>
         </div>

@@ -4,3 +4,8 @@
     /* font-size: 19px; */
     font-weight: bold;
 }
+
+.MuiAutocomplete-popper {
+    left: -10px !important;
+    width: 275px !important;
+}

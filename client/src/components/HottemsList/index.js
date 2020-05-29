@@ -10,7 +10,9 @@ import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
 import API from '../../utils/index.js';
-import {useStoreContext} from '../../utils/GlobalState'
+import { useStoreContext } from '../../utils/GlobalState'
+import './hotitems.css';
+import {useHistory} from "react-router-dom";
 const axios = require("axios");
 
 const useStyles = makeStyles((theme) => ({
@@ -26,35 +28,45 @@ const useStyles = makeStyles((theme) => ({
     paddingBottom: theme.spacing(8),
   },
   card: {
-    height: '100%',
+    height: '97%',
     display: 'flex',
     flexDirection: 'column',
-    boxShadow: '10px 10px 20px'
+    boxShadow: '10px 10px 20px',
+    border: "1.5px solid silver"
   },
   cardMedia: {
-    paddingTop: '56.25%', // 16:9
+    paddingTop: '68%', // 16:9
+    backgroundSize: "auto",
   },
   cardContent: {
     flexGrow: 1,
   },
   welcome: {
     textAlign: "center",
-    color: "#1976d2" 
+    color: "beige",
+    marginTop: '0'
   },
   tagline: {
-    textAlign: "center", 
-    color:"#dc004e"
+    textAlign: "center",
+    color: "#4a6495"
   }
 }));
 
 export default function HotItemsList(props) {
-  const [globalState, ] = useStoreContext();
+  const [globalState, dispatch] = useStoreContext();
   const classes = useStyles();
-
   const [hotGames, setHotGames] = useState([])
+
+  const history = useHistory();
   const handleClick = (e) => {
     console.log("The link was clicked");
+    e.preventDefault();
+    API.updateFirstTimeLogin().then(function() {
+      dispatch({type: "UPDATE_FIRSTTIME_LOGIN", data: false});
+      history.push("/home");
+    });
   };
+
   useEffect(() => {
     const fetchHotItems = async () => {
       const response = await axios.get(`/api/hotitems/`);
@@ -68,7 +80,7 @@ export default function HotItemsList(props) {
           addEnabled: true,
           image: responseString.elements[0].attributes.value,
         };
-        console.log(responseString);
+     //   console.log(responseString);
         setHotGames(hotGames => [...hotGames, hotItems]);
       }
     };
@@ -78,82 +90,86 @@ export default function HotItemsList(props) {
 
   const saveGameFunction = async (id) => {
     const game = await axios.get(`/api/gameById/` + id);
-    //console.log(game.data);
-    //console.log(globalState.userData, "global")
+    console.log(globalState, "GlobalState")
+    console.log(game.data, "game.data")
+    console.log(globalState.userData.id, "userData")
     game.data.UserId = globalState.userData.id;
-    API.saveGame({...game.data})
-    .then(results => {
-      const list = hotGames.map((game) => {
-        game.UserId=1;
-        if (game.id === id) {
-          game.footer = "ADDED TO COLLECTION";
-          game.addEnabled = false;
-        
-          return game;
-        } else {
-          return game;
-        }
-      });
-
-      setHotGames(list);
-    })
+    console.log("HERE!: ",globalState.userData.id)
+    API.saveGame({ ...game.data })
+      .then(results => {
+        const list = hotGames.map((game) => {
+          if (game.id === id) {
+            game.footer = "ADDED TO COLLECTION";
+            game.addEnabled = false;
+            return game;
+          } 
+          else {
+            return game;
+          }
+        });
+        setHotGames(list);
+      })
   }
 
   return (
     <React.Fragment>
       <CssBaseline />
       <main>
-        {/* Hero unit */}
-        <div className={classes.heroContent}>
-          <Container maxWidth="sm">
+        <div className="main-hot">
+          {/* Hero unit */}
+          <br></br>
+          <br></br>
+          <div className="hot-banner">
             <h1 className={classes.welcome}>
               Welcome to À La Board!
             </h1>
             <h4 className={classes.tagline}>
-              To get you started, any of the boardgames below that you own to get you virtual collection started.
+              To start you virtual collection, add any of the games below or go straight to the homepage by clicking the button below.
             </h4>
-            <div className={classes.heroButtons}>
+            <div id="hot-link" className={classes.heroButtons}>
               <Grid container spacing={2} justify="center">
                 <Grid item>
-                  <Button variant="contained" color="primary" >
+                  <Button className="to-home" variant="contained" >
                     <a href="/home" onClick={handleClick}>
-                    Continue To Home Page
+                      Continue To Home Page
                     </a>
                   </Button>
                 </Grid>
               </Grid>
             </div>
+          </div>
+
+          <Container className={classes.cardGrid} maxWidth="md">
+
+            <Grid container spacing={4}>
+              {hotGames.map((game) => (
+                <Grid item key={game.title} xs={12} sm={6} md={4}>
+                  <Card className={classes.card}>
+                    <CardMedia
+                      id="hot-image-title"
+                      className={classes.cardMedia}
+                      image={game.image}
+                      title="Image title"
+                    />
+                    <CardContent className={classes.cardContent}>
+                      <Typography gutterBottom variant="h5" component="h2">
+                        {game.title}
+                      </Typography>
+                      <Typography>
+                        {game.year}
+                      </Typography>
+                    </CardContent>
+                    <CardActions>
+                      <Button disabled={!game.addEnabled} onClick={() => { saveGameFunction(game.id) }} size="small" color="primary">
+                        {game.footer}
+                      </Button>
+                    </CardActions>
+                  </Card>
+                </Grid>
+              ))}
+            </Grid>
           </Container>
         </div>
-        <Container className={classes.cardGrid} maxWidth="md">
-
-          <Grid container spacing={4}>
-            {hotGames.map((game) => (
-              <Grid item key={game.title} xs={12} sm={6} md={4}>
-                <Card className={classes.card}>
-                  <CardMedia
-                    className={classes.cardMedia}
-                    image={game.image}
-                    title="Image title"
-                  />
-                  <CardContent className={classes.cardContent}>
-                    <Typography gutterBottom variant="h5" component="h2">
-                      {game.title}
-                    </Typography>
-                    <Typography>
-                      {game.year}
-                    </Typography>
-                  </CardContent>
-                  <CardActions>
-                    <Button disabled={!game.addEnabled} onClick={() => {saveGameFunction(game.id)}} size="small" color="primary">
-                      {game.footer}
-                    </Button>
-                  </CardActions>
-                </Card>
-              </Grid>
-            ))}
-          </Grid>
-        </Container>
       </main>
     </React.Fragment>
   );

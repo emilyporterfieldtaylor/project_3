@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
 import Grid from '@material-ui/core/Grid';
 import IconButton from '@material-ui/core/IconButton';
 import FilledInput from '@material-ui/core/FilledInput';
@@ -12,13 +12,11 @@ import VisibilityOff from '@material-ui/icons/VisibilityOff'
 import clsx from 'clsx';
 import { makeStyles } from '@material-ui/core/styles';
 import API from '../../utils/index';
-import { useHistory } from 'react-router-dom';
 import { useStoreContext } from '../../utils/GlobalState';
 import './loginBox.css';
 
 const useStyles = makeStyles((theme) => ({
   root: {
-    // display: "flex",
     flexWrap: "wrap",
     flexGrow: 1,
     fontFamily: 'Pangolin',
@@ -38,12 +36,8 @@ const useStyles = makeStyles((theme) => ({
 
 export default function LoginBox() {
     const [state, dispatch] = useStoreContext();
-    //console.log(useStoreContext());
-
     let history = useHistory();
-
     const classes = useStyles();
-
     const [values, setValues] = React.useState({
         email: '',
         amount: '',
@@ -66,23 +60,36 @@ export default function LoginBox() {
     };
 
     const handleFormLogin = (e) => {
-       // console.log(values);
         const userData = {
             email: values.email,
             password: values.password
         }
-
+        
         API.login(userData).then(results => {
-            //console.log(results);
+            console.log(results);
             dispatch({ type: "ADD_USERDATA", data: results.data })
             history.push("/home");
-        })
+        }).catch(loginError)
     }
-    
+
+    const loginError =() => {
+        const userData = {
+            email: values.email,
+            password: values.password
+        }
+        if (values.email === "" || values.password === ""){
+            alert("Oops your email and/or password are missing");
+            return;
+        }else if (values !== userData){
+            alert("This user does not exist, please create an account");
+            return;
+        }
+    }
+
     return (
-        <div className="main">
+        <div className="main-login">
             <img className="logo" src="/images/ALaBoardLogo1.png" alt="game logo"/>
-        <div className="frame" >
+        <div className="frame-login" >
             <Grid item xs={12}>
                 <h2>Welcome, weary travelers.</h2>
                 <h2>Fear not, inside are friends</h2>

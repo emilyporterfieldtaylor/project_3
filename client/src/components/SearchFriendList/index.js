@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from "react";
-// import './style.css';
 import { makeStyles } from '@material-ui/core/styles';
 import Paper from '@material-ui/core/Paper';
 import TextField from '@material-ui/core/TextField';
@@ -21,21 +20,13 @@ const useStyles = makeStyles((theme) => ({
     button: {
         marginLeft: '5px !important',
         padding: '4px',
-        // borderStyle: 'none',
-        // borderRadius: '2px'
     }
 }));
-
 
 function SearchFriendList(props) {
     const classes = useStyles();
     const [state, dispatch] = useStoreContext();
-
     const [searchedFor, setSearchedFor] = useState([]);
-    // const [games, setGames] = useState([]);
-    // const [query, setQuery] = useState('catan');
-    // const [search, setSearch] = useState('');
-    // const [friendarr, setFriend] = useState({});
 
     useEffect(() => {
         console.log('state: ',state.searchFriendArr)
@@ -56,8 +47,6 @@ function SearchFriendList(props) {
         }
         API.addFriend(friendData)
         .then(res => {
-            console.log('state: ',state.searchFriendArr)
-
             dispatch({type: "ADD_FRIEND", newFriend: res.data})
         })
         .catch(err => console.log(err))
@@ -81,15 +70,10 @@ function SearchFriendList(props) {
                         className={classes.searchFriendList}
                         {...params}
                         label="Search Friend List"
-                        // margin="normal"
                         variant="filled"
-                        // value={query}
-                        onChange = { 
-                            event => {
-                                // setQuery(event.target.value);
-                                setSearchedFor(event.target.value)
-                            }
-                        }
+                        onChange = {event => {
+                            setSearchedFor(event.target.value)
+                        }}
                         InputProps={{ ...params.InputProps, type: 'search' }}
                     />
                     )}
@@ -108,17 +92,13 @@ function SearchFriendList(props) {
                             size="small"
                             variant='outlined'
                             onClick={() =>  {
-                                // setFriend(friend.name);
                                 addFriend(friend.name);
-                                }
-                            }   
+                                }}   
                         >
-                           <i className="fas fa-user-plus"></i>   Add Friend
+                        <i className="fas fa-user-plus"></i>   Add Friend
                         </Button>    
                     </li>
-
                 ))}
-                
             </Paper>
             </div>
         </div>
@@ -126,95 +106,3 @@ function SearchFriendList(props) {
 }
 
 export default SearchFriendList;
-
-// ==========================
-
-//     function addFriend(friend) {
-//         let friendData = {
-//             name: friend
-//         }
-//         API.addFriend(friendData)
-//         .then(res => {
-//             dispatch({type: "ADD_FRIEND", newFriend: res.data})
-//         })
-//         .catch(err => console.log(err))
-//     }
-
-//     return (
-//         <div className={classes.root}>
-//             <Paper className={classes.paper}>
-//                 {/* {state.searchFriendArr ? ( */}
-//                     <div>
-//                     {state.searchFriendArr.map(friend => (
-//                         <div>
-//                         <Autocomplete
-//                             freeSolo
-//                             id="free-solo-2-demo"
-//                             disableClearable
-//                             // options= {friendsList.map((option) => option.title)}
-//                             options = {
-//                                 state.searchFriendArr.map(friend => friend.name)
-//                             }
-//                             renderInput={(params) => (
-//                             <TextField
-//                                 className={classes.searchFriendList}
-//                                 {...params}
-//                                 label="Search Friend List"
-//                                 // margin="normal"
-//                                 variant="outlined"
-//                                 // value={query}
-//                                 // onChange = { 
-//                                 //     event => {
-//                                 //         setQuery(event.target.value);
-//                                 //         setSearchedFor(event.target.value)
-//                                 //     }
-//                                 // }
-//                                 InputProps={{ ...params.InputProps, type: 'search' }}
-//                             />
-//                             )}
-//                         />
-//                         <button 
-//                             type="button"
-//                             value={friend.name}
-//                             onClick={() =>  {
-//                                 // searchFriends();
-//                                 // setSearch(query);
-//                                 addFriend(this.value);
-//                                 }
-//                             }
-//                         >
-//                             Add Friend
-//                         </button> 
-//                         </div>
-//                     ))}
-//                 </div>
-//                 )
-//                  {/* :
-//                 (
-//                     <div></div>
-//                 )} */}
-//             </Paper>
-
-                
-            
-// {/*     
-//                 {state.searchFriendArr.map(friend =>  (
-//                     <li value={friend.name}>
-//                         {friend.name}
-//                         <button 
-//                             onClick={() =>  {
-//                                 // setFriend(friend.name);
-//                                 addFriend(friend.name);
-//                                 }
-//                             }   
-//                         >
-//                             Add Friend
-//                         </button>    
-//                     </li>
-
-//                 ))} */}
-//         </div>
-//     )
-// }
-
-// export default SearchFriendList;

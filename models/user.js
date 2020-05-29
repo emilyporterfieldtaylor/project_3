@@ -17,22 +17,21 @@ module.exports = function(sequelize, DataTypes) {
           isEmail: true
         }
       },
-      // The password cannot be null
       password: {
         type: DataTypes.STRING,
         allowNull: false
       },
       provider: DataTypes.STRING,
       profilePicture: DataTypes.STRING,
-      // image: DataTypes.LONGBLOB,
-      // favGame: DataTypes.ARRAY
+      firstTimeLogin: {
+        type: DataTypes.BOOLEAN,
+        defaultValue: true
+      }
     });
 
 
 
     User.associate = function(models) {
-      // Associating Author with Posts
-      // When an Author is deleted, also delete any associated Posts
       User.hasMany(models.Game, {
         onDelete: "cascade",
         //through: 'User_Games'

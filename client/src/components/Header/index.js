@@ -4,7 +4,6 @@ import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
 import IconButton from '@material-ui/core/IconButton';
-// import { Link } from 'react-router-dom';
 import AccountCircle from '@material-ui/icons/AccountCircle';
 import Switch from '@material-ui/core/Switch';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
@@ -18,7 +17,6 @@ import './header.css';
 const useStyles = makeStyles((theme) => ({
     root: {
         flexGrow: 1,
-        marginBottom: '10px',
     },
     menuButton: {
         marginRight: theme.spacing(2),
@@ -38,10 +36,9 @@ const useStyles = makeStyles((theme) => ({
 function Header() {  
     const [state, dispatch] = useStoreContext();
     const classes = useStyles();
-    const {user: auth, logout} = AuthManager();
-    const [auth2, setAuth2] = React.useState(true);
+    const {user: auth2, logout} = AuthManager();
+    // const [auth2, setAuth2] = React.useState(true);
     const [anchorEl, setAnchorEl] = React.useState(null);
-
     const open = Boolean(anchorEl);
 
     const handleChange = (event) => {
@@ -61,7 +58,7 @@ function Header() {
             <AppBar position="static">
                 <Toolbar>
                     <Typography variant="h6" className={classes.title}>
-                        <img className="logo-two" src="/images/ALaBoardLogo1NameLong.png"/>
+                        <img className="logo-two" src="/images/ALaBoardLogo1NameLong.png" alt="logo"/>
                     </Typography>
 
                     {auth2 && (
@@ -77,7 +74,7 @@ function Header() {
                             </IconButton>
 
                             <Typography  variant="subtitle2" className={classes.loggedIn}>
-                                Logged in as {state.userData.name}!
+                                Logged in as {auth2.name}!
                             </Typography>
 
                             <Menu
