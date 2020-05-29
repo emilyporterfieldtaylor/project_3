@@ -1,8 +1,10 @@
+/* plane event background */
 #eventPage {
-    background-image: url('./map.jpg');
+    background-image: url('/images/map.jpg');
     height: 100vh;
 }
 
+/*h1 */
 .bulletin2 {
     text-align: center;
     color: #ddb931;

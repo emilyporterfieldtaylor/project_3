@@ -16,10 +16,10 @@ const fetchXML = async (root, game) => {
 // Searches the list for the item name, and then returns value or text depending if that element has attributes or elements
 const getAttributeValue = (list, name) => {
   var index = list.findIndex(item => (item.name === name));
-  if (index === -1){
+  if (index === -1) {
     console.log("Missing element: " + name);
   }
-  else if (typeof  list[index].attributes != "undefined") {
+  else if (typeof list[index].attributes != "undefined") {
     return list[index].attributes.value;
   }
   else if (typeof list[index].elements != "undefined") {
@@ -43,7 +43,7 @@ module.exports = {
       res.json(json);
     }
   },
-  
+
   findById: async (req, res) => {
     const { id } = req.params;
     const root = 'https://www.boardgamegeek.com/xmlapi2/thing?id=';
@@ -125,7 +125,7 @@ module.exports = {
       res.json(json);
     }
   },
-  
+
   create: function (req, res) {
     let gameData = {
       gameId: req.body.gameId,
@@ -138,6 +138,7 @@ module.exports = {
       maxPlayTime: req.body.maxPlayTime,
       yearPublished: req.body.yearPublished,
       UserId: req.body.UserId
+
     }
     db.Game.create(gameData)
       .then(game => {

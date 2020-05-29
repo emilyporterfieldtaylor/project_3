@@ -21,7 +21,7 @@ function apiRoutes(app) {
   })
 
   // Using the passport.authenticate middleware with our local strategy.
-  // If the user has valid login credentials, send them to the members page.
+  // If the user has valid login credentials, send them to the home page.
   // Otherwise the user will be sent an error
   app.post("/api/login", passport.authenticate("local"), function (req, res) {
     res.cookie('logged_in', true);
@@ -29,7 +29,7 @@ function apiRoutes(app) {
   });
 
   // Route for signing up a user. The user's password is automatically hashed and stored securely thanks to
-  // how we configured our Sequelize User Model. If the user is created successfully, proceed to log the user in,
+  //  configuration of sequelize user model. If the user is created successfully, proceed to log the user in,
   // otherwise send back an error
   app.post("/api/signup", function (req, res) {
     db.User.create({
@@ -48,17 +48,17 @@ function apiRoutes(app) {
 
   app.post("/api/add_friend", function (req, res) {
     console.log('in routes'),
-    db.Friend.create({
-      name: req.body.name,
-      UserId: req.body.userId
-    })
-    .then(function (friend) {
-      console.log('friend in post: ', friend)
-      res.json(friend)
-    })
-    .catch(function(err) {
-      res.status(401).json(err)
-    })
+      db.Friend.create({
+        name: req.body.name,
+        UserId: req.body.userId
+      })
+        .then(function (friend) {
+          console.log('friend in post: ', friend)
+          res.json(friend)
+        })
+        .catch(function (err) {
+          res.status(401).json(err)
+        })
   })
 
   // Route for getting some data about our user to be used client side
@@ -68,8 +68,6 @@ function apiRoutes(app) {
       res.json({});
     } else {
       // Otherwise send back the user's email and id
-      // Sending back a password, even a hashed password, isn't a good idea
-
       res.json({
         email: req.user.email,
         id: req.user.id,
@@ -98,7 +96,6 @@ function apiRoutes(app) {
   //allows friends to be tied to a specific user
   app.get("/api/users_friends", function (req, res) {
     if (!req.user) {
-      // The user is not logged in, send back an empty object
       res.json({});
     } else {
       db.Friend.findAll({
@@ -112,6 +109,8 @@ function apiRoutes(app) {
         });
     }
   })
+
+  // allows all friends to be rendered
   app.get("/api/all_friends", function (req, res) {
     db.User.findAll({})
     .then(function (data) {
@@ -122,24 +121,26 @@ function apiRoutes(app) {
     });
   })
 
+  // choosing a certain friend
   app.get('/api/clicked_friend', function (req, res) {
     db.User.findAll({})
-    .then(function (friend) {
-      res.json(friend);
-    })
-    .catch(err => console.log(err));
+      .then(function (friend) {
+        res.json(friend);
+      })
+      .catch(err => console.log(err));
   })
 
   app.get('/api/user_profile_friends', function (req, res) {
     db.Friend.findAll({})
-    .then(function (friend) {
-      res.json(friend);
-    })
-    .catch(err => console.log(err));
+      .then(function (friend) {
+        res.json(friend);
+      })
+      .catch(err => console.log(err));
   })
 
   app.get('/api/user_profile_games', function (req, res) {
     db.Game.findAll({})
+<<<<<<< .merge_file_a16864
     .then(function (game){
       console.log('in routes: ', game)
       res.json(game);
@@ -165,6 +166,14 @@ function apiRoutes(app) {
   })
 
 
+=======
+      .then(function (game) {
+        console.log('in routes: ', game)
+        res.json(game);
+      })
+      .catch(err => console.log(err));
+  })
+>>>>>>> .merge_file_a09784
 }
 
 module.exports = apiRoutes;

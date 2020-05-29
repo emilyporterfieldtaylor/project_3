@@ -14,11 +14,10 @@ module.exports = function (sequelize, DataTypes) {
 
     Game.belongsTo(models.User, {
       foreignKey: {
-        //may need to change back to true
         allowNull: true
-    }
-  })
-}
-    return Game;
-  
+      }
+    })
+  }
+  return Game;
+
 }

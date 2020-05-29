@@ -5,6 +5,7 @@ import { useStoreContext } from '../../utils/GlobalState';
 import API from '../../utils/index'
 import './list.css'
 
+//material ui provided styling
 const useStyles = makeStyles((theme) => ({
     root: {
         flexGrow: 1,
@@ -39,6 +40,7 @@ function BoardGameList() {
 
     //part of associating games to a specific user
     function loadGames() {
+        
         API.getUserGames().then(results=>{
             console.log('userGames: ', results.data)
            { dispatch({type: "GET_USER_GAMES", games: results.data }) }

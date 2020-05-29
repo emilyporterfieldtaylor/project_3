@@ -4,15 +4,16 @@ import Paper from '@material-ui/core/Paper';
 import API from '../../utils/index.js';
 import { useStoreContext } from '../../utils/GlobalState';
 
+//material ui provided styling
 const useStyles = makeStyles((theme) => ({
     root: {
-      flexGrow: 1,
+        flexGrow: 1,
     },
     paper: {
-      textAlign: 'left',
-      color: theme.palette.text.secondary,
-      marginBottom: '50px',
-      marginRight: '32px' 
+        textAlign: 'left',
+        color: theme.palette.text.secondary,
+        marginBottom: '50px',
+        marginRight: '32px'
     },
     button: {
         margin: '10px',
@@ -54,23 +55,23 @@ function BoardGameDescription(props) {
         //recalling games
         API.saveGame(gameData)
             .then(() => {
-            loadGames()
+                loadGames()
             })
-        }
-       
-     //part of associating games to a specific user
-     const loadGames =()=> {
-        API.getUserGames().then(results=>{
-            dispatch({type: "GET_USER_GAMES", games: results.data })
+    }
+
+    //part of associating games to a specific user
+    const loadGames = () => {
+        API.getUserGames().then(results => {
+            dispatch({ type: "GET_USER_GAMES", games: results.data })
         })
     }
 
     const classes = useStyles();
 
     return (
-        <div className={classes.root} style={{marginTop: '20px'}}>               
+        <div className={classes.root} style={{ marginTop: '20px' }}>
             <Paper className={classes.paper}>
-                <h3 style={{textAlign: 'center', paddingTop: '10px', marginBottom: '20px'}}>Board Game Description: </h3>
+                <h3 style={{ textAlign: 'center', paddingTop: '10px', marginBottom: '20px' }}>Board Game Description: </h3>
 
                 <div className={classes.descriptionDIV}>
                     <strong>Name: {props.name}</strong>
@@ -79,11 +80,10 @@ function BoardGameDescription(props) {
                     <li style={{ listStyle: 'none' }}><strong>PlayTime:</strong> {props.minPlayTime} - {props.maxPlayTime} minutes</li>
                     <li style={{ listStyle: 'none' }}><strong>Year Published:</strong> {props.yearPublished} </li>
                 </div>
-
+                
                 <div className={classes.centerbutton}>
                     <button onClick={saveGameFunction} className={classes.button}>Save to My Games!</button>
                 </div>
-
             </Paper>
         </div>
     )

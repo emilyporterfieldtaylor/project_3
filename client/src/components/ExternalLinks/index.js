@@ -3,17 +3,18 @@ import { makeStyles } from '@material-ui/core/styles';
 import Paper from '@material-ui/core/Paper';
 import { useStoreContext } from '../../utils/GlobalState';
 
+// material ui provided styling
 const useStyles = makeStyles((theme) => ({
     root: {
-      flexGrow: 1,
+        flexGrow: 1,
     },
     paper: {
-      padding: theme.spacing(3),
-      textAlign: 'left',
-      color: theme.palette.text.secondary,
-      fontFamily: 'Pangolin',
-      marginLeft: '1rem !important',
-      marginRight: '1rem !important',
+        padding: theme.spacing(3),
+        textAlign: 'left',
+        color: theme.palette.text.secondary,
+        fontFamily: 'Pangolin',
+        marginLeft: '1rem !important',
+        marginRight: '1rem !important',
     },
     externalLinks: {
         padding: '5px'
@@ -35,14 +36,14 @@ function Links() {
     const [state, dispatch] = useStoreContext();
 
     let gameId;
-    let replaceSpace; 
+    let replaceSpace;
 
     return (
-        <div className={classes.root} style={{marginTop: '20px'}}>
+        <div className={classes.root} style={{ marginTop: '20px' }}>
             <Paper className={classes.paper}>
                 Want to buy it?
                 <ul className={classes.externalLinks}>
-                    
+
                     {state.externalLinks.length ? (
                         gameId = state.externalLinks[0].name,
                         replaceSpace = gameId.replace(/\s/g, "+"),

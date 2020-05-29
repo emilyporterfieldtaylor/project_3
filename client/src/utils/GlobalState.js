@@ -1,4 +1,5 @@
 import React, { useContext, useReducer } from "react";
+import { BIconBook } from "bootstrap-vue";
 
 const initialState = {
   savedGames: [],
@@ -24,8 +25,8 @@ const reducer = (state, action) => {
   switch (action.type) {
     case "ADD_GAME":
       return {
-          ...state,
-          savedGames: [...state.savedGames]
+        ...state,
+        savedGames: [...state.savedGames]
       }
     case "ADD_USERDATA":
       return {
@@ -47,7 +48,7 @@ const reducer = (state, action) => {
         ...state,
         searchFriendArr: action.searchFriend
       }
-    case "ADD_FRIEND": 
+    case "ADD_FRIEND":
       return {
         ...state,
         newFriendArr: action.newFriend
@@ -72,12 +73,16 @@ const reducer = (state, action) => {
         ...state,
         externalLinks: [action.links]
       }
+<<<<<<< .merge_file_a17012
     case 'SEARCH_SAVED_GAMES': 
       return {
         ...state,
         gameCategories: action.games
       }
   
+=======
+
+>>>>>>> .merge_file_a04148
     default:
       return state;
   }
