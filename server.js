@@ -51,8 +51,7 @@ app.get('/api/games/:game', gameController.gameController);
 app.get('/api/ids/:id', gameController.findById);
 app.get('/api/gameById/:id', gameController.findByBggId);
 app.get('/api/hotitems', gameController.hotItems);
-app.get('/api/gamelist/', gameController.gameList);
-// app.get('/api/external_links/:name', gameController.externalLinks);
+app.get('/api/list/', gameController.gameList);
 app.post('/api/gameData/', gameController.create);
 
 //temporary: demonstrating passport

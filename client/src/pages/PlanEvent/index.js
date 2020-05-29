@@ -7,7 +7,7 @@ import './event.css';
 export default function PlanEvent () {
     return (
         <div id='eventPage'>
-            <Link to='/home'>To the Bulletin Board</Link>
+            <Link to='/home' id='toHomeLink'>To the Bulletin Board</Link>
             <Header />
             <h1 className="bulletin2">Games, Nerds, Shindigs</h1>
             <Planner />

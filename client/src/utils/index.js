@@ -40,5 +40,8 @@ export default {
   },
   loadUserGames: function() {
     return axios.get('/api/user_profile_games')
+  },
+  searchThruGames: function() {
+    return axios.get('/api/search_thru_games')
   }
 };

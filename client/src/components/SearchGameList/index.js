@@ -3,6 +3,8 @@ import { makeStyles } from '@material-ui/core/styles';
 import Paper from '@material-ui/core/Paper';
 import TextField from '@material-ui/core/TextField';
 import Autocomplete from '@material-ui/lab/Autocomplete';
+import { useStoreContext } from '../../utils/GlobalState';
+import API from '../../utils/index';
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -18,38 +20,58 @@ const useStyles = makeStyles((theme) => ({
 
 function SearchGameList() {
     const classes = useStyles();
+    const [state, dispatch] = useStoreContext();
     const [searchedFor, setSearchedFor] = useState([]);
     const [query, setQuery] = useState('catan');
     const [search, setSearch] = useState('');
+    const [game, setGame] = useState('');
 
-    const userSavedGames = [
-        { title: 'Settlers of Catan', year: 1995 },
-        { title: 'Crossbows and Catapults', year: 1983 },
-        { title: 'Cards Against Humanity', year: 2009 },
-        { title: 'Exploding Kittens', year: 2015 },
-        { title: 'Scattergories', year: 1988 },
-        { title: "Magic: The Gathering", year: 1993 },
-        { title: 'Photosynthesis', year: 2017 },
+    const gameCategories = [
+        { title: 'Number of Players' },
+        { title: 'Categories' }
       ];
 
-    return (
+    //   console.log(searchedFor, query, search)
+    
+      function searchThruGames(e, search) {
+          e.preventDefault();
+          const fetchData = async() => {
+              API.searchThruGames()
+              .then(results => {
+                console.log('HERE NOW: ', results.data)
+                console.log(search)
+                dispatch({type: "SEARCH_SAVED_GAMES", games: results.data})
+                for (let i=0; i < results.data.length; i++) {
+                    if (search < results.data[0].maxPlayers) {
+                        setGame(results.data)
+                    }
+                }
+            })
+            .catch(err => console.log(err))
+        }
+        fetchData();
+    }
+
+      return (
         <div className={classes.root}>
                 <Paper className={classes.paper}>
                     <Autocomplete
                         freeSolo
                         id="free-solo-2-demo"
                         disableClearable
-                        options={userSavedGames.map((option) => option.title)}
+                        // inputValue={search}
+                        options={gameCategories.map((option) => option.title)}
                         renderInput={(params) => (
                         <TextField
                             {...params}
                             label="Search Saved Games"
                             variant="outlined"
-                            value={query}
-                            onChange = { 
-                                event => {
-                                    setQuery(event.target.value);
-                                    setSearchedFor(event.target.value)
+                            value={search}
+                            onChange = {event => {
+                                    // setQuery(event.target.value);
+                                    // setSearchedFor(event.target.value)
+                                    setSearch(event.target.value);
+                                    console.log(';;;',search)
                                 }
                             }
                             InputProps={{ ...params.InputProps, type: 'search' }}
@@ -58,13 +80,14 @@ function SearchGameList() {
                     />
                     <button 
                         type="button"
-                        onClick={() =>  {
-                            setSearch(query);
-                          }
-                        }
+                        onClick={(e) =>  searchThruGames(e, search)}
                     >
                         Search
                     </button> 
+                </Paper>
+                <Paper>
+                  {game.id}
+                  {game.minPlayers}
                 </Paper>
         </div>
     )

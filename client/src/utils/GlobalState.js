@@ -10,7 +10,8 @@ const initialState = {
   clickedFriendArr: [],
   userProfileFriends: [],
   userProfileGames: [],
-  externalLinks: []
+  externalLinks: [],
+  gameCategories: []
 };
 
 // Think of this as our main Context API that 
@@ -70,6 +71,11 @@ const reducer = (state, action) => {
       return {
         ...state,
         externalLinks: [action.links]
+      }
+    case 'SEARCH_SAVED_GAMES': 
+      return {
+        ...state,
+        gameCategories: action.games
       }
   
     default:

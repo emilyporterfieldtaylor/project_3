@@ -113,8 +113,7 @@ function apiRoutes(app) {
     }
   })
   app.get("/api/all_friends", function (req, res) {
-    db.User.findAll({
-    })
+    db.User.findAll({})
     .then(function (data) {
       res.json(data);
     })
@@ -146,7 +145,26 @@ function apiRoutes(app) {
       res.json(game);
     })
     .catch(err => console.log(err));
-    })
+  })
+
+  app.get('/api/search_thru_games', function (req, res) {
+    if (!req.user) {
+      // The user is not logged in, send back an empty object
+      res.json({});
+    } else {
+      db.Game.findAll({
+        where: { UserId: req.user.id }
+      })
+      .then(function (userData) {
+        res.json(userData)
+      })
+      .catch(function (err) {
+        res.status(401).json(err);
+      });
+    }
+  })
+
+
 }
 
 module.exports = apiRoutes;

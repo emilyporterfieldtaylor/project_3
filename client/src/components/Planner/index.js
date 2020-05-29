@@ -72,7 +72,6 @@ export default function Planner () {
               onChange={handleGameChange}
               />
             {/* <button onClick={(e) => {applyGameCategory(e)}}>Apply!</button> */}
-          
           </form>
         </Grid>
         <Grid item xs={12} sm={6} md={6} className='eventPageGrid'>
@@ -83,7 +82,6 @@ export default function Planner () {
           </ul>
         </Grid>
       </Grid>
-    
     </div>
   );
 }

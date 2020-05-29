@@ -41,7 +41,7 @@ function SearchBGG(props) {
 
     useEffect(() => {
         const getGameList = async() => {
-            const response = await axios.get(`/api/gamelist/`);
+            const response = await axios.get(`/api/list/`);
             for (var i = 0; i < 50; i++) {
                 let responseString = response.data.elements[0].elements[i];
                 let hotItem = {
