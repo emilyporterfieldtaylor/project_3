@@ -1,17 +1,53 @@
+/* text under user image */
 .userInfo {
     color: white;
     list-style-type: none;
+    font-size: 18px;
+    font-family: Arial, Helvetica, sans-serif;
+    margin-left: 25%;
 }
-
+/* outermost container div */
 .main-user {
     background-color:#adcfc7;
+    width: 100%;
+    min-height: 100vH;
+    background-position: center;
+    background-size: cover;
+    font-size: 18px;
+    border: 2px solid pink;
+
 }
 
+.main-grid{
+    width: 80% !important;
+    margin: 5% auto;
+    padding: 15px;
+}
+
+/* allows user to scale to browser size */
+.main-grid img {
+max-width: 50%;
+height: auto;
+margin-left: 25%;
+}
+
+
+/* To bulletin board link */
 .main-user a {
     display: block;
     background-color: #80aec0;
+    color: white;
 }
 
+.friend-listing ul {
+    padding-left: 20px;
+}
+
+.friend-listing li {
+    list-style-type: circle;
+}
+
+/*  */
 .MuiPaper-elevation1 {
     margin-left: 2rem !important;
 }

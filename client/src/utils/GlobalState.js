@@ -24,8 +24,8 @@ const reducer = (state, action) => {
   switch (action.type) {
     case "ADD_GAME":
       return {
-          ...state,
-          savedGames: [...state.savedGames]
+        ...state,
+        savedGames: [...state.savedGames]
       }
     case "ADD_USERDATA":
       return {
@@ -47,12 +47,11 @@ const reducer = (state, action) => {
         ...state,
         searchFriendArr: action.searchFriend
       }
-    case "ADD_FRIEND": 
+    case "ADD_FRIEND":
       return {
         ...state,
         newFriendArr: action.newFriend
       }
-
     case "GET_CLICKED_FRIEND":
       return {
         ...state,
@@ -73,7 +72,7 @@ const reducer = (state, action) => {
         ...state,
         externalLinks: [action.links]
       }
-  
+
     default:
       return state;
   }
