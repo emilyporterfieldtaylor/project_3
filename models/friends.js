@@ -6,9 +6,8 @@ module.exports = function(sequelize, DataTypes) {
         }
     })
     
+    //A friend belongs to a certain user
     Friend.associate = function(models) {
-        // We're saying that a Post should belong to an Author
-        // A Post can't be created without an Author due to the foreign key constraint
         Friend.belongsTo(models.User, {
           foreignKey: {
             allowNull: true
