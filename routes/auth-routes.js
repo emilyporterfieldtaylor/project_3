@@ -45,11 +45,11 @@ router.get("/google", passport.authenticate("google", {
 // })
 router.get("/google/redirect", passport.authenticate("google", {
   failureRedirect: "/auth/login/failed"
-  }),function(req, res) {
-    // Succesful authentication!
-    res.cookie('logged_in', true);
-    res.redirect(routeHelper() + "/home");
-  }
+}), function (req, res) {
+  // Succesful authentication!
+  res.cookie('logged_in', true);
+  res.redirect(routeHelper() + "/home");
+}
 )
 
 module.exports = router;

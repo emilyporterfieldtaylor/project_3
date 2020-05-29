@@ -48,17 +48,17 @@ function apiRoutes(app) {
 
   app.post("/api/add_friend", function (req, res) {
     console.log('in routes'),
-    db.Friend.create({
-      name: req.body.name,
-      UserId: req.body.userId
-    })
-    .then(function (friend) {
-      console.log('friend in post: ', friend)
-      res.json(friend)
-    })
-    .catch(function(err) {
-      res.status(401).json(err)
-    })
+      db.Friend.create({
+        name: req.body.name,
+        UserId: req.body.userId
+      })
+        .then(function (friend) {
+          console.log('friend in post: ', friend)
+          res.json(friend)
+        })
+        .catch(function (err) {
+          res.status(401).json(err)
+        })
   })
 
   // Route for getting some data about our user to be used client side
@@ -114,39 +114,39 @@ function apiRoutes(app) {
   app.get("/api/all_friends", function (req, res) {
     db.User.findAll({
     })
-    .then(function (data) {
-      res.json(data);
-    })
-    .catch(function (err) {
-      res.status(401).json(err);
-    });
+      .then(function (data) {
+        res.json(data);
+      })
+      .catch(function (err) {
+        res.status(401).json(err);
+      });
   })
 
   // choosing a certain friend
   app.get('/api/clicked_friend', function (req, res) {
     db.User.findAll({})
-    .then(function (friend) {
-      res.json(friend);
-    })
-    .catch(err => console.log(err));
+      .then(function (friend) {
+        res.json(friend);
+      })
+      .catch(err => console.log(err));
   })
 
   app.get('/api/user_profile_friends', function (req, res) {
     db.Friend.findAll({})
-    .then(function (friend) {
-      res.json(friend);
-    })
-    .catch(err => console.log(err));
+      .then(function (friend) {
+        res.json(friend);
+      })
+      .catch(err => console.log(err));
   })
 
   app.get('/api/user_profile_games', function (req, res) {
     db.Game.findAll({})
-    .then(function (game){
-      console.log('in routes: ', game)
-      res.json(game);
-    })
-    .catch(err => console.log(err));
-    })
+      .then(function (game) {
+        console.log('in routes: ', game)
+        res.json(game);
+      })
+      .catch(err => console.log(err));
+  })
 }
 
 module.exports = apiRoutes;

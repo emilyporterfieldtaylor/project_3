@@ -37,7 +37,7 @@ app.use(
 )
 
 // set up auth routes for google
-app.use("/auth",  authRoutes);
+app.use("/auth", authRoutes);
 
 app.use(passport.session());
 
