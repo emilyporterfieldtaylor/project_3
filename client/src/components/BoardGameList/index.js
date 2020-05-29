@@ -67,8 +67,8 @@ function BoardGameList() {
     }
 
     return (
-        <div className={classes.root}>
-            <Paper className={classes.paperDescription} id="game-list">
+        <div id="main-game-list" className={classes.root}>
+            <Paper id="list" className={classes.paperDescription}>
                 <u>Saved Games List:</u>
                 {state.savedGames.length ? (
                     <ul className={classes.boardgameUL}>
@@ -78,7 +78,7 @@ function BoardGameList() {
                         ))}
                     </ul>
                 ) : (
-                    <h6 id='savedGameElse'>You Don't Have Any Saved Games Yet!</h6>
+                    <h6>You Don't Have Any Saved Games!</h6>
                 )}
             </Paper>
         </div>

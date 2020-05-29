@@ -17,12 +17,12 @@ const useStyles = makeStyles((theme) => ({
     }, 
     searchBarLI1: {
         fontFamily: 'Pangolin',
-        fontSize: '13px',
+        fontSize: '18px',
         padding: '10px 5px 0px 5px'
     },
     searchBarLI2: {
         fontFamily: 'Pangolin',
-        fontSize: '13px',
+        fontSize: '18px',
         padding: '0px 5px 10px 5px'
     },
 }));
@@ -31,7 +31,7 @@ function SearchBar(props) {
     const classes = useStyles();
 
     return (
-        <div>
+        <div className="main-search-bar">
             <Grid container spacing={1}>
                 <Grid item xs={4}>
                     <SearchGameList/>
