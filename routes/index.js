@@ -140,7 +140,6 @@ function apiRoutes(app) {
 
   app.get('/api/user_profile_games', function (req, res) {
     db.Game.findAll({})
-<<<<<<< .merge_file_a16864
     .then(function (game){
       console.log('in routes: ', game)
       res.json(game);
@@ -166,14 +165,6 @@ function apiRoutes(app) {
   })
 
 
-=======
-      .then(function (game) {
-        console.log('in routes: ', game)
-        res.json(game);
-      })
-      .catch(err => console.log(err));
-  })
->>>>>>> .merge_file_a09784
 }
 
 module.exports = apiRoutes;
