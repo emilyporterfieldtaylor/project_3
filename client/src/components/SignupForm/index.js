@@ -14,7 +14,7 @@ import VisibilityOff from '@material-ui/icons/VisibilityOff'
 import './signup.css';
 import API from '../../utils/index';
 import { useHistory } from "react-router-dom"
-
+import { useStoreContext } from '../../utils/GlobalState';
 //material ui code for input boxes
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -33,6 +33,7 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 export default function SignupForm() {
+    const [state, dispatch] = useStoreContext();
     let history = useHistory();
 
     const classes = useStyles();
@@ -69,10 +70,13 @@ export default function SignupForm() {
         }
 
         API.signup(userData).then(results => {
+            { dispatch({type: "ADD_USERDATA", data: results.data }) }
             console.log(results)
             history.push("/hotitems");
             console.log("words");
         }).catch(loginError)
+
+
     }
 
     //validation to allow user to know they have already made an account

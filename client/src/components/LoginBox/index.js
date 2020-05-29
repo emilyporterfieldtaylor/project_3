@@ -64,7 +64,7 @@ export default function LoginBox() {
             email: values.email,
             password: values.password
         }
-        console.log(userData);
+        
         API.login(userData).then(results => {
             console.log(results);
             dispatch({ type: "ADD_USERDATA", data: results.data })
