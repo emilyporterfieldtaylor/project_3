@@ -6,7 +6,8 @@ import SearchBGG from '../SearchBGG';
 import { Link } from 'react-router-dom';
 import Paper from '@material-ui/core/Paper';
 import { makeStyles } from '@material-ui/core/styles';
-import './style.css';
+import './searchBar.css';
+
 
 const useStyles = makeStyles((theme) => ({
     moreFriends: {

@@ -71,7 +71,7 @@ function BoardGameDescription(props) {
     return (
         <div className={classes.root} style={{ marginTop: '20px' }}>
             <Paper className={classes.paper}>
-                <h3 style={{ textAlign: 'center', paddingTop: '10px', marginBottom: '20px' }}>Board Game Description: </h3>
+                <h3 style={{ textAlign: 'center', paddingTop: '10px', marginBottom: '20px' }}>Board Game Description </h3>
 
                 <div className={classes.descriptionDIV}>
                     <strong>Name: {props.name}</strong>

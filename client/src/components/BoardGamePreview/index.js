@@ -16,7 +16,8 @@ const useStyles = makeStyles((theme) => ({
         marginLeft: '0px !important'
     },
     gameImage: {
-        width: '100% !important'
+        minWidth: '40% !important',
+        height: 'auto'
     }
 }));
 
@@ -24,10 +25,10 @@ function BoardGamePreview(props) {
     const classes = useStyles();
 
     return (
-        <div className={classes.root} style={{ marginTop: '20px' }}>
+        <div id="paper-view" className={classes.root}>
             <Paper className={classes.paperPreview}>
                 <div>
-                    <h3 style={{ margin: '5px' }}>Board Game Preview: </h3>
+                    <h3>Board Game Preview </h3>
                     {props.image ? <img className={classes.gameImage} alt={props.name} src={props.image}></img> : <h5>Sorry, No Image Available</h5>}
                 </div>
             </Paper>
