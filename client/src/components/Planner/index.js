@@ -2,6 +2,8 @@ import React, { useState } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import TextField from '@material-ui/core/TextField';
 import Grid from '@material-ui/core/Grid';
+// import { MuiPickersUtilsProvider, KeyboardTimePicker, KeyboardDatePicker } from '@material-ui/pickers';
+// import DateFnsUtils from '@date-io/date-fns';
 import './planner.css';
 
 const useStyles = makeStyles((theme) => ({
@@ -20,12 +22,22 @@ const useStyles = makeStyles((theme) => ({
   },
   hiddenLI: {
     listStyleType: 'none'
-  }
+  },
+  container: {
+    display: 'flex',
+    flexWrap: 'wrap',
+  },
+  textField: {
+    marginLeft: theme.spacing(1),
+    marginRight: theme.spacing(1),
+    width: 200,
+  },
 }));
 
 export default function Planner () {
   const [playerInput, setPlayerInput] = useState([]);
   const [gameCategory, setGameCategory] = useState([]);
+  const [gameNight, setGameNight] = useState('');
   const classes = useStyles();
 
   // function applyPlayerNumber(e) {
@@ -47,6 +59,8 @@ export default function Planner () {
   const handleGameChange = (e) => {
     setGameCategory(e.target.value);
   }
+  
+console.log('gamenight: ', gameNight)
 
   return (
     <div className={classes.outerdiv}>
@@ -79,7 +93,23 @@ export default function Planner () {
           <ul>
             <li className={classes.hiddenLI}> <b>{playerInput}</b> player(s) </li>
             <li className={classes.hiddenLI}> <b>{gameCategory}</b> type </li>
+            <li className={classes.hiddenLI}> <b>{gameNight}</b> date / time </li>
           </ul>
+        </Grid>
+        <Grid item xs={12} sm={6} md={6}>
+          <form className={classes.container} noValidate>
+            <TextField
+              id="datetime-local"
+              label="Game Day"
+              type="datetime-local"
+              defaultValue="2020-12-31T10:30"
+              className={classes.textField}
+              InputLabelProps={{
+                shrink: true,
+              }}
+              onChange={e => setGameNight(e.target.value)}
+            />
+          </form>
         </Grid>
       </Grid>
     </div>
