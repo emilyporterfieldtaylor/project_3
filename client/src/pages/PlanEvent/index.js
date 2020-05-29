@@ -9,7 +9,7 @@ export default function PlanEvent () {
         <div id='eventPage'>
             <Link to='/home'>To the Bulletin Board</Link>
             <Header />
-            <h1 className="bulletin">Games, Nerds, Shindigs</h1>
+            <h1 className="bulletin2">Games, Nerds, Shindigs</h1>
             <Planner />
         </div>
     )
