@@ -44,7 +44,7 @@ function SearchBar(props) {
                 <Grid item xs={4}>
                     <Paper className={classes.moreFriends}>
                         <li className={classes.searchBarLI1}>
-                            <Link ="/search_friends">
+                            <Link to="/search_friends">
                                 Want to Find More Friends?
                             </Link>
                         </li>
