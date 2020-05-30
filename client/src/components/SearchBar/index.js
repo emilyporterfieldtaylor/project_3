@@ -33,6 +33,7 @@ export default function SearchBar(props) {
         <div className="main-search-bar">
             <Grid container spacing={1}>
                 <Grid item xs={4}>
+
                     <Paper className="welcome">
                         <li>
                               <u>Welcome Travelers, may your party be long and joyful!</u>  
@@ -42,8 +43,8 @@ export default function SearchBar(props) {
                             To the victor go the spoils!
                         </li>
                         </Paper>
-
             </Grid>
+
 
             <Grid item xs={4} >
                 <SearchBGG setAppState={props.stateChange} />

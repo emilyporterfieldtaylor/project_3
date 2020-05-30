@@ -75,14 +75,6 @@ Leandra Turner
 
 <br>
 
-**Login Background**: https://www.hipwallpaper.com
-
-**Search for Friends**: https://www.hipwallpaper.com
-
-**Signup Background**: https://news.gamestart.asia/review-everdell/
-
-<br>
-
 ### BADGES
 
 

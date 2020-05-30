@@ -1,31 +1,33 @@
 var bcrypt = require("bcryptjs");
 
-module.exports = function (sequelize, DataTypes) {
-  var User = sequelize.define("User", {
-    name:
-    {
-      type: DataTypes.STRING,
-      allowNull: false,
-      validate: {
-        len: [1]
+module.exports = function(sequelize, DataTypes) {
+    var User = sequelize.define("User", {
+        name:
+        {type:DataTypes.STRING,
+        allowNull: false,
+        validate: {
+            len: [1]
+        }
+      },
+      email: {
+        type: DataTypes.STRING,
+        allowNull: false,
+        unique: true,
+        validate: {
+          isEmail: true
+        }
+      },
+      password: {
+        type: DataTypes.STRING,
+        allowNull: false
+      },
+      provider: DataTypes.STRING,
+      profilePicture: DataTypes.STRING,
+      firstTimeLogin: {
+        type: DataTypes.BOOLEAN,
+        defaultValue: true
       }
-    },
-    email: {
-      type: DataTypes.STRING,
-      allowNull: false,
-      unique: true,
-      validate: {
-        isEmail: true
-      }
-    },
-    password: {
-      type: DataTypes.STRING,
-      allowNull: false
-    },
-    provider: DataTypes.STRING,
-    profilePicture: DataTypes.STRING,
-  });
-
+    });
 
   // when a user is removed, the games and friends associated will be removed
   User.associate = function (models) {
