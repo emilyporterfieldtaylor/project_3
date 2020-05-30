@@ -10,3 +10,10 @@
 .main-friend-page a {
     color: #a98c6c;  
 }
+
+#home-link {
+        display: block;
+        color:black;
+        text-shadow: 1px 1px grey;
+        background-color: #c3cd92;
+}

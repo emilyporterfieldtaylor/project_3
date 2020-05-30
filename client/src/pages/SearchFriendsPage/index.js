@@ -6,7 +6,7 @@ import './searchFriendsPage.css';
 function SearchFriendsPage() {
     return (
       <div className="main-friend-page">
-        <Link to='/home'>To the Bulletin Board</Link>
+        <Link to='/home' id='home-link'>To the Bulletin Board</Link>
         <SearchFriendList />
       </div>
     )
