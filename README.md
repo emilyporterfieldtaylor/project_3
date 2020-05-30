@@ -4,7 +4,7 @@
 
 AS a person throwing a board game party, I want to be able to narrow down my board games by player size and game time so I can pick the perfect board game to play with any party group.
 
-<br>
+<br/>
 
 ## TABLE OF CONTENTS
 
@@ -15,7 +15,7 @@ AS a person throwing a board game party, I want to be able to narrow down my boa
 4. [RESOURCES](#resources)
 5. [BADGES](#badges)
 
-<br>
+<br/>
 
 ## FEATURES
 
@@ -25,21 +25,30 @@ AS a person throwing a board game party, I want to be able to narrow down my boa
    
    b. Use google to authenticate account
 
-2. The user will be able to search and then add to their online list of board games they currently own.
+2. Upon signing in the first time, a hot items page is available to choose from a list of the most popular board games. 
+   * After adding the game to their list, users can also use the external link that was generated, to purchase a game from Amazon.
 
-3. The user can search for people they know that are currently using the app, to add them to their friends list.
+3. The user will be able to search for games and then add them to their virtual list
+   a. The user can then filter their list by the max number of players and max amount of time it takes to finish game.
 
-4. View their friends profile pages
+4. The user can search for people they know that are currently using the app, to add them to their friends list.
+
+5. A link is available add new friends.
+
+6. Users can view their friends' profiles and see what games and friends they currently have.
 
 
 
-<br>
+
+
+
+<br/>
 
 ## INSTALLATION
 
 Once the repository has been cloned, a **npm i** or **npm install** should be run to download all necessary dependencies.
 
-<br>
+<br/>
 
 ## CONTRIBUTORS
 
@@ -53,15 +62,13 @@ Kendra Kwoka
 
 Leandra Turner
 
-
-
+<br/>
 
 ### PREVIEW
 
-![app preview](./images/preview1.png)
+<img src="client/public/images/Boardgame.gif" alt="preview image"/>
 
-
-<br>
+<br/>
 
 ## RESOURCES
 
@@ -72,6 +79,11 @@ Leandra Turner
 **Search for Friends**: https://www.hipwallpaper.com
 
 **Signup Background**: https://news.gamestart.asia/review-everdell/
+
+**Google** Oauth
+
+**Amazon Website**: External link to purchase games
+
 
 <br>
 
