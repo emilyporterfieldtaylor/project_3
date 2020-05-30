@@ -20,9 +20,7 @@ const useStyles = makeStyles((theme) => ({
     },
 }));
 
-function SearchGameList() {
-
-
+export default function SearchGameList() {
 
     const classes = useStyles();
     const [state, dispatch] = useStoreContext();
@@ -37,7 +35,6 @@ function SearchGameList() {
         { title: 'Categories' }
       ];
 
-    //   console.log(searchedFor, query, search)
     useEffect(()=> {
         API.getUserGames().then((results)=> {
             console.log(results)
@@ -72,7 +69,6 @@ function SearchGameList() {
                         freeSolo
                         id="free-solo-2-demo"
                         disableClearable
-                        // inputValue={search}
                         options={gameCategories.map((option) => option.title)}
                         renderInput={(params) => (
                         <TextField
@@ -80,11 +76,8 @@ function SearchGameList() {
                             label="Search Saved Games"
                             variant="outlined"
                             value={search}
-                            onChange = {event => {
-                                    // setQuery(event.target.value);
-                                    // setSearchedFor(event.target.value)
-                                    setSearch(event.target.value);
-                                    //console.log(';;;',search)
+                            onChange = {event => {                              
+                                    setSearch(event.target.value);              
                                 }
                             }
                             InputProps={{ ...params.InputProps, type: 'search' }}
@@ -104,6 +97,5 @@ function SearchGameList() {
                 </Paper>
         </div>
     )
-}
+};
 
-export default SearchGameList;
