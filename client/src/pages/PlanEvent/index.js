@@ -1,16 +1,13 @@
-import React from 'react';
-import Planner from '../../components/Planner';
-import Header from '../../components/Header';
+import React from "react";
+import SearchFriendList from '../../components/SearchFriendList';
 import { Link } from 'react-router-dom';
-import './event.css';
+import './searchFriendsPage.css';
 
-export default function PlanEvent () {
+export default function SearchFriendsPage() {
     return (
-        <div id='eventPage'>
-            <Link to='/home' id='toHomeLink'>To the Bulletin Board</Link>
-            <Header/>
-            <h1 className="bulletin2">Plan Your Next Event</h1>
-            <Planner />
-        </div>
+      <div className="main-friend-page">
+        <Link to='/home' id='home-link'>To the Bulletin Board</Link>
+        <SearchFriendList />
+      </div>
     )
 };
