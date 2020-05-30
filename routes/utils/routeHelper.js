@@ -1,6 +1,6 @@
 //Using for oauth
 module.exports = () => {
-  if(!process.env.REACT_APP_PROD_URL) {
+  if(!process.env.NODE_ENV) {
       return process.env.REACT_APP_DEV_URL_FRONTEND;
 
   }
