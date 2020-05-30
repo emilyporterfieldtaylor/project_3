@@ -12,16 +12,17 @@
 .bulletin2 {
     display: inline-block;
     margin: 1% auto;
-    margin-left: 30%;
+    margin-left: 40%;
     background-color:#62b217ba;
     text-align: center;
-    color: whitesmoke;
+    color: rgb(214, 212, 212);
     text-shadow: 3px 1px #09040c;
     font-family: 'Pangolin', Arial, Helvetica, sans-serif;
 }
 
 #toHomeLink {
+    display: block;
     color: white;
     text-shadow: 3px 1px #09040c;
-    background-color: #62b217ba;
+    background-color: #4893bb;
 }

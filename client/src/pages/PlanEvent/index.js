@@ -8,6 +8,7 @@ export default function PlanEvent () {
     return (
         <div id='eventPage'>
             <Link to='/home' id='toHomeLink'>To the Bulletin Board</Link>
+            <Header/>
             <h1 className="bulletin2">Plan Your Next Event</h1>
             <Planner />
         </div>
