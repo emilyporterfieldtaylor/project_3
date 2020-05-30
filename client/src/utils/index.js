@@ -43,5 +43,8 @@ export default {
   },
   searchThruGames: function() {
     return axios.get('/api/search_thru_games')
+  },
+  updateFirstTimeLogin: function() {
+    return axios.put('/api/firstlogin')
   }
 };
