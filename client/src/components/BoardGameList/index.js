@@ -95,6 +95,7 @@ export default function BoardGameList() {
     return (
         <div id="main-game-list" className={classes.root}>
             <Paper id="list" className={classes.paperDescription}>
+            <u>Filter Games:</u>
                 <br></br>
                 <FormControl className={classes.formControl}>
         <InputLabel id="demo-simple-select-autowidth-label"># Players</InputLabel>
