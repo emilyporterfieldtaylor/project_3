@@ -8,8 +8,8 @@ const Game = require('../models/games');
 function apiRoutes(app) {
   app.get("/api/games", (req, res) => {
     axios.get('https://www.boardgamegeek.com/xmlapi', {
-      "Access-Control-Allow-Headers": "Origin, X-Requested-With, Content-Type, Accept"
-    })
+        "Access-Control-Allow-Headers": "Origin, X-Requested-With, Content-Type, Accept"
+      })
       .then(function (response) {
         res.json(response.data)
       })
@@ -25,7 +25,12 @@ function apiRoutes(app) {
   // Otherwise the user will be sent an error
   app.post("/api/login", passport.authenticate("local"), function (req, res) {
     res.cookie('logged_in', true);
-    res.json(req.user);
+    res.json({
+      email: req.user.email,
+      id: req.user.id,
+      name: req.user.name,
+      firstTimeLogin: req.user.firstTimeLogin
+    });
   });
 
   // Route for signing up a user. The user's password is automatically hashed and stored securely thanks to
@@ -33,10 +38,10 @@ function apiRoutes(app) {
   // otherwise send back an error
   app.post("/api/signup", function (req, res) {
     db.User.create({
-      name: req.body.name,
-      email: req.body.email,
-      password: req.body.password
-    })
+        name: req.body.name,
+        email: req.body.email,
+        password: req.body.password
+      })
       .then(function () {
         res.redirect(307, "/api/login");
       })
@@ -52,13 +57,14 @@ function apiRoutes(app) {
         name: req.body.name,
         UserId: req.body.userId
       })
-        .then(function (friend) {
-          console.log('friend in post: ', friend)
-          res.json(friend)
-        })
-        .catch(function (err) {
-          res.status(401).json(err)
-        })
+
+      .then(function (friend) {
+        console.log('friend in post: ', friend)
+        res.json(friend)
+      })
+      .catch(function (err) {
+        res.status(401).json(err)
+      })
   })
 
   // Route for getting some data about our user to be used client side
@@ -71,10 +77,38 @@ function apiRoutes(app) {
       res.json({
         email: req.user.email,
         id: req.user.id,
-        name: req.user.name
+        name: req.user.name,
+        firstTimeLogin: req.user.firstTimeLogin
       });
     }
   });
+
+  app.put("/api/firstlogin", function (req, res) {
+    if (!req.user) {
+      // The user is not logged in, send back an empty object
+      res.json({});
+    } else {
+      // Otherwise update 1st time login to false
+      db.User.update({
+        firstTimeLogin: false
+      }, {
+        where: {
+          email: req.user.email
+        }
+      }).then(function (dbUser) {
+
+        req.user.firstTimeLogin = false; // update user current sesssion
+
+        res.json({
+          email: req.user.email,
+          id: req.user.id,
+          name: req.user.name,
+          firstTimeLogin: req.user.firstTimeLogin
+        });
+      });
+    }
+  });
+
   //allows games be tied to a specific user 
   app.get("/api/user_games", function (req, res) {
     if (!req.user) {
@@ -82,8 +116,10 @@ function apiRoutes(app) {
       res.json({});
     } else {
       db.Game.findAll({
-        where: { UserId: req.user.id }
-      })
+          where: {
+            UserId: req.user.id
+          }
+        })
         .then(function (userData) {
           res.json(userData)
         })
@@ -99,8 +135,10 @@ function apiRoutes(app) {
       res.json({});
     } else {
       db.Friend.findAll({
-        where: { UserId: req.user.id }
-      })
+          where: {
+            UserId: req.user.id
+          }
+        })
         .then(function (userData) {
           res.json(userData)
         })
@@ -119,6 +157,7 @@ function apiRoutes(app) {
     .catch(function (err) {
       res.status(401).json(err);
     });
+
   })
 
   // choosing a certain friend
@@ -163,7 +202,6 @@ function apiRoutes(app) {
       });
     }
   })
-
 
 }
 

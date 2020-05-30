@@ -12,6 +12,7 @@ import Container from '@material-ui/core/Container';
 import API from '../../utils/index.js';
 import { useStoreContext } from '../../utils/GlobalState'
 import './hotitems.css';
+import {useHistory} from "react-router-dom";
 const axios = require("axios");
 
 const useStyles = makeStyles((theme) => ({
@@ -52,12 +53,18 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 export default function HotItemsList(props) {
-  const [globalState, ] = useStoreContext();
+  const [globalState, dispatch] = useStoreContext();
   const classes = useStyles();
   const [hotGames, setHotGames] = useState([])
 
+  const history = useHistory();
   const handleClick = (e) => {
     console.log("The link was clicked");
+    e.preventDefault();
+    API.updateFirstTimeLogin().then(function() {
+      dispatch({type: "UPDATE_FIRSTTIME_LOGIN", data: false});
+      history.push("/home");
+    });
   };
 
   useEffect(() => {
