@@ -1,22 +1,27 @@
 /* plane event background */
 #eventPage {
-    background-image: url('/images/map.jpg');
+    background-image: url('/images/map-altered.jpg');
     min-height: 100vh;
     width: 100%;
-    height: auto;
     background-position: center;
     background-size: cover;
 }
 
+
 /*h1 */
 .bulletin2 {
+    display: inline-block;
+    margin: 1% auto;
+    margin-left: 30%;
+    background-color:#62b217ba;
     text-align: center;
-    color: #a120dd;
+    color: whitesmoke;
     text-shadow: 3px 1px #09040c;
-    font-family: 'Pangolin';
+    font-family: 'Pangolin', Arial, Helvetica, sans-serif;
 }
 
 #toHomeLink {
-    color: #84d306;
+    color: white;
     text-shadow: 3px 1px #09040c;
+    background-color: #62b217ba;
 }

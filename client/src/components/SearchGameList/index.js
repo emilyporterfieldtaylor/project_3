@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { makeStyles } from '@material-ui/core/styles';
 import Paper from '@material-ui/core/Paper';
 import TextField from '@material-ui/core/TextField';
@@ -21,12 +21,16 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 function SearchGameList() {
+
+
+
     const classes = useStyles();
     const [state, dispatch] = useStoreContext();
     const [searchedFor, setSearchedFor] = useState([]);
     const [query, setQuery] = useState('catan');
     const [search, setSearch] = useState('');
     const [game, setGame] = useState('');
+    const [userGame, setUserGame] = useState([]);
 
     const gameCategories = [
         { title: 'Number of Players' },
@@ -34,7 +38,13 @@ function SearchGameList() {
       ];
 
     //   console.log(searchedFor, query, search)
-    
+    useEffect(()=> {
+        API.getUserGames().then((results)=> {
+            console.log(results)
+            setUserGame(results.data)
+        })
+       },[])
+
       function searchThruGames(e, search) {
           e.preventDefault();
           const fetchData = async() => {
@@ -56,6 +66,7 @@ function SearchGameList() {
 
       return (
         <div className={classes.root}>
+        {console.log(userGame, "userGame")}
                 <Paper className={classes.paper}>
                     <Autocomplete
                         freeSolo
@@ -90,6 +101,13 @@ function SearchGameList() {
                 <Paper>
                   {game.id}
                   {game.minPlayers}
+                </Paper>
+
+                <Paper className={classes.paper}>
+                <h6>display game data</h6>
+                {/* {console.log(userGame, "inside paper")} */}
+                { userGame.length > 0 ? userGame[0].maxPlayers + " " + userGame[0].maxPlayTime : ""} 
+
                 </Paper>
         </div>
     )
