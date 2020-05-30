@@ -4,6 +4,7 @@ import React, { useContext, useReducer } from "react";
 const initialState = {
   savedGames: [],
   filteredGames: [],
+  filters: {"players":"", "playtime": ""},
   currentGame: [],
   userData: {},
   userFriends: [],
@@ -27,7 +28,9 @@ const reducer = (state, action) => {
     case "ADD_GAME":
       return {
         ...state,
-        savedGames: [...state.savedGames]
+        savedGames: [...state.savedGames],
+        filteredGames: [...state.savedGames],
+        filters: {}
       }
     case "ADD_USERDATA":
       return {
@@ -47,7 +50,8 @@ const reducer = (state, action) => {
     case "GET_USER_GAMES":
       return {
         ...state,
-        savedGames: action.games
+        savedGames: action.games,
+        filteredGames: action.games
       }
     case "GET_USER_FRIENDS":
       return {
@@ -92,8 +96,14 @@ const reducer = (state, action) => {
     case 'FILTER_GAMES':
       return {
         ...state,
-        filteredGames: action.filteredGames
+        filteredGames: action.games
       }
+    case 'SET_FILTERS':
+      return {
+        ...state,
+        filters: action.filters
+      }
+      
     default:
       return state;
   }

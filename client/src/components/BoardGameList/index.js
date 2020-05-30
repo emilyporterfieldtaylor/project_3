@@ -45,8 +45,6 @@ const useStyles = makeStyles((theme) => ({
 
 function BoardGameList() {
     const [state, dispatch] = useStoreContext();
-    const [gameList, setGameList] = React.useState([]);
-    const [filters, setFilters] = React.useState({"players":"", "playtime": ""});
     const classes = useStyles();
 
     //when user logs in, games are rendered 
@@ -58,33 +56,31 @@ function BoardGameList() {
     function loadGames() {
         API.getUserGames().then(results=>{
            { dispatch({type: "GET_USER_GAMES", games: results.data }) }
-           setGameList(results.data);
         })
     }
 
     function filterGames() {
-        console.log(state.savedGames);
         let filteredGames = [].concat(state.savedGames)
             .filter((game) => {
                 return (
-                    (filters.players === "" || (game.minPlayers <= filters.players && game.maxPlayers >= filters.players)) &&
-                    (filters.playtime === "" || game.maxPlayTime <= filters.playtime));
+                    (state.filters.players === "" || (game.minPlayers <= state.filters.players && game.maxPlayers >= state.filters.players)) &&
+                    (state.filters.playtime === "" || game.maxPlayTime <= state.filters.playtime));
             });
 
-        setGameList(filteredGames);
+        { dispatch({type: "FILTER_GAMES", games: filteredGames }) }
     }
 
     const setPlayers = (event) => {
-        let newFilters = filters;
+        let newFilters = state.filters;
         newFilters.players = event.target.value;
-        setFilters(newFilters);
+        { dispatch({type: "SET_FILTERS", filters: newFilters }) }
         filterGames();
     }
 
     const setPlaytime = (event) => {
-        let newFilters = filters;
+        let newFilters = state.filters;
         newFilters.playtime = event.target.value;
-        setFilters(newFilters);
+        { dispatch({type: "SET_FILTERS", filters: newFilters }) }
         filterGames();
     }
 
@@ -102,7 +98,8 @@ function BoardGameList() {
         <Select
           labelId="demo-simple-select-autowidth-label"
           id="demo-simple-select-autowidth"
-           onChange={setPlayers}
+          value={state.filters.players}
+          onChange={setPlayers}
           autoWidth
         >
           <MenuItem value="">
@@ -121,6 +118,7 @@ function BoardGameList() {
         <Select
           labelId="demo-simple-select-autowidth-label"
           id="demo-simple-select-autowidth"
+          value={state.filters.playtime}
           onChange={setPlaytime}
           autoWidth
         >
@@ -137,9 +135,9 @@ function BoardGameList() {
       </FormControl>
       <br />
       <u>Saved Games List:</u>
-                {gameList.length ? (
+                {state.filteredGames.length ? (
                     <ul className={classes.boardgameUL}>
-                        {gameList.map(game => (
+                        {state.filteredGames.map(game => (
                             //pulling games from the database and rendering to the homepage
                             <li key={game.id} className={classes.gameLI}>{game.name} ({game.yearPublished})</li>
                         ))}
