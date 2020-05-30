@@ -37,7 +37,6 @@ export default function Header() {
     const [state, dispatch] = useStoreContext();
     const classes = useStyles();
     const { user: auth2, logout } = AuthManager();
-    //const [auth2, setAuth2] = React.useState(true);
     const [anchorEl, setAnchorEl] = React.useState(null);
     const open = Boolean(anchorEl);
 

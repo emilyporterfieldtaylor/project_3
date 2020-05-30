@@ -9,9 +9,11 @@
     padding: 10px 10px 10px 5px;
     list-style-type: none;
     text-align: center;
+    color: #8e903d;
 }
+
 
 /* adjusting height for welcome signage */
 .welcome {
-    height: 95%;
+    height: 80%;
 }
