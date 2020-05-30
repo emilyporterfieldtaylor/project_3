@@ -35,7 +35,7 @@ const useStyles = makeStyles((theme) => ({
     }
 }));
 
-function BoardGameDescription(props) {
+export default function BoardGameDescription(props) {
     const [state, dispatch] = useStoreContext();
 
     const saveGameFunction = (e) => {
@@ -88,5 +88,3 @@ function BoardGameDescription(props) {
         </div>
     )
 }
-
-export default BoardGameDescription;

@@ -16,7 +16,7 @@ const useStyles = makeStyles((theme) => ({
         marginLeft: '0px !important'
     },
     gameImage: {
-        minWidth: '40% !important',
+        width: '40%',
         height: 'auto'
     }
 }));
