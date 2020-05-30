@@ -110,8 +110,5 @@ export default function UserProfile() {
         </div>
     // end main div
     )
-}
+};
 
-
-
-export default UserProfile;
