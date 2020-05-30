@@ -63,7 +63,7 @@ export default function FriendsList(props) {
                                 onClick={() => getClickedFriend(friend.name)}
                             >
                                 <Link 
-                                    to={`/users/${friend.id}`} 
+                                    to={`/users/${friend.UserId}`} 
                                 >
                                     {friend.name}
                                 </Link>
