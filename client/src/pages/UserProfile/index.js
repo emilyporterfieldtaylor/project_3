@@ -19,7 +19,7 @@ const useStyles = makeStyles((theme) => ({
     }
 }));
 
-function UserProfile() {
+export default function UserProfile() {
     const classes = useStyles();
     const [state, dispatch] = useStoreContext();
     const params = useLocation().pathname.split('/');
@@ -112,4 +112,3 @@ function UserProfile() {
     )
 }
 
-export default UserProfile;

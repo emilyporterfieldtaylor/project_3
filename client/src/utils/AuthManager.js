@@ -4,7 +4,7 @@ import { useHistory } from "react-router-dom";
 import API from "./index";
 import { useStoreContext } from "./GlobalState";
 
-const AuthManager = () => {
+export default function AuthManager()  {
     const history = useHistory();
     const [state, dispatch] = useStoreContext();
 
@@ -17,7 +17,6 @@ const AuthManager = () => {
             try {
                 const user = await API.userData();
                 dispatch({ type: "ADD_USERDATA", data: user.data });
-                // history.push("/home");
             } catch (error) {
                 console.log("Error With User Data API", error);
             }
@@ -46,6 +45,5 @@ const AuthManager = () => {
         user: state.userData || undefined,
         logout: handleLogout
     }
-}
+};
 
-export default AuthManager;

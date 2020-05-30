@@ -14,7 +14,7 @@ const useStyles = makeStyles((theme) => ({
         marginLeft: '1rem !important',
         marginRight: '1rem !important',
         listStyleType: 'none'
-    }, 
+    },
     searchBarLI1: {
         fontFamily: 'Pangolin',
         fontSize: '18px',
@@ -27,18 +27,18 @@ const useStyles = makeStyles((theme) => ({
     },
 }));
 
-function SearchBar(props) {
+export default function SearchBar(props) {
     const classes = useStyles();
 
     return (
         <div className="main-search-bar">
             <Grid container spacing={1}>
                 <Grid item xs={4}>
-                    <SearchGameList/>
+                    <SearchGameList />
                 </Grid>
 
                 <Grid item xs={4} >
-                    <SearchBGG setAppState={props.stateChange}/>
+                    <SearchBGG setAppState={props.stateChange} />
                 </Grid>
 
                 <Grid item xs={4}>
@@ -59,6 +59,5 @@ function SearchBar(props) {
             </Grid>
         </div>
     )
-}
+};
 
-export default SearchBar;

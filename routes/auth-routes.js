@@ -2,7 +2,6 @@ const router = require("express").Router();
 const passport = require("passport");
 const path = require("path");
 var isAuthenticated = require("../config/middleware/isAuthenticated");
-// const CLIENT_HOME_PAGE_URL = "http://localhost:3000";
 const routeHelper = require("./utils/routeHelper")
 
 // auth login
@@ -38,11 +37,6 @@ router.get("/google", passport.authenticate("google", {
   scope: ["profile", "email"]
 }));
 
-// // callback route for google to redirect to 
-// router.get("/google/redirect", passport.authenticate("google", {session: false}), (req, res) => {
-//   // location.replace("http://localhost:3000/home");
-//   res.redirect("/home")
-// })
 router.get("/google/redirect", passport.authenticate("google", {
   failureRedirect: "/auth/login/failed"
 }), function (req, res) {

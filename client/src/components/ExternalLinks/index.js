@@ -30,7 +30,7 @@ const useStyles = makeStyles((theme) => ({
     }
 }));
 
-function Links() {
+export default function Links() {
     const classes = useStyles();
     const [state, dispatch] = useStoreContext();
 
@@ -57,5 +57,3 @@ function Links() {
         </div>
     )
 }
-
-export default Links;

@@ -33,10 +33,10 @@ const useStyles = makeStyles((theme) => ({
     }
 }));
 
-function Header() {  
+export default function Header() {
     const [state, dispatch] = useStoreContext();
     const classes = useStyles();
-    const {user: auth2, logout} = AuthManager();
+    const { user: auth2, logout } = AuthManager();
     //const [auth2, setAuth2] = React.useState(true);
     const [anchorEl, setAnchorEl] = React.useState(null);
     const open = Boolean(anchorEl);
@@ -52,13 +52,13 @@ function Header() {
     const handleClose = () => {
         setAnchorEl(null);
     };
-   
+
     return (
         <div className={classes.root}>
             <AppBar position="static">
                 <Toolbar>
                     <Typography variant="h6" className={classes.title}>
-                        <img className="logo-two" src="/images/ALaBoardLogo1NameLong.png" alt="logo"/>
+                        <img className="logo-two" src="/images/ALaBoardLogo1NameLong.png" alt="logo" />
                     </Typography>
 
                     {auth2 && (
@@ -73,7 +73,7 @@ function Header() {
                                 <AccountCircle />
                             </IconButton>
 
-                            <Typography  variant="subtitle2" className={classes.loggedIn}>
+                            <Typography variant="subtitle2" className={classes.loggedIn}>
                                 Logged in as {auth2.name}!
                             </Typography>
 
@@ -109,4 +109,3 @@ function Header() {
     )
 }
 
-export default Header;

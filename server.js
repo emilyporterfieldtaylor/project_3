@@ -61,7 +61,7 @@ app.post('/api/gameData/', gameController.create);
 // Syncing our sequelize models and then starting our Express app
 //set "force" to false to prevent it from emptying db each time
 // =============================================================
-db.sequelize.sync({ force: true }).then(function () {
+db.sequelize.sync({ force: false }).then(function () {
   app.listen(PORT, function () {
     console.log("App listening on PORT " + PORT);
   });

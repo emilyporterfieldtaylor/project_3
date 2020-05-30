@@ -2,8 +2,6 @@ import React, { useState } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import TextField from '@material-ui/core/TextField';
 import Grid from '@material-ui/core/Grid';
-// import { MuiPickersUtilsProvider, KeyboardTimePicker, KeyboardDatePicker } from '@material-ui/pickers';
-// import DateFnsUtils from '@date-io/date-fns';
 import './planner.css';
 
 const useStyles = makeStyles((theme) => ({
@@ -13,12 +11,11 @@ const useStyles = makeStyles((theme) => ({
       width: '25ch',
     }
   },
- 
+
   hiddenLI: {
     listStyleType: 'none'
   },
   container: {
-    // paddingRight: '20px',
     display: 'flex',
     flexWrap: 'wrap',
   },
@@ -29,7 +26,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function Planner () {
+export default function Planner() {
   const [playerInput, setPlayerInput] = useState([]);
   const [gameCategory, setGameCategory] = useState([]);
   const [gameNight, setGameNight] = useState('');
@@ -43,41 +40,41 @@ export default function Planner () {
   const handleGameChange = (e) => {
     setGameCategory(e.target.value);
   }
-  
+
 
   return (
     <div className="outer-div">
-      <br/>
-      <br/>
+      <br />
+      <br />
       <Grid className="event-grid" container spacing={3}>
         <Grid item xs={12} sm={6} md={6} className='eventPageGrid'>
           <form className={classes.root} noValidate autoComplete="off">
             <h4>Number of players: </h4>
-            <TextField 
-              id="outlined-basic" 
-              label="Players" 
+            <TextField
+              id="outlined-basic"
+              label="Players"
               variant="outlined"
               size='small'
               onChange={handlePlayerChange}
-              />
-            {/* <button onClick={(e) => {applyPlayerNumber(e)}}>Apply!</button> */}
-            
+            />
+
+
             <h4>Category of games:</h4>
-            <TextField 
-              id="outlined-basic" 
-              label="Players" 
+            <TextField
+              id="outlined-basic"
+              label="Players"
               variant="outlined"
               size='small'
               onChange={handleGameChange}
-              />
-            {/* <button onClick={(e) => {applyGameCategory(e)}}>Apply!</button> */}
+            />
+
           </form>
         </Grid>
         <Grid item xs={12} sm={6} md={6} className='eventPageGrid'>
           <h3>You'd like to create an event for:</h3>
-            <li className={classes.hiddenLI}> player(s): <b>{playerInput}</b> </li>
-            <li className={classes.hiddenLI}>  type: <b>{gameCategory}</b> </li>
-            <li className={classes.hiddenLI}> date / time :<b>{gameNight}</b>  </li>
+          <li className={classes.hiddenLI}> player(s): <b>{playerInput}</b> </li>
+          <li className={classes.hiddenLI}>  type: <b>{gameCategory}</b> </li>
+          <li className={classes.hiddenLI}> date / time :<b>{gameNight}</b>  </li>
         </Grid>
         <Grid item xs={12} sm={6} md={6}>
           <form className={classes.container} noValidate>

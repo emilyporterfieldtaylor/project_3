@@ -10,7 +10,7 @@ const axios = require("axios");
 
 const useStyles = makeStyles((theme) => ({
     root: {
-      flexGrow: 1,
+        flexGrow: 1,
     },
     paper: {
         padding: theme.spacing(2),
@@ -30,17 +30,17 @@ const useStyles = makeStyles((theme) => ({
     }
 }));
 
-function SearchBGG(props) {
+export default function SearchBGG(props) {
     const classes = useStyles();
     const [gamePrev, setGamePrev] = useState({});
     const [games, setGames] = useState([]);
     const [value, setValue] = useState('Settlers of Catan');
-    const [inputValue, setInputValue] = useState(''); 
-    const [gameList, setGameList] = useState([]); 
+    const [inputValue, setInputValue] = useState('');
+    const [gameList, setGameList] = useState([]);
     const [state, dispatch] = useStoreContext();
 
     useEffect(() => {
-        const getGameList = async() => {
+        const getGameList = async () => {
             const response = await axios.get(`/api/list/`);
             for (var i = 0; i < 50; i++) {
                 let responseString = response.data.elements[0].elements[i];
@@ -53,14 +53,14 @@ function SearchBGG(props) {
             }
         }
         getGameList();
-        }, []);
+    }, []);
 
     function getPreview(id) {
-        const fetchPreview = async() => {
+        const fetchPreview = async () => {
             const response = await axios.get(`/api/ids/${id}`);
             let gameId = response.data.elements[0].elements[0].attributes.id;
             let name, image, description, minPlayers, maxPlayers, minPlayTime, maxPlayTime, yearPublished;
-    
+
             for (let i = 0; i < response.data.elements[0].elements[0].elements.length; i++) {
                 if (response.data.elements[0].elements[0].elements[i].name === "thumbnail") {
                     image = response.data.elements[0].elements[0].elements[0].elements[0].text
@@ -101,24 +101,24 @@ function SearchBGG(props) {
             }
             setGamePrev(gamePrevObj);
             props.setAppState(gamePrevObj);
-            dispatch({type: 'GET_LINKS', links: gamePrevObj})
-        }   
-        fetchPreview(); 
+            dispatch({ type: 'GET_LINKS', links: gamePrevObj })
+        }
+        fetchPreview();
     };
 
     function renderGameToDOM(e, inputValue) {
         e.preventDefault();
-        const fetchData = async() => {
+        const fetchData = async () => {
             const response = await axios.get(`/api/games/${inputValue}`);
             let game = {
                 gameId: response.data.elements[0].elements[0].attributes.objectid,
                 name: response.data.elements[0].elements[0].elements[0].elements[0].text,
             }
             setGames(game);
-            }
-        fetchData(); 
+        }
+        fetchData();
     }
-    
+
     const handleChange = (e) => {
         setInputValue(e.target.value);
     }
@@ -129,7 +129,7 @@ function SearchBGG(props) {
                 <Autocomplete
                     onChange={(event, newValue) => {
                         setInputValue(newValue);
-                      }}
+                    }}
                     inputValue={inputValue}
                     id="topGamesDropdown"
                     disableClearable
@@ -140,7 +140,7 @@ function SearchBGG(props) {
                             onChange={handleChange}
                             label="Search for Board Game"
                             variant="outlined"
-                            multiline={true}                       
+                            multiline={true}
                         />
                     )}
                 />
@@ -150,28 +150,27 @@ function SearchBGG(props) {
                 <div className={classes.chipdiv}>
                     {inputValue.length ? (
                         <div>
-                        {console.log('1:',inputValue, '2:', inputValue.length)}
-                        <button 
-                            id="chip" 
-                            className={classes.chip}
-                            label={games.name}                                 
-                            key={games.gameId} 
-                            value={games.gameId} 
-                            onClick={() => {
-                                getPreview(games.gameId)
+                            {console.log('1:', inputValue, '2:', inputValue.length)}
+                            <button
+                                id="chip"
+                                className={classes.chip}
+                                label={games.name}
+                                key={games.gameId}
+                                value={games.gameId}
+                                onClick={() => {
+                                    getPreview(games.gameId)
                                 }
-                            }
-                        >
-                            {games.name}
-                        </button>
+                                }
+                            >
+                                {games.name}
+                            </button>
                         </div>
                     ) : (
-                        <div></div>
-                    )}
+                            <div></div>
+                        )}
                 </div>
             </Grid>
         </div>
     )
-}
+};
 
-export default SearchBGG;

@@ -10,7 +10,7 @@ import Header from '../../components/Header';
 import './style.css';
 
 
-function Home() {
+export default function Home() {
   const [appState, setAppState] = useState(null);
 
   return (
@@ -55,4 +55,3 @@ function Home() {
   );
 }
 
-export default Home;

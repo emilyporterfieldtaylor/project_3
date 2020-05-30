@@ -14,6 +14,7 @@ import VisibilityOff from '@material-ui/icons/VisibilityOff'
 import './signup.css';
 import API from '../../utils/index';
 import { useStoreContext } from '../../utils/GlobalState';
+
 //material ui code for input boxes
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -61,7 +62,6 @@ export default function SignupForm() {
     //when signup button is clicked, post request made to input user into database
     const handleFormSubmit = (e) => {
         e.preventDefault();
-        //console.log(values);
         const userData = {
             name: values.name,
             email: values.email,
@@ -70,13 +70,11 @@ export default function SignupForm() {
         if (values.password.length < 8) {
             alert("Passwords must be at lease 8 characters")
         } else {
-        API.signup(userData).then(results => {
-            { dispatch({ type: "ADD_USERDATA", data: results.data }) }
-            //console.log(results)
-            history.push("/hotitems");
-            //console.log("words");
-        }).catch(loginError)
-    }
+            API.signup(userData).then(results => {
+                { dispatch({ type: "ADD_USERDATA", data: results.data }) }
+                history.push("/hotitems");
+            }).catch(loginError)
+        }
 
     }
 
