@@ -15,3 +15,11 @@
     font-size: 12px !important;
     width: 70%;
 }
+
+h6 {
+    color: black;
+}
+
+.MuiAppBar-colorPrimary {
+    color:black !important;
+}

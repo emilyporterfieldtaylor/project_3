@@ -102,13 +102,6 @@ function SearchGameList() {
                   {game.id}
                   {game.minPlayers}
                 </Paper>
-
-                <Paper className={classes.paper}>
-                <h6>display game data</h6>
-                {/* {console.log(userGame, "inside paper")} */}
-                { userGame.length > 0 ? userGame[0].maxPlayers + " " + userGame[0].maxPlayTime : ""} 
-
-                </Paper>
         </div>
     )
 }
