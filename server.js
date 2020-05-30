@@ -21,7 +21,8 @@ app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
 // Static directory
-app.use(express.static("client/build"));
+const root = require("path").join(__dirname, "client", "build");
+app.use(express.static(root));
 
 // We need to use sessions to keep track of our user's login status
 app.use(session({ secret: "keyboard cat", resave: true, saveUninitialized: true }));
@@ -54,6 +55,10 @@ app.get('/api/hotitems', gameController.hotItems);
 app.get('/api/list/', gameController.gameList);
 app.post('/api/gameData/', gameController.create);
 
+// Catch-all (leverage react-router)
+app.get("*", (req, res) => {
+  res.sendFile("index.html", { root });
+});
 
 
 
