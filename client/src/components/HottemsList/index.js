@@ -57,7 +57,12 @@ export default function HotItemsList(props) {
   const [hotGames, setHotGames] = useState([])
 
   const handleClick = (e) => {
-
+    console.log("The link was clicked");
+    e.preventDefault();
+    // API.updateFirstTimeLogin().then(function() {
+    //   dispatch({type: "UPDATE_FIRSTTIME_LOGIN", data: false});
+      history.push("/home");
+    // });
   };
 
   useEffect(() => {
