@@ -45,5 +45,5 @@ export default function AuthManager()  {
         user: state.userData || undefined,
         logout: handleLogout
     }
-}
+};
 
