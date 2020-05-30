@@ -21,7 +21,7 @@ const useStyles = makeStyles((theme) => ({
     }
 }));
 
-function BoardGamePreview(props) {
+export default function BoardGamePreview(props) {
     const classes = useStyles();
 
     return (
@@ -36,4 +36,3 @@ function BoardGamePreview(props) {
     )
 }
 
-export default BoardGamePreview;
