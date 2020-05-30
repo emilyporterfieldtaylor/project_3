@@ -1,6 +1,5 @@
 import React from 'react';
 import Grid from '@material-ui/core/Grid';
-import SearchGameList from '../SearchGameList';
 import SearchBGG from '../SearchBGG';
 import { Link } from 'react-router-dom';
 import Paper from '@material-ui/core/Paper';
@@ -34,30 +33,39 @@ export default function SearchBar(props) {
         <div className="main-search-bar">
             <Grid container spacing={1}>
                 <Grid item xs={4}>
-                    <SearchGameList />
-                </Grid>
-
-                <Grid item xs={4} >
-                    <SearchBGG setAppState={props.stateChange} />
-                </Grid>
-
-                <Grid item xs={4}>
-                    <Paper className={classes.moreFriends}>
-                        <li className={classes.searchBarLI1}>
-                            <Link to="/search_friends">
-                                Want to Find More Friends?
-                            </Link>
+                    <Paper className="welcome">
+                        <li>
+                              <u>Welcome Travelers, may your party be long and joyful!</u>  
                         </li>
+
+                        <li>
+                            To the victor go the spoils!
+                        </li>
+                        </Paper>
+
+            </Grid>
+
+            <Grid item xs={4} >
+                <SearchBGG setAppState={props.stateChange} />
+            </Grid>
+
+            <Grid item xs={4}>
+                <Paper className={classes.moreFriends}>
+                    <li className={classes.searchBarLI1}>
+                        <Link to="/search_friends">
+                            Want to Find More Friends?
+                            </Link>
+                    </li>
                         --
                         <li className={classes.searchBarLI2} >
-                            <Link to="/planmyevent" >
-                                Want to Plan a Game Night?
+                        <Link to="/planmyevent" >
+                            Want to Plan a Game Night?
                             </Link>
-                        </li>
-                    </Paper>
-                </Grid>
+                    </li>
+                </Paper>
             </Grid>
-        </div>
+            </Grid>
+        </div >
     )
 };
 
