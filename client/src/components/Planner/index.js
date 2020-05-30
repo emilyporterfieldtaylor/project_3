@@ -47,6 +47,8 @@ export default function Planner () {
 
   return (
     <div className="outer-div">
+      <br/>
+      <br/>
       <Grid className="event-grid" container spacing={3}>
         <Grid item xs={12} sm={6} md={6} className='eventPageGrid'>
           <form className={classes.root} noValidate autoComplete="off">
