@@ -3,8 +3,10 @@ import React, { useContext, useReducer } from "react";
 
 const initialState = {
   savedGames: [],
+  filteredGames: [],
+  filters: {"players":"", "playtime": ""},
   currentGame: [],
-  userData: [],
+  userData: {},
   userFriends: [],
   searchFriendArr: [],
   newFriendArr: [],
@@ -26,17 +28,30 @@ const reducer = (state, action) => {
     case "ADD_GAME":
       return {
         ...state,
-        savedGames: [...state.savedGames]
+        savedGames: [...state.savedGames],
+        filteredGames: [...state.savedGames],
+        filters: {}
       }
     case "ADD_USERDATA":
       return {
         ...state,
         userData: action.data
       }
+    case 'UPDATE_FIRSTTIME_LOGIN':
+      return {
+        ...state,
+        userData: {...state.userData, firstTimeLogin: action.data}
+      }
+      case 'LOGOUT':
+        return {
+          ...state,
+          userData: {}
+        }
     case "GET_USER_GAMES":
       return {
         ...state,
-        savedGames: action.games
+        savedGames: action.games,
+        filteredGames: action.games
       }
     case "GET_USER_FRIENDS":
       return {
@@ -78,7 +93,17 @@ const reducer = (state, action) => {
         ...state,
         gameCategories: action.games
       }
-  
+    case 'FILTER_GAMES':
+      return {
+        ...state,
+        filteredGames: action.games
+      }
+    case 'SET_FILTERS':
+      return {
+        ...state,
+        filters: action.filters
+      }
+      
     default:
       return state;
   }
