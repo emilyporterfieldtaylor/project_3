@@ -1,6 +1,11 @@
 import React, { useEffect } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import Paper from '@material-ui/core/Paper';
+import InputLabel from '@material-ui/core/InputLabel';
+import MenuItem from '@material-ui/core/MenuItem';
+import FormHelperText from '@material-ui/core/FormHelperText';
+import FormControl from '@material-ui/core/FormControl';
+import Select from '@material-ui/core/Select';
 import { useStoreContext } from '../../utils/GlobalState';
 import API from '../../utils/index'
 import './list.css'
@@ -28,11 +33,20 @@ const useStyles = makeStyles((theme) => ({
         overflowWrap: 'break-word',
         wordWrap: 'break-word',
         whiteSpace: 'pre-wrap',
-    }
+    },
+    formControl: {
+        margin: theme.spacing(1),
+        minWidth: 120,
+      },
+      selectEmpty: {
+        marginTop: theme.spacing(2),
+      },
 }));
 
 function BoardGameList() {
     const [state, dispatch] = useStoreContext();
+    const [gameList, setGameList] = React.useState([]);
+    const [filters, setFilters] = React.useState({"players":"", "playtime": ""});
     const classes = useStyles();
 
     //when user logs in, games are rendered 
@@ -42,24 +56,37 @@ function BoardGameList() {
 
     //part of associating games to a specific user
     function loadGames() {
-        
         API.getUserGames().then(results=>{
-      
            { dispatch({type: "GET_USER_GAMES", games: results.data }) }
+           setGameList(results.data);
         })
     }
 
-    const userSavedGames = [
-        // this will eventually be deleted
-        // info should be pulled from database of a user's saved games 
-        { title: 'Settlers of Catan', year: 1995 },
-        { title: 'Crossbows and Catapults', year: 1983 },
-        { title: 'Cards Against Humanity', year: 2009 },
-        { title: 'Exploding Kittens', year: 2015 },
-        { title: 'Scattergories', year: 1988 },
-        { title: "Magic: The Gathering", year: 1993 },
-        { title: 'Photosynthesis', year: 2017 },
-    ];
+    function filterGames() {
+        console.log(state.savedGames);
+        let filteredGames = [].concat(state.savedGames)
+            .filter((game) => {
+                return (
+                    (filters.players === "" || (game.minPlayers <= filters.players && game.maxPlayers >= filters.players)) &&
+                    (filters.playtime === "" || game.maxPlayTime <= filters.playtime));
+            });
+
+        setGameList(filteredGames);
+    }
+
+    const setPlayers = (event) => {
+        let newFilters = filters;
+        newFilters.players = event.target.value;
+        setFilters(newFilters);
+        filterGames();
+    }
+
+    const setPlaytime = (event) => {
+        let newFilters = filters;
+        newFilters.playtime = event.target.value;
+        setFilters(newFilters);
+        filterGames();
+    }
 
     //if games is empty, then loading, prevents map error
     if(!state.savedGames) {
@@ -69,10 +96,50 @@ function BoardGameList() {
     return (
         <div id="main-game-list" className={classes.root}>
             <Paper id="list" className={classes.paperDescription}>
-                <u>Saved Games List:</u>
-                {state.savedGames.length ? (
+                <br></br>
+                <FormControl className={classes.formControl}>
+        <InputLabel id="demo-simple-select-autowidth-label"># Players</InputLabel>
+        <Select
+          labelId="demo-simple-select-autowidth-label"
+          id="demo-simple-select-autowidth"
+           onChange={setPlayers}
+          autoWidth
+        >
+          <MenuItem value="">
+            <em>None</em>
+          </MenuItem>
+          <MenuItem value={1}>One</MenuItem>
+          <MenuItem value={2}>Two</MenuItem>
+          <MenuItem value={3}>Three</MenuItem>
+          <MenuItem value={4}>Four</MenuItem>
+          <MenuItem value={5}>Five</MenuItem>
+          <MenuItem value={6}>Six</MenuItem>
+        </Select>
+      </FormControl>
+      <FormControl className={classes.formControl}>
+        <InputLabel id="demo-simple-select-autowidth-label">Max Playtime</InputLabel>
+        <Select
+          labelId="demo-simple-select-autowidth-label"
+          id="demo-simple-select-autowidth"
+          onChange={setPlaytime}
+          autoWidth
+        >
+          <MenuItem value="">
+            <em>None</em>
+          </MenuItem>
+          <MenuItem value={30}>0h 30m</MenuItem>
+          <MenuItem value={60}>1h 00m</MenuItem>
+          <MenuItem value={90}>1h 30m</MenuItem>
+          <MenuItem value={120}>2h 00m</MenuItem>
+          <MenuItem value={150}>2h 30m</MenuItem>
+          <MenuItem value={180}>3h 00m</MenuItem>
+        </Select>
+      </FormControl>
+      <br />
+      <u>Saved Games List:</u>
+                {gameList.length ? (
                     <ul className={classes.boardgameUL}>
-                        {state.savedGames.map(game => (
+                        {gameList.map(game => (
                             //pulling games from the database and rendering to the homepage
                             <li key={game.id} className={classes.gameLI}>{game.name} ({game.yearPublished})</li>
                         ))}

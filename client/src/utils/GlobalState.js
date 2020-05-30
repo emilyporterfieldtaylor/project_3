@@ -3,6 +3,7 @@ import React, { useContext, useReducer } from "react";
 
 const initialState = {
   savedGames: [],
+  filteredGames: [],
   currentGame: [],
   userData: {},
   userFriends: [],
@@ -88,7 +89,11 @@ const reducer = (state, action) => {
         ...state,
         gameCategories: action.games
       }
-  
+    case 'FILTER_GAMES':
+      return {
+        ...state,
+        filteredGames: action.filteredGames
+      }
     default:
       return state;
   }
