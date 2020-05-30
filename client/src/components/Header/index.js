@@ -36,8 +36,8 @@ const useStyles = makeStyles((theme) => ({
 function Header() {  
     const [state, dispatch] = useStoreContext();
     const classes = useStyles();
-    const {user: auth, logout} = AuthManager();
-    const [auth2, setAuth2] = React.useState(true);
+    const {user: auth2, logout} = AuthManager();
+    //const [auth2, setAuth2] = React.useState(true);
     const [anchorEl, setAnchorEl] = React.useState(null);
     const open = Boolean(anchorEl);
 
@@ -74,7 +74,7 @@ function Header() {
                             </IconButton>
 
                             <Typography  variant="subtitle2" className={classes.loggedIn}>
-                                Logged in as {state.userData.name}!
+                                Logged in as {auth2.name}!
                             </Typography>
 
                             <Menu
