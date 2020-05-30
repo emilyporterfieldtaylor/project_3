@@ -2,7 +2,7 @@
 
 ## INTRODUCTION
 
-AS a person throwing a board game party, I want to be able to narrow down my board games by categories so I can pick the perfect board game to play with any party group.  ***???? Do we need to revise***
+AS a person throwing a board game party, I want to be able to narrow down my board games by player size and game time so I can pick the perfect board game to play with any party group.
 
 <br>
 
@@ -29,7 +29,7 @@ AS a person throwing a board game party, I want to be able to narrow down my boa
 
 3. The user can search for people they know that are currently using the app, to add them to their friends list.
 
-4. The user can view their friends' profiles. ????
+4. View their friends profile pages
 
 
 

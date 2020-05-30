@@ -3,9 +3,16 @@
     color: white;
     /* font-size: 19px; */
     font-weight: bold;
+    padding: 10px;
+    border-radius: 10px;
 }
 
 .MuiAutocomplete-popper {
     left: -10px !important;
     width: 275px !important;
+}
+
+#topGamesDropdown-label {
+    font-size: 10px;
+    width: 75%;
 }

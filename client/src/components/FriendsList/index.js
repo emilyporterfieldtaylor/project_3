@@ -2,19 +2,17 @@ import React, { useEffect, useState } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import Paper from '@material-ui/core/Paper';
 import { Link } from 'react-router-dom';
-import DeleteBtn from '../DeleteBtn';
 import API from '../../utils/index';
 import { useStoreContext } from '../../utils/GlobalState';
 import Button from '@material-ui/core/Button';
 import './friend.css';
-const axios = require("axios");
 
 const useStyles = makeStyles((theme) => ({
     root: {
       flexGrow: 1,
     },
     paper: {
-      padding: theme.spacing(2),
+      padding: theme.spacing(1),
       textAlign: 'left',
       color: theme.palette.text.secondary,
       fontFamily: 'Pangolin',
@@ -24,13 +22,9 @@ const useStyles = makeStyles((theme) => ({
     }
 }));
 
-function deleteFriends(id) {
-    API.deleteFriend(id).then(results => {
-        console.log(results)
-    })
-}
 
-function FriendsList(props) {
+
+export default function FriendsList(props) {
     const classes = useStyles();
     const [state, dispatch] = useStoreContext();
 
@@ -60,7 +54,7 @@ function FriendsList(props) {
     return (
         <div id="main-friend" className={classes.root}>
             <Paper className={classes.paper} id="friend-list">
-                Friend List:
+                <u>Friend List:</u>
                 {state.userFriends.length ? ( 
                     <ul className={classes.friendlistUL}>
                         {state.userFriends.map(friend => (
@@ -73,7 +67,6 @@ function FriendsList(props) {
                                 >
                                     {friend.name}
                                 </Link>
-                                <DeleteBtn onClick={() => deleteFriends(friend._id)}/> 
                             </Button>
                         ))}
                     </ul>
@@ -84,5 +77,3 @@ function FriendsList(props) {
         </div>
     )
 }
-
-export default FriendsList;

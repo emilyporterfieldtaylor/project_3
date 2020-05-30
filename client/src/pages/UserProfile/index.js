@@ -11,7 +11,7 @@ import { makeStyles } from '@material-ui/core/styles';
 const useStyles = makeStyles((theme) => ({
     friendsList: {
         fontFamily: 'Pangolin',
-        marginLeft: '25px',
+        marginLeft: '60px',
         marginRight: '10px'
     },
     userInfo: {
@@ -34,7 +34,7 @@ function UserProfile() {
         API.loadUserFriends().then(results => {
             for (let i = 0; i < results.data.length; i++) {
                 if (results.data[i].UserId == paramsID) {
-                    dispatch({type: "USER_PROFILE_FRIENDS", friends: results.data[i]})
+                    dispatch({ type: "USER_PROFILE_FRIENDS", friends: results.data[i] })
                 }
             }
         })
@@ -44,7 +44,7 @@ function UserProfile() {
         API.loadUserGames().then(results => {
             for (let i = 0; i < results.data.length; i++) {
                 if (results.data[i].UserId == paramsID) {
-                    dispatch({type: "USER_PROFILE_GAMES", games: results.data[i]})
+                    dispatch({ type: "USER_PROFILE_GAMES", games: results.data[i] })
                 }
             }
         })
@@ -52,27 +52,25 @@ function UserProfile() {
 
     return (
         <div className="main-user">
-            <Link to='/home' style={{color:'white'}}>To the Bulletin Board</Link>
-
-            <Header/>
-            
-            <br></br>
-
-            <Grid container spacing={3} >
-                <Grid item xs={6}>
+            <Link to='/home'>To the Bulletin Board</Link>
+            <Header />
+            <br/>
+        
+            <Grid className="main-grid"container >
+        
+                <Grid className="grid-one" item xs={6}>
                     <div className={classes.userInfo}>
-                        <img alt="userProfilePic" src="http://place-puppy.com/200x200"></img>                                  
+                        <img src="http://place-puppy.com/200x200" alt="userProfilePic" ></img>
                         <li className='userInfo'>Name: {state.clickedFriendArr.name}</li>
                         <li className='userInfo'>Email: {state.clickedFriendArr.email}</li>
                     </div>
-
                 </Grid>
 
-                <Grid item xs={6} style={{paddingTop: '0px'}}>
-                    <div>
+             
+                <Grid className="grid-two" item xs={6}>
+                    <div className="friend-listing">
                         <div className={classes.friendsList}>
                             <h3 ><u>Friends List:</u></h3>
-
                             {state.userProfileFriends.length ? (
                                 <div>
                                     {state.userProfileFriends.map(friend => (
@@ -84,8 +82,8 @@ function UserProfile() {
                                     ))}
                                 </div>
                             ) : (
-                                <h5> This User Has No Friends Yet</h5>
-                            )}
+                                    <h5> This User Has No Friends Yet</h5>
+                                )}
                         </div>
                         <div className={classes.friendsList}>
                             <h3 ><u>Games List:</u></h3>
@@ -101,13 +99,16 @@ function UserProfile() {
                                     ))}
                                 </div>
                             ) : (
-                                <h5> This User Has No Saved Games Yet</h5>
-                            )}
+                                    <h5> This User Has No Saved Games Yet</h5>
+                                )}
                         </div>
                     </div>
-                </Grid>       
+                </Grid>   
+                   
             </Grid>
+        {/* end main grid */}
         </div>
+    // end main div
     )
 }
 

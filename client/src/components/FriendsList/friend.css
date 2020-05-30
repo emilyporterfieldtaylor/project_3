@@ -1,8 +1,15 @@
-#friend-list { 
-    margin-right: 1rem;
-    margin-left: 0rem !important;
+
+#main-friend{
+    font-size: 18px;
 }
 
 #main-friend a {
-    color: black;
+    color: #536470;
 }
+
+
+#friend-list { 
+    margin-right: 1rem !important;
+    margin-left: 0rem !important;
+}
+

@@ -1,18 +1,25 @@
+/* outermost div */
 .MuiPaper-root {
     background-color: #faf5f2 !important;
 }
 
-#game-list {
-    border:1px solid #cac9c7;
-    /* margin-left: 2rem;
-    margin-right: 1rem; */
-  
+#main-game-list {
+    font-size: 18px;
 }
-/*  */
-/* li {
-    margin-left: 1rem;
-} */
 
-#savedGameElse {
-    margin: 10px
+/* container holding game list */
+#list {
+    border:1px solid #cac9c7; 
+}
+
+/* h6 */
+#main-game-list h6{
+    margin: 10px;
+    font-size: 17px;
+}
+
+.MuiPaper-root, .makeStyles-paper-370, .MuiPaper-elevation1, .MuiPaper-rounded {
+    margin-left: 0rem !important;
+    margin-right: 0px !important;
+
 }

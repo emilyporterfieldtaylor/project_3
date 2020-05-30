@@ -41,7 +41,7 @@ function SearchBGG(props) {
 
     useEffect(() => {
         const getGameList = async() => {
-            const response = await axios.get(`/api/gamelist/`);
+            const response = await axios.get(`/api/list/`);
             for (var i = 0; i < 50; i++) {
                 let responseString = response.data.elements[0].elements[i];
                 let hotItem = {
@@ -140,7 +140,7 @@ function SearchBGG(props) {
                             onChange={handleChange}
                             label="Search for Board Game"
                             variant="outlined"
-                            multiline={true}
+                            multiline={true}                       
                         />
                     )}
                 />
@@ -148,19 +148,26 @@ function SearchBGG(props) {
             </Paper>
             <Grid item xs={12}>
                 <div className={classes.chipdiv}>
-                    <button 
-                        id="chip" 
-                        className={classes.chip}
-                        label={games.name}                                 
-                        key={games.gameId} 
-                        value={games.gameId} 
-                        onClick={() => {
-                            getPreview(games.gameId)
+                    {inputValue.length ? (
+                        <div>
+                        {console.log('1:',inputValue, '2:', inputValue.length)}
+                        <button 
+                            id="chip" 
+                            className={classes.chip}
+                            label={games.name}                                 
+                            key={games.gameId} 
+                            value={games.gameId} 
+                            onClick={() => {
+                                getPreview(games.gameId)
+                                }
                             }
-                        }
-                    >
-                        {games.name}
-                    </button>
+                        >
+                            {games.name}
+                        </button>
+                        </div>
+                    ) : (
+                        <div></div>
+                    )}
                 </div>
             </Grid>
         </div>

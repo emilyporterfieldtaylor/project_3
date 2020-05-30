@@ -5,26 +5,29 @@ import { useStoreContext } from '../../utils/GlobalState';
 import API from '../../utils/index'
 import './list.css'
 
+//material ui provided styling
 const useStyles = makeStyles((theme) => ({
     root: {
         flexGrow: 1,
     },
-    paper: {
+    paperDescription: {
+        padding: theme.spacing(1),
         textAlign: 'left',
         color: theme.palette.text.secondary,
-        marginLeft: '1rem !important',
         fontFamily: 'Pangolin',
     },
     boardgameUL: {
-        marginTop: '15px !important',
-        marginBottom: '15px !important',
         padding: '5px',
         listStyle: 'circle'
     },
     gameLI: {
         marginBottom: '15px',
-        marginLeft: '20px',
-        fontSize: '18px'
+        marginLeft: '10px',
+        fontSize: '16px',
+        width: '100%',
+        overflowWrap: 'break-word',
+        wordWrap: 'break-word',
+        whiteSpace: 'pre-wrap',
     }
 }));
 
@@ -39,12 +42,13 @@ function BoardGameList() {
 
     //part of associating games to a specific user
     function loadGames() {
+        
         API.getUserGames().then(results=>{
-            console.log('userGames: ', results.data)
+      
            { dispatch({type: "GET_USER_GAMES", games: results.data }) }
         })
     }
-console.log('savedGames: ', state.savedGames)
+
     const userSavedGames = [
         // this will eventually be deleted
         // info should be pulled from database of a user's saved games 
@@ -63,8 +67,8 @@ console.log('savedGames: ', state.savedGames)
     }
 
     return (
-        <div className={classes.root}>
-            <Paper className={classes.paper} id="game-list">
+        <div id="main-game-list" className={classes.root}>
+            <Paper id="list" className={classes.paperDescription}>
                 <u>Saved Games List:</u>
                 {state.savedGames.length ? (
                     <ul className={classes.boardgameUL}>
@@ -74,7 +78,7 @@ console.log('savedGames: ', state.savedGames)
                         ))}
                     </ul>
                 ) : (
-                    <h6 id='savedGameElse'>You Don't Have Any Saved Games Yet!</h6>
+                    <h6>You Don't Have Any Saved Games!</h6>
                 )}
             </Paper>
         </div>

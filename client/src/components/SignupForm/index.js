@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
 import Grid from '@material-ui/core/Grid';
 import clsx from 'clsx';
 import { makeStyles } from '@material-ui/core/styles';
@@ -13,7 +13,6 @@ import Visibility from '@material-ui/icons/Visibility';
 import VisibilityOff from '@material-ui/icons/VisibilityOff'
 import './signup.css';
 import API from '../../utils/index';
-import { useHistory } from "react-router-dom"
 import { useStoreContext } from '../../utils/GlobalState';
 //material ui code for input boxes
 const useStyles = makeStyles((theme) => ({
@@ -62,34 +61,39 @@ export default function SignupForm() {
     //when signup button is clicked, post request made to input user into database
     const handleFormSubmit = (e) => {
         e.preventDefault();
-        console.log(values);
+        //console.log(values);
         const userData = {
             name: values.name,
             email: values.email,
             password: values.password
         }
-
+        if (values.password.length < 8) {
+            alert("Passwords must be at lease 8 characters")
+        } else {
         API.signup(userData).then(results => {
-            { dispatch({type: "ADD_USERDATA", data: results.data }) }
-            console.log(results)
+            { dispatch({ type: "ADD_USERDATA", data: results.data }) }
+            //console.log(results)
             history.push("/hotitems");
-            console.log("words");
+            //console.log("words");
         }).catch(loginError)
-
+    }
 
     }
 
-    //validation to allow user to know they have already made an account
+    //validation, missing info/user already created
     const loginError = () => {
         const userData = {
             name: values.name,
             email: values.email,
             password: values.password
         }
-        if (userData === userData) {
-            alert('User already exists');
+        if (values.email === "" || values.name === "" || values.password === "") {
+            alert('Oops one of the fields was left blank, please fully complete form.');
+        } else if (values.email === values.email) {
+            alert("User already exists, use login page to continue");
         }
     }
+
     return (
         <div className="signup-main">
             <img className="logo" src="/images/ALaBoardLogo1.png" alt="game logo" />

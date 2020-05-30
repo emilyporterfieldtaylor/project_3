@@ -37,26 +37,25 @@ app.use(
 )
 
 // set up auth routes for google
-app.use("/auth",  authRoutes);
+app.use("/auth", authRoutes);
 
 app.use(passport.session());
 
 
 // Routes
 // =============================================================
-require("./routes")(app);//keep this
+require("./routes")(app);
+require("./routes/html-routes")(app);
 
-// =============================================================
 app.get('/api/games/:game', gameController.gameController);
 app.get('/api/ids/:id', gameController.findById);
 app.get('/api/gameById/:id', gameController.findByBggId);
 app.get('/api/hotitems', gameController.hotItems);
-app.get('/api/gamelist/', gameController.gameList);
-// app.get('/api/external_links/:name', gameController.externalLinks);
+app.get('/api/list/', gameController.gameList);
 app.post('/api/gameData/', gameController.create);
 
-//temporary: demonstrating passport
-require("./routes/html-routes")(app);
+
+
 
 
 // Syncing our sequelize models and then starting our Express app

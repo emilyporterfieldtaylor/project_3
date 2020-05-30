@@ -2,6 +2,8 @@ import React, { useState } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import TextField from '@material-ui/core/TextField';
 import Grid from '@material-ui/core/Grid';
+// import { MuiPickersUtilsProvider, KeyboardTimePicker, KeyboardDatePicker } from '@material-ui/pickers';
+// import DateFnsUtils from '@date-io/date-fns';
 import './planner.css';
 
 const useStyles = makeStyles((theme) => ({
@@ -20,12 +22,23 @@ const useStyles = makeStyles((theme) => ({
   },
   hiddenLI: {
     listStyleType: 'none'
-  }
+  },
+  container: {
+    // paddingRight: '20px',
+    display: 'flex',
+    flexWrap: 'wrap',
+  },
+  textField: {
+    marginLeft: theme.spacing(1),
+    marginRight: theme.spacing(1),
+    width: 200,
+  },
 }));
 
 export default function Planner () {
   const [playerInput, setPlayerInput] = useState([]);
   const [gameCategory, setGameCategory] = useState([]);
+  const [gameNight, setGameNight] = useState('');
   const classes = useStyles();
 
   // function applyPlayerNumber(e) {
@@ -47,6 +60,8 @@ export default function Planner () {
   const handleGameChange = (e) => {
     setGameCategory(e.target.value);
   }
+  
+console.log('gamenight: ', gameNight)
 
   return (
     <div className={classes.outerdiv}>
@@ -72,18 +87,30 @@ export default function Planner () {
               onChange={handleGameChange}
               />
             {/* <button onClick={(e) => {applyGameCategory(e)}}>Apply!</button> */}
-          
           </form>
         </Grid>
         <Grid item xs={12} sm={6} md={6} className='eventPageGrid'>
           <h3>You'd like to create an event for:</h3>
-          <ul>
-            <li className={classes.hiddenLI}> <b>{playerInput}</b> player(s) </li>
-            <li className={classes.hiddenLI}> <b>{gameCategory}</b> type </li>
-          </ul>
+            <li className={classes.hiddenLI}> player(s): <b>{playerInput}</b> </li>
+            <li className={classes.hiddenLI}>  type: <b>{gameCategory}</b> </li>
+            <li className={classes.hiddenLI}> date / time :<b>{gameNight}</b>  </li>
+        </Grid>
+        <Grid item xs={12} sm={6} md={6}>
+          <form className={classes.container} noValidate>
+            <TextField
+              id="datetime-local"
+              label="Game Day"
+              type="datetime-local"
+              defaultValue="2020-12-31 T10:30"
+              className={classes.textField}
+              InputLabelProps={{
+                shrink: true,
+              }}
+              onChange={e => setGameNight(e.target.value)}
+            />
+          </form>
         </Grid>
       </Grid>
-    
     </div>
   );
 }
