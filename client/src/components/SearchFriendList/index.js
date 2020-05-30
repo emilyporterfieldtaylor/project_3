@@ -24,7 +24,7 @@ const useStyles = makeStyles((theme) => ({
     }
 }));
 
-function SearchFriendList(props) {
+export default function SearchFriendList(props) {
     const classes = useStyles();
     const [state, dispatch] = useStoreContext();
     const [searchedFor, setSearchedFor] = useState([]);
@@ -105,6 +105,4 @@ function SearchFriendList(props) {
             </div>
         </div>
     )
-}
-
-export default SearchFriendList;
+};
