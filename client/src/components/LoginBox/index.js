@@ -66,7 +66,6 @@ export default function LoginBox() {
         }
         
         API.login(userData).then(results => {
-            console.log(results);
             dispatch({ type: "ADD_USERDATA", data: results.data })
             history.push("/home");
         }).catch(loginError)

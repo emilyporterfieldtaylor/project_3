@@ -2,38 +2,41 @@ var passport = require("passport");
 var LocalStrategy = require("passport-local").Strategy;
 var GoogleStrategy = require("passport-google-oauth20");
 require("dotenv").config();
-// var keys = require("./keys");  //  THIS IS A VARIABLE HIDDEN FROM VIEW LIKE A .env FILE.  USE WHICHEVER WORKS BEST.
+// var keys = require("./keys");  //  Hidden variable like .env FILE.
 // var User = require("../models/user");
 var db = require("../models");
- 
+
 passport.use(
   new GoogleStrategy({
-  //options for the google strategy
-  clientID: process.env.clientID,
-  clientSecret: process.env.clientSecret,
-  callbackURL: "/auth/google/redirect"
-}, (accessToken, refreshToken, profile, done) => {
-  //passport callback function
-  db.User.findOne({where: {email: profile.emails[0].value, provider: "google"}}).then((currentUser) => {
-    if(currentUser) {
-      // already have the user
-      //console.log("user is: ", currentUser)
-      done(null, currentUser, {isFirstTime: false})
-    } else {
+    //options for the google strategy
+    clientID: process.env.clientID,
+    clientSecret: process.env.clientSecret,
+    callbackURL: "/auth/google/redirect"
+  }, (accessToken, refreshToken, profile, done) => {
+    //passport callback function
+    db.User.findOne({ where: { email: profile.emails[0].value, provider: "google" } }).then((currentUser) => {
+      if (currentUser) {
+        // already have the user
+        console.log("user is: ", currentUser)
+        done(null, currentUser)
+      } else {
+
         // if not, create user in our db
         db.User.create({
           name: profile.displayName,
           email: profile.emails[0].value,
           password: profile.id, // I guess we'll have to make the id the password since you are requiring it in the model.
-                            // However, OAuth2 doesnt need a password. But since you are doing LocalStrategy as well this is OK for now. We will need to specify the provider "google" in our queries to seperate localstore users from OAuth
+          // However, OAuth2 doesn't need a password. But since you are doing LocalStrategy as well this is OK for now. 
+          //We will need to specify the provider "google" in our queries to separate local store users from OAuth
           provider: "google",
           profilePicture: profile.photos[0].value
         })
-        .then((newUser) => {
-          // console.log("new user created: " + newUser);
-          done(null, newUser, {isFirstTime: true});
-          // If there's an error, handle it by throwing up a bootstrap alert
-        }).catch(er => console.log(er));
+          .then((newUser) => {
+            console.log("new user created: " + newUser);
+            done(null, newUser);
+            // If there's an error, handle it by throwing up a bootstrap alert
+          }).catch(er => console.log(er));
+
       }
     })
   })
@@ -45,13 +48,13 @@ passport.use(new LocalStrategy(
   {
     usernameField: "email"
   },
-  function(email, password, done) {
+  function (email, password, done) {
     // When a user tries to sign in this code runs
     db.User.findOne({
       where: {
         email: email
       }
-    }).then(function(dbUser) {
+    }).then(function (dbUser) {
       // If there's no user with the given email
       if (!dbUser) {
         return done(null, false, {
@@ -72,12 +75,12 @@ passport.use(new LocalStrategy(
 
 // In order to help keep authentication state across HTTP requests,
 // Sequelize needs to serialize and deserialize the user
-// Just consider this part boilerplate needed to make it all work
-passport.serializeUser(function(user, cb) {
+// "boilerplate" needed to make it all work
+passport.serializeUser(function (user, cb) {
   cb(null, user);
 });
 
-passport.deserializeUser(function(obj, cb) {
+passport.deserializeUser(function (obj, cb) {
   cb(null, obj);
 });
 

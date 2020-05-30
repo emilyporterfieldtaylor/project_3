@@ -39,6 +39,20 @@ router.get("/google", passport.authenticate("google", {
   scope: ["profile", "email"]
 }));
 
+// <<<<<<< pushToHeroku
+// // // callback route for google to redirect to 
+// // router.get("/google/redirect", passport.authenticate("google", {session: false}), (req, res) => {
+// //   // location.replace("http://localhost:3000/home");
+// //   res.redirect("/home")
+// // })
+// router.get("/google/redirect", passport.authenticate("google", {
+//   failureRedirect: "/auth/login/failed"
+// }), function (req, res) {
+//   // Succesful authentication!
+//   res.cookie('logged_in', true);
+//   res.redirect(routeHelper() + "/home");
+// }
+// =======
 router.get("/google/redirect", passport.authenticate("google", {failureRedirect: "/auth/login/failed"}),function(req, res) {
     // Succesful authentication!
     res.cookie('logged_in', true);

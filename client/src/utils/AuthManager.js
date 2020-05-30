@@ -1,6 +1,6 @@
-import React, {useEffect} from "react";
+import React, { useEffect } from "react";
 import Cookies from 'js-cookie';
-import {useHistory} from "react-router-dom";
+import { useHistory } from "react-router-dom";
 import API from "./index";
 import { useStoreContext } from "./GlobalState";
 
@@ -9,11 +9,12 @@ const AuthManager = () => {
     const history = useHistory();
     const [state, dispatch] = useStoreContext();
 
-    useEffect(() => { 
+    useEffect(() => {
         loadUserData();
     }, []);
 
     const loadUserData = async () => {
+
         if(await isUserLoggedIn() && !state.userData.name) {
             /*
                 This occurs when session on server have user logged in,
@@ -38,7 +39,6 @@ const AuthManager = () => {
             // User is logged in and we have their userData stored in state. Lets redirect them where they need to go at this point
             navigateUser(state.userData.firstTimeLogin);
         } else {
-            console.log("your not logged in");
             history.push("/");
         }
     }
@@ -50,20 +50,20 @@ const AuthManager = () => {
     }
 
     const isUserLoggedIn = () => {
-        const userLoggedIn =  Cookies.get('logged_in')
+        const userLoggedIn = Cookies.get('logged_in')
         if (userLoggedIn === undefined || userLoggedIn === "") return false;
         return true
     }
 
-    const handleLogout = async () => {
-        console.log("logging out");
+    const handleLogout = async () => {     
         try {
             await API.logout();
+
             dispatch({type: "LOGOUT"});
         } catch(error) {
             console.log("issue with logging out on server", error);
         }
-        dispatch({type: "LOGOUT"});
+        dispatch({ type: "LOGOUT" });
         history.push("/");
     }
 
