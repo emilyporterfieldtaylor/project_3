@@ -3,7 +3,7 @@
 }
 
 .MuiToolbar-root {
-    background-color: #80aec0 !important;
+    background-color: rgb(234, 232, 232) !important;
 }
 
 .logo-two {
@@ -14,4 +14,12 @@
 .MuiTypography-root {
     font-size: 12px !important;
     width: 70%;
+}
+
+h6 {
+    color: black;
+}
+
+.MuiAppBar-colorPrimary {
+    color:black !important;
 }
