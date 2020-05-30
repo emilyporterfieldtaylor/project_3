@@ -3,6 +3,7 @@ import { makeStyles } from '@material-ui/core/styles';
 import Paper from '@material-ui/core/Paper';
 import API from '../../utils/index.js';
 import { useStoreContext } from '../../utils/GlobalState';
+import './game.css';
 
 //material ui provided styling
 const useStyles = makeStyles((theme) => ({
@@ -69,8 +70,8 @@ export default function BoardGameDescription(props) {
     const classes = useStyles();
 
     return (
-        <div className={classes.root} style={{ marginTop: '20px' }}>
-            <Paper className={classes.paper}>
+        <div id="main-description" className={classes.root} style={{ marginTop: '20px' }}>
+            <Paper id="main-d-game" className={classes.paper}>
                 <h3 style={{ textAlign: 'center', paddingTop: '10px', marginBottom: '20px' }}>Board Game Description </h3>
 
                 <div className={classes.descriptionDIV}>

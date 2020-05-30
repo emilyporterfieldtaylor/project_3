@@ -41,9 +41,12 @@ const useStyles = makeStyles((theme) => ({
       selectEmpty: {
         marginTop: theme.spacing(2),
       },
+      InputLabel: {
+          width: "95%"
+      }
 }));
 
-function BoardGameList() {
+export default function BoardGameList() {
     const [state, dispatch] = useStoreContext();
     const classes = useStyles();
 
@@ -133,7 +136,9 @@ function BoardGameList() {
           <MenuItem value={180}>3h 00m</MenuItem>
         </Select>
       </FormControl>
-      <br />
+     </Paper>
+    
+    <Paper id="saved" className={classes.paperDescription}>
       <u>Saved Games List:</u>
                 {state.filteredGames.length ? (
                     <ul className={classes.boardgameUL}>
@@ -145,9 +150,8 @@ function BoardGameList() {
                 ) : (
                     <h6>You Don't Have Any Saved Games!</h6>
                 )}
-            </Paper>
+    </Paper>
         </div>
     )
 }
 
-export default BoardGameList;

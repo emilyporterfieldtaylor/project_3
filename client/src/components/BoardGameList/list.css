@@ -5,6 +5,7 @@
 
 #main-game-list {
     font-size: 18px;
+
 }
 
 /* container holding game list */
@@ -22,4 +23,13 @@
     margin-left: 0rem !important;
     margin-right: 0px !important;
 
+}
+
+/* # players and max playtime boxes */
+.MuiFormControl-root {
+    margin-top: 0 !important;
+}
+
+#saved {
+    margin-top: 10%;
 }
