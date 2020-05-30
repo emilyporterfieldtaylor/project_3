@@ -20,7 +20,6 @@ passport.use(
         console.log("user is: ", currentUser)
         done(null, currentUser)
       } else {
-
         // if not, create user in our db
         db.User.create({
           name: profile.displayName,
@@ -36,7 +35,6 @@ passport.use(
             done(null, newUser);
             // If there's an error, handle it by throwing up a bootstrap alert
           }).catch(er => console.log(er));
-
       }
     })
   })
