@@ -39,7 +39,7 @@ export default function Links() {
 
     return (
         <div className={classes.root} style={{ marginTop: '20px' }}>
-            <Paper className={classes.paperLinks}>
+            <Paper id="buy" className={classes.paperLinks}>
                 <div>
                     <u>Want to buy it?</u>
 

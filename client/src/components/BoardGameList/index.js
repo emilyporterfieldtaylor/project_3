@@ -41,6 +41,9 @@ const useStyles = makeStyles((theme) => ({
       selectEmpty: {
         marginTop: theme.spacing(2),
       },
+      InputLabel: {
+          width: "95%"
+      }
 }));
 
 export default function BoardGameList() {
