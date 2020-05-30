@@ -2,6 +2,7 @@ import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import Paper from '@material-ui/core/Paper';
 import { useStoreContext } from '../../utils/GlobalState';
+import './external.css';
 
 // material ui provided styling
 const useStyles = makeStyles((theme) => ({
@@ -42,7 +43,6 @@ export default function Links() {
             <Paper id="buy" className={classes.paperLinks}>
                 <div>
                     <u>Want to buy it?</u>
-
                     {state.externalLinks.length ? (
                         gameId = state.externalLinks[0].name,
                         replaceSpace = gameId.replace(/\s/g, "+"),
