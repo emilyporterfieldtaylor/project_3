@@ -60,7 +60,7 @@ export default function UserProfile() {
         
                 <Grid className="grid-one" item xs={6}>
                     <div className={classes.userInfo}>
-                        <img src="http://place-puppy.com/200x200" alt="userProfilePic" ></img>
+                        <img className="image" src='/images/blank-profile-picture.jpg' alt="userProfilePic" ></img>
                         <li className='userInfo'>Name: {state.clickedFriendArr.name}</li>
                         <li className='userInfo'>Email: {state.clickedFriendArr.email}</li>
                     </div>
