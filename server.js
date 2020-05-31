@@ -1,6 +1,9 @@
 let gameController = require('./controllers/gameAPIController');
 const authRoutes = require("./routes/auth-routes");
+const initRoutes = require("./routes/web");
 const path = require("path");
+
+global.__basedir = __dirname;
 // const cors = require("cors");
 
 // Requiring necessary npm packages

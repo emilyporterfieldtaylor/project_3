@@ -54,19 +54,24 @@ export default function UserProfile() {
         <div className="main-user">
             <Link to='/home'>To the Bulletin Board</Link>
             <Header />
-            <br/>
-        
-            <Grid className="main-grid"container >
-        
+            <br />
+
+            <Grid className="main-grid" container >
                 <Grid className="grid-one" item xs={6}>
                     <div className={classes.userInfo}>
                         <img className="image" src='/images/blank-profile-picture.jpg' alt="userProfilePic" ></img>
+                        <form action="upload.php" method="post" enctype="multipart/form-data">
+                            <label>SELECT IMAGE FILE</label>
+                            <input type="file" name="image"/> 
+                            <input type="submit" name="submit" value="Upload"/>
+                        </form>
+                        <br/>
                         <li className='userInfo'>Name: {state.clickedFriendArr.name}</li>
                         <li className='userInfo'>Email: {state.clickedFriendArr.email}</li>
                     </div>
                 </Grid>
 
-             
+
                 <Grid className="grid-two" item xs={6}>
                     <div className="friend-listing">
                         <div className={classes.friendsList}>
@@ -103,12 +108,12 @@ export default function UserProfile() {
                                 )}
                         </div>
                     </div>
-                </Grid>   
-                   
+                </Grid>
+
             </Grid>
-        {/* end main grid */}
+            {/* end main grid */}
         </div>
-    // end main div
+        // end main div
     )
 };
 

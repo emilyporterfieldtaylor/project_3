@@ -3,7 +3,7 @@
     color: black;
     list-style-type: none;
     font-size: 18px;
-    font-family: Arial, Helvetica, sans-serif;
+    font-family: 'Pangolin', Arial, Helvetica, sans-serif;
     margin-left: 25%;
 }
 
@@ -27,6 +27,8 @@
     width: 80% !important;
     margin: 5% auto;
     padding: 15px;
+    font-size: 18px;
+    font-family: 'Pangolin', Arial, Helvetica, sans-serif;
 }
 
 /* allows user to scale to browser size */
@@ -45,6 +47,18 @@ margin-left: 25%;
 
 .grid-2 {
 margin-left: 20%;
+}
+
+.grid-one input {
+    margin-left: 25%;
+    font-family: 'Pangolin', Arial, Helvetica, sans-serif !important;
+    font-size: 14px !important;
+    margin-top: 10px;
+}
+
+.grid-one label {
+    font-weight: bold;
+    margin-left: 30%;
 }
 
 .friend-listing ul {
